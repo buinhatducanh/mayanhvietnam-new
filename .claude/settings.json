@@ -1,0 +1,7 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.nkq.vn",
+    "ANTHROPIC_API_KEY": "AGOP-551B-0B40-A0B0",
+    "ANTHROPIC_AUTH_TOKEN": "AGOP-551B-0B40-A0B0"
+  }
+}
