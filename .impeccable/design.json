@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-07T20:00:00Z",
+  "title": "Design System: Máy Ảnh Việt Nam",
+  "extensions": {
+    "colorMeta": {
+      "primary-bg":        { "role": "neutral",   "displayName": "Studio Black",       "canonical": "#0a0a0f", "tonalRamp": ["#050508", "#0a0a0f", "#111118", "#16161f", "#1c1c28", "#2a2a38", "#3a3a4a", "#55556a"] },
+      "accent":            { "role": "primary",   "displayName": "Showroom Teal",      "canonical": "#00d4aa", "tonalRamp": ["#006b5a", "#009e82", "#00d4aa", "#33dcc0", "#66e5d4", "#99eeea", "#ccf7f5", "#e6fbfa"] },
+      "sale":              { "role": "tertiary",  "displayName": "Flash Orange",       "canonical": "#ff6b35", "tonalRamp": ["#a13d10", "#cc5115", "#ff6b35", "#ff8557", "#ffa07a", "#ffba9d", "#ffd5c0", "#fff0e5"] },
+      "text-primary":      { "role": "neutral",   "displayName": "Ice White",          "canonical": "#f0f0f5", "tonalRamp": ["#55556a", "#8888a0", "#aaaaBB", "#ccccDD", "#e0e0ea", "#f0f0f5", "#f8f8fa", "#fcfcfd"] }
+    },
+    "shadows": [
+      { "name": "card-ambient",    "value": "0 4px 24px rgba(0,0,0,0.4)",       "purpose": "Lifted card on hover" },
+      { "name": "glow-accent",     "value": "0 0 20px rgba(0,212,170,0.15), 0 0 60px rgba(0,212,170,0.05)", "purpose": "Focused/active teal accent" },
+      { "name": "glow-sale",       "value": "0 0 20px rgba(255,107,53,0.15), 0 0 60px rgba(255,107,53,0.05)", "purpose": "Flash sale urgency elements" }
+    ],
+    "motion": [
+      { "name": "ease-standard",     "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default exponential ease-out-quart" },
+      { "name": "ease-entrance",     "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Staggered fade-in entrance" },
+      { "name": "duration-fast",     "value": "200ms",                           "purpose": "Hover/focus state changes" },
+      { "name": "duration-medium",   "value": "400ms",                           "purpose": "Card hover lift, drawer slide" },
+      { "name": "duration-slow",     "value": "600ms",                           "purpose": "Page entrance, section reveal" }
+    ],
+    "breakpoints": [
+      { "name": "sm",  "value": "640px"  },
+      { "name": "md",  "value": "768px"  },
+      { "name": "lg",  "value": "1024px" },
+      { "name": "xl",  "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Brand CTA in teal — 'Thêm vào giỏ', navigation highlights.",
+      "html": "<button class=\"ds-btn-primary\">THÊM VÀO GIỎ</button>",
+      "css": ".ds-btn-primary { background: #00d4aa; color: #0a0a0f; padding: 12px 24px; min-height: 44px; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; letter-spacing: 0.02em; cursor: pointer; transition: background 0.2s cubic-bezier(0.22,1,0.36,1), transform 0.2s; } .ds-btn-primary:hover { background: #00b894; transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #00d4aa; outline-offset: 2px; } .ds-btn-primary:active { transform: scale(0.98); }"
+    },
+    {
+      "name": "Sale Button",
+      "kind": "button",
+      "refersTo": "button-primary-hover",
+      "description": "Commerce urgency CTA in orange — 'Mua ngay', flash sale actions.",
+      "html": "<button class=\"ds-btn-sale\">MUA NGAY</button>",
+      "css": ".ds-btn-sale { background: #ff6b35; color: #ffffff; padding: 12px 24px; min-height: 44px; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: background 0.2s cubic-bezier(0.22,1,0.36,1), transform 0.2s; } .ds-btn-sale:hover { background: #e85d2a; transform: translateY(-1px); } .ds-btn-sale:focus-visible { outline: 2px solid #ff6b35; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Search and form input on dark background.",
+      "html": "<input class=\"ds-input\" placeholder=\"Tìm kiếm...\" />",
+      "css": ".ds-input { background: #0a0a0f; color: #f0f0f5; padding: 12px 16px; border: 1px solid #2a2a38; border-radius: 12px; font-size: 14px; min-height: 44px; width: 100%; transition: border-color 0.2s; } .ds-input::placeholder { color: #55556a; } .ds-input:focus { outline: none; border-color: rgba(0,212,170,0.5); box-shadow: 0 0 0 1px rgba(0,212,170,0.25); }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Product card with image, badges, price, rating. Lifts on hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-img\"><img src=\"placeholder.jpg\" alt=\"Canon EOS R50\" /></div><div class=\"ds-card-body\"><p class=\"ds-card-brand\">CANON</p><h3 class=\"ds-card-name\">Canon EOS R50</h3><p class=\"ds-card-price\">12.990.000₫</p></div></article>",
+      "css": ".ds-card { background: #16161f; border: 1px solid #1e1e2a; border-radius: 12px; overflow: hidden; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s, box-shadow 0.3s; } .ds-card:hover { transform: translateY(-4px); border-color: rgba(0,212,170,0.4); box-shadow: 0 4px 24px rgba(0,0,0,0.4); } .ds-card-img { aspect-ratio: 1/1; background: #0d0d14; overflow: hidden; } .ds-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); } .ds-card:hover .ds-card-img img { transform: scale(1.05); } .ds-card-body { padding: 16px; } .ds-card-brand { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #00d4aa; } .ds-card-name { font-size: 14px; font-weight: 600; color: #f0f0f5; margin-top: 4px; } .ds-card-price { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: #ffffff; margin-top: 8px; }"
+    },
+    {
+      "name": "Flash Sale Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Sale product card with orange border glow and progress bar.",
+      "html": "<article class=\"ds-card-sale\"><div class=\"ds-card-img\"><img src=\"placeholder.jpg\" alt=\"DJI Mini 4 Pro\" /></div><div class=\"ds-card-body\"><p class=\"ds-card-sale-price\">15.990.000₫</p><div class=\"ds-card-progress\"><div class=\"ds-card-progress-fill\" style=\"width:60%\"></div></div><p class=\"ds-card-sold\">Đã bán 60%</p></div></article>",
+      "css": ".ds-card-sale { background: #16161f; border: 1px solid rgba(255,107,53,0.3); border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(255,107,53,0.1); } .ds-card-sale .ds-card-sale-price { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: #ff6b35; } .ds-card-progress { height: 6px; background: rgba(255,107,53,0.2); border-radius: 3px; margin-top: 8px; overflow: hidden; } .ds-card-progress-fill { height: 100%; background: linear-gradient(90deg, #ff6b35, #ff4444); border-radius: 3px; transition: width 0.6s cubic-bezier(0.22,1,0.36,1); } .ds-card-sold { font-size: 10px; color: #8888a0; margin-top: 4px; }"
+    },
+    {
+      "name": "Category Nav Link",
+      "kind": "nav",
+      "refersTo": "input",
+      "description": "Category navigation item with emoji icon. Horizontal scroll on mobile.",
+      "html": "<a class=\"ds-nav-cat\" href=\"#\"><span>📷</span> Máy ảnh Body</a>",
+      "css": ".ds-nav-cat { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; color: #8888a0; text-decoration: none; transition: color 0.2s, background 0.2s; white-space: nowrap; } .ds-nav-cat:hover { color: #00d4aa; background: rgba(255,255,255,0.04); } .ds-nav-cat:focus-visible { outline: 2px solid #00d4aa; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Dark Room Studio",
+    "overview": "A cinematic digital showroom where the product is lit perfectly against a dark background. Confident, Technical, Cinematic — expert voice, data-forward layouts, smooth exponential motion. Deliberately rejects FPTShop/Shopee clutter and AI-generated cream monoculture.",
+    "keyCharacteristics": [
+      "Rich black canvas, not cream or navy",
+      "One accent color (teal) used sparingly; rarity is the point",
+      "JetBrains Mono for prices and specs — technical credibility",
+      "Smooth exponential easing only; no bounce, no elastic",
+      "Vietnamese-first: VND currency, local payments, Vietnamese copy",
+      "Semantic HTML, keyboard-navigable, reduced-motion respected"
+    ],
+    "rules": [
+      { "name": "The Teal Restraint Rule", "body": "Showroom Teal appears on ≤10% of any given screen. Its power is in scarcity.", "section": "colors" },
+      { "name": "The Surface Ramp Rule", "body": "Every background step is the same hue (260°) at increasing lightness. Never mix warm-tinted surfaces.", "section": "colors" },
+      { "name": "The Mono Prices Rule", "body": "All prices are JetBrains Mono 700 with tabular-nums. Non-negotiable visual signature.", "section": "typography" },
+      { "name": "The No-Gradient-Text Rule", "body": "Text is never colored with a gradient background-clip. It's an AI-slop tell.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "All surfaces are flat at rest. Shadows appear only on hover, focus, or active state.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use JetBrains Mono for all prices, specs, order numbers, countdown digits",
+      "Do use flat-by-default: no shadow at rest, shadows only on hover/focus",
+      "Do keep teal accent ≤10% of any viewport",
+      "Do use exponential easing (ease-out-quart/quint/expo) for all motion",
+      "Do respect prefers-reduced-motion with alternatives",
+      "Do keep body text at Text Secondary (#8888a0) minimum",
+      "Do render Vietnamese currency as XX.XXX.XXX₫ with dot separators",
+      "Do use semantic HTML: header, nav, main, footer, article, section",
+      "Do make every interactive element keyboard-focusable with teal focus ring",
+      "Do keep touch targets ≥ 48×48px on mobile"
+    ],
+    "donts": [
+      "Don't use FPTShop/Shopee patterns: red-heavy, cluttered, flash-sale spam",
+      "Don't use gradient text (background-clip: text) — AI-slop tell",
+      "Don't use bounce or elastic easing — exponential only",
+      "Don't apply glassmorphism decoratively — reserved for sticky header only",
+      "Don't use numbered section markers (01/02/03) as scaffolding",
+      "Don't put tiny uppercase tracked eyebrows above every section",
+      "Don't use Text Muted (#55556a) for body copy — fails 4.5:1 contrast",
+      "Don't nest cards inside cards",
+      "Don't animate layout properties (width, height, margin, padding)",
+      "Don't use border-left > 1px as colored accent stripe"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "framework": "next-app",
+  "files": [".next/static/**/*.css"],
+  "insertBefore": "<!-- impeccable-live -->",
+  "commentSyntax": "<!-- -->",
+  "cspChecked": true,
+  "port": 8400
+}

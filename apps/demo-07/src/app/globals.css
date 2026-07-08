@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0a0a0f;
+  --color-foreground: #f0f0f5;
+  --color-primary: #00d4aa;
+  --color-primary-deep: #00b894;
+  --color-secondary: #111118;
+  --color-muted: #16161f;
+  --color-border: #1e1e2a;
+  --color-text-secondary: #8888a0;
+}
+
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--color-foreground);
+  background: var(--color-background);
+}
+
+body {
+  min-height: 100vh;
+}

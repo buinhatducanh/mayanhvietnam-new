@@ -1,0 +1,9 @@
+{
+  "name": "@mayanhvietnam/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./generate-scripts.js",
+  "bin": {
+    "gen-scripts": "./generate-scripts.js"
+  }
+}
