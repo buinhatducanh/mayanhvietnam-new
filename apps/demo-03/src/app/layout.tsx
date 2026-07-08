@@ -1,20 +1,16 @@
 import type { Metadata } from 'next';
+import RootShell from './components/RootClient';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Demo demo-03 — mayanhvietnam.com',
-  description: 'Demo interface demo-03 for mayanhvietnam.com',
+  title: 'Demo 03 — mayanhvietnam.com',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className="dark" suppressHydrationWarning>
       <body className="antialiased">
-        {children}
+        <RootShell>{children}</RootShell>
       </body>
     </html>
   );

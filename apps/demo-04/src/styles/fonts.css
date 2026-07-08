@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #FFF8F0;
+  --foreground: #1a1008;
+  --card: #FFFCF8;
+  --card-foreground: #1a1008;
+  --popover: #FFFCF8;
+  --popover-foreground: #1a1008;
+  --primary: #FF6B35;
+  --primary-foreground: #ffffff;
+  --secondary: #F5EDE0;
+  --secondary-foreground: #3d2a14;
+  --muted: #EDE3D5;
+  --muted-foreground: #8a6d50;
+  --accent: #FF6B35;
+  --accent-foreground: #ffffff;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(120, 80, 30, 0.15);
+  --input: transparent;
+  --input-background: #F0E6D8;
+  --switch-background: #c8b49a;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #FF6B35;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #0a0a0f;
+  --foreground: #f0ebe3;
+  --card: #12111a;
+  --card-foreground: #f0ebe3;
+  --popover: #12111a;
+  --popover-foreground: #f0ebe3;
+  --primary: #FF6B35;
+  --primary-foreground: #ffffff;
+  --secondary: #1e1c28;
+  --secondary-foreground: #d4cbbf;
+  --muted: #1a1824;
+  --muted-foreground: #6b6478;
+  --accent: #FF6B35;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: rgba(255, 107, 53, 0.12);
+  --input: #1e1c28;
+  --ring: #FF6B35;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-inter: 'Inter', sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}

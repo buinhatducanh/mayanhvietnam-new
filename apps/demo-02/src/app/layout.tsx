@@ -1,20 +1,16 @@
 import type { Metadata } from 'next';
+import LayoutShell from './components/LayoutClient';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Demo demo-02 — mayanhvietnam.com',
-  description: 'Demo interface demo-02 for mayanhvietnam.com',
+  title: 'Demo 02 — mayanhvietnam.com',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className="dark" suppressHydrationWarning>
       <body className="antialiased">
-        {children}
+        <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
   );
