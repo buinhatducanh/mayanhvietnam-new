@@ -12,6 +12,9 @@ import { LensCompatibility } from '@/components/product/lens-compatibility';
 import { ProductTabs } from '@/components/product/product-tabs';
 import { AddToCartSection } from '@/components/product/add-to-cart-section';
 import { ProductJsonLd } from '@/components/product/product-jsonld';
+import { BreadcrumbJsonLd } from '@/components/seo/breadcrumb-jsonld';
+
+const SITE_URL = 'https://mayanhvietnam.com';
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -26,14 +29,53 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const product = getProductBySlug(slug);
   if (!product) return { title: 'Không tìm thấy sản phẩm' };
 
+  const canonicalUrl = `${SITE_URL}/san-pham/${product.slug}`;
+
   return {
     title: `${product.name} | Giá ${product.price.toLocaleString('vi-VN')}₫ — ${product.brand} chính hãng`,
     description: `${product.name} - ${product.shortSpecs?.join(', ') || product.brand} chính hãng tại Máy Ảnh Việt Nam. Bảo hành 24 tháng · Trả góp 0% · Freeship từ 5 triệu.`,
+    keywords: [
+      `${product.brand} ${product.name}`,
+      `${product.name} chính hãng`,
+      `mua ${product.name}`,
+      `giá ${product.name}`,
+      product.brand.toLowerCase(),
+      product.category,
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
-      title: product.name,
-      description: `${product.name} chính hãng giá ${product.price.toLocaleString('vi-VN')}₫`,
-      images: [{ url: product.thumbnail }],
+      title: `${product.name} | ${product.brand} chính hãng`,
+      description: `${product.name} chính hãng giá ${product.price.toLocaleString('vi-VN')}₫ · Bảo hành 24 tháng · Trả góp 0%`,
+      images: [
+        {
+          url: product.thumbnail,
+          width: 1200,
+          height: 1200,
+          alt: product.name,
+        },
+      ],
       type: 'website',
+      locale: 'vi_VN',
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.name} | ${product.brand}`,
+      description: `${product.name} chính hãng giá ${product.price.toLocaleString('vi-VN')}₫`,
+      images: [product.thumbnail],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   };
 }
@@ -45,38 +87,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const related = getRelatedProducts(product);
 
-  // Mock specs
-  const specs = [
-    { group: 'Cảm biến', items: [
-      { label: 'Độ phân giải', value: '24.2 MP' },
-      { label: 'Loại cảm biến', value: 'CMOS APS-C' },
-      { label: 'ISO', value: '100 - 32000 (mở rộng 51200)' },
-    ]},
-    { group: 'Quay phim', items: [
-      { label: 'Video max', value: '4K 30fps' },
-      { label: 'Slow-motion', value: '1080p 120fps' },
-      { label: 'Codec', value: 'H.265 / HEVC' },
-    ]},
-    { group: 'Vật lý', items: [
-      { label: 'Mount', value: product.mount || '—' },
-      { label: 'Trọng lượng (body)', value: '375g' },
-      { label: 'Kích thước', value: '116.3 x 85.5 x 68.8 mm' },
-      { label: 'Pin', value: 'LP-E17 (~370 shots)' },
-    ]},
+  // Use real scraped specs from mayanhvietnam.com
+  const specs = product.specs ?? [];
+
+  const breadcrumbItems = [
+    { label: 'Trang chủ', href: '/' },
+    { label: product.category.replace(/-/g, ' '), href: `/danh-muc/${product.category}` },
+    { label: product.name },
   ];
 
   return (
     <div className="min-h-screen">
       <ProductJsonLd product={product} />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 pt-4">
-        <Breadcrumb
-          items={[
-            { label: 'Trang chủ', href: '/' },
-            { label: product.category.replace(/-/g, ' '), href: `/danh-muc/${product.category}` },
-            { label: product.name },
-          ]}
-        />
+        <Breadcrumb items={breadcrumbItems} />
       </div>
 
       {/* MAIN */}
@@ -181,22 +207,27 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
 
         {/* TABS — Specs / Description / Reviews */}
-        <div className="mt-12">
+        <section className="mt-12">
           <ProductTabs
             specs={specs}
-            description={`${product.name} là lựa chọn hoàn hảo cho người mới bắt đầu cũng như photographer chuyên nghiệp. Với công nghệ tiên tiến nhất từ ${product.brand}, sản phẩm mang đến chất lượng hình ảnh vượt trội và trải nghiệm chụp ảnh đẳng cấp.`}
+            description={
+              product.description ??
+              `${product.name} — sản phẩm chính hãng ${product.brand} tại Máy Ảnh Việt Nam.`
+            }
             productId={product.id}
+            highlights={product.highlights}
+            packageIncludes={product.packageIncludes}
           />
-        </div>
+        </section>
 
         {/* RELATED */}
         {related.length > 0 && (
-          <div className="mt-12 pb-12">
+          <section className="mt-12 pb-12">
             <h2 className="text-xl font-bold text-foreground mb-6">
               Sản phẩm liên quan
             </h2>
             <ProductGrid products={related} />
-          </div>
+          </section>
         )}
       </div>
     </div>

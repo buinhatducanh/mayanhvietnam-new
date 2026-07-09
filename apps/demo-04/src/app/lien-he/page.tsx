@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, ChevronDown } from "lucide-react";
 import { useTheme } from "@/app/context";

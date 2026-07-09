@@ -1,40 +1,92 @@
 import type { Metadata } from 'next';
+import { Outfit, Playfair_Display, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/layout/theme-provider';
+import { CartProvider } from '@/lib/cart-context';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { FloatingCTA } from '@/components/layout/floating-cta';
 import './globals.css';
 
 const BRAND = 'Máy Ảnh Việt Nam';
+const SITE_URL = 'https://mayanhvietnam.com';
+const SITE_TITLE = `${BRAND} — Cửa hàng máy ảnh, ống kính chính hãng giá tốt`;
+const SITE_DESCRIPTION = `${BRAND} — Cửa hàng máy ảnh, ống kính, flycam, camera hành động chính hãng. Flash sale hàng ngày · Freeship từ 5 triệu · 4 cửa hàng toàn quốc.`;
+
+// Tier 1.1 — Next.js font (zero-CLS, không load link Google Fonts cũ)
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-jetbrains',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
-    default: `${BRAND} — Cửa hàng máy ảnh, ống kính chính hãng giá tốt`,
+    default: SITE_TITLE,
     template: `%s | ${BRAND}`,
   },
-  description: `${BRAND} — Cửa hàng máy ảnh, ống kính, flycam, camera hành động chính hãng. Flash sale hàng ngày · Freeship từ 5 triệu · 4 cửa hàng toàn quốc.`,
+  description: SITE_DESCRIPTION,
   keywords: [
-    'máy ảnh', 'mua máy ảnh', 'máy ảnh chính hãng', 'ống kính',
-    'Canon', 'Sony', 'Nikon', 'DJI', 'GoPro',
-    'máy ảnh mirrorless', 'flycam', 'action camera',
-    'thu cũ đổi mới', 'trả góp máy ảnh',
-    'máy ảnh Việt Nam', 'mayanhvietnam',
+    'máy ảnh',
+    'mua máy ảnh',
+    'máy ảnh chính hãng',
+    'ống kính',
+    'Canon',
+    'Sony',
+    'Nikon',
+    'DJI',
+    'GoPro',
+    'máy ảnh mirrorless',
+    'flycam',
+    'action camera',
+    'thu cũ đổi mới',
+    'trả góp máy ảnh',
+    'máy ảnh Việt Nam',
+    'mayanhvietnam',
   ],
-  authors: [{ name: BRAND }],
+  authors: [{ name: BRAND, url: SITE_URL }],
   creator: BRAND,
-  metadataBase: new URL('https://mayanhvietnam.com'),
+  publisher: BRAND,
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'vi_VN',
-    url: 'https://mayanhvietnam.com',
-    title: `${BRAND} — Cửa hàng máy ảnh chính hãng giá tốt`,
-    description: 'Mua máy ảnh, ống kính, flycam chính hãng · Flash sale · Freeship từ 5 triệu',
+    url: SITE_URL,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     siteName: BRAND,
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: `${BRAND} — Cửa hàng máy ảnh chính hãng`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${BRAND} — Cửa hàng máy ảnh chính hãng`,
-    description: 'Mua máy ảnh, ống kính, flycam chính hãng · Flash sale · Freeship',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,
@@ -47,8 +99,21 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: '/icon',
+    apple: '/apple-icon',
+  },
+  manifest: '/manifest.webmanifest',
+  category: 'shopping',
+  classification: 'E-commerce · Máy ảnh · Ống kính · Thiết bị nhiếp ảnh',
+  verification: {
+    google: 'google-site-verification-placeholder',
+  },
   other: {
     'theme-color': '#0a0a0f',
+    'format-detection': 'telephone=yes',
+    'HandheldFriendly': 'True',
+    'MobileOptimized': '320',
   },
 };
 
@@ -58,21 +123,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="dark" suppressHydrationWarning>
+    <html
+      lang="vi"
+      className={`dark ${outfit.variable} ${playfair.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        {/* Outfit (body) + Playfair Display (headings) + JetBrains Mono (prices) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500&display=swap"
-          rel="stylesheet"
-        />
+        {/* DNS prefetch + preconnect cho mayanhvietnam.com CDN */}
+        <link rel="preconnect" href="https://mayanhvietnam.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://mayanhvietnam.com" />
       </head>
       <body
         className="antialiased"
         style={{
           fontFamily:
-            "'Outfit', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+            'var(--font-outfit), -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
         }}
       >
         <a
@@ -82,15 +147,17 @@ export default function RootLayout({
           Bỏ qua đến nội dung chính
         </a>
         <ThemeProvider>
-          <Header />
-          <main
-            id="main-content"
-            className="min-h-screen pt-16 md:pt-[140px]"
-          >
-            {children}
-          </main>
-          <Footer />
-          <FloatingCTA />
+          <CartProvider>
+            <Header />
+            <main
+              id="main-content"
+              className="min-h-screen pt-16 md:pt-[140px]"
+            >
+              {children}
+            </main>
+            <Footer />
+            <FloatingCTA />
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -3,6 +3,7 @@ export type {
   Category,
   ProductImage,
   ProductSummary,
+  ProductSpecGroup,
   FlashSale,
   HeroSlide,
   DealBanner,

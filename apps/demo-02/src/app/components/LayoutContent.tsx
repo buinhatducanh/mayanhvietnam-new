@@ -1,7 +1,8 @@
-import Link from 'next/link';
 'use client';
 
+import Link from 'next/link';
 import { useState, useRef, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import {
   Camera, Search, ShoppingCart, User, Menu, X,
   Facebook, Instagram, Youtube, Twitter,
@@ -9,7 +10,7 @@ import {
   Aperture, Video, Zap, Wind, Lightbulb, Package, Archive, Home,
   ChevronDown, Tag,
 } from "lucide-react";
-import { useCart } import { useCart } from "@/app/context/CartContext";
+import { useCart } from "@/app/context/CartContext";
 
 const CAT_NAV = [
   { label: "MÁY ẢNH",           to: "/san-pham?cat=camera",  Icon: Camera,    sub: ["Mirrorless", "DSLR", "Compact", "Medium Format"] },
@@ -29,21 +30,20 @@ const TOP_LINKS = [
   { label: "Thương hiệu", to: "/thuong-hieu" },
 ];
 
-export default function Layout() {
+export default function Layout({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
   const [hoverCat, setHoverCat] = useState<string | null>(null);
   const { count } = useCart();
-  const navigate = { push: (href: string) => { /* router.push(href) */ } };
-  const location = useLocation();
+  const router = useRouter(); const pathname = usePathname();
   const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (query.trim()) /* navigate */ console.log("navigate"); //`/san-pham?q=${encodeURIComponent(query.trim())}`);
+    if (query.trim()) router.push(`/san-pham?q=${encodeURIComponent(query.trim())}`);
   };
 
   const onCatEnter = (label: string) => {
@@ -80,17 +80,17 @@ export default function Layout() {
               {/* Right: nav links + social */}
               <div className="flex items-center gap-1">
                 {TOP_LINKS.map(l => (
-                  <Link key={l.label} to={l.to}
+                  <Link key={l.label} href={l.to}
                     className="text-[10px] text-gray-400 hover:text-white px-2.5 py-1 rounded hover:bg-white/6 transition-colors">
                     {l.label}
                   </Link>
                 ))}
                 <span className="w-px h-3 bg-gray-700 mx-1" />
                 {[Facebook, Instagram, Youtube].map((Icon, i) => (
-                  <a key={i} href="#"
+                  <Link key={i} href="#"
                     className="w-6 h-6 flex items-center justify-center rounded hover:bg-white/8 text-gray-500 hover:text-white transition-colors">
                     <Icon size={11} />
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -196,7 +196,7 @@ export default function Layout() {
                 return (
                   <div key={c.label} className="relative"
                     onMouseEnter={() => onCatEnter(c.label)}>
-                    <Link to={c.to}
+                    <Link href={c.to}
                       className={`flex items-center gap-2 px-3.5 py-3 text-[11px] font-extrabold tracking-wide whitespace-nowrap transition-all relative group
                         ${c.highlight
                           ? "bg-orange-500 text-white hover:bg-orange-400"
@@ -222,7 +222,7 @@ export default function Layout() {
                         onMouseEnter={() => onCatEnter(c.label)}
                       >
                         {c.sub.map(s => (
-                          <Link key={s} to={c.to}
+                          <Link key={s} href={c.to}
                             className="flex items-center gap-2.5 px-4 py-2.5 text-[12px] text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors font-medium">
                             <span className="w-1 h-1 rounded-full bg-orange-400 shrink-0" />
                             {s}
@@ -256,7 +256,7 @@ export default function Layout() {
             {/* Links */}
             <div className="px-3 py-2">
               {CAT_NAV.map(c => (
-                <Link key={c.label} to={c.to} onClick={() => setMobileOpen(false)}
+                <Link key={c.label} href={c.to} onClick={() => setMobileOpen(false)}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-colors mb-0.5 ${
                     c.highlight
                       ? "bg-orange-500 text-white"
@@ -284,9 +284,9 @@ export default function Layout() {
       </header>
 
       {/* ── Page content ── */}
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
+
+
 
       {/* ══════════ FOOTER ══════════════════════════════════ */}
       <footer className="bg-gray-900 text-gray-400">
@@ -315,9 +315,9 @@ export default function Layout() {
               </div>
               <div className="flex gap-2 mt-5">
                 {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
-                  <a key={i} href="#" className="w-7 h-7 rounded-lg bg-white/8 hover:bg-orange-500 flex items-center justify-center transition-colors group">
+                  <Link key={i} href="#" className="w-7 h-7 rounded-lg bg-white/8 hover:bg-orange-500 flex items-center justify-center transition-colors group">
                     <Icon size={13} className="text-gray-500 group-hover:text-white transition-colors" />
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -332,7 +332,7 @@ export default function Layout() {
                   style={{ fontFamily: "'Barlow Condensed',sans-serif" }}>{col.title}</h4>
                 <ul className="space-y-2">
                   {col.links.map(item => (
-                    <li key={item.l}><Link to={item.to} className="text-[12px] hover:text-orange-400 transition-colors">{item.l}</Link></li>
+                    <li key={item.l}><Link href={item.to} className="text-[12px] hover:text-orange-400 transition-colors">{item.l}</Link></li>
                   ))}
                 </ul>
               </div>

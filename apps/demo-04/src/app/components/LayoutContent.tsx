@@ -1,6 +1,6 @@
-import Link from 'next/link';
 'use client';
 
+import Link from 'next/link';
 import { useState, useRef, useEffect } from "react";
 import {
   Sun, Moon, Search, ShoppingCart, User, Camera, Menu, X,
@@ -8,8 +8,9 @@ import {
   Lightbulb, Package, RotateCcw, Clapperboard, ChevronDown,
   Gift, Truck, Shield, CreditCard, ChevronRight,
 } from "lucide-react";
-import { useTheme } import { useTheme } from "@/app/context";
-import { ACCENT } import * as DATA from "@/app/data";
+import { useRouter, usePathname } from "next/navigation";
+import { useTheme } from "@/app/context";
+import { ACCENT } from "@/app/data";
 
 /* ── Data ─────────────────────────────────────────────────────────────── */
 
@@ -70,10 +71,10 @@ function AnnounceTicker({ dark }: { dark: boolean }) {
 }
 
 /* ── Main component ───────────────────────────────────────────────────── */
-export default function Layout() {
+export default function Layout({ children }: { children?: React.ReactNode }) {
   const { dark, toggle } = useTheme();
-  const navigate = { push: (href: string) => { /* router.push(href) */ } };
-  const { pathname } = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
@@ -104,7 +105,7 @@ export default function Layout() {
 
             {/* Logo */}
             <button
-              onClick={() => /* navigate */ console.log("navigate"); //"/")}
+              onClick={() => router.push("/")}
               className="flex items-center gap-3 flex-shrink-0 group"
               aria-label="Trang chủ"
             >
@@ -236,7 +237,7 @@ export default function Layout() {
                   /* Highlighted CTA pill */
                   <button
                     key={label}
-                    onClick={() => /* navigate */ console.log("navigate"); //path)}
+                    onClick={() => router.push(path)}
                     className="flex items-center gap-1.5 px-4 my-1.5 rounded-lg text-[11.5px] font-black tracking-wide whitespace-nowrap flex-shrink-0 transition-all duration-150 hover:scale-105 active:scale-100"
                     style={{ background: "#fbbf24", color: "#1c0800" }}
                   >
@@ -247,7 +248,7 @@ export default function Layout() {
                   /* Standard category tab */
                   <button
                     key={label}
-                    onClick={() => /* navigate */ console.log("navigate"); //path)}
+                    onClick={() => router.push(path)}
                     className="group relative flex items-center gap-1.5 px-3.5 py-2.5 text-[12px] font-semibold whitespace-nowrap flex-shrink-0 transition-colors duration-150"
                     style={{ color: "rgba(255,255,255,0.72)" }}
                   >
@@ -299,7 +300,7 @@ export default function Layout() {
               {MAIN_NAV.map(({ label, path }) => (
                 <button
                   key={path}
-                  onClick={() => { /* navigate */ console.log("navigate"); //path); setMobileOpen(false); }}
+                  onClick={() => { router.push(path); setMobileOpen(false); }}
                   className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold rounded-xl transition-colors hover:bg-muted"
                   style={isActive(path) ? { color: ACCENT } : {}}
                 >
@@ -318,7 +319,7 @@ export default function Layout() {
                 {CATEGORIES.map(({ icon: Icon, label, path, highlight }) => (
                   <button
                     key={label}
-                    onClick={() => { /* navigate */ console.log("navigate"); //path); setMobileOpen(false); }}
+                    onClick={() => { router.push(path); setMobileOpen(false); }}
                     className="flex items-center gap-2.5 px-3 py-2.5 text-[12px] font-medium rounded-xl transition-colors hover:bg-muted text-left"
                     style={highlight ? { color: "#d97706", fontWeight: 700 } : { color: dark ? "#a09ab0" : "#5a4530" }}
                   >
@@ -337,7 +338,7 @@ export default function Layout() {
               >
                 <Phone size={15} />
                 Gọi ngay: 0903.148-222
-              </a>
+              </Link>
               <div className="flex gap-2">
                 <button
                   className="flex-1 py-2.5 rounded-xl text-sm font-semibold border border-border hover:bg-muted transition-colors"

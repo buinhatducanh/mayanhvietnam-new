@@ -3,5 +3,41 @@
     "ANTHROPIC_BASE_URL": "https://api.nkq.vn",
     "ANTHROPIC_API_KEY": "AGOP-551B-0B40-A0B0",
     "ANTHROPIC_AUTH_TOKEN": "AGOP-551B-0B40-A0B0"
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:mayanhvietnam.com.vn)",
+      "Bash(mkdir -p \"d:/LOOP_COMPANY/mayanhvietnam-new/apps/demo-02/src/app/\\(home\\)/components\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8002)",
+      "Bash(curl -s http://localhost:8002)",
+      "Bash(findstr :8002)",
+      "Bash(taskkill /PID 19756 /F)",
+      "Bash(cmd //c \"taskkill /PID 19756 /F\")",
+      "Bash(curl -s http://localhost:8000)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(awk '{print $5}')",
+      "Bash(taskkill //F //PID 24120)",
+      "Bash(curl -s http://localhost:8000/)",
+      "Bash(curl -s -o /tmp/page.html http://localhost:8000/)",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const names = Object.keys\\(l\\).filter\\(k => /play|video|tv|monitor/i.test\\(k\\)\\).sort\\(\\); console.log\\(names.slice\\(0,20\\)\\)\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000)",
+      "Bash(xargs -I{} taskkill //F //PID {})",
+      "Bash(curl -s http://localhost:8000/san-pham-can-ban)",
+      "Bash(findstr :8000)",
+      "Bash(cmd //c \"taskkill /PID 16668 /F\")",
+      "Bash(pnpm --filter demo-03 build)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8003/)",
+      "Bash(curl -s \"http://localhost:8003/san-pham/dji-mini-4-pro\")",
+      "Bash(curl -s \"http://localhost:8003/danh-muc/ong-kinh\")",
+      "Bash(curl -s \"http://localhost:8003/tim-kiem?q=sony\")",
+      "Bash(pkill -f \"next dev -p 8003\")",
+      "Bash(curl -s http://localhost:8003/)",
+      "Bash(export LC_ALL=C.UTF-8)",
+      "Bash(curl -s http://localhost:8003/_next/static/chunks/apps_demo-03_src_app_globals_0xuakxu.css)",
+      "Bash(curl -s http://localhost:8000/san-pham/canon-eos-r6-mark-ii-body-only)"
+    ],
+    "additionalDirectories": [
+      "d:\\LOOP_COMPANY\\mayanhvietnam-new\\apps\\demo-02\\src\\app\\(home)"
+    ]
   }
 }

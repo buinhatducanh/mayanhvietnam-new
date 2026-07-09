@@ -1,5 +1,7 @@
+'use client';
+
 import { useState } from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
 
 const POSTS = [
@@ -38,7 +40,7 @@ export default function News() {
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8 py-10">
           <nav className="text-xs text-gray-400 mb-3 flex gap-2">
-            <Link to="/" className="hover:text-orange-500">Trang chủ</Link>
+            <Link href="/" className="hover:text-orange-500">Trang chủ</Link>
             <span>/</span>
             <span className="text-gray-700">Tin tức</span>
           </nav>

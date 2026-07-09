@@ -1,4 +1,6 @@
-import { Link } from "react-router";
+'use client';
+
+import Link from "next/link";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Truck, Shield, Tag } from "lucide-react";
 import { useCart } from "@/app/context/CartContext";
 
@@ -15,7 +17,7 @@ export default function Cart() {
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8 py-8">
           <nav className="text-xs text-gray-400 mb-3 flex gap-2">
-            <Link to="/" className="hover:text-orange-500">Trang chủ</Link>
+            <Link href="/" className="hover:text-orange-500">Trang chủ</Link>
             <span>/</span>
             <span className="text-gray-700">Giỏ hàng</span>
           </nav>
@@ -32,7 +34,7 @@ export default function Cart() {
             <ShoppingBag size={56} className="mb-4 opacity-20" />
             <h2 className="text-xl font-bold text-gray-700 mb-2">Giỏ hàng trống</h2>
             <p className="text-sm mb-6">Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
-            <Link to="/san-pham"
+            <Link href="/san-pham"
               className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-xl text-sm flex items-center gap-2 transition-colors">
               <ArrowRight size={15} /> Tiếp tục mua sắm
             </Link>
@@ -44,13 +46,13 @@ export default function Cart() {
               {items.map(item => (
                 <div key={item.id}
                   className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex gap-4 items-start hover:shadow-md transition-shadow">
-                  <Link to={`/san-pham/${item.id}`}>
+                  <Link href={`/san-pham/${item.id}`}>
                     <div className="w-24 h-20 rounded-xl overflow-hidden bg-gray-50 shrink-0">
                       <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
                     </div>
                   </Link>
                   <div className="flex-1 min-w-0">
-                    <Link to={`/san-pham/${item.id}`}>
+                    <Link href={`/san-pham/${item.id}`}>
                       <h3 className="text-sm font-bold text-gray-900 hover:text-orange-500 transition-colors line-clamp-2 leading-snug mb-1">{item.name}</h3>
                     </Link>
                     <p className="text-xs text-gray-400 mb-3">Hàng chính hãng · Còn hàng</p>
@@ -79,7 +81,7 @@ export default function Cart() {
                 </div>
               ))}
 
-              <Link to="/san-pham"
+              <Link href="/san-pham"
                 className="flex items-center gap-2 text-sm font-semibold text-orange-500 hover:underline mt-2">
                 <ArrowRight size={14} className="rotate-180" /> Tiếp tục mua sắm
               </Link>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Heart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { PriceDisplay } from '@/components/ui/price-display';
@@ -32,12 +33,14 @@ export function ProductCard({ product, className, priority, layout = 'grid' }: P
     >
       {/* IMAGE */}
       <div className="relative aspect-square overflow-hidden bg-[#0d0d14]">
-        <img
+        <Image
           src={product.thumbnail}
           alt={product.name}
-          loading={priority ? 'eager' : 'lazy'}
-          width={500}
-          height={500}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+          quality={80}
+          loading={priority ? undefined : 'lazy'}
+          priority={priority}
           className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
 

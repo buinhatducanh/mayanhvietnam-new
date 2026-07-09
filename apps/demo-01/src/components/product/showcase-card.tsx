@@ -13,8 +13,8 @@ interface ShowcaseCardProps {
   category: string;
   price: number;
   originalPrice?: number | null;
-  rating: number;
-  reviews: number;
+  rating?: number;
+  reviews?: number;
   badge?: 'HOT' | 'NEW' | 'SALE' | null;
   image: string;
   href: string;
@@ -150,14 +150,15 @@ export function ShowcaseCard({
   );
 }
 
-function StarRow({ rating, reviews }: { rating: number; reviews: number }) {
+function StarRow({ rating, reviews }: { rating?: number; reviews?: number }) {
+  if (!rating) return null;
   return (
     <div className="flex items-center gap-1.5">
       {[1, 2, 3, 4, 5].map((i) => (
         <Star key={i} filled={i <= Math.floor(rating)} />
       ))}
       <span className="ml-1 font-mono text-[11px] text-muted-foreground">
-        ({reviews})
+        ({reviews ?? 0})
       </span>
     </div>
   );

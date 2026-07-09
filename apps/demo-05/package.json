@@ -2,6 +2,7 @@
   "name": "demo-05",
   "version": "0.1.0",
   "private": true,
+  "description": "Demo 05 — E-commerce full-flow (mayanhvietnam.com)",
   "scripts": {
     "dev": "next dev -p 8005",
     "build": "next build",
@@ -12,6 +13,7 @@
     "@mayanhvietnam/mock-data": "workspace:*",
     "@mayanhvietnam/shared-utils": "workspace:*",
     "clsx": "^2.1.1",
+    "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",

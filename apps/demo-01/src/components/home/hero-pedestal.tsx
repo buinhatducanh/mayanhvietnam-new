@@ -1,258 +1,280 @@
 'use client';
 
-import { useState } from 'react';
-import { Camera, Zap, Eye, Wifi, ShoppingCart, Heart, RotateCcw, SlidersHorizontal, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Star,
+  Truck,
+  Shield,
+  RotateCcw,
+  CreditCard,
+} from 'lucide-react';
 import { cn, formatVND } from '@/lib/utils';
-import { useTheme } from '@/components/layout/theme-provider';
+import { useCart } from '@/lib/cart-context';
+import { allProducts } from '@/lib/mock-data';
+import type { ProductSummary } from '@mayanhvietnam/mock-data';
 
-interface HeroSpec {
-  icon: typeof Camera;
-  label: string;
-  sub: string;
-}
+// Hero carousel — luân phiên 3 sản phẩm flagship mỗi 6s
+const HERO_SLUGS = ['canon-eos-r6-mark-ii-body-only', 'may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang', 'ong-kinh-canon-rf-2470-f28-l-is-usm-chinh-hang'];
+const heroProducts: ProductSummary[] = HERO_SLUGS
+  .map((slug) => allProducts.find((p) => p.slug === slug))
+  .filter((p): p is ProductSummary => Boolean(p));
 
-interface HeroData {
-  badge: string;
-  name: string;
-  tagline: string;
-  price: number;
-  originalPrice: number;
-  specs: HeroSpec[];
-  features: string[];
-  thumbs: string[];
-  mainImage: string;
-}
+const TRUST_BADGES = [
+  { icon: Truck, label: 'Freeship đơn từ 5 triệu' },
+  { icon: Shield, label: 'Bảo hành chính hãng 24 tháng' },
+  { icon: RotateCcw, label: 'Thu cũ trợ giá 30%' },
+  { icon: CreditCard, label: 'Trả góp 0% lãi suất' },
+];
 
-const HERO_DATA: HeroData = {
-  badge: 'NEW ARRIVAL',
-  name: 'Canon EOS R6 Mark II',
-  tagline: 'Hiệu suất đỉnh cao. Sáng tạo không giới hạn.',
-  price: 49990000,
-  originalPrice: 54900000,
-  specs: [
-    { icon: Camera, label: '24.2MP', sub: 'Full Frame' },
-    { icon: Zap, label: '8K', sub: 'Video' },
-    { icon: Eye, label: 'AI FOCUS', sub: 'Dual Pixel' },
-    { icon: Wifi, label: 'Wi-Fi 6', sub: 'Bluetooth' },
-  ],
-  features: ['360° View', '4K Video', 'IBIS 8-stop', '30fps Burst'],
-  thumbs: [
-    'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=120&h=120&fit=crop&auto=format',
-    'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=120&h=120&fit=crop&auto=format',
-    'https://images.unsplash.com/photo-1606986628253-d3bd1d2d0e9c?w=120&h=120&fit=crop&auto=format',
-    'https://images.unsplash.com/photo-1573868396651-ca8a5fca84f6?w=120&h=120&fit=crop&auto=format',
-    'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=120&h=120&fit=crop&auto=format',
-  ],
-  mainImage:
-    'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900&h=900&fit=crop&auto=format',
-};
+const ROTATE_MS = 6000;
 
 export function HeroPedestal() {
-  const [activeThumb, setActiveThumb] = useState(0);
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const { addItem } = useCart();
+
+  useEffect(() => {
+    if (paused || heroProducts.length <= 1) return;
+    const t = setInterval(
+      () => setActive((i) => (i + 1) % heroProducts.length),
+      ROTATE_MS
+    );
+    return () => clearInterval(t);
+  }, [paused]);
+
+  if (heroProducts.length === 0) return null;
+  const current = heroProducts[active];
+  const discount =
+    current.originalPrice && current.originalPrice > current.price
+      ? Math.round(((current.originalPrice - current.price) / current.originalPrice) * 100)
+      : 0;
 
   return (
-    <section className="relative overflow-hidden border-b border-border">
-      {/* Background glow */}
-      <div
-        className={cn(
-          'pointer-events-none absolute inset-0',
-          isDark ? 'hero-glow-dark' : 'hero-glow-light'
-        )}
-      />
-      {isDark && (
-        <div className="scan-texture pointer-events-none absolute inset-0 opacity-[0.025]" />
-      )}
-
-      <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6">
-        <div className="grid min-h-[520px] grid-cols-1 items-center gap-0 sm:min-h-[580px] lg:grid-cols-[auto_1fr_auto]">
-          {/* Left: Thumbnails (desktop only) */}
-          <div className="hidden w-[72px] flex-col gap-2 py-10 pr-5 lg:flex">
-            {HERO_DATA.thumbs.map((src, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setActiveThumb(i)}
-                aria-label={`Xem góc ${i + 1}`}
-                className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-200"
-                style={
-                  i === activeThumb
-                    ? {
-                        borderColor: '#FF6B35',
-                        boxShadow: isDark
-                          ? '0 0 10px rgba(255,107,53,0.5)'
-                          : '0 0 8px rgba(255,107,53,0.3)',
-                        opacity: 1,
-                      }
-                    : { borderColor: 'transparent', opacity: 0.45 }
-                }
-              >
-                <img src={src} alt="" className="h-full w-full bg-muted object-cover" />
-              </button>
-            ))}
-          </div>
-
-          {/* Center: Product on pedestal */}
-          <div className="relative order-first flex items-center justify-center py-8 sm:py-12 lg:order-none">
-            {/* Pedestal glow */}
-            <div
-              className={cn(
-                'pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2',
-                isDark ? 'pedestal-glow-dark' : 'pedestal-glow-light'
-              )}
-              style={{ width: '340px', height: '80px' }}
-            />
-            {/* Orange glow ring (dark only) */}
-            {isDark && (
-              <div
-                className="pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2"
-                style={{
-                  width: '280px',
-                  height: '20px',
-                  background:
-                    'radial-gradient(ellipse, rgba(255,107,53,0.9) 0%, transparent 70%)',
-                  filter: 'blur(8px)',
-                }}
-              />
-            )}
-            {/* Platform disc (light only) */}
-            {!isDark && (
-              <div
-                className="pedestal-disc-light pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2"
-                style={{ width: '300px', height: '32px' }}
-              />
-            )}
-
-            {/* Product image */}
-            <img
-              key={activeThumb}
-              src={HERO_DATA.thumbs[activeThumb].replace('w=120&h=120', 'w=700&h=700')}
-              alt={HERO_DATA.name}
-              className="relative z-10 w-full max-w-[360px] object-contain transition-all duration-500 sm:max-w-[440px]"
-              style={{
-                filter: isDark
-                  ? 'drop-shadow(0 20px 60px rgba(255,107,53,0.3)) drop-shadow(0 0 80px rgba(255,107,53,0.1))'
-                  : 'drop-shadow(0 20px 50px rgba(0,0,0,0.15))',
-              }}
-            />
-          </div>
-
-          {/* Right: Copy + specs */}
-          <div className="max-w-sm py-10 lg:max-w-[360px] lg:pl-8 xl:pl-12">
-            <span className="badge-new-arrival mb-4 inline-block rounded-sm px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.25em]">
-              {HERO_DATA.badge}
-            </span>
-
-            <h1
-              className="mb-2 text-3xl font-black leading-tight sm:text-4xl"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              {HERO_DATA.name}
-            </h1>
-            <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-              {HERO_DATA.tagline}
-            </p>
-
-            {/* Spec grid */}
-            <div className="mb-6 grid grid-cols-4 gap-2">
-              {HERO_DATA.specs.map(({ icon: Icon, label, sub }) => (
+    <section
+      className="relative overflow-hidden border-b border-border bg-background"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      aria-label="Sản phẩm nổi bật"
+    >
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 py-6 sm:py-10">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+          {/* LEFT: Carousel image */}
+          <div className="relative">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-card border border-border">
+              {heroProducts.map((p, i) => (
                 <div
-                  key={label}
-                  className="flex flex-col items-center gap-1 rounded-xl border border-border bg-card py-2.5 text-center"
-                  style={isDark ? { background: 'rgba(255,255,255,0.04)' } : undefined}
+                  key={p.id}
+                  className={cn(
+                    'absolute inset-0 transition-opacity duration-700',
+                    i === active ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                  )}
+                  aria-hidden={i !== active}
                 >
-                  <Icon className="h-3.5 w-3.5" style={{ color: '#FF6B35' }} />
-                  <span className="font-mono text-xs font-bold text-foreground">
-                    {label}
-                  </span>
-                  <span className="font-mono text-[9px] leading-tight text-muted-foreground">
-                    {sub}
-                  </span>
+                  <Image
+                    src={p.thumbnail}
+                    alt={p.name}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    priority={i === 0}
+                    className="object-contain p-6 sm:p-10"
+                  />
+                  {discount > 0 && (
+                    <span className="absolute left-3 top-3 rounded-md bg-primary px-2.5 py-1 font-mono text-xs font-bold text-white">
+                      -{discount}%
+                    </span>
+                  )}
                 </div>
+              ))}
+
+              {/* Slide arrows */}
+              <button
+                type="button"
+                aria-label="Sản phẩm trước"
+                onClick={() =>
+                  setActive((i) => (i - 1 + heroProducts.length) % heroProducts.length)
+                }
+                className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-card/90 border border-border text-foreground hover:border-primary hover:text-primary transition-colors backdrop-blur-sm"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="Sản phẩm tiếp theo"
+                onClick={() => setActive((i) => (i + 1) % heroProducts.length)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-card/90 border border-border text-foreground hover:border-primary hover:text-primary transition-colors backdrop-blur-sm"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Slide indicators */}
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {heroProducts.map((p, i) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  aria-label={`Xem ${p.name}`}
+                  aria-current={i === active}
+                  onClick={() => setActive(i)}
+                  className={cn(
+                    'h-1.5 rounded-full transition-all',
+                    i === active
+                      ? 'w-10 bg-primary'
+                      : 'w-1.5 bg-border hover:bg-muted-foreground/40'
+                  )}
+                />
               ))}
             </div>
 
-            {/* Price */}
-            <div className="mb-5">
-              <p className="price-mono text-2xl font-black sm:text-3xl">
-                {formatVND(HERO_DATA.price)}
-              </p>
-              {HERO_DATA.originalPrice && (
-                <p className="price-strike mt-0.5 font-mono text-sm">
-                  {formatVND(HERO_DATA.originalPrice)}
+            {/* Thumbnails (desktop) */}
+            <div className="mt-4 hidden lg:grid grid-cols-3 gap-2">
+              {heroProducts.map((p, i) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  className={cn(
+                    'flex items-center gap-2 rounded-lg border p-2 transition-colors text-left',
+                    i === active
+                      ? 'border-primary bg-primary/[0.06]'
+                      : 'border-border hover:border-primary/40'
+                  )}
+                >
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded bg-card">
+                    <Image
+                      src={p.thumbnail}
+                      alt={p.name}
+                      fill
+                      sizes="48px"
+                      className="object-contain p-1"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground truncate">
+                      {p.brand}
+                    </p>
+                    <p className="text-xs font-medium text-foreground truncate">
+                      {p.name}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT: Copy + price + CTA */}
+          <div className="flex flex-col">
+            <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-soft" />
+              Sản phẩm nổi bật
+            </span>
+
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {current.brand}
+            </p>
+            <h1
+              className="mt-2 text-3xl sm:text-4xl font-bold leading-tight text-foreground"
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+            >
+              {current.name}
+            </h1>
+
+            {/* Rating */}
+            {current.rating && (
+              <div className="mt-3 flex items-center gap-2">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star
+                      key={i}
+                      className={cn(
+                        'h-4 w-4',
+                        i <= Math.floor(current.rating!.average)
+                          ? 'fill-primary text-primary'
+                          : 'text-border'
+                      )}
+                    />
+                  ))}
+                </div>
+                <span className="text-xs text-muted-foreground font-mono">
+                  {current.rating.average.toFixed(1)} · {current.rating.count} đánh giá
+                </span>
+              </div>
+            )}
+
+            {/* Short specs */}
+            {current.shortSpecs && current.shortSpecs.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {current.shortSpecs.slice(0, 4).map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-md border border-border bg-card px-2 py-1 text-[11px] text-muted-foreground"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Price block */}
+            <div className="mt-6 rounded-xl border border-border bg-card p-4">
+              <div className="flex items-baseline gap-3">
+                <p className="price-mono text-3xl font-black">
+                  {formatVND(current.price)}
                 </p>
-              )}
+                {current.originalPrice && current.originalPrice > current.price && (
+                  <>
+                    <p className="price-strike text-sm">
+                      {formatVND(current.originalPrice)}
+                    </p>
+                    <span className="rounded-md bg-error/15 px-1.5 py-0.5 text-[10px] font-mono font-bold text-error">
+                      -{discount}%
+                    </span>
+                  </>
+                )}
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Hoặc trả góp 0% · ~{' '}
+                <span className="font-mono text-foreground">
+                  {formatVND(Math.round(current.price / 12))}
+                </span>
+                /tháng × 12 tháng
+              </p>
             </div>
 
             {/* CTAs */}
-            <div className="flex gap-2.5">
+            <div className="mt-5 grid grid-cols-2 gap-2.5">
+              <Link
+                href={`/san-pham/${current.slug}`}
+                className="flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+                style={{ background: '#FF6B35' }}
+              >
+                Xem chi tiết
+              </Link>
               <button
                 type="button"
-                className={cn(
-                  'flex flex-1 items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-95',
-                  isDark && 'glow-primary'
-                )}
-                style={{
-                  background: '#FF6B35',
-                  boxShadow: isDark
-                    ? '0 0 24px rgba(255,107,53,0.4)'
-                    : '0 4px 16px rgba(255,107,53,0.3)',
-                }}
+                onClick={() => addItem(current)}
+                className="rounded-xl border-2 py-3 text-sm font-bold text-primary transition-all hover:bg-primary/5 active:scale-[0.98]"
+                style={{ borderColor: '#FF6B35' }}
               >
-                <ShoppingCart className="h-4 w-4" />
-                Mua ngay
-              </button>
-              <button
-                type="button"
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl border py-3 text-sm font-semibold transition-all hover:border-primary"
-                style={{
-                  borderColor: 'rgba(255,107,53,0.4)',
-                  color: '#FF6B35',
-                }}
-              >
-                <Heart className="h-4 w-4" />
                 Thêm vào giỏ
               </button>
             </div>
 
-            {/* Feature tags */}
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {HERO_DATA.features.map((f) => (
-                <span
-                  key={f}
-                  className="rounded-md border border-border px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
-                >
-                  {f}
-                </span>
+            {/* Trust mini row */}
+            <div className="mt-5 grid grid-cols-2 gap-x-3 gap-y-2 text-[11px] text-muted-foreground">
+              {TRUST_BADGES.map((b) => (
+                <div key={b.label} className="flex items-center gap-1.5">
+                  <b.icon className="h-3.5 w-3.5 shrink-0 text-primary" />
+                  <span>{b.label}</span>
+                </div>
               ))}
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Right-edge feature icons — desktop only */}
-      <div className="absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">
-        {[
-          { icon: RotateCcw, label: '360°' },
-          { icon: Zap, label: '8K' },
-          { icon: Eye, label: 'AI AF' },
-          { icon: SlidersHorizontal, label: 'IBIS' },
-          { icon: Wifi, label: 'Wi-Fi' },
-        ].map(({ icon: Icon, label }) => (
-          <div
-            key={label}
-            className="flex w-10 cursor-pointer flex-col items-center gap-1 opacity-60 transition-opacity hover:opacity-100"
-          >
-            <div
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-card"
-              style={isDark ? { background: 'rgba(255,255,255,0.05)' } : undefined}
-            >
-              <Icon className="h-3.5 w-3.5" style={{ color: '#FF6B35' }} />
-            </div>
-            <span className="font-mono text-[8px] text-muted-foreground">{label}</span>
-          </div>
-        ))}
       </div>
     </section>
   );

@@ -1,8 +1,10 @@
+'use client';
+
 import { useState } from "react";
 import { SlidersHorizontal, ChevronDown } from "lucide-react";
 import { useTheme } from "@/app/context";
 import { ACCENT, PRODUCTS } from "@/app/data";
-import { ProductCard } from "../components/ui";
+import { ProductCard } from "@/app/components/ui";
 
 const CATS = ["Tất cả", "Mirrorless", "DSLR", "Ống kính", "Drone", "Phụ kiện"];
 const BRANDS_F = ["Tất cả", "Canon", "Sony", "Nikon", "Fujifilm", "DJI", "Sigma", "Godox"];

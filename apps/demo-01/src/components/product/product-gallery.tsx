@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 interface ProductGalleryProps {
@@ -21,11 +22,15 @@ export function ProductGallery({ images }: ProductGalleryProps) {
   return (
     <div className="space-y-3">
       {/* Main image */}
-      <div className="aspect-square overflow-hidden rounded-xl bg-card border border-border">
-        <img
+      <div className="relative aspect-square overflow-hidden rounded-xl bg-card border border-border">
+        <Image
           src={images[active].url}
           alt={images[active].alt}
-          className="h-full w-full object-cover"
+          fill
+          priority
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          quality={80}
+          className="object-cover"
         />
       </div>
 
@@ -42,7 +47,15 @@ export function ProductGallery({ images }: ProductGalleryProps) {
               )}
               aria-label={`Xem ảnh ${i + 1}`}
             >
-              <img src={img.url} alt={img.alt} className="h-full w-full object-cover" />
+              <Image
+                src={img.url}
+                alt={img.alt}
+                fill
+                sizes="80px"
+                loading="lazy"
+                quality={75}
+                className="object-cover"
+              />
             </button>
           ))}
         </div>

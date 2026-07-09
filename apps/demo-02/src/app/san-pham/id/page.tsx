@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Link, useParams, Navigate } from "react-router";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 import {
   Star, Heart, ShoppingCart, Phone, CreditCard, Share2,
   ChevronLeft, ChevronRight, Minus, Plus, Check, Shield,
@@ -52,21 +55,23 @@ const TABS = [
   { id: "qa",         label: "Hỏi đáp" },
 ];
 
+/* Sample ảnh chụp thực tế từ các sản phẩm mayanhvietnam.com */
 const GALLERY_SAMPLES = [
-  { url: "https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?w=800&h=600&fit=crop", tag: "Chân dung" },
-  { url: "https://images.unsplash.com/photo-1541654056076-0a252e083078?w=800&h=600&fit=crop", tag: "Phong cảnh" },
-  { url: "https://images.unsplash.com/photo-1516283182395-4b90237bff2e?w=800&h=600&fit=crop", tag: "Đường phố" },
-  { url: "https://images.unsplash.com/photo-1601934025804-c631e2777f26?w=800&h=600&fit=crop", tag: "Thời trang" },
-  { url: "https://images.unsplash.com/photo-1622842182823-28bfbfba47e3?w=800&h=600&fit=crop", tag: "Thiên nhiên" },
-  { url: "https://images.unsplash.com/photo-1618151193636-acf8bed54982?w=800&h=600&fit=crop", tag: "Ngoại cảnh" },
+  { url: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751_ong-kinh-canon-rf-70-200mm-f2-8-l-is-usm.jpg", tag: "Chân dung" },
+  { url: "https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-15/250515085035248/avatar/638828964891489787_dji-mavic-4-pro-512gb-creator-combo.jpg", tag: "Phong cảnh trên cao" },
+  { url: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101137/avatar/638692749614202751_ong-kinh-canon-rf-70-200mm-f2-8-l-is-usm.jpg", tag: "Phong cảnh" },
+  { url: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019_ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss.jpg", tag: "Thời trang" },
+  { url: "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226105739670/avatar/639077003951312982_dji-osmo-action-5-pro-adventure-combo.jpg", tag: "Action / Thể thao" },
+  { url: "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-30/260330085702564/avatar/639120324002834549-dji-pocket-4-4-2000x2000-jpg_may-quay-dji-osmo-pocket-4-creator-combo.jpg", tag: "Vlog / Cinema" },
 ];
 
+/* Phụ kiện gợi ý — ảnh thật từ mayanhvietnam.com */
 const ACCESSORIES = [
-  { id: 1, name: "Chân máy Carbon Benro", price: 3_200_000, rating: 4.8, img: "https://images.unsplash.com/photo-1545254000-6c843440c5cd?w=400&h=400&fit=crop" },
-  { id: 2, name: "Túi máy ảnh Peak Design", price: 1_890_000, rating: 4.9, img: "https://images.unsplash.com/photo-1471999796791-874f5de3b3f4?w=400&h=400&fit=crop" },
-  { id: 3, name: "Đèn Flash Godox TT685", price: 2_450_000, rating: 4.7, img: "https://images.unsplash.com/photo-1602526432604-029a709e131c?w=400&h=400&fit=crop" },
-  { id: 4, name: "Gimbal DJI RS 4 Pro",   price: 8_900_000, rating: 4.9, img: "https://images.unsplash.com/photo-1526556838038-5d9deb7998bd?w=400&h=400&fit=crop" },
-  { id: 5, name: "Thẻ nhớ Sony Tough 128G", price: 980_000, rating: 4.8, img: "https://images.unsplash.com/photo-1613047503507-b8d01ce6af26?w=400&h=400&fit=crop" },
+  { id: 1, name: "DJI RS3 Pro Gimbal",       price: 11_490_000, rating: 4.9, img: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-07/240807150216916/avatar/638692682554257580_gimbal-dji-rs3-pro.jpg" },
+  { id: 2, name: "Godox V1 for Nikon",        price: 5_490_000,  rating: 4.8, img: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-09/240809154551397/avatar/638708171396818780_den-flash-godox-v1-for-nikon.jpg" },
+  { id: 3, name: "Billingham 335 MKII Black", price: 11_490_000, rating: 5.0, img: "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714115219429/avatar/638881651497354295_tui-may-anh-billingham-335-mkii-black-fibrenyte-black.jpg" },
+  { id: 4, name: "Godox LA200D LED 230W",     price: 9_990_000,  rating: 4.7, img: "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/01_den-godox-la200d-daylight-led-light-230w.jpeg" },
+  { id: 5, name: "GoPro Hero 13 Black",       price: 11_990_000, rating: 4.9, img: "https://mayanhvietnam.com/image-data/san-pham/25-01/25-01-02/250102113303811/avatar/638714152413009638_gopro-hero-13-black.jpg" },
 ];
 
 const QA_DATA = [
@@ -316,7 +321,7 @@ function ProductCard({ p }: { p: typeof PRODUCTS[0] }) {
   const disc = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : null;
   return (
     <div className="group bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:shadow-gray-200/70 transition-all duration-300 hover:-translate-y-1 flex flex-col shrink-0 w-[200px] snap-start">
-      <Link to={`/san-pham/${p.id}`}>
+      <Link href={`/san-pham/${p.id}`}>
         <div className="relative bg-gray-50 rounded-t-2xl overflow-hidden" style={{ aspectRatio: "1/1" }}>
           <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
           {disc && <span className="absolute top-2 left-2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">-{disc}%</span>}
@@ -328,7 +333,7 @@ function ProductCard({ p }: { p: typeof PRODUCTS[0] }) {
       </Link>
       <div className="p-3 flex flex-col flex-1">
         <p className="text-[9px] text-[#FF6B00] font-extrabold uppercase mb-0.5">{p.brand}</p>
-        <Link to={`/san-pham/${p.id}`}>
+        <Link href={`/san-pham/${p.id}`}>
           <p className="text-[11px] font-bold text-gray-800 line-clamp-2 leading-snug mb-1.5 hover:text-[#FF6B00] transition-colors">{p.name}</p>
         </Link>
         <RatingStars n={p.rating} size={10} />
@@ -408,7 +413,7 @@ export default function ProductDetail() {
               { label: product.categoryLabel, to: `/san-pham?cat=${product.category}` },
             ].map(b => (
               <span key={b.label} className="flex items-center gap-1.5">
-                <Link to={b.to} className="hover:text-[#FF6B00] transition-colors">{b.label}</Link>
+                <Link href={b.to} className="hover:text-[#FF6B00] transition-colors">{b.label}</Link>
                 <ChevronRight size={10} className="text-gray-300" />
               </span>
             ))}
@@ -793,7 +798,7 @@ export default function ProductDetail() {
               style={{ fontFamily: "'Barlow Condensed',sans-serif" }}>
               <span className="w-1 h-6 bg-[#FF6B00] rounded-full" />Sản Phẩm Liên Quan
             </h2>
-            <Link to={`/san-pham?cat=${product.category}`}
+            <Link href={`/san-pham?cat=${product.category}`}
               className="text-sm font-bold text-[#FF6B00] hover:text-orange-700 flex items-center gap-1">
               Xem tất cả <ChevronRight size={14} />
             </Link>

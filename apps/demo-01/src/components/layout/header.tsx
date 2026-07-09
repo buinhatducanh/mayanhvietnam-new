@@ -2,16 +2,26 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, ShoppingCart, User, Phone, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { categories } from '@/lib/mock-data';
+import { useCart } from '@/lib/cart-context';
+import { LOGO } from '@/lib/image-constants';
 import { ModeToggle } from './mode-toggle';
+import { SearchBar } from './search-bar';
 
-const TOP_NAV = ['Xem tất cả', 'Sản phẩm mới', 'Sản phẩm cũ'];
+const TOP_NAV = [
+  { label: 'Xem tất cả', href: '/san-pham' },
+  { label: 'Sản phẩm mới', href: '/san-pham?filter=new' },
+  { label: 'Sản phẩm cũ', href: '/san-pham?filter=used' },
+];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [mobileSearch, setMobileSearch] = useState(false);
+  const { itemCount } = useCart();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 10);
@@ -26,7 +36,7 @@ export function Header() {
         scrolled ? 'glass shadow-lg' : 'bg-background/95 backdrop-blur-sm'
       )}
     >
-      {/* TOP BAR — 32px */}
+      {/* TOP BAR */}
       <div className="hidden items-center justify-between border-b border-border px-6 py-1 text-[11px] text-muted-foreground md:flex">
         <div className="flex items-center gap-4">
           <a
@@ -42,17 +52,17 @@ export function Header() {
         <div className="flex items-center gap-3">
           {TOP_NAV.map((n) => (
             <Link
-              key={n}
-              href="/san-pham"
+              key={n.label}
+              href={n.href}
               className="transition-colors hover:text-foreground"
             >
-              {n}
+              {n.label}
             </Link>
           ))}
         </div>
       </div>
 
-      {/* MAIN HEADER — 64px */}
+      {/* MAIN HEADER */}
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         {/* Mobile menu toggle */}
         <button
@@ -66,16 +76,18 @@ export function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center gap-2">
-          <div
-            className="flex h-8 w-8 items-center justify-center rounded-md"
-            style={{ background: '#FF6B35' }}
-          >
-            <span className="text-sm font-bold text-white">M</span>
+          <div className="relative h-9 w-9 overflow-hidden rounded-md bg-white/5">
+            <Image
+              src={LOGO.white}
+              alt="Máy Ảnh Việt Nam"
+              width={36}
+              height={36}
+              priority
+              className="h-full w-full object-contain"
+            />
           </div>
           <div className="hidden sm:block">
-            <p className="text-sm font-bold leading-tight text-foreground">
-              MÁY ẢNH
-            </p>
+            <p className="text-sm font-bold leading-tight text-foreground">MÁY ẢNH</p>
             <p
               className="text-[10px] font-semibold uppercase tracking-wider"
               style={{ color: '#FF6B35' }}
@@ -85,22 +97,23 @@ export function Header() {
           </div>
         </Link>
 
-        {/* Search */}
-        <div className="mx-8 hidden max-w-xl flex-1 md:flex">
-          <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Tìm máy ảnh, ống kính, phụ kiện..."
-              className="h-10 w-full rounded-lg border border-border bg-card pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground transition-all focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30"
-              aria-label="Tìm kiếm sản phẩm"
-            />
-          </div>
+        {/* Desktop Search */}
+        <div className="mx-8 hidden md:flex flex-1 justify-center">
+          <SearchBar />
         </div>
+
+        {/* Mobile search toggle */}
+        <button
+          type="button"
+          onClick={() => setMobileSearch(!mobileSearch)}
+          className="p-2 text-muted-foreground md:hidden"
+          aria-label="Tìm kiếm"
+        >
+          <Search className="h-5 w-5" />
+        </button>
 
         {/* Right actions */}
         <div className="flex items-center gap-1">
-          {/* Desktop icons */}
           <Link
             href="/dang-nhap"
             className="hidden items-center gap-2 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-all hover:bg-card hover:text-foreground md:flex"
@@ -123,17 +136,26 @@ export function Header() {
           >
             <ShoppingCart className="h-5 w-5" />
             <span className="hidden lg:inline">Giỏ hàng</span>
-            <span
-              className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold text-white"
-              style={{ background: '#FF6B35' }}
-            >
-              2
-            </span>
+            {itemCount > 0 && (
+              <span
+                className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold text-white"
+                style={{ background: '#FF6B35' }}
+              >
+                {itemCount}
+              </span>
+            )}
           </Link>
 
           <ModeToggle />
         </div>
       </div>
+
+      {/* Mobile search bar */}
+      {mobileSearch && (
+        <div className="border-t border-border p-3 md:hidden">
+          <SearchBar />
+        </div>
+      )}
 
       {/* CATEGORY NAV */}
       <nav className="hidden border-t border-border md:block">
@@ -165,6 +187,7 @@ export function Header() {
                 type="button"
                 onClick={() => setMobileMenu(false)}
                 className="text-muted-foreground hover:text-foreground"
+                aria-label="Đóng"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -189,6 +212,24 @@ export function Header() {
                   <span>{cat.name}</span>
                 </Link>
               ))}
+              <div className="mt-4 border-t border-border pt-4 space-y-1">
+                <Link
+                  href="/dang-nhap"
+                  onClick={() => setMobileMenu(false)}
+                  className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-muted-foreground hover:bg-card"
+                >
+                  <User className="h-4 w-4" />
+                  Tài khoản
+                </Link>
+                <Link
+                  href="/he-thong-cua-hang"
+                  onClick={() => setMobileMenu(false)}
+                  className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-muted-foreground hover:bg-card"
+                >
+                  <Phone className="h-4 w-4" />
+                  Hệ thống cửa hàng
+                </Link>
+              </div>
             </div>
           </div>
         </>

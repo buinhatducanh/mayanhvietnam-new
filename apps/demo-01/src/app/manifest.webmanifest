@@ -1,0 +1,22 @@
+{
+  "name": "Máy Ảnh Việt Nam",
+  "short_name": "MAVN",
+  "description": "Cửa hàng máy ảnh, ống kính chính hãng",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#FF6B35",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 import { stores } from '@/lib/mock-data';
+import { LOGO, PAYMENT_ICONS } from '@/lib/image-constants';
 import { FooterNewsletter } from './footer-newsletter';
 
 const POLICIES = [
@@ -11,7 +13,7 @@ const POLICIES = [
   { label: 'Chính sách đổi trả', href: '/chinh-sach-doi-tra' },
 ];
 
-const PAYMENT_METHODS = ['VISA', 'MasterCard', 'JCB', 'NAPAS', 'MoMo', 'COD'];
+// Payment icons rendered from PAYMENT_ICONS (real brand SVGs from mayanhvietnam.com)
 
 export function Footer() {
   return (
@@ -24,7 +26,7 @@ export function Footer() {
               Đăng ký nhận tin khuyến mãi
             </p>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              Nhận thông tin flash sale & sản phẩm mới trước ai hết
+              Nhận thông tin flash sale &amp; sản phẩm mới trước ai hết
             </p>
           </div>
           <FooterNewsletter />
@@ -37,16 +39,17 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="mb-4 inline-flex items-center gap-2">
-              <div
-                className="flex h-8 w-8 items-center justify-center rounded-md"
-                style={{ background: '#FF6B35' }}
-              >
-                <span className="text-sm font-bold text-white">M</span>
+              <div className="relative h-9 w-9 overflow-hidden rounded-md bg-white/5">
+                <Image
+                  src={LOGO.white}
+                  alt="Máy Ảnh Việt Nam"
+                  width={36}
+                  height={36}
+                  className="h-full w-full object-contain"
+                />
               </div>
               <div>
-                <p className="text-sm font-bold leading-tight text-foreground">
-                  MÁY ẢNH
-                </p>
+                <p className="text-sm font-bold leading-tight text-foreground">MÁY ẢNH</p>
                 <p
                   className="text-[10px] font-semibold uppercase tracking-wider"
                   style={{ color: '#FF6B35' }}
@@ -56,15 +59,21 @@ export function Footer() {
               </div>
             </Link>
             <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
-              Cửa hàng máy ảnh, ống kính & thiết bị nhiếp ảnh chính hãng · Uy tín từ 2020
+              Cửa hàng máy ảnh, ống kính &amp; thiết bị nhiếp ảnh chính hãng · Uy tín từ 2020
             </p>
             <div className="flex items-center gap-3">
-              {['YouTube', 'TikTok', 'Facebook'].map((s) => (
+              {[
+                { name: 'YouTube', href: 'https://www.youtube.com/@mayanhvietnam' },
+                { name: 'TikTok', href: 'https://www.tiktok.com/@mayanhvietnam' },
+                { name: 'Facebook', href: 'https://www.facebook.com/mayanhvietnam' },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-all hover:border-primary hover:text-primary"
-                  aria-label={s}
+                  aria-label={`${s.name} — Máy Ảnh Việt Nam`}
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
@@ -91,20 +100,20 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Stores */}
+          {/* Stores — Hiển thị tất cả cửa hàng từ mock-data */}
           <div>
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-foreground">
               Hệ thống cửa hàng
             </h3>
             <ul className="space-y-3">
-              {stores.slice(0, 3).map((s) => (
+              {stores.map((s) => (
                 <li key={s.id} className="flex gap-2">
                   <MapPin
                     className="mt-0.5 h-3.5 w-3.5 shrink-0"
                     style={{ color: '#FF6B35' }}
                   />
                   <div>
-                    <p className="text-xs font-medium text-foreground">{s.city}</p>
+                    <p className="text-xs font-medium text-foreground">{s.name || s.city}</p>
                     <p className="text-[11px] leading-snug text-muted-foreground">
                       {s.address}
                     </p>
@@ -136,15 +145,25 @@ export function Footer() {
               </a>
               <div className="pt-2">
                 <p className="mb-2 text-xs font-semibold text-foreground">Thanh toán:</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {PAYMENT_METHODS.map((m) => (
-                    <span
-                      key={m}
-                      className="flex h-6 items-center rounded border border-border px-2 text-[10px] font-medium text-muted-foreground"
+                <div className="flex flex-wrap gap-1.5 items-center">
+                  {PAYMENT_ICONS.map((p) => (
+                    <div
+                      key={p.name}
+                      className="flex h-6 w-9 items-center justify-center rounded bg-white px-1"
+                      title={p.name}
                     >
-                      {m}
-                    </span>
+                      <Image
+                        src={p.url}
+                        alt={p.name}
+                        width={28}
+                        height={18}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
                   ))}
+                  <span className="flex h-6 items-center rounded border border-border bg-background px-2 text-[10px] font-medium text-muted-foreground">
+                    COD
+                  </span>
                 </div>
               </div>
             </div>

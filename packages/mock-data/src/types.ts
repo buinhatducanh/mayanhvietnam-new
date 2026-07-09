@@ -33,6 +33,29 @@ export interface ProductSummary {
   availability: 'in_stock' | 'out_of_stock' | 'pre_order';
   category: string;
   shortSpecs?: string[];
+  /** Long-form description (markdown/plain) */
+  description?: string;
+  /** Highlight bullets shown on the product page */
+  highlights?: string[];
+  /** Grouped specs (used by the Specs tab on the product page) */
+  specs?: ProductSpecGroup[];
+  /** What's in the box */
+  packageIncludes?: string[];
+  /** SKU identifier */
+  sku?: string;
+  /** ISO date when scraped */
+  scrapedAt?: string;
+  /** Original product URL on mayanhvietnam.com */
+  sourceUrl?: string;
+  /** True when merchant displays "Vui lòng gọi" (call for price) */
+  callForPrice?: boolean;
+  /** Phone number on the merchant's source page */
+  hotline?: string;
+}
+
+export interface ProductSpecGroup {
+  group: string;
+  items: { label: string; value: string }[];
 }
 
 export interface FlashSale {

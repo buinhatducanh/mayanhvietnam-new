@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { ShoppingCart, Zap, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { QuantitySelector } from '@/components/ui/quantity-selector';
-import { formatVND } from '@/lib/utils';
+import { useCart } from '@/lib/cart-context';
+import { getProductBySlug } from '@/lib/mock-data';
+import type { ProductSummary } from '@mayanhvietnam/mock-data';
 
 interface AddToCartSectionProps {
   productId: string;
@@ -14,11 +17,30 @@ interface AddToCartSectionProps {
 
 export function AddToCartSection({ productId, productName, price }: AddToCartSectionProps) {
   const [qty, setQty] = useState(1);
+  const [added, setAdded] = useState(false);
+  const { addItem } = useCart();
+  const router = useRouter();
 
   const handleAdd = () => {
-    // TODO: integrate cart API
-    console.log('Add to cart', { productId, qty });
-    alert(`Đã thêm ${qty} × "${productName}" vào giỏ hàng (${formatVND(price * qty)})`);
+    // Try to hydrate the full product from mock-data for richer cart data
+    const product: ProductSummary = {
+      id: productId,
+      slug: productId,
+      name: productName,
+      thumbnail: '',
+      images: [],
+      price,
+      badges: [],
+      isUsed: false,
+      brand: '',
+      availability: 'in_stock',
+      category: '',
+    };
+    // Try to get full product data
+    const full = getProductBySlug(productId);
+    addItem(full ?? product);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
   };
 
   return (
@@ -36,7 +58,7 @@ export function AddToCartSection({ productId, productName, price }: AddToCartSec
           leftIcon={<ShoppingCart className="h-4 w-4" />}
           onClick={handleAdd}
         >
-          THÊM VÀO GIỎ
+          {added ? '✓ Đã thêm!' : 'THÊM VÀO GIỎ'}
         </Button>
         <Button
           variant="outline"
@@ -52,7 +74,10 @@ export function AddToCartSection({ productId, productName, price }: AddToCartSec
         size="lg"
         className="w-full"
         leftIcon={<Zap className="h-4 w-4" />}
-        onClick={handleAdd}
+        onClick={() => {
+          handleAdd();
+          router.push('/gio-hang');
+        }}
       >
         MUA NGAY — NHẬN TRONG 2H
       </Button>

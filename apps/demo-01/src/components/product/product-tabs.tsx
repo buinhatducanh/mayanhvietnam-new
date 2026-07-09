@@ -13,6 +13,8 @@ interface ProductTabsProps {
   specs: SpecGroup[];
   description: string;
   productId: string;
+  highlights?: string[];
+  packageIncludes?: string[];
 }
 
 const SAMPLE_REVIEWS = [
@@ -21,12 +23,18 @@ const SAMPLE_REVIEWS = [
   { author: 'Lê Hoa', rating: 4, comment: 'Ảnh chụp sắc nét, autofocus nhanh. Phiên bản phù hợp cho người mới.', date: '2026-05-10', verified: true },
 ];
 
-export function ProductTabs({ specs, description, productId: _productId }: ProductTabsProps) {
-  const [active, setActive] = useState<'desc' | 'specs' | 'reviews' | 'warranty'>('specs');
+export function ProductTabs({ specs, description, productId: _productId, highlights, packageIncludes }: ProductTabsProps) {
+  const [active, setActive] = useState<'desc' | 'specs' | 'reviews' | 'warranty' | 'package' | 'highlights'>('specs');
 
   const tabs = [
     { id: 'specs' as const, label: 'Thông số kỹ thuật' },
     { id: 'desc' as const, label: 'Mô tả' },
+    ...(highlights && highlights.length > 0
+      ? [{ id: 'highlights' as const, label: 'Điểm nổi bật' }]
+      : []),
+    ...(packageIncludes && packageIncludes.length > 0
+      ? [{ id: 'package' as const, label: 'Bộ sản phẩm' }]
+      : []),
     { id: 'reviews' as const, label: `Đánh giá (${SAMPLE_REVIEWS.length})` },
     { id: 'warranty' as const, label: 'Bảo hành' },
   ];
@@ -87,6 +95,44 @@ export function ProductTabs({ specs, description, productId: _productId }: Produ
             <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
               {description}
             </p>
+          </div>
+        )}
+
+        {active === 'highlights' && highlights && (
+          <div className="space-y-2">
+            {highlights.map((h, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-3"
+              >
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                <p className="text-sm text-foreground leading-relaxed">{h}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {active === 'package' && packageIncludes && (
+          <div className="rounded-lg border border-border overflow-hidden">
+            {packageIncludes.map((item, i) => (
+              <div
+                key={i}
+                className={cn(
+                  'flex items-center gap-3 px-4 py-3 text-sm',
+                  i !== 0 && 'border-t border-border',
+                  i % 2 === 1 && 'bg-card'
+                )}
+              >
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
+                  ✓
+                </span>
+                <span className="text-foreground">{item}</span>
+              </div>
+            ))}
           </div>
         )}
 

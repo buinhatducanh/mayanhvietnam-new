@@ -1,9 +1,11 @@
+'use client';
+
+import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router";
 import { ChevronRight, ChevronLeft, ArrowRight, Timer, Package, Headphones, Aperture, Camera, Zap, Quote } from "lucide-react";
 import { useTheme } from "@/app/context";
 import { ACCENT, vnd, PRODUCTS, NEWS } from "@/app/data";
-import { ProductCard, SectionHeader, Stars, Chip } from "../components/ui";
+import { ProductCard, SectionHeader, Stars, Chip } from "@/app/components/ui";
 
 const BANNERS = [
   { id: 0, eyebrow: "Mới ra mắt 2025", headline: "Canon EOS\nR6 Mark II", sub: "40fps burst · AI Autofocus · 6K RAW — Chiếc máy ảnh full-frame đỉnh cao nhất của Canon.", cta: "Khám phá ngay", price: "49.990.000₫", badge: "NEW ARRIVAL", tag: ACCENT, img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1400&h=700&fit=crop&auto=format", productId: 1 },
@@ -50,7 +52,7 @@ function useCountdown(end: Date) {
 
 export default function Home() {
   const { dark } = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [slide, setSlide] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -88,7 +90,7 @@ export default function Home() {
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground mb-8 leading-relaxed max-w-md">{b.sub}</p>
             <div className="flex items-center gap-5 flex-wrap">
-              <button onClick={() => navigate(`/san-pham/${b.productId}`)}
+              <button onClick={() => router.push(`/san-pham/${b.productId}`)}
                 className="px-7 py-3.5 rounded-xl text-white font-bold text-sm flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all"
                 style={{ background: b.tag, boxShadow: `0 4px 24px ${b.tag}55` }}>
                 {b.cta} <ArrowRight size={15} />
@@ -136,7 +138,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 flex items-center gap-6 sm:gap-10 justify-between flex-wrap">
           <p className="text-[9px] font-mono tracking-[0.22em] text-muted-foreground uppercase flex-shrink-0">Thương hiệu</p>
           {BRANDS.map(name => (
-            <button key={name} onClick={() => navigate("/thuong-hieu")}
+            <button key={name} onClick={() => router.push("/thuong-hieu")}
               className="text-sm font-mono font-bold text-muted-foreground hover:text-foreground transition-colors" style={{ letterSpacing:"0.14em" }}>
               {name}
             </button>
@@ -147,10 +149,10 @@ export default function Home() {
       {/* ── CATEGORIES ──────────────────────────────────────────────────── */}
       <section className="py-12 sm:py-16">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
-          <SectionHeader eyebrow="Danh mục" title="Khám phá sản phẩm" link="Tất cả danh mục" onLink={() => navigate("/san-pham")} />
+          <SectionHeader eyebrow="Danh mục" title="Khám phá sản phẩm" link="Tất cả danh mục" onLink={() => router.push("/san-pham")} />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             {CATEGORIES.map(({ icon: Icon, label, count, img }) => (
-              <div key={label} onClick={() => navigate("/san-pham")}
+              <div key={label} onClick={() => router.push("/san-pham")}
                 className="group relative rounded-2xl overflow-hidden cursor-pointer border border-border hover:border-[rgba(255,107,53,0.45)] transition-all duration-300 hover:-translate-y-1"
                 style={{ aspectRatio:"4/3" }}>
                 <img src={img} alt={label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.08]" />
@@ -214,7 +216,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <button onClick={() => navigate("/san-pham")} className="ml-auto hidden sm:flex items-center gap-1.5 text-xs font-semibold hover:opacity-70" style={{ color: ACCENT }}>
+            <button onClick={() => router.push("/san-pham")} className="ml-auto hidden sm:flex items-center gap-1.5 text-xs font-semibold hover:opacity-70" style={{ color: ACCENT }}>
               Xem tất cả <ChevronRight size={13} />
             </button>
           </div>
@@ -222,7 +224,7 @@ export default function Home() {
             {FLASH.map((p, idx) => {
               const disc = Math.round((1-p.price/p.originalPrice)*100);
               return (
-                <div key={idx} onClick={() => navigate(`/san-pham/${p.id}`)}
+                <div key={idx} onClick={() => router.push(`/san-pham/${p.id}`)}
                   className="group rounded-2xl overflow-hidden border border-border bg-card cursor-pointer transition-all duration-300 hover:border-[rgba(255,107,53,0.5)] hover:-translate-y-1">
                   <div className="relative overflow-hidden bg-muted" style={{ paddingBottom:"76%" }}>
                     <img src={p.img} alt={p.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
@@ -257,7 +259,7 @@ export default function Home() {
       {/* ── FEATURED PRODUCTS ───────────────────────────────────────────── */}
       <section className="pb-12 sm:pb-16">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
-          <SectionHeader eyebrow="Bộ sưu tập" title="Sản phẩm nổi bật" link="Xem tất cả" onLink={() => navigate("/san-pham")} />
+          <SectionHeader eyebrow="Bộ sưu tập" title="Sản phẩm nổi bật" link="Xem tất cả" onLink={() => router.push("/san-pham")} />
           <div className="flex items-center gap-1.5 mb-6 overflow-x-auto pb-1">
             {TABS.map((tab, i) => (
               <button key={tab} onClick={() => setActiveTab(i)}
@@ -271,7 +273,7 @@ export default function Home() {
             {PRODUCTS.map(p => <ProductCard key={p.id} p={p} />)}
           </div>
           <div className="flex justify-center mt-8">
-            <button onClick={() => navigate("/san-pham")}
+            <button onClick={() => router.push("/san-pham")}
               className="px-8 py-3 rounded-xl border text-sm font-semibold flex items-center gap-2 hover:opacity-80 transition-opacity"
               style={{ color: ACCENT, borderColor:"rgba(255,107,53,0.4)" }}>
               Xem thêm sản phẩm <ArrowRight size={14} />
@@ -328,7 +330,7 @@ export default function Home() {
           </div>
           <div ref={scrollRef} className="flex gap-4 overflow-x-auto pb-2">
             {PRODUCTS.slice().reverse().map(p => (
-              <div key={p.id} onClick={() => navigate(`/san-pham/${p.id}`)}
+              <div key={p.id} onClick={() => router.push(`/san-pham/${p.id}`)}
                 className="group flex-shrink-0 w-56 rounded-2xl overflow-hidden border border-border bg-card cursor-pointer transition-all duration-300 hover:border-[rgba(255,107,53,0.5)] hover:-translate-y-1">
                 <div className="relative overflow-hidden bg-muted" style={{ height:152 }}>
                   <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.07]" />
@@ -382,10 +384,10 @@ export default function Home() {
       {/* ── TIN TỨC NỔI BẬT ────────────────────────────────────────────── */}
       <section className="py-12 sm:py-16">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
-          <SectionHeader eyebrow="Blog & Hướng dẫn" title="Tin tức mới nhất" link="Xem tất cả" onLink={() => navigate("/tin-tuc")} />
+          <SectionHeader eyebrow="Blog & Hướng dẫn" title="Tin tức mới nhất" link="Xem tất cả" onLink={() => router.push("/tin-tuc")} />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {NEWS.slice(0,3).map(n => (
-              <div key={n.id} onClick={() => navigate("/tin-tuc")}
+              <div key={n.id} onClick={() => router.push("/tin-tuc")}
                 className="group rounded-2xl overflow-hidden border border-border bg-card cursor-pointer hover:border-[rgba(255,107,53,0.4)] transition-all duration-300 hover:-translate-y-1">
                 <div className="relative overflow-hidden bg-muted" style={{ height:180 }}>
                   <img src={n.img} alt={n.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />

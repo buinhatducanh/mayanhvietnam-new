@@ -1,13 +1,15 @@
+'use client';
+
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import { useTheme } from "@/app/context";
 import { ACCENT, vnd, BRANDS, PRODUCTS } from "@/app/data";
-import { ProductCard } from "../components/ui";
+import { ProductCard } from "@/app/components/ui";
 
 export default function Brands() {
+  const router = useRouter();
   const { dark } = useTheme();
-  const navigate = useNavigate();
   const [active, setActive] = useState<string | null>(null);
 
   const activeBrand = active ? BRANDS.find(b => b.id === active) : null;
@@ -117,7 +119,7 @@ export default function Brands() {
               </div>
             )}
             <div className="flex justify-center">
-              <button onClick={() => navigate("/san-pham")}
+              <button onClick={() => router.push("/san-pham")}
                 className="px-7 py-3 rounded-xl text-white font-bold text-sm flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all"
                 style={{ background: ACCENT, boxShadow: dark ? "0 0 24px rgba(255,107,53,0.4)" : "0 4px 16px rgba(255,107,53,0.3)" }}>
                 Xem tất cả sản phẩm {activeBrand.name} <ArrowRight size={14} />

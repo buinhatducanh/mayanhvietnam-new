@@ -36,3 +36,7 @@ coverage/
 # Temp
 tmp/
 temp/
+
+# Zip files
+*.zip
+

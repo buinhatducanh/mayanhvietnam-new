@@ -1,9 +1,12 @@
+'use client';
+
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams } from "next/navigation";
 import { ShoppingCart, Heart, ChevronRight, Star, Shield, Truck, RotateCcw, Zap, CheckCircle, Package } from "lucide-react";
 import { useTheme } from "@/app/context";
 import { ACCENT, vnd, PRODUCTS } from "@/app/data";
-import { Stars, Chip, ProductCard } from "../components/ui";
+import { Stars, Chip, ProductCard } from "@/app/components/ui";
 
 const FAKE_REVIEWS = [
   { name: "Nguyễn Văn An", date: "10/06/2025", rating: 5, text: "Sản phẩm chính hãng, đóng gói cẩn thận. Giao hàng nhanh, nhân viên tư vấn nhiệt tình. Sẽ ủng hộ shop dài dài!", verified: true },
@@ -12,8 +15,9 @@ const FAKE_REVIEWS = [
 ];
 
 export default function ProductDetail() {
+  const router = useRouter();
   const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
   const { dark } = useTheme();
   const [activeThumb, setActiveThumb] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
@@ -25,7 +29,7 @@ export default function ProductDetail() {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
         <p className="text-2xl font-bold">Không tìm thấy sản phẩm</p>
-        <button onClick={() => navigate("/san-pham")} className="px-6 py-3 rounded-xl text-white font-semibold" style={{ background: ACCENT }}>
+        <button onClick={() => router.push("/san-pham")} className="px-6 py-3 rounded-xl text-white font-semibold" style={{ background: ACCENT }}>
           Quay lại danh sách
         </button>
       </div>
@@ -43,9 +47,9 @@ export default function ProductDetail() {
       {/* Breadcrumb */}
       <div className="border-b border-border" style={{ background: dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)" }}>
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-3 flex items-center gap-2 text-xs font-mono text-muted-foreground">
-          <button onClick={() => navigate("/")} className="hover:text-foreground transition-colors">Trang chủ</button>
+          <button onClick={() => router.push("/")} className="hover:text-foreground transition-colors">Trang chủ</button>
           <ChevronRight size={12} />
-          <button onClick={() => navigate("/san-pham")} className="hover:text-foreground transition-colors">Sản phẩm</button>
+          <button onClick={() => router.push("/san-pham")} className="hover:text-foreground transition-colors">Sản phẩm</button>
           <ChevronRight size={12} />
           <span style={{ color: ACCENT }}>{product.name}</span>
         </div>

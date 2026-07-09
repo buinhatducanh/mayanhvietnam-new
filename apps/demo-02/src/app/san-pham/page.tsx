@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useMemo, useCallback } from "react";
-import { Link, useSearchParams } from "react-router";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import {
   ShoppingCart, Heart, Star, SlidersHorizontal, Search, X,
   ChevronDown, ChevronRight, Check, Package, Grid3X3, List,
@@ -62,7 +65,7 @@ function ProductCard({ p, view }: { p: Product; view: "grid" | "list" }) {
   if (view === "list") {
     return (
       <article className="group bg-white rounded-2xl border border-gray-100 hover:shadow-lg hover:border-orange-100 transition-all duration-300 flex gap-0 overflow-hidden">
-        <Link to={`/san-pham/${p.id}`} title={p.name} className="relative shrink-0 w-44 bg-gray-50">
+        <Link href={`/san-pham/${p.id}`} title={p.name} className="relative shrink-0 w-44 bg-gray-50">
           <img src={p.img} alt={`${p.name} — ${p.brand}`}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
           {p.badge && (
@@ -80,7 +83,7 @@ function ProductCard({ p, view }: { p: Product; view: "grid" | "list" }) {
           <div className="flex items-start justify-between gap-2 mb-1">
             <div>
               <p className="text-[9px] text-orange-500 font-extrabold uppercase tracking-widest">{p.brand} · {p.categoryLabel}</p>
-              <Link to={`/san-pham/${p.id}`} title={p.name}>
+              <Link href={`/san-pham/${p.id}`} title={p.name}>
                 <h2 className="text-sm font-bold text-gray-900 mt-0.5 hover:text-orange-500 transition-colors leading-snug line-clamp-2">
                   {p.name}
                 </h2>
@@ -120,7 +123,7 @@ function ProductCard({ p, view }: { p: Product; view: "grid" | "list" }) {
 
   return (
     <article className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:shadow-gray-200/70 hover:border-orange-100 transition-all duration-300 hover:-translate-y-1 flex flex-col">
-      <Link to={`/san-pham/${p.id}`} title={p.name} className="relative overflow-hidden bg-gray-50 block"
+      <Link href={`/san-pham/${p.id}`} title={p.name} className="relative overflow-hidden bg-gray-50 block"
         style={{ aspectRatio: "1/1" }}>
         <img src={p.img} alt={`${p.name} — ${p.brand}`}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -142,7 +145,7 @@ function ProductCard({ p, view }: { p: Product; view: "grid" | "list" }) {
       </Link>
       <div className="p-3.5 flex flex-col flex-1">
         <p className="text-[9px] text-orange-500 font-extrabold uppercase tracking-wider mb-1">{p.brand}</p>
-        <Link to={`/san-pham/${p.id}`} title={p.name}>
+        <Link href={`/san-pham/${p.id}`} title={p.name}>
           <h2 className="text-[11px] font-bold text-gray-900 mb-1.5 line-clamp-2 hover:text-orange-500 transition-colors leading-snug">
             {p.name}
           </h2>
@@ -295,9 +298,9 @@ export default function Products() {
           {/* Breadcrumb – semantic nav for SEO */}
           <nav aria-label="Breadcrumb" className="mb-3">
             <ol className="flex items-center gap-1.5 text-xs text-gray-400 flex-wrap list-none p-0">
-              <li><Link to="/" className="hover:text-orange-500 transition-colors">Trang chủ</Link></li>
+              <li><Link href="/" className="hover:text-orange-500 transition-colors">Trang chủ</Link></li>
               <li aria-hidden><ChevronRight size={10} className="text-gray-300" /></li>
-              <li><Link to="/san-pham" className="hover:text-orange-500 transition-colors">Sản phẩm</Link></li>
+              <li><Link href="/san-pham" className="hover:text-orange-500 transition-colors">Sản phẩm</Link></li>
               {cat !== "all" && (
                 <>
                   <li aria-hidden><ChevronRight size={10} className="text-gray-300" /></li>

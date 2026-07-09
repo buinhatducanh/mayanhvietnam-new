@@ -38,11 +38,11 @@
   /* === DECORATIVE / EFFECTS === */
   --color-pedestal-glow-light: rgba(200, 180, 160, 0.4);  /* Hero platform disc — light mode */
 
-  /* === TYPOGRAPHY === */
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-body: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  /* === TYPOGRAPHY (next/font CSS variables — Tier 1.1 zero-CLS) === */
+  --font-heading: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-outfit), 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), 'Fira Code', ui-monospace, monospace;
+  --font-serif: var(--font-playfair), Georgia, serif;
 
   /* === RADII === */
   --radius: 0.625rem;
@@ -323,10 +323,25 @@ p, label, button, input {
   50% { transform: scale(1.05); }
 }
 
+@keyframes brand-ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
 .animate-shimmer { animation: shimmer 2s infinite linear; }
 .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 .animate-ken-burns { animation: ken-burns 8s ease-in-out infinite; }
+
+/* Brand ticker — marquee continuous scroll (right-to-left loop) */
+.brand-ticker-track {
+  width: max-content;
+  animation: brand-ticker-scroll 40s linear infinite;
+  will-change: transform;
+}
+.brand-ticker-track:hover {
+  animation-play-state: paused;
+}
 
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {

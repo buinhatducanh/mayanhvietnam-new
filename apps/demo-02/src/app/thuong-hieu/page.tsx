@@ -1,4 +1,6 @@
-import { Link } from "react-router";
+'use client';
+
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const BRANDS = [
@@ -18,7 +20,7 @@ export default function Brands() {
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-[1280px] mx-auto px-4 lg:px-8 py-10">
           <nav className="text-xs text-gray-400 mb-3 flex gap-2">
-            <Link to="/" className="hover:text-orange-500">Trang chủ</Link>
+            <Link href="/" className="hover:text-orange-500">Trang chủ</Link>
             <span>/</span>
             <span className="text-gray-700">Thương hiệu</span>
           </nav>
@@ -63,7 +65,7 @@ export default function Brands() {
                   </div>
                   <p className="text-gray-500 text-sm leading-relaxed">{b.desc}</p>
                 </div>
-                <Link to={`/san-pham?brand=${b.name}`}
+                <Link href={`/san-pham?brand=${b.name}`}
                   className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-orange-500 hover:underline">
                   Xem sản phẩm {b.name} <ArrowRight size={14} />
                 </Link>

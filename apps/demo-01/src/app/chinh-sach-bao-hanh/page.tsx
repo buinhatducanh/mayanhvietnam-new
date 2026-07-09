@@ -1,12 +1,16 @@
-import { Metadata } from 'next';
 import { Shield, CheckCircle2, XCircle } from 'lucide-react';
 import { FadeIn } from '@/components/animations/fade-in';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
+import { BreadcrumbJsonLd } from '@/components/seo/breadcrumb-jsonld';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Chính sách bảo hành',
-  description: 'Chính sách bảo hành sản phẩm tại Máy Ảnh Việt Nam — Bảo hành chính hãng lên đến 36 tháng.',
-};
+export const metadata = buildPageMetadata({
+  path: '/chinh-sach-bao-hanh',
+  title: 'Chính sách bảo hành — Bảo hành chính hãng lên đến 36 tháng',
+  description:
+    'Chính sách bảo hành sản phẩm tại Máy Ảnh Việt Nam. Bảo hành chính hãng 12–36 tháng · Quy trình bảo hành đơn giản · Hỗ trợ khách hàng tận tâm.',
+  keywords: ['chính sách bảo hành', 'bảo hành máy ảnh', 'bảo hành chính hãng', 'Máy Ảnh Việt Nam'],
+});
 
 export default function WarrantyPolicyPage() {
   const policies = [
@@ -35,12 +39,18 @@ export default function WarrantyPolicyPage() {
     },
   ];
 
+  const breadcrumbItems = [
+    { label: 'Trang chủ', href: '/' },
+    { label: 'Chính sách bảo hành' },
+  ];
+
   return (
     <div className="max-w-4xl mx-auto px-4 md:px-6 py-8 min-h-screen">
-      <Breadcrumb items={[{ label: 'Trang chủ', href: '/' }, { label: 'Chính sách bảo hành' }]} />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+      <Breadcrumb items={breadcrumbItems} />
       <FadeIn>
         <div className="flex items-center gap-3 mt-6 mb-8">
-          <Shield className="h-8 w-8 text-primary" />
+          <Shield className="h-8 w-8 text-primary" aria-hidden="true" />
           <h1 className="text-2xl font-bold text-foreground">Chính sách bảo hành</h1>
         </div>
       </FadeIn>
@@ -58,11 +68,11 @@ export default function WarrantyPolicyPage() {
                   {section.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm">
                       {item.ok ? (
-                        <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" aria-label="Được phép" />
                       ) : (
-                        <XCircle className="h-4 w-4 text-error mt-0.5 shrink-0" />
+                        <XCircle className="h-4 w-4 text-error mt-0.5 shrink-0" aria-label="Không được phép" />
                       )}
-                      <span className={item.ok ? 'text-muted-foreground' : 'text-muted-foreground'}>{item.text}</span>
+                      <span className="text-muted-foreground">{item.text}</span>
                     </li>
                   ))}
                 </ul>
