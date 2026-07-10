@@ -34,10 +34,37 @@
       "Bash(curl -s http://localhost:8003/)",
       "Bash(export LC_ALL=C.UTF-8)",
       "Bash(curl -s http://localhost:8003/_next/static/chunks/apps_demo-03_src_app_globals_0xuakxu.css)",
-      "Bash(curl -s http://localhost:8000/san-pham/canon-eos-r6-mark-ii-body-only)"
+      "Bash(curl -s http://localhost:8000/san-pham/canon-eos-r6-mark-ii-body-only)",
+      "Bash(curl -s -o /tmp/home.html -w \"%{http_code} %{size_download}\\\\n\" http://localhost:8000/)",
+      "Bash(grep -oE \"\\\\\\\\\\\\\\\\[[^\\\\\\\\\\\\\\\\]*\\\\\\\\\\\\\\\\]\")",
+      "Bash(powershell.exe -Command 'Get-NetTCPConnection -LocalPort 8003 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }')",
+      "Bash(taskkill //F //PID 24064)",
+      "Bash(grep -oE \"\\\\\\\\\\\\\\\\\\\\[#[0-9a-fA-F]+\\\\\\\\\\\\\\\\\\\\]\")",
+      "Bash(grep -oE \"from-\\\\\\\\\\\\\\\\\\\\[#[0-9a-fA-F]+\\\\\\\\\\\\\\\\\\\\]\")",
+      "Bash(curl -s -L \"https://mayanhvietnam.com\")",
+      "Bash(curl -s http://localhost:8004)",
+      "Bash(pnpm --filter demo-04 build)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8004)",
+      "Bash(powershell.exe -Command 'Get-NetTCPConnection -LocalPort 8003 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | Sort-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }')",
+      "Bash(mkdir -p D:/LOOP_COMPANY/mayanhvietnam-new/apps/demo-02/public/hero)",
+      "Bash(curl -s -L -o banner-km-1200x400.png \"https://mayanhvietnam.com/asset/imgs/img/1200x400_banner_sanPhamKhuyenMai20250108.png\")",
+      "Bash(curl -s -L -o banner-km-v1.png \"https://mayanhvietnam.com/asset/imgs/icon/bannerSanPhamKM-v1.png\")",
+      "Bash(curl -s -L -o banner-km-mobile.webp \"https://mayanhvietnam.com/asset/imgs/icon/bannerSanPhamKM-mobile-v2.webp\")",
+      "Bash(curl -s -L -o banner-tet.png \"https://mayanhvietnam.com/asset/imgs/img/tet/banner_tet_01.png\")",
+      "Bash(awk -F': ' '{printf \"%-40s %s\\\\n\", $1, $2}')",
+      "Bash(curl -s http://localhost:8004 -o /dev/null -w \"%{http_code}\")",
+      "Bash(xxd banner-km-mobile.webp)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s \"http://localhost:8003/san-pham/may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang\")",
+      "Bash(curl -s \"http://localhost:8003/\")",
+      "Bash(curl -sL \"https://mayanhvietnam.com\" -o /tmp/mayanh.html)",
+      "Bash(# Get actual topBar HTML structure *)",
+      "Bash(ls .claude/skills/*/SKILL.md)",
+      "Bash(grep -m1 \"description:\" .claude/skills/*/SKILL.md)"
     ],
     "additionalDirectories": [
-      "d:\\LOOP_COMPANY\\mayanhvietnam-new\\apps\\demo-02\\src\\app\\(home)"
+      "d:\\LOOP_COMPANY\\mayanhvietnam-new\\apps\\demo-02\\src\\app\\(home)",
+      "\\tmp"
     ]
   }
 }

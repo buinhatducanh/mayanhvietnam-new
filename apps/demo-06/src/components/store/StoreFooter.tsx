@@ -1,30 +1,30 @@
-import { footerColumns, storeLocations, paymentMethods } from "@/lib/data";
+import { brandAssets, footerColumns, storeLocations } from "@/lib/data";
 
 export default function StoreFooter() {
   return (
-    <footer className="bg-black border-t border-zinc-800">
-      {/* Floating contact bar */}
+    <footer className="bg-zinc-950 text-zinc-300 border-t border-zinc-800">
+      {/* Floating contact bar (Zalo + Messenger + Phone) */}
       <div className="fixed bottom-6 left-6 z-50 flex flex-col gap-3">
         <a
-          href="https://zalo.me/0907215252"
+          href="https://zalo.me/2875467351509223987"
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110"
           aria-label="Chat Zalo"
         >
           <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.6 13.2h-1.6v-1.4c0-.4-.2-.6-.6-.6H12v2h-2.8c-.4 0-.8.2-.8.6v.8c0 .4.2.8.6.8h3.2l-2.8 3.2h2l2.8-3.2c.4-.4.6-.8.6-1.2v-2z"/>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.6 13.2h-1.6v-1.4c0-.4-.2-.6-.6-.6H12v2h-2.8c-.4 0-.8.2-.8.6v.8c0 .4.2.8.6.8h3.2l-2.8 3.2h2l2.8-3.2c.4-.4.6-.8.6-1.2v-2z" />
           </svg>
         </a>
         <a
-          href="https://m.me/mayanhvietnam"
+          href="https://www.facebook.com/mayanhvietnam"
           target="_blank"
           rel="noopener noreferrer"
           className="w-12 h-12 bg-[#0084FF] hover:bg-[#0073E6] rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110"
-          aria-label="Messenger"
+          aria-label="Chat Messenger"
         >
           <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.04 2 11c0 2.84 1.24 5.38 3.24 7.08V22l3.12-1.72c.82.22 1.7.34 2.64.34 5.52 0 10-4.04 10-9S17.52 2 12 2z"/>
+            <path d="M12 2C6.48 2 2 6.04 2 11c0 2.84 1.24 5.38 3.24 7.08V22l3.12-1.72c.82.22 1.7.34 2.64.34 5.52 0 10-4.04 10-9S17.52 2 12 2z" />
           </svg>
         </a>
         <a
@@ -38,30 +38,13 @@ export default function StoreFooter() {
         </a>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 py-14">
-        {/* Store locations */}
-        <div className="mb-12 pb-8 border-b border-zinc-800">
-          <h3 className="text-sm font-semibold text-white mb-5 uppercase tracking-wider">Hệ thống cửa hàng</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {storeLocations.map((loc) => (
-              <div key={loc.city} className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-orange-500" />
-                  <span className="text-sm font-bold text-white">{loc.city}</span>
-                </div>
-                <p className="text-xs text-zinc-400 leading-relaxed">{loc.address}</p>
-                <p className="text-[11px] text-zinc-500 mt-1.5">{loc.hours}</p>
-                <p className="text-xs text-orange-500 font-medium mt-1">📞 {loc.phone}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Link columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      {/* Main footer */}
+      <div className="max-w-[1440px] mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Col 1+2: Categories & Policy (combined) */}
           {footerColumns.map((col) => (
             <div key={col.title}>
-              <h4 className="text-sm font-bold text-white mb-4">{col.title}</h4>
+              <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">{col.title}</h4>
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
@@ -74,42 +57,95 @@ export default function StoreFooter() {
             </div>
           ))}
 
-          {/* Contact & Social */}
+          {/* Col 3: Thông tin liên hệ */}
           <div>
-            <h4 className="text-sm font-bold text-white mb-4">Liên hệ</h4>
-            <div className="space-y-2.5 text-xs text-zinc-400">
-              <p>📞 <a href="tel:0907215252" className="hover:text-orange-400">0907.215.252</a></p>
-              <p>📞 <a href="tel:0937148222" className="hover:text-orange-400">0937.148.222</a></p>
-              <p>✉️ <a href="mailto:info@mayanhvietnam.com" className="hover:text-orange-400">info@mayanhvietnam.com</a></p>
-            </div>
+            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Thông tin liên hệ</h4>
+            <ul className="space-y-2.5 text-xs text-zinc-300">
+              <li>
+                <a href="https://www.facebook.com/mayanhvietnam" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+                  Fanpage: Máy Ảnh Việt Nam
+                </a>
+              </li>
+              <li>
+                Hotline: <a href="tel:0907215252" className="text-orange-500 font-semibold hover:underline">0907.215.252</a>
+              </li>
+              <li>
+                Hotline: <a href="tel:0937148222" className="text-orange-500 font-semibold hover:underline">0937.148.222</a>
+              </li>
+              <li>
+                Email: <a href="mailto:info@mayanhvietnam.com" className="text-zinc-300 hover:text-orange-400">info@mayanhvietnam.com</a>
+              </li>
+            </ul>
             <div className="flex gap-2 mt-4">
-              {["FB", "YT", "ZL", "IG"].map((s) => (
+              {[
+                { label: "FB", href: "https://www.facebook.com/mayanhvietnam" },
+                { label: "YT", href: "https://www.youtube.com/@mayanhvietnam" },
+                { label: "TT", href: "https://www.tiktok.com/@mayanhvietnam" },
+                { label: "ZL", href: "https://zalo.me/2875467351509223987" },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 bg-zinc-800 hover:bg-orange-500 rounded-full flex items-center justify-center text-zinc-400 hover:text-white text-[10px] font-bold transition-colors"
+                  title={s.label}
                 >
-                  {s}
+                  {s.label}
                 </a>
               ))}
             </div>
           </div>
+
+          {/* Col 4: Hệ thống cửa hàng */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Hệ thống cửa hàng</h4>
+            <ul className="space-y-3">
+              {storeLocations.map((loc) => (
+                <li key={loc.city} className="text-xs text-zinc-400 leading-relaxed">
+                  <span className="text-white font-semibold">{loc.city}:</span> {loc.address}{" "}
+                  <span className="text-zinc-500">({loc.hours})</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Payment + Copyright */}
-        <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="font-bold text-base text-white">Máy Ảnh Việt Nam</span>
-            <span className="text-[11px] text-zinc-500">© 2010–2026. Bảo lưu mọi quyền.</span>
+        {/* Payment icons + Government seal */}
+        <div className="mt-10 pt-8 border-t border-zinc-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <p className="text-xs text-zinc-500 mb-2 uppercase tracking-wider">Thanh toán</p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <img src={brandAssets.paymentIcons.visa} alt="Visa" className="h-7 bg-white rounded px-1.5 py-0.5" />
+              <img src={brandAssets.paymentIcons.mastercard} alt="MasterCard" className="h-7 bg-white rounded px-1.5 py-0.5" />
+              <img src={brandAssets.paymentIcons.jcb} alt="JCB" className="h-7 bg-white rounded px-1.5 py-0.5" />
+              <img src={brandAssets.paymentIcons.napas} alt="NAPAS" className="h-7 bg-white rounded px-1.5 py-0.5" />
+              <img src={brandAssets.paymentIcons.homePayLater} alt="Home PayLater" className="h-7 bg-white rounded px-1.5 py-0.5" />
+              <img src={brandAssets.paymentIcons.momo} alt="MoMo" className="h-7 bg-white rounded px-1.5 py-0.5" />
+            </div>
           </div>
-          <div className="flex items-center gap-3 flex-wrap">
-            <span className="text-[10px] text-zinc-500">Thanh toán:</span>
-            {paymentMethods.map((m) => (
-              <span key={m} className="text-[10px] text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded">
-                {m}
-              </span>
-            ))}
-          </div>
+          <a
+            href="http://online.gov.vn/Home/WebDetails/140624"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0"
+          >
+            <img
+              src={brandAssets.logoBCT}
+              alt="Đã thông báo Bộ Công Thương"
+              className="h-14 w-auto"
+            />
+          </a>
+        </div>
+      </div>
+
+      {/* Copyright — y nguyên mayanhvietnam.com */}
+      <div className="bg-black border-t border-zinc-800 py-5 px-6">
+        <div className="max-w-[1440px] mx-auto text-xs text-zinc-500 leading-relaxed space-y-1.5">
+          <p>© 2022 CÔNG TY TNHH DỊCH VỤ TƯ VẤN VÀ CÔNG NGHỆ SÀI GÒN</p>
+          <p>Địa chỉ: Số 09 Nam Quốc Cang, Phường Bến Thành, TP Hồ Chí Minh. Mã số thuế: 0313859872-002.</p>
+          <p>GPĐKKD số: 0313859872-002. Đơn vị cấp: Sở Kế Hoạch và Đầu Tư TP.HCM, cấp ngày 05/08/2024.</p>
+          <p>Điện thoại: 0903.148.222. Email: info@mayanhvietnam.com — Chịu trách nhiệm nội dung: Nguyễn Hồng Chương.</p>
         </div>
       </div>
     </footer>

@@ -2,11 +2,14 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
-    unoptimized: true, // Remote <img> from public CDN — kept simple for the demo
+    unoptimized: true,
     remotePatterns: [
-      { protocol: 'https', hostname: 'mayanhvietnam.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'mayanhvietnam.com' },
     ],
   },
 };

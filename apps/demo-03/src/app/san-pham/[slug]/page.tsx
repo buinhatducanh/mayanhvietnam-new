@@ -384,6 +384,68 @@ export default function ProductPage() {
           </div>
         )}
 
+        {/* ── DESCRIPTION ─────────────────────────────────── */}
+        {product.description && (
+          <section className="bg-white rounded-2xl border border-black/[0.06] shadow-sm p-8">
+            <span className="text-xs font-semibold tracking-widest uppercase text-[#ff6b00] mb-1 block">Giới thiệu</span>
+            <h2 className="text-2xl font-bold text-zinc-900 leading-tight">{product.name}</h2>
+            <p className="mt-4 text-sm text-zinc-600 leading-relaxed">{product.description}</p>
+            {product.highlights && product.highlights.length > 0 && (
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {product.highlights.map((h) => (
+                  <div key={h} className="flex items-start gap-2 bg-zinc-50 rounded-xl px-4 py-2.5 border border-zinc-100">
+                    <Check size={13} className="text-[#ff6b00] shrink-0 mt-0.5" />
+                    <span className="text-xs font-medium text-zinc-700 leading-snug">{h}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* ── FULL SPECS TABLE ────────────────────────────── */}
+        {product.specs && product.specs.length > 0 && (
+          <section className="bg-white rounded-2xl border border-black/[0.06] shadow-sm overflow-hidden">
+            <div className="px-8 py-6 border-b border-zinc-100">
+              <span className="text-xs font-semibold tracking-widest uppercase text-[#ff6b00] mb-1 block">Kỹ thuật</span>
+              <h2 className="text-2xl font-bold text-zinc-900">Thông số kỹ thuật</h2>
+            </div>
+            <div className="divide-y divide-zinc-100">
+              {product.specs.map((group) => (
+                <div key={group.group}>
+                  <div className="bg-zinc-50 px-8 py-3">
+                    <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">{group.group}</span>
+                  </div>
+                  {group.items.map((item, i) => (
+                    <div key={item.label} className={`flex px-8 py-3 text-sm gap-4 ${i % 2 === 0 ? "" : "bg-zinc-50/40"}`}>
+                      <span className="w-[200px] shrink-0 font-medium text-zinc-600">{item.label}</span>
+                      <span className="text-zinc-800">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ── IN THE BOX ──────────────────────────────────── */}
+        {product.packageIncludes && product.packageIncludes.length > 0 && (
+          <section className="bg-white rounded-2xl border border-black/[0.06] shadow-sm p-8">
+            <span className="text-xs font-semibold tracking-widest uppercase text-[#ff6b00] mb-1 block">Phụ kiện đi kèm</span>
+            <h2 className="text-2xl font-bold text-zinc-900">Trong hộp bao gồm</h2>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {product.packageIncludes.map((item, i) => (
+                <div key={i} className="flex gap-3 items-start p-4 bg-zinc-50 rounded-xl border border-zinc-100">
+                  <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shrink-0 shadow-sm text-zinc-500">
+                    <Package size={18} />
+                  </div>
+                  <p className="text-xs font-medium text-zinc-700 leading-snug">{item}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         <RelatedProducts product={product} />
         <FAQSection />
 

@@ -6,6 +6,7 @@ import { Search, ShoppingCart, User, Phone, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { categories } from '@/lib/mock-data';
 import { useCart } from '@/lib/cart-context';
+import { REAL_ASSETS, REAL_CATEGORIES, REAL_BRANDS } from '@/lib/real-products';
 
 const TOP_NAV = [
   { label: 'Xem tất cả', href: '/san-pham' },
@@ -62,23 +63,9 @@ export function Header() {
           {mobileMenu ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <div
-            className="flex h-9 w-9 items-center justify-center rounded-md"
-            style={{ background: '#FF6B35' }}
-          >
-            <span className="text-sm font-black text-white">M</span>
-          </div>
-          <div className="hidden sm:block">
-            <p className="text-sm font-bold leading-tight text-foreground">MÁY ẢNH</p>
-            <p
-              className="text-[10px] font-semibold uppercase tracking-[0.2em] leading-tight"
-              style={{ color: '#FF6B35' }}
-            >
-              VIỆT NAM
-            </p>
-          </div>
+        {/* Logo — dùng logoFull.png đã có tên "MÁY ẢNH VIỆT NAM" sẵn */}
+        <Link href="/" className="flex shrink-0 items-center">
+          <img src={REAL_ASSETS.logoFull} alt="Máy Ảnh Việt Nam" className="h-10 w-auto object-contain" />
         </Link>
 
         {/* Desktop Search */}
@@ -156,15 +143,13 @@ export function Header() {
       {/* CATEGORY NAV */}
       <nav className="hidden border-t border-border md:block">
         <div className="flex h-11 items-center gap-1 overflow-x-auto px-4 md:px-6">
-          {categories.map((cat) => (
+          {REAL_CATEGORIES.filter((c) => !c.slug.startsWith('san-pham-')).map((cat) => (
             <Link
               key={cat.slug}
               href={`/danh-muc/${cat.slug}`}
               className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-card/50 hover:text-primary transition-colors"
             >
-              <span className="text-base">{cat.icon}</span>
               <span>{cat.name}</span>
-              <span className="text-[10px] text-muted-foreground/60 font-mono">({cat.productCount})</span>
             </Link>
           ))}
         </div>
@@ -186,14 +171,13 @@ export function Header() {
                 <Phone className="h-4 w-4" />
                 Gọi ngay: 0937.148.222
               </a>
-              {categories.map((cat) => (
+              {REAL_CATEGORIES.filter((c) => !c.slug.startsWith('san-pham-')).map((cat) => (
                 <Link
                   key={cat.slug}
                   href={`/danh-muc/${cat.slug}`}
                   onClick={() => setMobileMenu(false)}
                   className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-muted-foreground hover:bg-card hover:text-foreground transition-colors"
                 >
-                  <span className="text-lg">{cat.icon}</span>
                   <span>{cat.name}</span>
                 </Link>
               ))}

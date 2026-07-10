@@ -1,0 +1,53 @@
+{
+  "scraped_date": "2026-07-10",
+  "source_url": "https://mayanhvietnam.com/san-pham/may-anh-canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang_may-anh-mirrorless-241228112737843",
+  "product_name": "Máy ảnh Canon EOS R50 Black kèm Lens RF-S 18-45mm Chính Hãng",
+  "brand": "Canon",
+  "price": {"current": "17,500,000đ", "installment": "Hỗ trợ trả góp"},
+  "stock_status": "Còn hàng",
+  "badges": ["MỚI 100%", "Like new (2)", "Ngoại hình Đẹp (1)", "CHÍNH HÃNG"],
+  "variants": [
+    {"condition": "MỚI 100%", "price": "17,500,000đ"},
+    {"condition": "Like new", "quantity": 2, "price": "16,790,000đ"},
+    {"condition": "Đẹp", "quantity": 1, "price": "Liên hệ"}
+  ],
+  "images": [
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791169636370514.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791170527514307.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791171408544923.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791171877903330.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791172399984092.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791173356043506.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791174153167452.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791174490011075.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-preview/638791175066496149.jpg"
+  ],
+  "specs": {
+    "sensor_type": "CMOS",
+    "sensor_format": "APS-C",
+    "resolution": "24.2 megapixel",
+    "image_size": "6000 x 4000 pixel",
+    "processor": "DIGIC X",
+    "iso": "100 – 32,000 (mở rộng lên 51,200)",
+    "shutter_speed": "1/4000 giây đến 30 giây, chế độ Bulb",
+    "continuous_shooting": "Tối đa 15 khung hình/giây với màn trập điện tử",
+    "autofocus_points": "Lên tới 4,503 điểm (Dual Pixel CMOS AF II)",
+    "lens_mount": "RF",
+    "video_resolution": "4K 30fps; Full HD 120fps",
+    "viewfinder": "EVF 2.36 triệu điểm ảnh, 0.95x, 100%",
+    "screen": "LCD xoay lật cảm ứng 3.0 inch, 1,620,000 điểm ảnh",
+    "wireless": "Wi-Fi, Bluetooth",
+    "ports": "Micro 3.5mm, USB-C, mini HDMI",
+    "memory_card": "1 khe SD/SDHC/SDXC (UHS-II)",
+    "weight": "375g (body only)",
+    "dimensions": "116.3 x 85.5 x 68.8 mm",
+    "battery": "LP-E17, khoảng 370 ảnh/lần sạc"
+  },
+  "highlights": ["Cảm biến CMOS APS-C 24,2MP", "Bộ xử lý DIGIC X", "Quay video 4K 30p", "Quay khung dọc dễ dàng"],
+  "promotions": ["Tặng ngay thẻ nhớ 32Gb", "ƯU ĐÃI ĐẶC BIỆT: Dán màn hình free trọn đời máy ảnh"],
+  "included_items": ["Canon EOS R50 Mirrorless Camera (Black)", "Pin LP-E17", "Sạc LC-E17", "Nắp机身 R-F-5", "Dây đeo EM-200DB", "Lens RF-S 18-45mm f/4.5-6.3 IS STM", "Nắp lens E-49", "Lens Dust Cap RF"],
+  "description": "Canon EOS R50 là chiếc máy ảnh lý tưởng cho người yêu nhiếp ảnh. Nhỏ gọn, tinh tế, trọng lượng nhẹ, phù hợp cho người mới bắt đầu và chuyên nghiệp. Cảm biến 24.2MP, quay video 4K, Dual Pixel CMOS AF II 4.503 điểm, chụp liên tiếp 15fps, Wi-Fi và Bluetooth.",
+  "has_3d_model": false,
+  "has_ar": false
+}

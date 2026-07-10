@@ -1,0 +1,42 @@
+{
+  "scraped_date": "2026-07-10",
+  "source_url": "https://mayanhvietnam.com/san-pham/may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang_may-anh-mirrorless-230210223540859",
+  "product_name": "Máy ảnh Sony Alpha A7 Mark IV (Body Only) | Chính hãng",
+  "brand": "Sony",
+  "price": {"current": "47,500,000đ", "kit_variant": {"name": "Body + Sony FE 24-70mm F2.8 GM II", "price": "86,500,000đ"}},
+  "stock_status": "Còn hàng",
+  "conditions": ["MỚI 100%", "Like new (1)"],
+  "images": [
+    "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/avatar/01_may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/hinh-preview/638791980436673135.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/hinh-bai-viet/638791981572649806.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/hinh-bai-viet/638791982369927579.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/hinh-bai-viet/638791983493111254.jpg",
+    "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/hinh-bai-viet/638791984119120066.jpg"
+  ],
+  "specs": {
+    "sensor_format": "CMOS 35.9 x 23.9 mm (Full Frame)",
+    "resolution": "33 Megapixel",
+    "iso": "100-51200 (Mở rộng: 50-204800)",
+    "shutter_speed": "1/8000 to 30 Second Bulb Mode",
+    "continuous_shooting": "Lên đến 10 fps, tối đa 828 ảnh RAW",
+    "autofocus_points": "Phát hiện pha: 759 / Phát hiện tương phản: 425",
+    "autofocus_modes": "Continuous AF (C), Direct Manual Focus (DMF), Manual (M), Single AF (S)",
+    "image_stabilization": "Sensor-Shift, 5-Axis",
+    "lens_mount": "Sony E",
+    "video_resolution": "UHD 4K, Full HD",
+    "viewfinder": "OLED EVF 3,680,000 điểm, 0.78x, 100%",
+    "screen": "LCD cảm ứng nghiêng tự do 3.0 inch, 1,036,800 điểm",
+    "memory_card": "Khe 1: CFexpress Type A / SD (UHS-II) / Khe 2: SD (UHS-II)",
+    "weight": "658g (có pin + bộ nhớ)",
+    "dimensions": "131.3 x 96.4 x 79.8 mm",
+    "battery": "NP-FZ100 2280mAh, khoảng 520 ảnh",
+    "ports": "HDMI A, USB-C 3.2 Gen 2, USB Micro-B, Mic 3.5mm, Headphone 3.5mm",
+    "wireless": "Wi-Fi / Bluetooth"
+  },
+  "highlights": ["759 điểm lấy nét pha + 425 tương phản", "BIONZ XR", "Cảm biến Exmor R 33MP", "10fps, ISO 100-51200"],
+  "included_items": ["Sony A7 IV body", "Pin NP-FZ100", "Sạc AC", "Nắp ALC-B1EM", "Dây đeo", "Accessory Shoe Cap", "Eyepiece Cup", "Cáp USB-C"],
+  "description": "Sony Alpha A7 Mark IV là sản phẩm chuyên nghiệp, thiết kế tinh tế, công nghệ hiện đại. Cảm biến full-frame độ phân giải cao, hệ thống AF nhanh chính xác, quay video 4K chuyên nghiệp, Wi-Fi/Bluetooth, GPS.",
+  "has_3d_model": false,
+  "has_ar": false
+}

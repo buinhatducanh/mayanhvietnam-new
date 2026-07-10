@@ -7,6 +7,8 @@ export interface Category {
   name: string;
   slug: string;
   icon: string;
+  /** Real category thumbnail from mayanhvietnam.com */
+  image?: string;
   productCount: number;
   description?: string;
 }
@@ -72,8 +74,11 @@ export interface HeroSlide {
   subtitle: string;
   ctaLabel: string;
   ctaHref: string;
+  /** CSS inline gradient for background (use as style={{ background: slide.gradient }}) */
   gradient: string;
   product: string;
+  /** Optional: real banner image URL from mayanhvietnam.com */
+  image?: string;
 }
 
 export interface DealBanner {
@@ -82,7 +87,10 @@ export interface DealBanner {
   subtitle: string;
   ctaLabel: string;
   ctaHref: string;
+  /** CSS inline gradient for background (use as style={{ background: banner.gradient }}) */
   gradient: string;
+  /** Optional: real banner image URL from mayanhvietnam.com */
+  image?: string;
 }
 
 export interface StoreInfo {

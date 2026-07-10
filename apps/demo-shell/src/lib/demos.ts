@@ -48,6 +48,14 @@ const APP_METADATA: Record<string, { name: string; description: string }> = {
     name: 'Web Public (Production)',
     description: 'Source FE gốc — 13 routes, header/footer/SEO chuẩn mayanhvietnam.com.',
   },
+  'demo-0': {
+    name: '🎬 3D Demo (LUMEN Camera)',
+    description: 'Trải nghiệm Landing Page 3D tương tác — scroll-driven animation, đổi màu 3D model real-time, showcase Canon EOS R50 / Sony A7C II / Fujifilm X-T5.',
+  },
+  'demo-03': {
+    name: '3D Demo (Canon R50)',
+    description: 'Trải nghiệm Landing Page 3D và Cửa hàng 3D tương tác của Canon EOS R50.',
+  },
   'demo-shell': {
     name: 'Demo Gallery',
     description: 'Trang index này — gallery preview 10 demos.',

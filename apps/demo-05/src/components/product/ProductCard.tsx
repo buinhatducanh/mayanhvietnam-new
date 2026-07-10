@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Heart, Star, ShoppingCart } from 'lucide-react';
 import type { ProductSummary } from '@mayanhvietnam/mock-data';
 import { formatVND, cn, calcDiscountPercent } from '@/lib/utils';
@@ -18,12 +17,11 @@ export function ProductCard({ product }: Props) {
   return (
     <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:border-primary/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
       <Link href={`/san-pham/${product.slug}`} className="block relative aspect-square overflow-hidden bg-elevated">
-        <Image
+        <img
           src={product.thumbnail}
           alt={product.name}
-          fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
         />
         {discount > 0 && (
           <span className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold text-white" style={{ background: '#FF6B35' }}>

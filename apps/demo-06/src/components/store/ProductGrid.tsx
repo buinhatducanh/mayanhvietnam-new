@@ -1,18 +1,18 @@
 "use client";
 import { useState } from "react";
-import { Product, products } from "@/lib/data";
+import {
+  type Product,
+  type ProductSectionMeta,
+  getProductsByCategory,
+  productSections,
+} from "@/lib/data";
+import { useCart } from "@/lib/context/CartContext";
+import { useWishlist } from "@/lib/context/WishlistContext";
+import { useUI } from "@/components/store/UIProvider";
+
+// ─── HELPERS ────────────────────────────────────────────────────────────────
 
 const VND = (n: number) => new Intl.NumberFormat("vi-VN").format(n) + "₫";
-
-const categoryLabel: Record<string, string> = {
-  camera: "Máy Ảnh",
-  lens: "Ống Kính",
-  flycam: "Flycam",
-  action: "Action Cam",
-  camcorder: "Camcorder",
-  accessory: "Phụ Kiện",
-  used: "Hàng Cũ",
-};
 
 const brandColor: Record<string, string> = {
   Canon: "bg-red-600",
@@ -25,10 +25,36 @@ const brandColor: Record<string, string> = {
   Kase: "bg-cyan-600",
   GoPro: "bg-blue-700",
   Insta360: "bg-zinc-600",
+  Fujifilm: "bg-pink-600",
+  Godox: "bg-amber-600",
+  Nanlite: "bg-teal-600",
+  Blackmagic: "bg-zinc-600",
+  Panasonic: "bg-red-700",
+  Billingham: "bg-stone-600",
 };
+
+// ─── PRODUCT CARD ───────────────────────────────────────────────────────────
 
 export function ProductCard({ product }: { product: Product }) {
   const [hovered, setHovered] = useState(false);
+  const { addItem } = useCart();
+  const { has, toggle } = useWishlist();
+  const { openCart, openWishlist } = useUI();
+  const isFav = has(product.id);
+
+  const onAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem(product, 1);
+    openCart();
+  };
+
+  const onToggleFav = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggle(product);
+    if (!isFav) openWishlist();
+  };
 
   return (
     <a
@@ -42,8 +68,7 @@ export function ProductCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.name}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:scale-105"
-          style={{ opacity: hovered && product.hoverImage ? 0 : 1 }}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {product.hoverImage && (
           <img
@@ -56,26 +81,44 @@ export function ProductCard({ product }: { product: Product }) {
         )}
 
         {product.badge && (
-          <span className="absolute top-3 left-3 bg-orange-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
+          <span className="absolute top-3 left-3 bg-orange-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase z-10">
             {product.badge}
           </span>
         )}
 
         {product.condition === "used" && (
-          <span className="absolute top-3 right-3 bg-zinc-700 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+          <span className="absolute top-3 right-3 bg-zinc-700 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full z-10">
             Hàng Cũ
           </span>
         )}
 
-        <span className={`absolute bottom-3 left-3 ${brandColor[product.brand] ?? "bg-zinc-700"} text-white text-[10px] font-bold px-2 py-0.5 rounded`}>
+        <span
+          className={`absolute bottom-3 left-3 ${brandColor[product.brand] ?? "bg-zinc-700"} text-white text-[10px] font-bold px-2 py-0.5 rounded z-10`}
+        >
           {product.brand}
         </span>
+
+        {/* Wishlist heart button */}
+        <button
+          onClick={onToggleFav}
+          className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all z-20 ${
+            isFav ? "bg-red-500 text-white" : "bg-black/50 backdrop-blur-sm text-white hover:bg-red-500"
+          } ${product.condition === "used" ? "top-12" : ""}`}
+          aria-label={isFav ? "Bỏ yêu thích" : "Yêu thích"}
+          title={isFav ? "Bỏ yêu thích" : "Yêu thích"}
+        >
+          <svg
+            className="w-4 h-4"
+            fill={isFav ? "currentColor" : "none"}
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </button>
       </div>
 
       <div className="p-3.5">
-        <p className="text-[10px] text-orange-500 font-semibold uppercase tracking-wider mb-1">
-          {categoryLabel[product.category]}
-        </p>
         <h3 className="text-sm font-semibold text-white leading-snug line-clamp-2 group-hover:text-orange-400 transition-colors min-h-[2.5rem]">
           {product.name}
         </h3>
@@ -91,36 +134,134 @@ export function ProductCard({ product }: { product: Product }) {
           </ul>
         )}
 
-        <div className="mt-3 pt-3 border-t border-zinc-800">
+        <div className="mt-3 pt-3 border-t border-zinc-800 flex items-center justify-between gap-2">
           {product.callForPrice ? (
             <div className="text-xs text-orange-400 font-medium">Liên hệ để có giá tốt</div>
           ) : (
-            <div className="flex items-baseline gap-2">
-              <span className="text-base font-bold text-orange-500">{VND(product.price)}</span>
-              <span className="text-[10px] text-zinc-500">Giá từ</span>
+            <div className="flex items-baseline gap-1.5 flex-1 min-w-0">
+              <span className="text-base font-bold text-orange-500 truncate">{VND(product.price)}</span>
+              {product.originalPrice && product.originalPrice !== product.price && (
+                <span className="text-[10px] text-zinc-500 line-through flex-shrink-0">
+                  {VND(product.originalPrice)}
+                </span>
+              )}
             </div>
           )}
+          {/* Add to cart quick button */}
+          <button
+            onClick={onAddToCart}
+            className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center transition-colors"
+            aria-label="Thêm vào giỏ hàng"
+            title="Thêm vào giỏ hàng"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+          </button>
         </div>
       </div>
     </a>
   );
 }
 
-const tabs = [
-  { id: "all", label: "Tất cả" },
-  { id: "camera", label: "Máy Ảnh" },
-  { id: "lens", label: "Ống Kính" },
-  { id: "flycam", label: "Flycam" },
-  { id: "action", label: "Action Cam" },
-] as const;
+// ─── SINGLE PRODUCT SECTION ─────────────────────────────────────────────────
 
-export default function ProductGrid() {
-  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["id"]>("all");
+function ProductSection({ section }: { section: ProductSectionMeta }) {
+  const products = getProductsByCategory(section.category, section.limit);
 
-  const filtered = activeTab === "all" ? products : products.filter((p) => p.category === activeTab);
+  if (products.length === 0) return null;
 
   return (
-    <section className="bg-zinc-950 py-12 px-6">
+    <section
+      className={`bg-zinc-950 py-12 px-6 border-t border-zinc-800 ${
+        section.accent ? `bg-gradient-to-r ${section.accent}` : ""
+      }`}
+    >
+      <div className="max-w-[1440px] mx-auto">
+        {/* Section header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div className="flex items-start gap-3">
+            {section.emoji && (
+              <span className="text-3xl mt-0.5">{section.emoji}</span>
+            )}
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                {section.title}
+              </h2>
+              <p className="text-sm text-zinc-400 mt-1">{section.subtitle}</p>
+            </div>
+          </div>
+          <a
+            href={section.viewAllHref}
+            className="flex-shrink-0 text-sm font-medium text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1"
+          >
+            Xem tất cả
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        </div>
+
+        {/* Product grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {products.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── ALL SECTIONS (MAIN EXPORT) ─────────────────────────────────────────────
+
+export default function ProductGrid() {
+  return (
+    <div className="bg-zinc-950">
+      {/* Flash Sale / Nổi bật tổng hợp — section đầu tiên */}
+      <FeaturedHeroSection />
+
+      {/* Các section riêng theo danh mục */}
+      {productSections.map((section) => (
+        <ProductSection key={section.id} section={section} />
+      ))}
+    </div>
+  );
+}
+
+// ─── FEATURED HERO (top 4 mix) ──────────────────────────────────────────────
+
+function FeaturedHeroSection() {
+  const featured = [
+    { id: "p3b", name: "Sony A7R VI" },
+    { id: "f1", name: "DJI Mavic 4 Pro" },
+    { id: "a1", name: "GoPro Hero 13" },
+    { id: "p9", name: "Fujifilm X-H2S" },
+  ];
+
+  const allProducts = getProductsByCategory("camera", 999)
+    .concat(getProductsByCategory("flycam", 999))
+    .concat(getProductsByCategory("action", 999))
+    .concat(getProductsByCategory("lens", 999));
+
+  const hero = featured
+    .map((f) => allProducts.find((p) => p.id === f.id))
+    .filter(Boolean) as Product[];
+
+  if (hero.length === 0) return null;
+
+  return (
+    <section className="bg-zinc-950 py-12 px-6 border-t border-zinc-800">
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
@@ -128,30 +269,13 @@ export default function ProductGrid() {
               Sản phẩm nổi bật
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Khám phá sản phẩm
+              Sản phẩm nổi bật
             </h2>
-          </div>
-
-          {/* Tab filter */}
-          <div className="flex gap-1 overflow-x-auto no-scrollbar bg-zinc-900/50 p-1 rounded-full border border-zinc-800">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-shrink-0 px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                  activeTab === tab.id
-                    ? "bg-orange-500 text-white"
-                    : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {filtered.map((p) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {hero.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>

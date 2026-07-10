@@ -1,13 +1,22 @@
 {
-  "extends": "../../packages/tsconfig/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@mayanhvietnam/shared-utils": ["../../packages/shared-utils/src"],
-      "@mayanhvietnam/mock-data": ["../../packages/mock-data/src"]
-    }
+      "@/*": ["./src/*"]
+    },
+    "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"]
 }
