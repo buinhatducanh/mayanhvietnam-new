@@ -2,24 +2,40 @@
 
 **Bộ mock data thống nhất** cho 10 demo apps — import 1 nơi, sửa 1 chỗ, mọi demo đồng bộ.
 
-## Cấu trúc
+## Cấu trúc mới (2026-07-11)
 
 ```
 packages/mock-data/src/
-├─ types.ts        # Schema: ProductSummary, Category, FlashSale, ...
-├─ products.ts     # 12 sản phẩm + 10 helper functions
-├─ categories.ts   # 11 categories (may-anh, ong-kinh, flycam, ...)
-├─ banners.ts      # Hero slides + deal banners
-├─ stores.ts       # 4 cửa hàng
-├─ reviews.ts      # 5 reviews
-└─ index.ts        # Re-export tất cả
+├─ types.ts            # Schema: ProductSummary, ProductArticle, CameraBody, ...
+├─ products/
+│   ├─ cameras.ts      # 4 máy ảnh (may-anh): Canon R6 II, Sony A7 IV, Canon R50, Nikon Z6 III
+│   ├─ lenses.ts       # 4 ống kính (ong-kinh): Canon RF 24-70L, Canon RF 50, Sony 70-200 GM II, Nikon Z 24-70 S II
+│   ├─ flycam.ts       # 4 flycam: DJI Mavic 4 Pro, DJI Mini 5 Pro, DJI Air 3S, DJI Mavic Air 2
+│   ├─ action-cameras.ts # 4 action camera: GoPro Hero 13, DJI Action 4, DJI Pocket 4, DJI Osmo Nano
+│   ├─ cinema.ts       # 4 máy quay phim: Sony FX30, Sony FX3, Canon C70, BMPCC 6K G2
+│   ├─ studio.ts       # 4 thiết bị studio: Godox SL150W III, Aputure 600d Pro, Nanlite Forza 60C, Godox AD200 Pro
+│   └─ index.ts        # allProducts + 15 helper functions
+├─ categories.ts       # 11 categories
+├─ banners.ts          # Hero slides + deal banners
+├─ stores.ts           # 4 cửa hàng
+├─ reviews.ts          # 5 reviews
+├─ lens-checker.ts     # 14 bodies + 7 lenses + checkLensCompatibility()
+├─ site-content.ts     # Hotline, policies, payment, social (từ mayanhvietnam.com)
+└─ index.ts            # Re-export tất cả
 ```
+
+## Quy tắc dữ liệu
+
+- **Mỗi category → ≥4 sản phẩm**
+- **Mỗi sản phẩm → ≥5 ảnh gallery** (1 avatar + gallery URLs từ mayanhvietnam.com CDN)
+- **Mỗi sản phẩm → ≥1 bài viết review** (`article` field) — 5 sections: Tổng quan, Thiết kế, Hiệu năng, Ưu nhược điểm, Kết luận
+- **Specs đầy đủ**: ≥3 groups, mỗi group ≥2 items
+- **Giá & sourceUrl** scrape từ trang gốc 2026-07-09/10
 
 ## Cài đặt
 
-Đã được khai báo là workspace dep trong các demo (02, 03, 04, 05, 06, 07, 08, 09, 10, demo-shell). Nếu demo nào chưa có, thêm vào `package.json`:
-
 ```json
+// package.json của demo
 "dependencies": {
   "@mayanhvietnam/mock-data": "workspace:*"
 }
@@ -30,6 +46,8 @@ packages/mock-data/src/
 ```tsx
 import {
   allProducts,
+  cameras,
+  lenses,
   categories,
   heroSlides,
   getProductBySlug,
@@ -38,92 +56,46 @@ import {
   getFeaturedProducts,
   getProductsByBrand,
   getCatalogStats,
+  // NEW: articles
+  getProductWithArticle,
+  getAllProductsWithArticles,
+  // NEW: lens checker
+  checkLensCompatibility,
+  // NEW: site content
+  siteContent,
+  HOTLINE,
+  footerPolicies,
+  paymentIcons,
 } from '@mayanhvietnam/mock-data';
-
-// Danh sách tất cả
-const products = allProducts;          // ProductSummary[]
-
-// Theo category
-const cameras = getProductsByCategory('may-anh');
-
-// Theo slug
-const a7iv = getProductBySlug('may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang');
-
-// Tìm kiếm
-const results = searchProducts('canon');
-
-// Top sản phẩm
-const featured = getFeaturedProducts(6);
-
-// Thống kê catalog
-const stats = getCatalogStats();
-// { total: 12, brands: [...], avgPrice: 38500000, byCategory: {...} }
 ```
 
-## Helpers có sẵn
+## Export mới (2026-07-11)
 
-| Function | Mô tả | Dùng cho |
-|---|---|---|
-| `getProductsByCategory(slug)` | Lọc theo category slug | Tất cả demo |
-| `getProductBySlug(slug)` | Tìm 1 sản phẩm theo slug | PDP page (demo-02, 03, 04, 05, 06) |
-| `getRelatedProducts(product, limit)` | Sản phẩm liên quan cùng category | PDP page |
-| `getProductsByBrand(brand)` | Lọc theo brand | demo-04, demo-06 |
-| `getAllBrands()` | Danh sách brand duy nhất | Brand filter UI |
-| `getProductsByMount(mount)` | Lọc lens theo mount | Lens checker (demo-01/02) |
-| `getFeaturedProducts(limit)` | Top sản phẩm rating cao | Hero section |
-| `getProductsByPriceRange(min, max)` | Lọc theo khoảng giá | Filter UI |
-| `searchProducts(query)` | Tìm trong name/brand/specs | Search bar |
-| `getProductsGroupedByCategory()` | Nhóm theo category | Category landing pages |
-| `getCheapestProducts(limit)` | Top giá rẻ nhất | Homepage "Giá tốt" section |
-| `getPremiumProducts(limit)` | Top cao cấp nhất | Homepage "Cao cấp" section |
-| `getOnSaleProducts()` | Sản phẩm đang giảm giá | Flash sale, deals |
-| `getCatalogStats()` | Thống kê tổng | Admin dashboard |
-
-## Schema
-
-```ts
-interface ProductSummary {
-  // Core
-  id: string;
-  slug: string;
-  name: string;
-  thumbnail: string;
-  images: ProductImage[];
-  price: number;
-  originalPrice?: number;
-  badges: { type: string; label: string }[];
-  rating?: { average: number; count: number };
-  isUsed: boolean;
-  brand: string;
-  mount?: string;
-  availability: 'in_stock' | 'out_of_stock' | 'pre_order';
-  category: string;
-
-  // Detail (PDP)
-  shortSpecs?: string[];
-  description?: string;
-  highlights?: string[];
-  specs?: ProductSpecGroup[];
-  packageIncludes?: string[];
-  sku?: string;
-  scrapedAt?: string;
-  sourceUrl?: string;
-  callForPrice?: boolean;
-  hotline?: string;
-}
-```
+| Export | Mô tả |
+|---|---|
+| `cameras` | 4 máy ảnh body (direct array) |
+| `lenses` | 4 ống kính (direct array) |
+| `flycam` | 4 flycam (direct array) |
+| `actionCameras` | 4 action camera (direct array) |
+| `cinema` | 4 máy quay phim (direct array) |
+| `studio` | 4 thiết bị studio (direct array) |
+| `getProductWithArticle(slug)` | Tìm SP + article theo slug |
+| `getAllProductsWithArticles()` | Tất cả SP có article |
+| `checkLensCompatibility(body, lens)` | Kiểm tra compat body ↔ lens |
+| `cameraBodies` | Danh sách camera bodies (14 items) |
+| `lensOptions` | Danh sách lenses (7 items) |
+| `siteContent` | Toàn bộ site content (hotline, policies, payment, social) |
+| `promotionalBanners` | 4 promotional banners |
+| `HOTLINE` | Số hotline legacy |
 
 ## Demos đang dùng
 
 | Demo | Trạng thái |
 |---|---|
-| demo-03 | ✅ Direct import |
-| demo-04 | ✅ Direct import + adapters |
-| demo-05 | ✅ Via re-export wrapper |
+| demo-0 | ✅ Direct import (qua adapter.ts) |
+| demo-01 | ❌ Đang dùng local — cần migrate |
+| demo-02 – demo-10 | ✅ workspace dep |
 | demo-shell | ✅ (categories only) |
-| demo-0, demo-01, demo-02, demo-06 | ❌ Đang dùng data local riêng |
-
-Có thể migrate từng demo sang dùng `@mayanhvietnam/mock-data` để data đồng bộ tuyệt đối.
 
 ## Ngày cập nhật
-2026-07-10 — Tăng từ 8 → 12 products, thêm 11 helpers, mở rộng categories.
+2026-07-11 — Tái cấu trúc: 24 products (6 categories × 4 SP), mỗi SP ≥5 ảnh + article + full specs. Thêm lens-checker, site-content, promotional-banners. Tách products thành modules theo category.

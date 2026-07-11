@@ -1,4 +1,4 @@
-// Types
+// ─── Types ──────────────────────────────────────────────────────────────────
 export type {
   Category,
   ProductImage,
@@ -9,19 +9,35 @@ export type {
   DealBanner,
   StoreInfo,
   Review,
+  // NEW
+  ProductArticle,
+  ProductVariant,
+  CameraBody,
+  LensOption,
+  PromotionalBanner,
+  SiteContent,
 } from './types';
 
-// Products
+// ─── Products (from category modules) ───────────────────────────────────────
 export {
   allProducts,
   flashSaleData,
+  // Category arrays (direct import)
+  cameras,
+  lenses,
+  flycam,
+  actionCameras,
+  cinema,
+  studio,
+  // Lookups
   getProductsByCategory,
   getProductBySlug,
   getRelatedProducts,
-  // New helpers — added 2026-07-10
+  // Brand & Mount
   getProductsByBrand,
   getAllBrands,
   getProductsByMount,
+  // Ranking & filtering
   getFeaturedProducts,
   getProductsByPriceRange,
   searchProducts,
@@ -29,17 +45,57 @@ export {
   getCheapestProducts,
   getPremiumProducts,
   getOnSaleProducts,
+  // Stats
   getCatalogStats,
+  // Articles
+  getProductWithArticle,
+  getAllProductsWithArticles,
+  // New products
+  getNewProducts,
 } from './products';
 
-// Categories
+// ─── Categories ─────────────────────────────────────────────────────────────
 export { categories, getCategoryBySlug, getActiveCategories } from './categories';
 
-// Stores
+// ─── Stores ─────────────────────────────────────────────────────────────────
 export { stores } from './stores';
 
-// Reviews
+// ─── Reviews ────────────────────────────────────────────────────────────────
 export { reviews } from './reviews';
 
-// Banners
+// ─── Banners ────────────────────────────────────────────────────────────────
 export { heroSlides, dealBanners } from './banners';
+
+// ─── Lens checker ───────────────────────────────────────────────────────────
+export {
+  cameraBodies,
+  lensOptions,
+  checkLensCompatibility,
+} from './lens-checker';
+
+// ─── Site content ───────────────────────────────────────────────────────────
+export {
+  siteContent,
+  promotionalBanners,
+  // Legacy shorthand exports
+  HOTLINE,
+  HOTLINE_FULL,
+  SITE_EMAIL,
+  COMPANY_NAME,
+  COMPANY_ADDRESS,
+  TAX_ID,
+  footerPolicies,
+  paymentMethods,
+  paymentIcons,
+  socialLinks,
+} from './site-content';
+
+// ─── Brand banners ───────────────────────────────────────────────────────────
+export {
+  BRAND_META,
+  getBrandBanners,
+  getBrandBannerBySlug,
+  formatBrandPrice,
+  type BrandMeta,
+  type BrandBanner,
+} from './brand-banners';

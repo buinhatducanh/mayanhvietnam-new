@@ -25,6 +25,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@mayanhvietnam/mock-data": [
+        "../../packages/mock-data/src"
       ]
     }
   },

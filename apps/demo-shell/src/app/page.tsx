@@ -20,7 +20,7 @@ export default function GalleryPage() {
           {demos.map((demo) => (
             <a
               key={demo.id}
-              href={demo.url}
+              href={demo.url ?? '#'}
               target="_blank"
               rel="noopener noreferrer"
               className="group block rounded-xl border border-[var(--color-border)] bg-[var(--color-muted)] p-6 transition-all hover:border-[var(--color-primary)] hover:bg-[var(--color-elevated)] hover:shadow-[0_0_24px_rgba(0,212,170,0.15)]"

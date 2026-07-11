@@ -8,6 +8,7 @@ import { PromotionalBannersSection } from '@/components/home/promotional-banners
 import { TabbedProductSection } from '@/components/home/tabbed-product-section'
 import { ReviewsSection } from '@/components/home/reviews-section'
 import { NewsletterSection } from '@/components/home/newsletter-section'
+import BrandSection from '@/components/brand-section'
 import { categories } from '@/lib/products'
 
 export default function HomePage() {
@@ -48,6 +49,11 @@ export default function HomePage() {
 
         {/* Promotional banner row — 4 banners (FLASH SALE / NỔI BẬT / KM / CŨ KM) */}
         <PromotionalBannersSection />
+
+        {/* Brand banners — "Mua theo hãng" */}
+        <div className="mx-auto w-full max-w-7xl">
+          <BrandSection />
+        </div>
 
         {/* TOP MÁY ẢNH */}
         <TabbedProductSection heading="TOP MÁY ẢNH" categorySlug="may-anh" variant="cameras" />

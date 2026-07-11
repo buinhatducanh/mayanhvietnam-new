@@ -1,0 +1,275 @@
+import type { ProductSummary } from '../types';
+import { imgs, COMMON_HOTLINE, buildArticle } from './utils';
+
+const CDN = 'https://mayanhvietnam.com';
+
+export const studio: ProductSummary[] = [
+  // ── 1. Godox SL150W III ────────────────────────────────────────────────
+  {
+    id: 'p22',
+    slug: 'godox-sl150w-iii',
+    name: 'Godox SL150W III LED Video Light',
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/01_den-godox-la200d-daylight-led-light-230w.jpeg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/01_den-godox-la200d-daylight-led-light-230w.jpeg`,
+      [],
+      'Godox SL150W III LED Video Light',
+    ),
+    price: 5690000,
+    originalPrice: 6490000,
+    badges: [{ type: 'sale', label: '-12%' }, { type: 'hot', label: 'Best seller' }],
+    rating: { average: 4.7, count: 64 },
+    isUsed: false,
+    brand: 'Godox',
+    availability: 'in_stock',
+    category: 'thiet-bi-studio',
+    shortSpecs: [
+      'Công suất 150W',
+      '5600K ± 200K',
+      'CRI 96+ / TLCI 97+',
+      'Bowens mount',
+      'Điều khiển qua App',
+    ],
+    description: 'Đèn LED quay phim công suất 150W, nhiệt độ màu 5600K, CRI 96+, điều khiển qua app — lựa chọn tiêu chuẩn cho studio và livestream.',
+    highlights: [
+      'Công suất 150W daylight balanced',
+      'CRI 96+ / TLCI 97+ — màu sắc chính xác',
+      'Ngàm Bowens phổ biến — gắn softbox dễ',
+      'Điều khiển qua app Godox Light',
+    ],
+    specs: [
+      { group: 'Đèn', items: [
+        { label: 'Công suất', value: '150W' },
+        { label: 'Nhiệt độ màu', value: '5600K ± 200K' },
+        { label: 'CRI', value: '96+' },
+        { label: 'TLCI', value: '97+' },
+        { label: 'Ngàm đèn', value: 'Bowens' },
+        { label: 'Điều khiển', value: 'App Godox Light / Remote' },
+      ]},
+    ],
+    packageIncludes: [
+      '1× Godox SL150W III',
+      '1× Nguồn điện',
+      '1× Reflection umbrella',
+      '1× Diffuser cap',
+    ],
+    article: buildArticle({
+      title: 'Đánh giá Godox SL150W III — Đèn LED quay phim giá tốt 150W',
+      readTime: 6,
+      sections: [
+        { heading: 'Tổng quan', content: 'Godox SL150W III là đèn LED daylight 150W — lựa chọn tiêu chuẩn cho studio và livestream. CRI 96+ / TLCI 97+ cho màu sắc chính xác, Bowens mount phổ biến. Điều khiển qua app Godox Light.' },
+        { heading: 'Chất lượng ánh sáng', content: 'Nhiệt độ màu 5600K ± 200K daylight balanced. CRI 96+ / TLCI 97+ cho phép quay video chuyên nghiệp mà không cần chỉnh màu nhiều. 9 hiệu ứng đặc biệt (FX) tích hợp.' },
+        { heading: 'Tính năng', content: 'Điều khiển qua app Godox Light, DMX, 2.4G wireless. Bowens mount gắn softbox, beauty dish, snoot dễ dàng. Quạt tản nhiệt êm — phù hợp quay video có thu âm.' },
+        { heading: 'Ưu và nhược điểm', content: '**Ưu điểm:** CRI 96+ / TLCI 97+ xuất sắc. Bowens mount phổ biến. App Godox tiện lợi. Giá phải chăng 5.6 triệu.\n\n**Nhược điểm:** Daylight only (không Bi-color). Nặng 2.6kg. Không có V-Mount.' },
+      ],
+    }),
+    variants: [
+      { id: 'sl150-std', name: 'Chính hãng Godox VN', price: 6490000, discountPrice: 5690000 },
+    ],
+    hotline: COMMON_HOTLINE,
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/den-godox-sl150w-iii_thiet-bi-studio-230214175317364',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 2. Aputure 600d Pro ────────────────────────────────────────────────
+  {
+    id: 'p23',
+    slug: 'aputure-600d-pro',
+    name: 'Aputure LS 600d Pro Daylight LED Light',
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/aputure-600d-pro.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/aputure-600d-pro.jpg`,
+      [],
+      'Aputure LS 600d Pro',
+    ),
+    price: 42990000,
+    originalPrice: 42990000,
+    badges: [{ type: 'hot', label: 'Professional' }, { type: 'new', label: 'Aputure' }],
+    rating: { average: 4.9, count: 18 },
+    isUsed: false,
+    brand: 'Aputure',
+    availability: 'in_stock',
+    category: 'thiet-bi-studio',
+    shortSpecs: [
+      'Công suất 600W daylight',
+      'Bowens mount',
+      'CRI 96+ / TLCI 98+',
+      'IP54 chống bụi nước',
+      'DMX / Sidus Link',
+    ],
+    description: 'Aputure LS 600d Pro — đèn LED daylight 600W chuyên nghiệp, CRI 96+, IP54 chống bụi nước, Bowens mount, DMX / Sidus Link control.',
+    highlights: [
+      '600W daylight — cực sáng',
+      'IP54 — chống bụi nước, dùng ngoài trời',
+      'Bowens mount phổ biến',
+      'DMX / Sidus Link wireless control',
+    ],
+    specs: [
+      { group: 'Đèn', items: [
+        { label: 'Công suất', value: '600W daylight' },
+        { label: 'CRI', value: '96+' },
+        { label: 'TLCI', value: '98+' },
+        { label: 'Ngàm', value: 'Bowens' },
+        { label: 'IP', value: 'IP54 — chống bụi nước' },
+        { label: 'Điều khiển', value: 'DMX 512 / Sidus Link App / Remote' },
+      ]},
+    ],
+    packageIncludes: [
+      '1× Aputure LS 600d Pro',
+      '1× Controller',
+      '1× Bowens Mount Reflector',
+      '1× Cáp AC',
+    ],
+    article: buildArticle({
+      title: 'Đánh giá Aputure 600d Pro — Đèn LED daylight 600W chuyên nghiệp',
+      readTime: 7,
+      sections: [
+        { heading: 'Tổng quan', content: 'Aputure LS 600d Pro là đèn LED daylight 600W chuyên nghiệp nhất phân khúc. IP54 chống bụi nước, Bowens mount, DMX/Sidus Link control. Phù hợp location shooting ngoài trời và studio lớn.' },
+        { heading: 'Chất lượng ánh sáng', content: '600W daylight cực sáng — tương đương HMI 1200W. CRI 96+ / TLCI 98+. Bowens mount gắn mọi phụ kiện. Light output 6500 lux ở 3m (với reflector).' },
+        { heading: 'IP54 & durability', content: 'IP54 chống bụi nước — quay ngoài trời an toàn. Controller tách rời chống nước. Thiết kế nhôm alloy bền bỉ, tản nhiệt hiệu quả.' },
+        { heading: 'Ưu và Nhược điểm', content: '**Ưu điểm:** 600W cực sáng. IP54 outdoor. DMX/Sidus Link control. Bowens mount.\n\n**Nhược điểm:** Giá cao (43 triệu). Nặng 5.5kg cần C-stand vững. Controller riêng.' },
+      ],
+    }),
+    variants: [
+      { id: '600d-pro', name: 'Body + Controller', price: 42990000 },
+    ],
+    hotline: COMMON_HOTLINE,
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/aputure-600d-pro_thiet-bi-studio-230214175317364',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 3. Nanlite Forza 60C ──────────────────────────────────────────────
+  {
+    id: 'p24',
+    slug: 'nanlite-forza-60c',
+    name: 'Nanlite Forza 60C RGBWW LED Light',
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/nanlite-forza-60c.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/nanlite-forza-60c.jpg`,
+      [],
+      'Nanlite Forza 60C',
+    ),
+    price: 8590000,
+    originalPrice: 8990000,
+    badges: [{ type: 'sale', label: '-4%' }, { type: 'hot', label: 'RGBWW' }],
+    rating: { average: 4.7, count: 42 },
+    isUsed: false,
+    brand: 'Nanlite',
+    availability: 'in_stock',
+    category: 'thiet-bi-studio',
+    shortSpecs: [
+      '60W RGBWW',
+      '15.000 màu',
+      'CRI 96 / TLCI 98',
+      'Bowens mount',
+      'App control',
+    ],
+    description: 'Nanlite Forza 60C — đèn RGBWW 60W với 15.000 màu sắc, CRI 96, Bowens mount. Nhỏ gọn, linh hoạt cho studio và location shooting.',
+    highlights: [
+      'RGBWW — 15.000 màu sắc',
+      'CRI 96 / TLCI 98',
+      'Bowens mount — gắn phụ kiện dễ',
+      'Nhỏ gọn — location shooting lý tưởng',
+    ],
+    specs: [
+      { group: 'Đèn', items: [
+        { label: 'Công suất', value: '60W RGBWW' },
+        { label: 'Màu sắc', value: '15.000 màu RGB' },
+        { label: 'Nhiệt độ màu', value: '2700K - 7500K (tuning)' },
+        { label: 'CRI', value: '96' },
+        { label: 'TLCI', value: '98' },
+        { label: 'Ngàm', value: 'Bowens' },
+        { label: 'Điều khiển', value: 'App Nanlink / DMX / 2.4G' },
+      ]},
+    ],
+    packageIncludes: [
+      '1× Nanlite Forza 60C',
+      '1× Bowens Mount Adapter',
+      '1× Power adapter',
+      '1× Cáp AC',
+    ],
+    article: buildArticle({
+      title: 'Đánh giá Nanlite Forza 60C — Đèn RGBWW 60W nhỏ gọn',
+      readTime: 6,
+      sections: [
+        { heading: 'Tổng quan', content: 'Nanlite Forza 60C là đèn RGBWW 60W nhỏ gọn, 15.000 màu sắc, CRI 96 / TLCI 98. Bowens mount, app Nanlink control. Phù hợp studio nhỏ và location shooting cần thiết bị di động.' },
+        { heading: 'RGBWW linh hoạt', content: '15.000 màu RGB + CCT 2700K-7500K + Green/Magenta tint. Điều khiển qua app Nanlink, DMX, 2.4G. Nhiều hiệu ứng FX tích hợp.' },
+        { heading: 'Nhỏ gọn & di động', content: 'Trọng lượng chỉ ~1.13kg (chỉ light head), Bowens mount adapter. Tương thích pin NP-F / V-Mount cho quay ngoài trời. Quạt êm.' },
+        { heading: 'Ưu và nhược điểm', content: '**Ưu điểm:** RGBWW 15.000 màu. CRI 96 / TLCI 98. Bowens mount. Nhỏ gọn.\n\n**Nhược điểm:** Công suất chỉ 60W — không đủ cho studio lớn. Pin NP-F cần adapter riêng.' },
+      ],
+    }),
+    variants: [
+      { id: 'forza-60c', name: 'Chính hãng Nanlite', price: 8990000, discountPrice: 8590000 },
+    ],
+    hotline: COMMON_HOTLINE,
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/nanlite-forza-60c_thiet-bi-studio-230214175317364',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 4. Godox AD200 Pro ────────────────────────────────────────────────
+  {
+    id: 'p25',
+    slug: 'godox-ad200-pro',
+    name: 'Godox AD200 Pro Pocket Flash',
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/godox-ad200-pro.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/godox-ad200-pro.jpg`,
+      [],
+      'Godox AD200 Pro',
+    ),
+    price: 4290000,
+    originalPrice: 4590000,
+    badges: [{ type: 'sale', label: '-7%' }, { type: 'hot', label: 'Pocket Flash' }],
+    rating: { average: 4.8, count: 124 },
+    isUsed: false,
+    brand: 'Godox',
+    availability: 'in_stock',
+    category: 'thiet-bi-studio',
+    shortSpecs: [
+      '200Ws flash',
+      'GN 60 (m ở ISO 100)',
+      '0.01-1.5s recycle',
+      '1/8000s HSS',
+      '2.4G X system',
+    ],
+    description: 'Godox AD200 Pro — flash bỏ túi 200Ws, GN 60, recycle 0.01s, HSS 1/8000s. Pocket flash phổ biến nhất cho location shooting.',
+    highlights: [
+      '200Ws flash —GN 60',
+      'Recycle 0.01s — cực nhanh',
+      'HSS 1/8000s — froze action',
+      '2.4G X system — trigger không dây',
+    ],
+    specs: [
+      { group: 'Flash', items: [
+        { label: 'Công suất', value: '200Ws' },
+        { label: 'GN', value: '60 (m tại ISO 100)' },
+        { label: 'Recycle time', value: '0.01 – 1.5s' },
+        { label: 'HSS', value: '1/8000s' },
+        { label: 'Trigger', value: 'Godox 2.4G X system' },
+      ]},
+    ],
+    packageIncludes: [
+      '1× Godox AD200 Pro',
+      '1× Pin lithium 2600mAh',
+      '1× Sạc',
+      '1× Standard reflector',
+      '1× Cáp USB-C',
+    ],
+    article: buildArticle({
+      title: 'Đánh giá Godox AD200 Pro — Pocket flash 200Ws cho location',
+      readTime: 5,
+      sections: [
+        { heading: 'Tổng quan', content: 'Godox AD200 Pro là pocket flash 200Ws, GN 60 (ISO 100), recycle 0.01s, HSS 1/8000s. Lựa chọn lý tưởng cho photographer cần flash mạnh, gọn, dùng ngoài trời.' },
+        { heading: 'Công suất & tốc độ', content: '200Ws mạnh — đủ sáng cho softbox lớn ngoài trời. Recycle 0.01s siêu nhanh. HSS 1/8000s cho phép freeze action và đồng bộ với shutter speed cao.' },
+        { heading: 'Hệ thống Godox 2.4G X', content: 'Tương thích trigger Godox X2T / Xpro / X1. Điều khiển wireless xa đến 100m. TTL, Manual, Multi mode. Nhiều phụ kiện đầu (bare bulb, fresnel, reflector).' },
+        { heading: 'Ưu và nhược điểm', content: '**Ưu điểm:** 200Ws trong body nhỏ gọn. Recycle 0.01s siêu nhanh. HSS 1/8000s. Hệ thống Godox X linh hoạt.\n\n**Nhược điểm:** Không có modeling light. Pin lithium đắt. Cần thêm trigger riêng.' },
+      ],
+    }),
+    variants: [
+      { id: 'ad200pro', name: 'Chính hãng Godox VN', price: 4590000, discountPrice: 4290000 },
+    ],
+    hotline: COMMON_HOTLINE,
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/godox-ad200-pro_thiet-bi-studio-230214175317364',
+    scrapedAt: '2026-07-09',
+  },
+];

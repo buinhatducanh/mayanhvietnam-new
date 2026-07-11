@@ -2,7 +2,8 @@
   "detector": {
     "ignoreRules": [],
     "ignoreFiles": [
-      "apps/demo-02/src/components/banner-slider.tsx"
+      "apps/demo-02/src/components/banner-slider.tsx",
+      "apps/demo-04/src/app/data.ts"
     ],
     "ignoreValues": [
       {

@@ -62,6 +62,15 @@ const APP_METADATA: Record<string, { name: string; description: string }> = {
   },
 };
 
+// External demos — nằm ngoài /apps/ nên không auto-discover
+const EXTERNAL_DEMOS: Record<string, { name: string; description: string; port: number }> = {
+  'insta360-clone': {
+    name: '🎥 Insta360 Clone (Next.js)',
+    description: 'Bản clone Insta360 Luna Ultra bằng Next.js — Hero, BentoGrid, FeatureShowcase, ColorProfiles, Specs, Accessories. Từ ai-website-cloner-template skill.',
+    port: 3000,
+  },
+};
+
 export interface Demo {
   id: string;
   name: string;
@@ -74,22 +83,32 @@ export interface Demo {
  * Auto-discover all demo apps from /apps folder.
  * Apps có port = demo có thể launch được.
  */
-export const demos: Demo[] = discoverAppDirs()
-  .map((dir) => {
-    const pkg = readAppPkg(dir);
-    if (!pkg) return null;
+export const demos: Demo[] = [
+  // Apps trong /apps/ — auto-discovered
+  ...discoverAppDirs()
+    .map((dir) => {
+      const pkg = readAppPkg(dir);
+      if (!pkg) return null;
 
-    const meta = APP_METADATA[dir];
-    const port = pkg.port ?? null;
+      const meta = APP_METADATA[dir];
+      const port = pkg.port ?? null;
 
-    return {
-      id: dir,
-      name: meta?.name ?? dir,
-      description: meta?.description ?? pkg.description ?? '',
-      url: port ? `http://localhost:${port}` : null,
-      port,
-    } satisfies Demo;
-  })
-  .filter((d): d is Demo => d !== null)
-  // Filter bỏ demo-shell khỏi gallery (chính nó)
-  .filter((d) => d.id !== 'demo-shell');
+      return {
+        id: dir,
+        name: meta?.name ?? dir,
+        description: meta?.description ?? pkg.description ?? '',
+        url: port ? `http://localhost:${port}` : null,
+        port,
+      } satisfies Demo;
+    })
+    .filter((d): d is Demo => d !== null)
+    .filter((d) => d.id !== 'demo-shell'),
+  // External demos — nằm ngoài /apps/
+  ...Object.entries(EXTERNAL_DEMOS).map(([id, meta]): Demo => ({
+    id,
+    name: meta.name,
+    description: meta.description,
+    url: `http://localhost:${meta.port}`,
+    port: meta.port,
+  })),
+];

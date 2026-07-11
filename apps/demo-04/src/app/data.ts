@@ -145,7 +145,10 @@ export const SITE_HOTLINE = { short: '0907-215-252', full: '0907-215-252' };
 
 /* ── Local UI types ─────────────────────────────────────────── */
 export interface Product {
-  id: number; brand: string; name: string; category: string;
+  id: number;
+  /** Canonical key — use this for routing & lookups, NOT `id`. */
+  slug: string;
+  brand: string; name: string; category: string;
   price: number; originalPrice: number | null; badge: string | null;
   rating: number; reviews: number; img: string; thumbs: string[];
   specs: { label: string; value: string }[]; desc: string;
@@ -160,8 +163,13 @@ export interface Store {
 }
 
 /* ── Adapter: ProductSummary → Product ──────────────────────── */
-export const PRODUCTS: Product[] = _allProducts.map((p) => ({
-  id: parseInt(p.id.replace(/\D/g, '') || '0', 10),
+// NOTE: assign numeric `id` as a stable, collision-free running index
+// (NOT derived from the string `p.id`, which collides for "p1" vs "p1b",
+// "p3a" vs "p3b" vs "p3c" vs "p3d" — `getProductById` then returns the
+// wrong product). Use `slug` (always unique) as the canonical key.
+export const PRODUCTS: Product[] = _allProducts.map((p, idx) => ({
+  id: idx + 1,
+  slug: p.slug,
   brand: p.brand, name: p.name, category: p.category,
   price: p.price, originalPrice: p.originalPrice ?? null,
   badge: p.badges?.[0]?.label ?? null,
@@ -172,6 +180,13 @@ export const PRODUCTS: Product[] = _allProducts.map((p) => ({
   desc: p.description ?? '', features: p.highlights ?? [],
   inBox: p.packageIncludes ?? [],
 }));
+
+export const PRODUCT_BY_SLUG: Record<string, Product> = Object.fromEntries(
+  PRODUCTS.map((p) => [p.slug as string, p]),
+);
+
+export const getProductBySlug = (slug: string): Product | undefined =>
+  PRODUCT_BY_SLUG[slug];
 
 export const getProductById = (id: number): Product | undefined =>
   PRODUCTS.find((p) => p.id === id);
