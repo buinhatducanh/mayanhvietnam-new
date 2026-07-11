@@ -18,6 +18,11 @@ export default function HomePage() {
       <main className="flex flex-col gap-12 pb-16 lg:gap-16">
         <HeroSection />
 
+        {/* Brand banners — "Mua theo hãng" (vị trí 2, ngay sau Hero) */}
+        <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
+          <BrandSection />
+        </div>
+
         {/* Category grid — 9 items from homepage.json */}
         <section aria-label="Danh mục nổi bật" className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-9">
@@ -49,11 +54,6 @@ export default function HomePage() {
 
         {/* Promotional banner row — 4 banners (FLASH SALE / NỔI BẬT / KM / CŨ KM) */}
         <PromotionalBannersSection />
-
-        {/* Brand banners — "Mua theo hãng" */}
-        <div className="mx-auto w-full max-w-7xl">
-          <BrandSection />
-        </div>
 
         {/* TOP MÁY ẢNH */}
         <TabbedProductSection heading="TOP MÁY ẢNH" categorySlug="may-anh" variant="cameras" />

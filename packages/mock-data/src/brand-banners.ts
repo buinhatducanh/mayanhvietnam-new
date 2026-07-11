@@ -141,7 +141,7 @@ export const BRAND_META: Record<string, BrandMeta> = {
     accent: '#ffaa00',
     gradient: 'linear-gradient(135deg, #1a1400 0%, #281f0a 50%, #1a1400 100%)',
     logoStyle: 'sans',
-    logo: `<svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><text x="0" y="44" font-family="Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-1">Blackmagic Design</text></svg>`,
+    logo: `<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><text x="0" y="34" font-family="Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="-0.5">Blackmagic</text><text x="0" y="54" font-family="Arial, sans-serif" font-size="14" font-weight="400" letter-spacing="0">Design</text></svg>`,
   },
 };
 

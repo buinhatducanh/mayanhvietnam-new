@@ -34,7 +34,7 @@ function BrandCard({ banner }: { banner: BrandBanner }) {
       <div className="relative z-10">
         {/* Logo SVG */}
         <div
-          className="mb-3 h-8 sm:h-10 w-auto text-white/90 group-hover:text-white transition-colors"
+          className="mb-3 h-12 sm:h-14 w-full max-w-[180px] sm:max-w-[220px] text-white/90 group-hover:text-white transition-colors"
           dangerouslySetInnerHTML={{ __html: meta.logo }}
         />
 
