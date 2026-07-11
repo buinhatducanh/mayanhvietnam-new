@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   Camera,
@@ -10,7 +11,20 @@ import {
   RotateCcw,
   Truck,
 } from 'lucide-react'
-import { HOTLINE, categories, storeLocations } from '@/lib/products'
+import {
+  HOTLINE,
+  HOTLINE_FULL,
+  SITE_EMAIL,
+  COMPANY_NAME,
+  COMPANY_ADDRESS,
+  TAX_ID,
+  categories,
+  footerPolicies,
+  paymentIcons,
+  paymentMethods,
+  socialLinks,
+  storeLocations,
+} from '@/lib/products'
 
 function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -48,26 +62,20 @@ const services = [
   { icon: Truck, title: 'Giao hàng toàn quốc', desc: 'Miễn phí đơn từ 1 triệu' },
   { icon: RotateCcw, title: 'Đổi trả dễ dàng', desc: 'Trong 7 ngày' },
   { icon: CreditCard, title: 'Thanh toán đa dạng', desc: 'An toàn, bảo mật' },
-  { icon: Headset, title: 'Hỗ trợ tận tâm', desc: '24/7 tất cả ngày' },
+  { icon: Headset, title: 'Hỗ trợ tận tâm', desc: 'Hotline 0907-215-252' },
 ]
 
-const socials = [
-  { icon: FacebookIcon, label: 'Facebook' },
-  { icon: YoutubeIcon, label: 'YouTube' },
-  { icon: InstagramIcon, label: 'Instagram' },
-  { icon: TiktokIcon, label: 'TikTok' },
-]
+const socialIconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
+  Facebook: FacebookIcon,
+  YouTube: YoutubeIcon,
+  TikTok: TiktokIcon,
+  Zalo: FacebookIcon, // reuse icon as fallback
+}
 
-const payments = ['Visa', 'Mastercard', 'JCB', 'Chuyển khoản', 'MoMo']
-
-const supportLinks = [
-  'Hướng dẫn mua hàng',
-  'Chính sách bảo hành',
-  'Chính sách đổi trả',
-  'Phương thức thanh toán',
-  'Câu hỏi thường gặp',
-  'Liên hệ hỗ trợ',
-]
+const socialItems = socialLinks.map((s) => ({
+  ...s,
+  icon: socialIconMap[s.platform] || FacebookIcon,
+}))
 
 export function SiteFooter() {
   return (
@@ -91,18 +99,18 @@ export function SiteFooter() {
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <Link href="/" className="flex items-center gap-3">
-            <span className="brand-glow flex size-10 items-center justify-center rounded-xl bg-primary">
-              <Camera className="size-5 text-primary-foreground" aria-hidden="true" />
-            </span>
-            <span className="flex flex-col">
-              <span className="font-serif text-lg font-bold tracking-wide">MAYANHVIETNAM</span>
-              <span className="text-[11px] italic text-primary">Vì lợi ích khách hàng</span>
-            </span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="https://mayanhvietnam.com/asset/imgs/icon/Logo_white01.png"
+              alt="Máy Ảnh Việt Nam"
+              width={200}
+              height={50}
+              className="object-contain"
+            />
           </Link>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Địa chỉ tin cậy hàng đầu về máy ảnh, ống kính và thiết bị nhiếp ảnh chính hãng tại
-            Việt Nam với hệ thống 4 chi nhánh.
+            Máy Ảnh Việt Nam là đơn vị tiên phong trong lĩnh vực phân phối và bán lẻ các sản phẩm
+            máy ảnh tại thị trường Việt Nam. Vì lợi ích khách hàng.
           </p>
           <ul className="mt-4 flex flex-col gap-2">
             {storeLocations.map((loc) => (
@@ -115,11 +123,13 @@ export function SiteFooter() {
             ))}
           </ul>
           <ul className="mt-5 flex gap-2.5">
-            {socials.map((social) => (
-              <li key={social.label}>
+            {socialItems.map((social) => (
+              <li key={social.platform}>
                 <Link
-                  href="/"
-                  aria-label={social.label}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.platform}
                   className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                 >
                   <social.icon className="size-4" aria-hidden="true" />
@@ -147,18 +157,18 @@ export function SiteFooter() {
           </ul>
         </nav>
 
-        <nav aria-label="Hỗ trợ khách hàng">
+        <nav aria-label="Chính sách & Hỗ trợ">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest">
-            Hỗ trợ khách hàng
+            Chính sách & Hỗ trợ
           </h3>
           <ul className="flex flex-col gap-2.5">
-            {supportLinks.map((link) => (
-              <li key={link}>
+            {footerPolicies.map((p) => (
+              <li key={p.name}>
                 <Link
-                  href="/"
+                  href={p.link}
                   className="text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  {link}
+                  {p.name}
                 </Link>
               </li>
             ))}
@@ -181,16 +191,20 @@ export function SiteFooter() {
             <li className="flex items-center gap-2.5">
               <Phone className="size-4 shrink-0 text-primary" aria-hidden="true" />
               <span>
-                Hotline: <span className="font-mono text-foreground">{HOTLINE}</span>
+                Hotline: <span className="font-mono text-foreground">{HOTLINE_FULL}</span>
               </span>
             </li>
             <li className="flex items-center gap-2.5">
               <Mail className="size-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>info@mayanhvietnam.vn</span>
+              <span>{SITE_EMAIL}</span>
             </li>
             <li className="flex items-start gap-2.5">
-              <Clock className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>{'Thời gian làm việc: 8:00 - 21:00 (T2 - CN)'}</span>
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+              <span className="text-xs leading-relaxed">
+                {COMPANY_ADDRESS}
+                <br />
+                MST: {TAX_ID}
+              </span>
             </li>
           </ul>
         </div>
@@ -198,14 +212,17 @@ export function SiteFooter() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-muted-foreground sm:flex-row lg:px-8">
-          <p>© 2025 Mayanhvietnam. All rights reserved.</p>
+          <p>© 2026 {COMPANY_NAME}. All rights reserved.</p>
           <ul className="flex flex-wrap items-center gap-2" aria-label="Phương thức thanh toán">
-            {payments.map((payment) => (
-              <li
-                key={payment}
-                className="rounded-md border border-border bg-secondary px-2.5 py-1 text-[11px] font-semibold text-foreground"
-              >
-                {payment}
+            {paymentIcons.map((icon) => (
+              <li key={icon.name}>
+                <Image
+                  src={icon.url}
+                  alt={icon.name}
+                  width={60}
+                  height={24}
+                  className="h-6 w-auto object-contain"
+                />
               </li>
             ))}
           </ul>

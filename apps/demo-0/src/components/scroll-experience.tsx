@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ChevronDown, Sparkles, Aperture } from 'lucide-react';
-import type { Product } from '@/lib/products';
-import { formatVND } from '@/lib/products';
+import type { Product } from '@/lib/adapter';
+import { formatVND } from '@/lib/adapter';
 import { SpecCallouts, SpecCalloutsMobile } from './spec-callouts';
 
 const CameraCanvas = dynamic(() => import('./camera-canvas'), { ssr: false });

@@ -57,7 +57,7 @@ export function HeroSection() {
           />
           <div className="animate-float-slow relative mx-auto aspect-square w-full max-w-lg">
             <Image
-              src="/images/hero-camera.png"
+              src="https://mayanhvietnam.com/asset/imgs/img/tet/banner_tet_01.png"
               alt="Máy ảnh mirrorless full-frame trên bục trưng bày phát sáng"
               fill
               priority

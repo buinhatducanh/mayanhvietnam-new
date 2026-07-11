@@ -1,7 +1,7 @@
 'use client';
 
 import { Cpu } from 'lucide-react';
-import type { Product } from '@/lib/products';
+import type { Product } from '@/lib/adapter';
 
 export function SpecTable({ product }: { product: Product }) {
   return (
@@ -16,7 +16,7 @@ export function SpecTable({ product }: { product: Product }) {
         <table className="w-full text-sm">
           <caption className="sr-only">Bảng thông số kỹ thuật của {product.name}</caption>
           <tbody>
-            {product.specs.map((spec, i) => (
+            {product.flatSpecs.map((spec, i) => (
               <tr
                 key={spec.label}
                 className={i % 2 === 0 ? 'bg-card/60' : 'bg-background'}

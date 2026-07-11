@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useTheme } from '@/components/theme-provider'
 
 export interface BannerSlide {
   eyebrow?: string
@@ -30,25 +31,72 @@ export function BannerSlider({
   interval = 6000,
   className = '',
 }: BannerSliderProps) {
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [transitioning, setTransitioning] = useState(false)
+  const [leakKey, setLeakKey] = useState(0)
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 })
+  const containerRef = useRef<HTMLDivElement>(null)
   const timer = useRef<ReturnType<typeof setInterval> | null>(null)
   const count = slides.length
 
-  const go = useCallback((next: number) => setIndex((next + count) % count), [count])
+  /* Manual transition — triggers light-leak flash */
+  const go = useCallback(
+    (next: number) => {
+      const target = (next + count) % count
+      if (target === index) return
+      setTransitioning(true)
+      setLeakKey((k) => k + 1) /* bumps key → remounts light-leak element */
+      setTimeout(() => {
+        setIndex(target)
+        setTimeout(() => setTransitioning(false), 100)
+      }, 60)
+    },
+    [count, index],
+  )
 
+  /* Auto-rotate — smooth cross-fade only, NO flash */
   useEffect(() => {
     if (paused || count <= 1) return
-    timer.current = setInterval(() => setIndex((i) => (i + 1) % count), interval)
+    timer.current = setInterval(() => {
+      setIndex((i) => (i + 1) % count)
+    }, interval)
     return () => {
       if (timer.current) clearInterval(timer.current)
     }
   }, [paused, count, interval])
 
+  /* Mouse-tracked parallax for the flare orb (hero only) */
+  useEffect(() => {
+    if (variant !== 'hero') return
+    const handleMove = (e: MouseEvent) => {
+      if (!containerRef.current) return
+      const rect = containerRef.current.getBoundingClientRect()
+      setMousePos({
+        x: (e.clientX - rect.left) / rect.width,
+        y: (e.clientY - rect.top) / rect.height,
+      })
+    }
+    const el = containerRef.current
+    el?.addEventListener('mousemove', handleMove)
+    return () => el?.removeEventListener('mousemove', handleMove)
+  }, [variant])
+
   const isHero = variant === 'hero'
+
+  /* Parallax offset: ±30px range for the flare orb */
+  const orbOffset = isHero
+    ? {
+        transform: `translate(${(mousePos.x - 0.5) * 30}px, ${(mousePos.y - 0.5) * 30}px)`,
+        transition: 'transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+      }
+    : {}
 
   return (
     <div
+      ref={containerRef}
       className={`shine group relative overflow-hidden rounded-3xl border border-border bg-card ${
         isHero ? 'min-h-[420px] sm:min-h-[480px] lg:min-h-[540px]' : 'min-h-[220px] sm:min-h-[260px]'
       } ${className}`}
@@ -75,33 +123,77 @@ export function BannerSlider({
                 alt={slide.imageAlt}
                 fill
                 priority={i === 0}
-                sizes="100vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+                quality={90}
                 className={`object-cover ${active ? 'animate-ken-burns' : ''}`}
               />
             </div>
-            {/* Readability gradient + blue tint */}
+            {/* Readability gradient — theme-aware so it stays readable in both modes */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/10"
+              className="absolute inset-0"
+              style={{
+                background: isDark
+                  ? 'linear-gradient(to right, #060a14, rgba(6,10,20,0.88), rgba(6,10,20,0.1))'
+                  : 'linear-gradient(to right, #f8fafd, rgba(248,250,253,0.92), rgba(248,250,253,0.15))',
+              }}
             />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"
+              className="absolute inset-0"
+              style={{
+                background: isDark
+                  ? 'linear-gradient(to top, rgba(6,10,20,0.8), transparent)'
+                  : 'linear-gradient(to top, rgba(248,250,253,0.85), transparent)',
+              }}
             />
-            {/* Ambient glow */}
+
+            {/* ── Ambient glow ── */}
             <div
               aria-hidden="true"
               className="animate-pulse-ring pointer-events-none absolute -right-24 top-1/4 size-[420px] rounded-full bg-primary/20 blur-[120px]"
             />
-            {/* Drifting lens-flare orb */}
+
+            {/* ── God rays — 3 tia sáng tỏa ra ── */}
+            {isHero && (
+              <>
+                <div
+                  aria-hidden="true"
+                  className="light-ray"
+                  style={{ right: '-6%', '--ray-rot': '14deg', animationDelay: '0s' } as React.CSSProperties}
+                />
+                <div
+                  aria-hidden="true"
+                  className="light-ray"
+                  style={{ right: '12%', '--ray-rot': '8deg', animationDelay: '3s' } as React.CSSProperties}
+                />
+                <div
+                  aria-hidden="true"
+                  className="light-ray"
+                  style={{ right: '28%', '--ray-rot': '2deg', animationDelay: '5.5s' } as React.CSSProperties}
+                />
+              </>
+            )}
+
+            {/* ── Aurora ribbon — subtle chromatic drift ── */}
+            {isHero && <div aria-hidden="true" className="aurora" />}
+
+            {/* ── Drifting lens-flare orb (parallax-tracked on hero) ── */}
             <div
               aria-hidden="true"
               className="animate-flare-drift pointer-events-none absolute right-[18%] top-[28%] size-40 rounded-full bg-[radial-gradient(circle,rgba(180,220,255,0.9),rgba(43,127,255,0.35)_35%,transparent_70%)] blur-md mix-blend-screen"
+              style={orbOffset}
             />
-            {/* Tech light-flare sweep + scan line (active slide only) */}
+
+            {/* ── Tech light-flare sweep + scan line (active slide only) ── */}
             {active && <div aria-hidden="true" className="banner-flare mix-blend-screen" />}
 
-            {/* Content */}
+            {/* ── Light leak flash on MANUAL slide transition only ── */}
+            {active && leakKey > 0 && (
+              <div aria-hidden="true" className="light-leak" key={`leak-${leakKey}`} />
+            )}
+
+            {/* ── Content ── */}
             <div
               className={`relative flex h-full flex-col justify-center ${
                 isHero

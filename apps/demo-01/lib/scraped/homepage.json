@@ -1,0 +1,141 @@
+{
+  "scraped_date": "2026-07-10",
+  "source_url": "https://mayanhvietnam.com",
+  "page_title": "Máy Ảnh Việt Nam - Vì lợi ích khách hàng",
+  "header": {
+    "hotline": "0937.148.222",
+    "hotline_full": "0907-215-252",
+    "topNavTabs": ["Xem tất cả", "Sản phẩm mới", "Sản phẩm cũ"]
+  },
+  "hero_banners": [
+    {"imageUrl": "/asset/imgs/img/tet/banner_tet_01.png", "link": "/san-pham/may-anh-canon-eos-r8-body-only_may-anh-mirrorless-230419151242054"},
+    {"imageUrl": "/asset/imgs/img/tet/bannerTet.png", "link": "/san-pham/may-anh-canon-eos-r6-body-only_may-anh-mirrorless-230210223532542"},
+    {"imageUrl": "/asset/imgs/img/tet/20.webp", "link": "/san-pham/may-anh-canon-eos-r8-body-only_may-anh-mirrorless-230419151242054"},
+    {"imageUrl": "/asset/imgs/img/tet/21.webp", "link": "/san-pham/may-anh-canon-eos-r6-body-only_may-anh-mirrorless-230210223532542"},
+    {"imageUrl": "/asset/imgs/img/tet/7.webp", "link": "/san-pham/may-anh-canon-eos-r6-body-only_may-anh-mirrorless-230210223532542"}
+  ],
+  "featured_product": {
+    "name": "Máy ảnh Nikon Z6 II (Body Only)",
+    "description": "Nikon Z6 II là mẫu máy ảnh mirrorless kế nhiệm của Nikon Z6. Giống như Nikon Z6, Nikon Z6 II được thiết kế hoàn toàn bằng hợp kim Magiê tạo độ chắc chắn...",
+    "detailUrl": "https://mayanhvietnam.com/san-pham/may-anh-nikon-z6-ii-body-only_may-anh-mirrorless-230418180440520",
+    "badges": ["Giao hàng Toàn quốc", "Sản phẩm Chính hãng", "Bảo hành Lâu dài", "Thanh toán Đa dạng"]
+  },
+  "category_grid": [
+    {"name": "Máy ảnh - Body", "iconUrl": "/asset/imgs/img/danhMuc_MayAnh.webp", "link": "/danh-muc/may-anh"},
+    {"name": "Ống kính - Lens", "iconUrl": "/asset/imgs/img/danhMuc_ongkinh.webp", "link": "/danh-muc/ong-kinh"},
+    {"name": "Sản phẩm cũ giá tốt", "iconUrl": "/asset/imgs/img/danhMuc_spCu.webp", "link": "/danh-muc-2nd/tat-ca-san-pham"},
+    {"name": "Dịch vụ lắp phông", "iconUrl": "/asset/imgs/img/danhMuc_setupPhong.webp", "link": "/dich-vu-lap-phong"},
+    {"name": "Camera hành động", "iconUrl": "/asset/imgs/img/danhMuc_action.webp", "link": "/danh-muc/action-camera"},
+    {"name": "Flycam - Drone", "iconUrl": "/asset/imgs/img/danhMuc_flycam.webp", "link": "/danh-muc/flycam"},
+    {"name": "Thiết bị studio", "iconUrl": "/asset/imgs/img/danhMuc_thietBiStudio.webp", "link": "/danh-muc/thiet-bi-studio"},
+    {"name": "Phụ kiện cho máy ảnh", "iconUrl": "/asset/imgs/img/danhMuc_phuKien.webp", "link": "/danh-muc/phu-kien"},
+    {"name": "Camera", "iconUrl": "/asset/imgs/img/danhMuc_mayQuayPhim.webp", "link": "/danh-muc/may-quay-phim"}
+  ],
+  "promotional_banners": [
+    {"label": "FLASH SALE", "link": "/danh-muc/san-pham-flash-sale"},
+    {"label": "SẢN PHẨM NỔI BẬT", "bannerUrl": "/asset/imgs/img/1200x400_banner_sanPhamKhuyenMai20250108.png", "link": "/danh-muc/san-pham-khuyen-mai"},
+    {"label": "SẢN PHẨM KHUYẾN MÃI", "mobileBannerUrl": "/asset/imgs/icon/bannerSanPhamKM-mobile-v2.webp", "desktopBannerUrl": "/asset/imgs/icon/bannerSanPhamKM-v1.png", "link": "/danh-muc/san-pham-khuyen-mai"},
+    {"label": "SẢN PHẨM CŨ KHUYẾN MÃI", "bannerUrl": "/asset/imgs/img/SPKM_banner/SPKM_eosR50.webp", "link": "/san-pham/may-anh-canon-eos-r50-trang-kem-lens-rfs-1845_may-anh-mirrorless-241228113334503"}
+  ],
+  "top_cameras": [
+    {"name": "Máy ảnh Canon EOS R50 (Black) kèm Lens RF-S 18-45mm | Chính Hãng", "priceDisplay": "Giá giao động: 17,500,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg", "link": "/san-pham/may-anh-canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang_may-anh-mirrorless-241228112737843"},
+    {"name": "Nikon Z6 Mark III Kèm Lens Z 24-70 mm f/4 S (Chính Hãng VIC)", "priceDisplay": "Giá giao động: 67,600,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-20/250520145943720/avatar/638833501469480006_nikon-z6-mark-iii-kem-lens-z-24-70-mm-f-4-s-chinh-hang-vic.jpg", "link": "/san-pham/nikon-z6-mark-iii-kem-lens-z-2470-f4-s-chinh-hang-vic_may-anh-mirrorless-250520145943720"},
+    {"name": "Máy ảnh Sony Alpha A7 Mark IV (Body Only) | Chính hãng", "priceDisplay": "Giá giao động: 47,500,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/avatar/01_may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang.jpg", "link": "/san-pham/may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang_may-anh-mirrorless-230210223540859"},
+    {"name": "Máy ảnh Canon EOS R8 (Body Only)", "priceDisplay": "Giá giao động: 26,900,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-19/230419151242054/avatar/canon-eos-r8-6-500x500_may-anh-canon-eos-r8-body-only.jpg", "link": "/san-pham/may-anh-canon-eos-r8-body-only_may-anh-mirrorless-230419151242054"},
+    {"name": "Máy ảnh Sony ZV-E10 II Black (Body Only) | Chính hãng", "priceDisplay": "Giá giao động: 26,000,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-26/240826174229493/avatar/638708944659930440_may-anh-sony-zv-e10-ii-black-body-only-chinh-hang.jpg", "link": "/san-pham/may-anh-sony-zve10-ii-black-body-only-chinh-hang_may-anh-mirrorless-240826174229493"},
+    {"name": "Máy ảnh Nikon Z6 II (Body Only) | Chính hãng", "priceDisplay": "Giá giao động: 32,500,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-18/230418180440520/avatar/nikon-z6-ii-500x500_may-anh-nikon-z6-ii-body-only-chinh-hang.jpg", "link": "/san-pham/may-anh-nikon-z6-ii-body-only-chinh-hang_may-anh-mirrorless-230418180440520"},
+    {"name": "Sony ZV-E10 kèm Lens Sony E PZ 16-50mm F3.5-5.6 OSS MARK II | Chính hãng", "priceDisplay": "Giá giao động: 16,680,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714103201041/avatar/639029506922725233_sony-zv-e10-kem-lens-sony-e-pz-16-50mm-f3-5-5-6-oss-mark-ii-chinh-hang.jpg", "link": "/san-pham/sony-zve10-kem-lens-sony-e-pz-1650-f3556-oss-mark-ii-chinh-hang_may-anh-mirrorless-250714103201041"},
+    {"name": "Máy ảnh Nikon Z5 II - (Hãng)", "priceDisplay": "Giá giao động: 43,000,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-04/250704114217939/avatar/638872262359118095_may-anh-nikon-z5-ii-hang.jpg", "link": "/san-pham/may-anh-nikon-z5-iihang_may-anh-mirrorless-250704114217939"},
+    {"name": "Máy ảnh Nikon Z30 (đen) kèm Lens NIKKOR Z DX 16-50mm f/3.5-6.3 VR | chính hãng", "priceDisplay": "Giá giao động: 17,900,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-06/25-06-20/250620115535850/avatar/638889641077470341_may-anh-nikon-z30-den-kem-lens-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-chinh-hang.jpg", "link": "/san-pham/may-anh-nikon-z30-den-kem-lens-nikkor-z-dx-1650-f3563-vr-chinh-hang_may-anh-mirrorless-250620115535850"},
+    {"name": "NIKON ZFC + LENS NIKON Z DX 16-50mm F3.5-6.3 VR (SILVER)", "priceDisplay": "Giá giao động: 24,000,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-02/260102105356303/avatar/639029480446269883_nikon-zfc-lens-nikon-z-dx-16-50mm-f3-5-6-3-vr-silver.jpg", "link": "/san-pham/nikon-zfc-lens-nikon-z-dx-1650-f3563-vr-silver_may-anh-mirrorless-260102105356303"}
+  ],
+  "top_lenses": [
+    {"name": "Ống kính Canon RF 24-70mm f/2.8L IS USM | Chính hãng", "priceDisplay": "Giá giao động: 48,900,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234357844/avatar/01_ong-kinh-canon-rf-24-70mm-f-2-8l-is-usm-chinh-hang.jpg", "link": "/san-pham/ong-kinh-canon-rf-2470-f28l-is-usm-chinh-hang_ong-kinh-mirrorless-230210234357844"},
+    {"name": "Ống kính Nikon Z 24-70mm f/2.8 S II", "priceDisplay": "Giá giao động: 69,000,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-09/25-09-22/250922103851025/avatar/638941343754731632_ong-kinh-nikon-z-24-70mm-f-2-8-s-ii.jpg", "link": "/san-pham/ong-kinh-nikon-z-2470-f28-s-ii_ong-kinh-mirrorless-250922103851025"},
+    {"name": "Ống kính Tamron 28-75mm F2.8 Di III VXD G2 for Nikon Z", "priceDisplay": "Giá giao động: 17,900,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-31/240831133137156/avatar/638722116807217083_ong-kinh-tamron-28-75mm-f2-8-di-iii-vxd-g2-for-nikon-z.jpg", "link": "/san-pham/ong-kinh-tamron-2875-f28-di-iii-vxd-g2-for-nikon-z_ong-kinh-mirrorless-240831133137156"},
+    {"name": "Ống kính Sigma 200mm F2 DG OS Sports for Sony E | Chính hãng", "priceDisplay": "Giá giao động: 85,320,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-08/25-08-20/250820095043213/avatar/638912804942323908_ong-kinh-sigma-200mm-f2-dg-os-sports-for-sony-e-chinh-hang.jpg", "link": "/san-pham/ong-kinh-sigma-200-f2-dg-os-sports-for-sony-e-chinh-hang_ong-kinh-mirrorless-250820095043213"},
+    {"name": "Ống kính Sigma 200mm F2 DG OS Sports ngàm L", "priceDisplay": "Giá giao động: 85,320,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-08/25-08-20/250820100004596/avatar/638912808715148082_ong-kinh-sigma-200mm-f2-dg-os-sports-ngam-l.jpg", "link": "/san-pham/ong-kinh-sigma-200-f2-dg-os-sports-ngam-l_ong-kinh-mirrorless-250820100004596"},
+    {"name": "Canon RF 50mm F1.8 STM | Chính hãng", "priceDisplay": "Giá từ: 4,500,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094047373/avatar/638847186653427391_canon-rf-50mm-f1-8-stm-chinh-hang.jpg", "link": "/san-pham/canon-rf-50-f18-stm-chinh-hang_ong-kinh-mirrorless-240803094047373"},
+    {"name": "Kase 85mm f/1.4 AF Lens (Nikon Z)", "priceDisplay": "Giá từ: 9,900,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-06/251006173300230/avatar/638966646032677503_kase-85mm-f-1-4-af-lens-nikon-z.jpg", "link": "/san-pham/kase-85-f14-af-lens-nikon-z_ong-kinh-mirrorless-251006173300230"},
+    {"name": "Ống kính Viltrox 85mm f/1.4 Pro Nikon Z", "priceDisplay": "Giá giao động: 13,500,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-03/251103143407180/avatar/638977774249552971_ong-kinh-viltrox-85mm-f-1-4-pro-nikon-z.jpg", "link": "/san-pham/ong-kinh-viltrox-85-f14-pro-nikon-z_ong-kinh-mirrorless-251103143407180"},
+    {"name": "Ống kính Nikon Z 24-70mm f/4 S | Chính hãng VIC", "priceDisplay": "Giá từ: 9,500,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01_ong-kinh-nikon-z-24-70mm-f-4-s-chinh-hang-vic.jpg", "link": "/san-pham/ong-kinh-nikon-z-2470-f4-s-chinh-hang-vic_ong-kinh-mirrorless-230210235800676"},
+    {"name": "Ống Kính Canon RF 45mm F/1.2 STM | Chính Hãng", "priceDisplay": "Giá từ: 11,500,000đ", "thumbnail": "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-06/251106133811267/avatar/638982144738436897_ong-kinh-canon-rf-45mm-f-1-2-stm-chinh-hang.jpg", "link": "/san-pham/ong-kinh-canon-rf-45-f12-stm-chinh-hang_ong-kinh-mirrorless-251106133811267"}
+  ],
+  "top_flycam": [
+    {"name": "Dji Mini 5 Pro (Base) | Chính Hãng", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/dji-mini-5-pro-base-chinh-hang_flycam-250912094317313"},
+    {"name": "DJI Mavic 4 Pro 512GB Creator Combo", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/dji-mavic-4-pro-512gb-creator-combo_flycam-250515085035248"},
+    {"name": "FLYCAM DJI AIR 3S FLY MORE COMBO (DJI RC 2) (CHÍNH HÃNG)", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/flycam-dji-air-3s-fly-more-combo-dji-rc-2-chinh-hang_flycam-241102144506281"},
+    {"name": "DJI Mini 4 Pro Fly More combo Plus (DJI RC 2) (GL)", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/dji-mini-4-pro-fly-more-combo-plus-dji-rc-2-gl_flycam-230926111234846"},
+    {"name": "DJI Mini 3 Fly More Combo Plus (+ DJI RC)", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/dji-mini-3-fly-more-combo-plus-dji-rcn1_flycam-230212121334389"},
+    {"name": "Flycam DJI Mini SE Fly More Combo | Chính hãng", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/flycam-dji-mini-se-fly-more-combo-chinh-hang_flycam-230212121217801"},
+    {"name": "DJI AVATA 2 FLY MORE COMBO (THREE BATTERIES) (CHÍNH HÃNG)", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/dji-avata-2-fly-more-combo-three-batteries-chinh-hang_flycam-241102151301701"},
+    {"name": "DJI Mini 2 SE", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/dji-mini-2-se_flycam-230212121328449"},
+    {"name": "FLYCAM DJI MINI 4K FLY MORE COMBO (GL) (CHÍNH HÃNG)", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/flycam-dji-mini-4k-fly-more-combo-gl-chinh-hang_flycam-241016175318300"},
+    {"name": "DJI MAVIC 3 PRO (DJI RC)", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/dji-mavic-3-pro-dji-rc_flycam-240808121546027"}
+  ],
+  "top_action_camera": [
+    {"name": "DJI Osmo Nano Standard Combo (64GB) | Chính hãng", "priceDisplay": "Giá giao động: 8,470,000đ", "link": "/san-pham/dji-osmo-nano-standard-combo-64gb-chinh-hang_action-camera-250912092924846"},
+    {"name": "DJI Osmo Action 5 Pro Adventure Combo", "priceDisplay": "Giá giao động: 9,900,000đ", "link": "/san-pham/dji-osmo-action-5-pro-adventure-combo_action-camera-260226105739670"},
+    {"name": "Insta360 GO Ultra Creator Bundle (Arctic White)", "priceDisplay": "Vui lòng gọi", "link": "/san-pham/insta360-go-ultra-creator-bundle-arctic-white_action-camera-251013163315254"},
+    {"name": "Action Camera Insta360 GO Ultra Standard Bundle (Arctic White)", "priceDisplay": "Giá giao động: 11,900,000đ", "link": "/san-pham/action-camera-insta360-go-ultra-standard-bundle-arctic-white_action-camera-250814102845826"},
+    {"name": "DJI Osmo Nano Standard Combo (128GB) | Chính hãng", "priceDisplay": "Giá giao động: 8,400,000đ", "link": "/san-pham/dji-osmo-nano-standard-combo-128gb-chinh-hang_action-camera-250925153519860"},
+    {"name": "Action Camera Insta360 GO Ultra Standard Bundle (Midnight Black)", "priceDisplay": "Giá giao động: 11,900,000đ", "link": "/san-pham/action-camera-insta360-go-ultra-standard-bundle-midnight-black_action-camera-250814103031910"},
+    {"name": "DJI Osmo Action 4 Adventure Combo", "priceDisplay": "Giá giao động: 8,190,000đ", "link": "/san-pham/dji-osmo-action-4-adventure-combo_action-camera-230805002213412"},
+    {"name": "GoPro Hero 13 Black", "priceDisplay": "Giá giao động: 9,690,000đ", "link": "/san-pham/gopro-hero-13-black_action-camera-250102113303811"},
+    {"name": "Máy quay DJI Osmo Pocket 4 Creator Combo", "priceDisplay": "Giá giao động: 14,740,000đ", "link": "/san-pham/may-quay-dji-osmo-pocket-4-creator-combo_action-camera-260330085702564"},
+    {"name": "Máy quay DJI Osmo Pocket 4", "priceDisplay": "Giá giao động: 12,990,000đ", "link": "/san-pham/may-quay-dji-osmo-pocket-4_action-camera-260330091754463"}
+  ],
+  "reviews_section": {
+    "title": "REVIEWS SẢN PHẨM",
+    "youtube_link": "https://www.youtube.com/@mayanhvietnam"
+  },
+  "footer": {
+    "brand_tagline": "Máy Ảnh Việt Nam là đơn vị tiên phong trong lĩnh vực phân phối và bán lẻ các sản phẩm máy ảnh tại thị trường Việt Nam.",
+    "policies": [
+      {"name": "Chính sách bảo hành", "link": "/chinh-sach-bao-hanh"},
+      {"name": "Chính sách thanh toán", "link": "/chinh-sach-thanh-toan"},
+      {"name": "Chính sách đổi trả, Hoàn Tiền", "link": "/chinh-sach-bao-hanh#chinhSachDoiTraHoanTien"},
+      {"name": "Chính sách vận chuyển", "link": "/chinh-sach-van-chuyen"},
+      {"name": "Chính sách bảo mật thông tin khách hàng", "link": "/chinh-sach-bao-mat-thong-tin-khach-hang"},
+      {"name": "Thông tin liên hệ", "link": "/thong-tin-lien-he"}
+    ],
+    "payment_methods": ["VISA", "MasterCard", "JCB", "ATM / Napas", "Home PayLater", "MoMo"],
+    "payment_icons": [
+      "/asset/imgs/icon/hinhThucThanhToan/visa_icon_44fe6e15ed.svg",
+      "/asset/imgs/icon/hinhThucThanhToan/mastercard_icon_c75f94f6a5.svg",
+      "/asset/imgs/icon/hinhThucThanhToan/jcb_icon_214783937c.svg",
+      "/asset/imgs/icon/hinhThucThanhToan/napas_icon_94d5330e3c.svg",
+      "/asset/imgs/icon/hinhThucThanhToan/homepaylater_icon_adef600842.svg",
+      "/asset/imgs/icon/hinhThucThanhToan/momo_icon_baef21b5f7.svg"
+    ],
+    "social_links": [
+      {"platform": "YouTube", "url": "https://www.youtube.com/@benhvienmayanhvietnam950"},
+      {"platform": "TikTok", "url": "https://www.tiktok.com/@mayanhvietnam"},
+      {"platform": "Facebook", "url": "https://www.facebook.com/mayanhvietnam"},
+      {"platform": "Email", "url": "mailto:info@mayanhvietnam.com"},
+      {"platform": "Hotline", "url": "tel:0907215252"}
+    ],
+    "store_locations": [
+      {"region": "TP.Hồ Chí Minh", "address": "Số 9, Nam Quốc Cang, Phường Bến Thành, TP Hồ Chí Minh", "hours": "09:00 – 19:00 mỗi ngày"},
+      {"region": "TP. Cần Thơ", "address": "Số 58 Nguyễn Hiền, Khu Dân Cư 91B, phường Tân An, TP. Cần Thơ", "hours": "08:00 - 20:00 mỗi ngày"},
+      {"region": "An Giang", "address": "Số 1, đường số 1, khu Tây sông Hậu, Phường Long Xuyên, Tỉnh An Giang", "hours": "08:00 - 17:30 mỗi ngày"},
+      {"region": "Đồng Tháp / Tiền Giang", "address": "Số 126, Hoàng Sa, Khu phố 4, Phường Thới Sơn, Tỉnh Đồng Tháp (TP. Mỹ Tho, Tiền Giang)", "hours": "08:00 - 18:00 mỗi ngày"}
+    ],
+    "company_info": {
+      "company_name": "CÔNG TY TNHH DỊCH VỤ TƯ VẤN VÀ CÔNG NGHỆ SÀI GÒN",
+      "address": "Số 09 Nam Quốc Cang, Phường Bến Thành, TP Hồ Chí Minh",
+      "tax_id": "0313859872-002",
+      "business_license": "0313859872-002",
+      "license_issuer": "Sở Kế Hoạch và Đầu Tư TP.HCM",
+      "license_date": "05 tháng 08 năm 2024",
+      "phone": "0903 148 222",
+      "email": "info@mayanhvietnam.com",
+      "content_responsible": "Nguyễn Hồng Chương"
+    },
+    "floating_ctas": [
+      {"type": "Gọi ngay", "link": "tel:0907215252"},
+      {"type": "Chat Messenger", "link": "https://www.facebook.com/mayanhvietnam"},
+      {"type": "Zalo Chat", "link": "https://zalo.me/2875467351509223987"}
+    ]
+  }
+}

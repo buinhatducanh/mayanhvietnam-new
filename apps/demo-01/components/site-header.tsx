@@ -22,7 +22,7 @@ import {
 } from 'lucide-react'
 import { useCart } from '@/components/cart-context'
 import { CartDrawer } from '@/components/cart-drawer'
-import { HOTLINE, formatVND, products } from '@/lib/products'
+import { HOTLINE, HOTLINE_FULL, formatVND, products } from '@/lib/products'
 
 const navItems = [
   { name: 'Máy ảnh', slug: 'may-anh', icon: Camera },
@@ -60,58 +60,94 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
-        {/* Top bar */}
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 lg:px-8">
+      <header className="sticky top-0 z-50 flex flex-col border-b border-[#2a2a38] bg-[#0a0a0f]/[0.92] backdrop-blur-xl">
+        {/* ── Top strip: hotline + CTA ─────────────────────────── */}
+        <div className="border-b border-[#1e1e2a]">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1.5 lg:px-8">
+            {/* Hotline */}
+            <a
+              href={`tel:${HOTLINE_FULL.replace(/-/g, '')}`}
+              className="flex items-center gap-1.5 text-[#8888a0] transition-colors hover:text-[#00d4aa]"
+              aria-label="Gọi hotline"
+            >
+              <Phone className="size-3.5 text-[#00d4aa]" aria-hidden="true" />
+              <span className="hidden font-[JetBrains_Mono,Fira_Code,ui-monospace] text-xs font-bold tracking-wide text-[#f0f0f5] sm:block">
+                {HOTLINE_FULL}
+              </span>
+              <span className="font-[JetBrains_Mono,Fira_Code,ui-monospace] text-xs text-[#55556a] sm:hidden">
+                {HOTLINE}
+              </span>
+            </a>
+
+            {/* Right CTAs */}
+            <div className="flex items-center gap-4">
+              <Link
+                href="/setup-studio"
+                className="hidden items-center gap-1.5 rounded-full border border-[#00d4aa]/40 bg-[#00d4aa]/5 px-3 py-0.5 text-[11px] font-semibold text-[#00d4aa] transition-all hover:bg-[#00d4aa] hover:text-[#0a0a0f] sm:flex"
+              >
+                <Headphones className="size-3" aria-hidden="true" />
+                Setup phòng Studio
+              </Link>
+              <span className="hidden text-[10px] tracking-widest text-[#55556a] sm:block">
+                MÁY ẢNH VIỆT NAM
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Main bar: logo + search + actions ──────────────── */}
+        <div className="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 py-3 lg:px-8">
+          {/* Mobile hamburger */}
           <button
             type="button"
             aria-label="Mở menu"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-lg p-2 text-foreground lg:hidden"
+            className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#2a2a38] text-[#8888a0] transition-colors hover:border-[#00d4aa] hover:text-[#00d4aa] lg:hidden"
           >
-            {mobileOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            {mobileOpen ? <X className="size-4" aria-hidden="true" /> : <Menu className="size-4" aria-hidden="true" />}
           </button>
 
-          <Link href="/" className="flex shrink-0 items-center gap-3">
-            <span className="brand-glow flex size-10 items-center justify-center rounded-xl bg-primary">
-              <Camera className="size-5 text-primary-foreground" aria-hidden="true" />
-            </span>
-            <span className="hidden flex-col sm:flex">
-              <span className="font-serif text-lg font-bold tracking-wide">MAYANHVIETNAM</span>
-              <span className="text-[11px] italic text-primary">Vì lợi ích khách hàng</span>
-            </span>
+          {/* Logo */}
+          <Link href="/" className="flex shrink-0 items-center">
+            <Image
+              src="https://mayanhvietnam.com/asset/imgs/icon/Logo_white01.png"
+              alt="Máy Ảnh Việt Nam"
+              width={180}
+              height={45}
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Search */}
-          <div className="relative mx-auto hidden max-w-lg flex-1 md:block">
-            <div className="flex items-center rounded-full border border-border bg-secondary px-4">
+          <div className="relative flex-1">
+            <div className="flex items-center rounded-lg border border-[#2a2a38] bg-[#16161f] transition-colors focus-within:border-[#00d4aa]/60">
+              <Search className="ml-3 size-4 shrink-0 text-[#55556a]" aria-hidden="true" />
               <input
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onFocus={() => setSearchOpen(true)}
                 onBlur={() => setTimeout(() => setSearchOpen(false), 200)}
-                placeholder="Bạn cần tìm gì hôm nay?"
+                placeholder="Tìm máy ảnh, ống kính, phụ kiện…"
                 aria-label="Tìm kiếm sản phẩm"
-                className="w-full bg-transparent py-2.5 text-sm outline-none placeholder:text-muted-foreground"
+                className="w-full bg-transparent py-2.5 pl-2.5 pr-4 text-sm text-[#f0f0f5] outline-none placeholder:text-[#55556a]"
               />
-              <Search className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
             </div>
             {searchOpen && results.length > 0 && (
-              <div className="absolute inset-x-0 top-full mt-2 overflow-hidden rounded-2xl border border-border bg-popover shadow-2xl">
+              <div className="absolute inset-x-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-[#2a2a38] bg-[#1c1c28] shadow-2xl shadow-black/50">
                 <ul>
                   {results.map((p) => (
                     <li key={p.slug}>
                       <Link
                         href={`/san-pham/${p.slug}`}
-                        className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-secondary"
+                        className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-[#2a2a38]"
                       >
-                        <div className="relative size-10 shrink-0 overflow-hidden rounded-lg bg-secondary">
+                        <div className="relative size-10 shrink-0 overflow-hidden rounded-lg bg-[#0a0a0f]">
                           <Image src={p.image || '/placeholder.svg'} alt="" fill className="object-cover" />
                         </div>
                         <div className="flex-1">
-                          <p className="text-sm font-medium">{p.name}</p>
-                          <p className="font-mono text-xs text-primary">
+                          <p className="text-sm font-medium text-[#f0f0f5]">{p.name}</p>
+                          <p className="font-[JetBrains_Mono,Fira_Code,ui-monospace] text-xs font-bold text-[#00d4aa]">
                             {formatVND(p.discountPrice ?? p.price)}
                           </p>
                         </div>
@@ -124,23 +160,11 @@ export function SiteHeader() {
           </div>
 
           {/* Right actions */}
-          <div className="ml-auto flex items-center gap-3 md:ml-0">
-            <a
-              href={`tel:${HOTLINE.replace(/\./g, '')}`}
-              className="hidden items-center gap-2 xl:flex"
-            >
-              <Phone className="size-4 text-primary" aria-hidden="true" />
-              <span className="flex flex-col leading-tight">
-                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                  Hotline
-                </span>
-                <span className="font-mono text-sm font-semibold">{HOTLINE}</span>
-              </span>
-            </a>
+          <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               aria-label="Tài khoản"
-              className="rounded-full border border-border p-2.5 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              className="flex size-10 items-center justify-center rounded-full border border-[#2a2a38] text-[#8888a0] transition-colors hover:border-[#00d4aa] hover:text-[#00d4aa]"
             >
               <User className="size-4" aria-hidden="true" />
             </button>
@@ -148,11 +172,11 @@ export function SiteHeader() {
               type="button"
               onClick={openCart}
               aria-label={`Giỏ hàng, ${totalCount} sản phẩm`}
-              className="relative rounded-full border border-border p-2.5 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              className="relative flex size-10 items-center justify-center rounded-full border border-[#2a2a38] text-[#8888a0] transition-colors hover:border-[#00d4aa] hover:text-[#00d4aa]"
             >
               <ShoppingCart className="size-4" aria-hidden="true" />
               {totalCount > 0 && (
-                <span className="brand-glow absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-primary font-mono text-[10px] font-bold text-primary-foreground">
+                <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-[#00d4aa] font-[JetBrains_Mono,Fira_Code,ui-monospace] text-[10px] font-bold text-[#0a0a0f]">
                   {totalCount}
                 </span>
               )}
@@ -160,10 +184,10 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* Category nav */}
+        {/* ── Category nav ───────────────────────────────────── */}
         <nav
           aria-label="Danh mục sản phẩm"
-          className="hidden border-t border-border lg:block"
+          className="hidden border-t border-[#1e1e2a] lg:block"
           onMouseLeave={handleMegaLeave}
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 lg:px-8">
@@ -172,21 +196,22 @@ export function SiteHeader() {
                 <li key={item.slug} onMouseEnter={() => handleMegaEnter(item.slug)}>
                   <Link
                     href={`/danh-muc/${item.slug}`}
-                    className="flex items-center gap-2 border-b-2 border-transparent px-4 py-3.5 text-[13px] font-medium uppercase tracking-wide text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+                    className="flex items-center gap-1.5 border-b-2 border-transparent px-3 py-3 text-[12px] font-medium text-[#8888a0] transition-all hover:border-[#00d4aa] hover:text-[#00d4aa]"
                   >
-                    <item.icon className="size-4" aria-hidden="true" />
+                    <item.icon className="size-3.5" aria-hidden="true" />
                     {item.name}
-                    <ChevronDown className="size-3 opacity-50" aria-hidden="true" />
+                    <ChevronDown className="size-2.5 opacity-50" aria-hidden="true" />
                   </Link>
                 </li>
               ))}
             </ul>
+
             <Link
               href="/setup-studio"
-              className="flex items-center gap-2 rounded-full border border-primary/40 px-4 py-1.5 text-[13px] font-semibold uppercase tracking-wide text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+              className="ml-4 flex items-center gap-1.5 rounded-full border border-[#00d4aa]/30 bg-[#00d4aa]/5 px-3 py-1 text-[11px] font-semibold text-[#00d4aa] transition-all hover:bg-[#00d4aa] hover:text-[#0a0a0f]"
             >
-              <Headphones className="size-4" aria-hidden="true" />
-              Setup phòng Studio
+              <Headphones className="size-3" aria-hidden="true" />
+              Setup Studio
             </Link>
           </div>
 
@@ -194,31 +219,31 @@ export function SiteHeader() {
           {megaOpen && (
             <div
               onMouseEnter={() => handleMegaEnter(megaOpen)}
-              className="absolute inset-x-0 top-full border-b border-border bg-popover/95 shadow-2xl backdrop-blur-xl"
+              className="absolute inset-x-0 top-full z-40 border-b border-[#2a2a38] bg-[#1c1c28]/[0.97] shadow-2xl shadow-black/60 backdrop-blur-xl"
             >
               <div className="mx-auto grid max-w-7xl grid-cols-4 gap-6 px-8 py-8">
-                <div className="col-span-1">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">
+                <div>
+                  <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-[#00d4aa]">
                     {navItems.find((n) => n.slug === megaOpen)?.name}
                   </p>
-                  <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+                  <ul className="flex flex-col gap-2.5 text-sm text-[#8888a0]">
                     <li>
-                      <Link href={`/danh-muc/${megaOpen}`} className="transition-colors hover:text-primary">
+                      <Link href={`/danh-muc/${megaOpen}`} className="transition-colors hover:text-[#00d4aa]">
                         Tất cả sản phẩm
                       </Link>
                     </li>
                     <li>
-                      <Link href={`/danh-muc/${megaOpen}`} className="transition-colors hover:text-primary">
+                      <Link href={`/danh-muc/${megaOpen}`} className="transition-colors hover:text-[#00d4aa]">
                         Hàng mới về
                       </Link>
                     </li>
                     <li>
-                      <Link href={`/danh-muc/${megaOpen}`} className="transition-colors hover:text-primary">
+                      <Link href={`/danh-muc/${megaOpen}`} className="transition-colors hover:text-[#00d4aa]">
                         Đang khuyến mãi
                       </Link>
                     </li>
                     <li>
-                      <Link href="/kiem-tra-ong-kinh" className="transition-colors hover:text-primary">
+                      <Link href="/kiem-tra-ong-kinh" className="transition-colors hover:text-[#00d4aa]">
                         Kiểm tra tương thích ngàm
                       </Link>
                     </li>
@@ -232,23 +257,23 @@ export function SiteHeader() {
                       <Link
                         key={p.slug}
                         href={`/san-pham/${p.slug}`}
-                        className="group flex items-center gap-3 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50"
+                        className="group flex items-center gap-3 rounded-xl border border-[#1e1e2a] bg-[#16161f] p-3 transition-all hover:border-[#00d4aa]/40 hover:shadow-lg hover:shadow-black/40"
                       >
-                        <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-secondary">
+                        <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-[#0a0a0f]">
                           <Image src={p.image || '/placeholder.svg'} alt="" fill className="object-cover" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium leading-snug group-hover:text-primary">
+                          <p className="text-sm font-medium leading-snug text-[#f0f0f5] transition-colors group-hover:text-[#00d4aa]">
                             {p.name}
                           </p>
-                          <p className="font-mono text-xs text-primary">
+                          <p className="font-[JetBrains_Mono,Fira_Code,ui-monospace] text-xs font-bold text-[#00d4aa]">
                             {formatVND(p.discountPrice ?? p.price)}
                           </p>
                         </div>
                       </Link>
                     ))}
                   {products.filter((p) => p.categorySlug === megaOpen).length === 0 && (
-                    <p className="col-span-3 text-sm text-muted-foreground">
+                    <p className="col-span-3 text-sm text-[#55556a]">
                       Khám phá toàn bộ sản phẩm trong danh mục này.
                     </p>
                   )}
@@ -260,16 +285,19 @@ export function SiteHeader() {
 
         {/* Mobile nav */}
         {mobileOpen && (
-          <nav aria-label="Menu di động" className="border-t border-border bg-background lg:hidden">
+          <nav
+            aria-label="Menu di động"
+            className="border-t border-[#1e1e2a] bg-[#0a0a0f] lg:hidden"
+          >
             <ul className="px-4 py-2">
               {navItems.map((item) => (
                 <li key={item.slug}>
                   <Link
                     href={`/danh-muc/${item.slug}`}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 border-b border-border py-3 text-sm text-muted-foreground last:border-0"
+                    className="flex items-center gap-3 border-b border-[#1e1e2a] py-3 text-sm text-[#8888a0] last:border-0"
                   >
-                    <item.icon className="size-4 text-primary" aria-hidden="true" />
+                    <item.icon className="size-4 text-[#00d4aa]" aria-hidden="true" />
                     {item.name}
                   </Link>
                 </li>
@@ -278,7 +306,7 @@ export function SiteHeader() {
                 <Link
                   href="/setup-studio"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-3 py-3 text-sm font-semibold text-primary"
+                  className="flex items-center gap-3 py-3 text-sm font-semibold text-[#00d4aa]"
                 >
                   <Headphones className="size-4" aria-hidden="true" />
                   Setup phòng Studio

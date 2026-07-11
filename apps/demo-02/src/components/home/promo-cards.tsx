@@ -1,29 +1,30 @@
 import Link from 'next/link'
 import { ArrowRight, Crown, Percent, RefreshCcw } from 'lucide-react'
 
+// Real promotions from mayanhvietnam.com
 const promos = [
   {
-    icon: Crown,
-    label: 'Ưu đãi thành viên',
-    title: 'Giảm đến 10%',
-    desc: 'Dành riêng cho thành viên',
-    cta: 'Đăng ký ngay',
-    href: '/',
+    icon: Percent,
+    label: 'Sản phẩm khuyến mãi',
+    title: 'Flash Sale',
+    desc: 'Nhiều sản phẩm giảm giá sốc — Camera, ống kính, phụ kiện chính hãng.',
+    cta: 'Xem ngay',
+    href: '/danh-muc/san-pham-khuyen-mai',
   },
   {
-    icon: Percent,
-    label: 'Trả góp 0%',
-    title: 'Lãi suất 0%',
-    desc: 'Dễ dàng trả góp qua thẻ tín dụng',
-    cta: 'Xem chi tiết',
-    href: '/',
+    icon: Crown,
+    label: 'Sản phẩm cũ giá tốt',
+    title: 'Like New 99%',
+    desc: 'Máy ảnh đã qua sử dụng, ngoại hình đẹp, bảo hành 6 tháng tại Mayanhvietnam.',
+    cta: 'Khám phá',
+    href: '/danh-muc/san-pham-cu',
   },
   {
     icon: RefreshCcw,
     label: 'Thu cũ đổi mới',
     title: 'Lên đời thiết bị',
-    desc: 'Tiết kiệm chi phí, định giá minh bạch',
-    cta: 'Xem chi tiết',
+    desc: 'Định giá minh bạch, thu máy cũ giá tốt — áp dụng cho toàn bộ sản phẩm.',
+    cta: 'Định giá ngay',
     href: '/thu-cu-doi-moi',
   },
 ]

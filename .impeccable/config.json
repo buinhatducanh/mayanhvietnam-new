@@ -1,0 +1,40 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "apps/demo-02/src/components/banner-slider.tsx"
+    ],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "rgba(43, 127, 255, 0.2)",
+        "reason": "User confirmed rgba(43, 127, 255, 0.2) is intentional",
+        "createdAt": "2026-07-10T06:33:26.563Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(43, 127, 255, 0.4)",
+        "reason": "User confirmed rgba(43, 127, 255, 0.4) is intentional",
+        "createdAt": "2026-07-10T06:34:15.068Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(43, 127, 255, 0.55)",
+        "reason": "User confirmed rgba(43, 127, 255, 0.55) is intentional",
+        "createdAt": "2026-07-10T06:34:15.151Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(120, 190, 255, 0.8)",
+        "reason": "User confirmed rgba(120, 190, 255, 0.8) is intentional",
+        "createdAt": "2026-07-10T06:34:15.238Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(43, 127, 255, 0.28)",
+        "reason": "User confirmed rgba(43, 127, 255, 0.28) is intentional",
+        "createdAt": "2026-07-10T06:34:15.326Z"
+      }
+    ]
+  }
+}

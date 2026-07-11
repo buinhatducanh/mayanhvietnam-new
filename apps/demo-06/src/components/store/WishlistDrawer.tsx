@@ -76,15 +76,15 @@ export default function WishlistDrawer() {
             {items.map((product) => (
               <div key={product.id} className="flex gap-3 p-3 bg-zinc-900/50 border border-zinc-800 rounded-xl">
                 <Link
-                  href={`/${product.category}/${product.slug}`}
+                  href={`/${product.category}/${product.fullSlug}`}
                   onClick={close}
                   className="w-20 h-20 bg-zinc-950 rounded-lg overflow-hidden flex-shrink-0"
                 >
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                  <img src={product.thumbnail} alt={product.name} className="w-full h-full object-cover" />
                 </Link>
                 <div className="flex-1 min-w-0">
                   <Link
-                    href={`/${product.category}/${product.slug}`}
+                    href={`/${product.category}/${product.fullSlug}`}
                     onClick={close}
                     className="text-sm font-medium text-white line-clamp-2 hover:text-orange-400 transition-colors"
                   >
@@ -92,7 +92,7 @@ export default function WishlistDrawer() {
                   </Link>
                   <p className="text-xs text-zinc-500 mt-0.5">{product.brand}</p>
                   <p className="text-sm font-bold text-orange-500 mt-1">
-                    {product.callForPrice ? "Liên hệ" : VND(product.price)}
+                    {product.price === 0 ? "Liên hệ" : VND(product.price)}
                   </p>
                   <div className="flex items-center gap-2 mt-2">
                     <button

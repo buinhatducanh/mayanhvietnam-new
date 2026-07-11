@@ -12,9 +12,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Mayanhvietnam — Máy ảnh, ống kính & thiết bị studio chính hãng',
+  title: 'Máy Ảnh Việt Nam — Vì lợi ích khách hàng | Máy ảnh, ống kính, flycam chính hãng',
   description:
-    'Mayanhvietnam — Vì lợi ích khách hàng. Cung cấp máy ảnh, ống kính, flycam, thiết bị studio chính hãng với bảo hành toàn quốc 12-24 tháng.',
+    'Máy Ảnh Việt Nam — Vì lợi ích khách hàng. Phân phối máy ảnh, ống kính, flycam, action camera, thiết bị studio chính hãng giá tốt. Hệ thống 4 chi nhánh. Hotline 0907-215-252.',
   generator: 'v0.app',
 }
 

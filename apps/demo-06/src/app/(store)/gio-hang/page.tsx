@@ -29,16 +29,16 @@ export default function CartPage() {
               <div className="space-y-3">
                 {items.map((item) => (
                   <div key={item.product.id} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 flex gap-4">
-                    <Link href={`/${item.product.category}/${item.product.slug}`} className="w-24 h-24 bg-zinc-950 rounded-lg overflow-hidden flex-shrink-0">
-                      <img src={item.product.image} alt={item.product.name} className="w-full h-full object-cover" />
+                    <Link href={`/${item.product.category}/${item.product.fullSlug}`} className="w-24 h-24 bg-zinc-950 rounded-lg overflow-hidden flex-shrink-0">
+                      <img src={item.product.thumbnail} alt={item.product.name} className="w-full h-full object-cover" />
                     </Link>
                     <div className="flex-1 min-w-0">
-                      <Link href={`/${item.product.category}/${item.product.slug}`} className="text-sm font-semibold text-white line-clamp-2 mb-1 hover:text-orange-400 transition-colors">
+                      <Link href={`/${item.product.category}/${item.product.fullSlug}`} className="text-sm font-semibold text-white line-clamp-2 mb-1 hover:text-orange-400 transition-colors">
                         {item.product.name}
                       </Link>
                       <p className="text-xs text-zinc-500 mb-2">{item.product.brand}</p>
                       <p className="text-orange-500 font-bold">
-                        {item.product.callForPrice ? "Liên hệ" : VND(item.product.price)}
+                        {item.product.price === 0 ? "Liên hệ" : VND(item.product.price)}
                       </p>
                     </div>
                     <div className="flex flex-col items-end justify-between">

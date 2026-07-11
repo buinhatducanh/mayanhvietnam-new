@@ -23,7 +23,7 @@ export function ProductCard({ product }: { product: Product }) {
           alt={product.name}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-1"
+          className="object-cover will-change-transform transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-1"
         />
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
           {product.isNew && (

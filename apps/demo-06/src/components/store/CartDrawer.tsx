@@ -69,15 +69,15 @@ export default function CartDrawer() {
               {items.map((item) => (
                 <div key={item.product.id} className="flex gap-3 p-3 bg-zinc-900/50 border border-zinc-800 rounded-xl">
                   <Link
-                    href={`/${item.product.category}/${item.product.slug}`}
+                    href={`/${item.product.category}/${item.product.fullSlug}`}
                     onClick={close}
                     className="w-20 h-20 bg-zinc-950 rounded-lg overflow-hidden flex-shrink-0"
                   >
-                    <img src={item.product.image} alt={item.product.name} className="w-full h-full object-cover" />
+                    <img src={item.product.thumbnail} alt={item.product.name} className="w-full h-full object-cover" />
                   </Link>
                   <div className="flex-1 min-w-0">
                     <Link
-                      href={`/${item.product.category}/${item.product.slug}`}
+                      href={`/${item.product.category}/${item.product.fullSlug}`}
                       onClick={close}
                       className="text-sm font-medium text-white line-clamp-2 hover:text-orange-400 transition-colors"
                     >
@@ -85,7 +85,7 @@ export default function CartDrawer() {
                     </Link>
                     <p className="text-xs text-zinc-500 mt-0.5">{item.product.brand}</p>
                     <p className="text-sm font-bold text-orange-500 mt-1">
-                      {item.product.callForPrice ? "Liên hệ" : VND(item.product.price)}
+                      {item.product.price === 0 ? "Liên hệ" : VND(item.product.price)}
                     </p>
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center bg-zinc-800 rounded-full">

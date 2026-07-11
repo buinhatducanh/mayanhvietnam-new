@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo } from "react";
-import { products } from "@/lib/data";
+import { products, parseSlug } from "@/lib/data";
 import { ProductCard } from "@/components/store/ProductGrid";
 import PageHeader from "@/components/shared/PageHeader";
 
@@ -14,7 +14,7 @@ export default function SearchPage() {
       (p) =>
         p.name.toLowerCase().includes(q) ||
         p.brand.toLowerCase().includes(q) ||
-        p.slug.toLowerCase().includes(q) ||
+        p.fullSlug.toLowerCase().includes(q) ||
         p.specs?.some((s) => s.toLowerCase().includes(q))
     );
   }, [query]);
@@ -54,7 +54,7 @@ export default function SearchPage() {
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
               <p className="text-zinc-400 mb-4">Gợi ý tìm kiếm:</p>
               <div className="flex flex-wrap gap-2">
-                {["Canon", "Sony", "DJI", "GoPro", "Sigma", "Ống kính", "Flycam", "A7 IV", "Mavic", "Hero 13"].map(s => (
+                {["Canon", "Sony", "DJI", "GoPro", "Sigma", "Ống kính", "Flycam", "A7 IV", "Mavic", "Hero 13"].map((s) => (
                   <button key={s} onClick={() => setQuery(s)} className="px-3 py-1.5 bg-zinc-800 hover:bg-orange-500/20 hover:text-orange-300 text-zinc-300 text-sm rounded-full transition-colors">
                     {s}
                   </button>

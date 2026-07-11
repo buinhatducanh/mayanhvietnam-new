@@ -4,7 +4,7 @@ import {
   Sun, Moon, Search, ShoppingCart, User, Camera, Menu, X,
   Phone, Mail, MapPin, Aperture, Video, Zap, Navigation2,
   Lightbulb, Package, RotateCcw, Clapperboard, ChevronDown,
-  Gift, Truck, Shield, CreditCard, ChevronRight,
+  Gift, Truck, Shield, CreditCard, ChevronRight, CheckCircle,
 } from "lucide-react";
 import { useTheme } from "../context";
 import { ACCENT, sharedStores } from "../data";
@@ -13,15 +13,15 @@ import AuthModal from "./AuthModal";
 /* ── Data ─────────────────────────────────────────────────────────────── */
 
 const CATEGORIES = [
-  { icon: Camera,       label: "Máy ảnh",           path: "/san-pham", hasDropdown: true },
-  { icon: Aperture,     label: "Ống kính",           path: "/san-pham", hasDropdown: true },
-  { icon: Video,        label: "Máy quay phim",      path: "/san-pham", hasDropdown: true },
-  { icon: Zap,          label: "Action Camera",      path: "/san-pham", hasDropdown: false },
-  { icon: Navigation2,  label: "Flycam",             path: "/san-pham", hasDropdown: false },
-  { icon: Lightbulb,    label: "Thiết bị Studio",   path: "/san-pham", hasDropdown: true },
-  { icon: Package,      label: "Phụ kiện",           path: "/san-pham", hasDropdown: true },
-  { icon: RotateCcw,    label: "Sản phẩm cũ",       path: "/san-pham", hasDropdown: false },
-  { icon: Clapperboard, label: "Setup Phòng Studio", path: "/san-pham", hasDropdown: false, highlight: true },
+  { icon: Camera,       label: "Máy ảnh",           path: "/san-pham?cat=may-anh",       hasDropdown: true },
+  { icon: Aperture,     label: "Ống kính",           path: "/san-pham?cat=ong-kinh",      hasDropdown: true },
+  { icon: Video,        label: "Máy quay phim",      path: "/san-pham?cat=may-quay-phim", hasDropdown: true },
+  { icon: Zap,          label: "Action Camera",      path: "/san-pham?cat=action-camera", hasDropdown: false },
+  { icon: Navigation2,  label: "Flycam",             path: "/san-pham?cat=flycam",        hasDropdown: false },
+  { icon: Lightbulb,    label: "Thiết bị Studio",   path: "/san-pham?cat=thiet-bi-studio", hasDropdown: true },
+  { icon: Package,      label: "Phụ kiện",           path: "/san-pham?cat=phu-kien",      hasDropdown: true },
+  { icon: RotateCcw,    label: "Sản phẩm cũ",       path: "/san-pham?cat=san-pham-cu",   hasDropdown: false },
+  { icon: Clapperboard, label: "Setup Phòng Studio", path: "/san-pham?cat=lap-phong-studio", hasDropdown: false, highlight: true },
 ];
 
 const MAIN_NAV = [
@@ -35,6 +35,7 @@ const ANNOUNCE = [
   { icon: Truck,      text: "Miễn phí vận chuyển đơn từ 500K" },
   { icon: Shield,     text: "Bảo hành chính hãng 24 tháng" },
   { icon: CreditCard, text: "Trả góp 0% lãi suất" },
+  { icon: CheckCircle, text: "Đổi trả 30 ngày" },
   { icon: Gift,       text: "Quà tặng hấp dẫn cho đơn từ 2 triệu" },
 ];
 
@@ -58,7 +59,7 @@ function AnnounceTicker({ dark }: { dark: boolean }) {
         ))}
       </div>
       <div className="flex items-center gap-4 text-white/70 flex-shrink-0">
-        <span className="font-mono tracking-wide text-white/90">HOTLINE: {sharedStores[0]?.phone ?? "0937.148.222"}</span>
+        <span className="font-mono tracking-wide text-white/90">HOTLINE: 0907-215-252</span>
         <span>|</span>
         <button onClick={() => setAuthMode("login")} className="hover:text-white transition-colors">Đăng nhập</button>
         <span>/</span>
@@ -164,10 +165,10 @@ export default function Layout() {
               <div className="hidden xl:flex flex-col items-end gap-0.5 mr-3 select-none">
                 <div className="flex items-center gap-1.5">
                   <Phone size={12} className="text-white/70" />
-                  <span className="text-[12px] font-black tracking-wide text-white">{sharedStores[0]?.phone ?? "0937.148.222"}</span>
+                  <span className="text-[12px] font-black tracking-wide text-white">0907-215-252</span>
                 </div>
                 <span className="text-[9px] tracking-[0.16em] text-white/55 uppercase">
-                  {sharedStores.length} chi nhánh toàn quốc
+                  9h–19h mỗi ngày
                 </span>
               </div>
 
@@ -230,17 +231,17 @@ export default function Layout() {
           }}
         >
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
-            <div className="flex items-stretch overflow-x-auto">
+            <div className="flex items-stretch justify-stretch">
               {CATEGORIES.map(({ icon: Icon, label, path, hasDropdown, highlight }) =>
                 highlight ? (
                   /* Highlighted CTA pill */
                   <button
                     key={label}
                     onClick={() => navigate(path)}
-                    className="flex items-center gap-1.5 px-4 my-1.5 rounded-lg text-[11.5px] font-black tracking-wide whitespace-nowrap flex-shrink-0 transition-all duration-150 hover:scale-105 active:scale-100"
+                    className="flex items-center justify-center gap-1.5 px-5 my-1.5 rounded-lg text-[12px] font-black tracking-wide whitespace-nowrap flex-1 min-w-[100px] transition-all duration-150 hover:scale-105 active:scale-100"
                     style={{ background: "#fbbf24", color: "#1c0800" }}
                   >
-                    <Icon size={13} style={{ color: "#1c0800" }} />
+                    <Icon size={14} style={{ color: "#1c0800" }} />
                     {label.toUpperCase()}
                   </button>
                 ) : (
@@ -248,7 +249,7 @@ export default function Layout() {
                   <button
                     key={label}
                     onClick={() => navigate(path)}
-                    className="group relative flex items-center gap-1.5 px-3.5 py-2.5 text-[12px] font-semibold whitespace-nowrap flex-shrink-0 transition-colors duration-150"
+                    className="group relative flex items-center justify-center gap-1.5 px-4 py-2.5 text-[13px] font-semibold whitespace-nowrap flex-1 min-w-[100px] transition-colors duration-150"
                     style={{ color: "rgba(255,255,255,0.72)" }}
                   >
                     {/* Hover + active underline */}
@@ -257,14 +258,14 @@ export default function Layout() {
                       style={{ background: ACCENT }}
                     />
                     <Icon
-                      size={13}
+                      size={15}
                       className="flex-shrink-0 transition-colors duration-150 group-hover:text-orange-400"
                       style={{ color: "rgba(255,255,255,0.42)" }}
                     />
                     <span className="group-hover:text-white transition-colors duration-150">{label}</span>
                     {hasDropdown && (
                       <ChevronDown
-                        size={10}
+                        size={11}
                         className="opacity-40 group-hover:opacity-80 transition-opacity"
                         style={{ color: "rgba(255,255,255,0.6)" }}
                       />
@@ -332,12 +333,12 @@ export default function Layout() {
             {/* Hotline + auth */}
             <div className="p-4 flex flex-col gap-2">
               <a
-                href={`tel:${(sharedStores[0]?.phone ?? "0937148222").replace(/\./g, "")}`}
+                href="tel:0907215252"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm"
                 style={{ background: `${ACCENT}18`, color: ACCENT }}
               >
                 <Phone size={15} />
-                Gọi ngay: {sharedStores[0]?.phone ?? "0937.148.222"}
+                Gọi ngay: 0907-215-252
               </a>
               <div className="flex gap-2">
                 <button
@@ -423,11 +424,24 @@ export default function Layout() {
             {[
               {
                 heading: "Sản phẩm",
-                links: ["Máy ảnh Mirrorless", "Máy ảnh DSLR", "Ống kính", "Drone / Flycam", "Phụ kiện", "Âm thanh"],
+                links: [
+                  "Máy ảnh Mirrorless",
+                  "Máy ảnh DSLR",
+                  "Ống kính",
+                  "Drone / Flycam",
+                  "Phụ kiện",
+                  "Âm thanh",
+                ],
               },
               {
                 heading: "Hỗ trợ",
-                links: ["Chính sách bảo hành", "Hướng dẫn mua hàng", "Tra cứu đơn hàng", "Trả góp 0% lãi", "Trade-in thu cũ", "Tư vấn chọn máy"],
+                links: [
+                  "Chính sách bảo hành",
+                  "Chính sách thanh toán",
+                  "Chính sách đổi trả",
+                  "Chính sách vận chuyển",
+                  "Thông tin liên hệ",
+                ],
               },
               {
                 heading: "Liên hệ",
@@ -445,15 +459,28 @@ export default function Layout() {
                 ) : (
                   <div className="flex flex-col gap-3">
                     {[
-                      { icon: Phone,  t: sharedStores[0]?.phone ?? "0937.148.222" },
-                      { icon: Mail,   t: "support@mayanhvietnam.com" },
-                      { icon: MapPin, t: sharedStores.map(s => s.city).join(" · ") },
+                      { icon: Phone,  t: "0907-215-252" },
+                      { icon: Mail,   t: "info@mayanhvietnam.com" },
+                      { icon: MapPin, t: "TP.Hồ Chí Minh · TP. Cần Thơ" },
                     ].map(({ icon: Icon, t }) => (
                       <div key={t} className="flex items-start gap-2.5">
                         <Icon size={12} style={{ color: ACCENT }} className="flex-shrink-0 mt-0.5" />
                         <span className="text-xs text-muted-foreground">{t}</span>
                       </div>
                     ))}
+                    {/* Social icons */}
+                    <div className="flex items-center gap-2 mt-1">
+                      {[
+                        { label: "FB", color: "#1877F2" },
+                        { label: "YT", color: "#FF0000" },
+                        { label: "TT", color: "#010101" },
+                      ].map(({ label, color }) => (
+                        <a key={label} href="#" className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[9px] font-black hover:opacity-80 transition-opacity"
+                          style={{ background: color }}>
+                          {label}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
@@ -463,15 +490,15 @@ export default function Layout() {
           {/* Bottom bar */}
           <div className="border-t border-border pt-5 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-[10px] font-mono text-muted-foreground">
-              © 2025 Camera Store VN · Tất cả quyền được bảo lưu.
+              © 2025 Máy Ảnh Việt Nam · Tất cả quyền được bảo lưu.
             </p>
             <div className="flex items-center gap-4">
-              {["Bảo mật", "Điều khoản", "Sitemap"].map(l => (
+              {["Chính sách bảo mật", "Điều khoản sử dụng"].map(l => (
                 <button key={l} className="text-[10px] font-mono text-muted-foreground hover:text-foreground transition-colors">{l}</button>
               ))}
             </div>
             <div className="flex items-center gap-1.5">
-              {["VISA", "MC", "JCB", "MoMo", "ZaloPay"].map(p => (
+              {["VISA", "MasterCard", "JCB", "ATM", "Home PayLater", "MoMo"].map(p => (
                 <div key={p} className="px-2 py-0.5 rounded border border-border text-[8px] font-mono font-bold text-muted-foreground">{p}</div>
               ))}
             </div>

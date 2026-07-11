@@ -18,10 +18,22 @@ export {
   getProductsByCategory,
   getProductBySlug,
   getRelatedProducts,
+  // New helpers — added 2026-07-10
+  getProductsByBrand,
+  getAllBrands,
+  getProductsByMount,
+  getFeaturedProducts,
+  getProductsByPriceRange,
+  searchProducts,
+  getProductsGroupedByCategory,
+  getCheapestProducts,
+  getPremiumProducts,
+  getOnSaleProducts,
+  getCatalogStats,
 } from './products';
 
 // Categories
-export { categories, getCategoryBySlug } from './categories';
+export { categories, getCategoryBySlug, getActiveCategories } from './categories';
 
 // Stores
 export { stores } from './stores';

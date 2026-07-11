@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
+import { ImageWithFallback } from './ui/image-with-fallback';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Star } from 'lucide-react';
-import { formatVND, type Product } from '@/lib/products';
+import { formatVND, type Product } from '@/lib/adapter';
 
 type StickyBuyBarProps = {
   product: Product;
@@ -26,9 +26,10 @@ export function StickyBuyBar({ product, visible }: StickyBuyBarProps) {
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-12">
             <div className="flex min-w-0 items-center gap-3">
               <div className="relative hidden size-12 shrink-0 overflow-hidden rounded-lg border border-border sm:block">
-                <Image
+                <ImageWithFallback
                   src={product.image || '/placeholder.svg'}
                   alt=""
+                  productName={product.name}
                   fill
                   className="object-cover"
                   sizes="48px"

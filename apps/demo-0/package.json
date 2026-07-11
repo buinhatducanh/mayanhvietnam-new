@@ -4,12 +4,13 @@
   "private": true,
   "description": "Demo 0 — 3D Demo (LUMEN Camera 3D Showcase)",
   "scripts": {
-    "dev": "next dev -p 8000",
+    "dev": "next dev -p 8002",
     "build": "next build",
-    "start": "next start -p 8000",
+    "start": "next start -p 8002",
     "lint": "eslint"
   },
   "dependencies": {
+    "@mayanhvietnam/mock-data": "workspace:*",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "@vercel/analytics": "1.6.1",

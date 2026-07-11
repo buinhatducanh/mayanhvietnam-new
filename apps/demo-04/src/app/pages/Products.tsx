@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router";
 import { SlidersHorizontal, ChevronDown } from "lucide-react";
 import { useTheme } from "../context";
 import { ACCENT, PRODUCTS } from "../data";
@@ -8,12 +9,47 @@ const CATS = ["Tất cả", "Mirrorless", "DSLR", "Ống kính", "Drone", "Phụ
 const BRANDS_F = ["Tất cả", "Canon", "Sony", "Nikon", "Fujifilm", "DJI", "Sigma", "Godox"];
 const SORTS = ["Nổi bật", "Giá tăng dần", "Giá giảm dần", "Mới nhất", "Đánh giá cao nhất"];
 
+const SLUG_TO_CAT: Record<string, string> = {
+  "may-anh":          "Tất cả",
+  "may-anh-body":     "Mirrorless",
+  "may-quay-phim":    "Mirrorless",
+  "ong-kinh":         "Ống kính",
+  "flycam":           "Drone",
+  "action-camera":    "Drone",
+  "thiet-bi-studio":  "Phụ kiện",
+  "phu-kien":         "Phụ kiện",
+  "lap-phong-studio": "Phụ kiện",
+  "san-pham-cu":      "Tất cả",
+};
+
+const SLUG_TO_TITLE: Record<string, string> = {
+  "may-anh":          "Máy ảnh - Body",
+  "may-anh-body":     "Máy ảnh Body",
+  "may-quay-phim":    "Máy quay phim",
+  "ong-kinh":         "Ống kính - Lens",
+  "flycam":           "Flycam - Drone",
+  "action-camera":    "Camera hành động",
+  "thiet-bi-studio":  "Thiết bị studio",
+  "phu-kien":         "Phụ kiện cho máy ảnh",
+  "lap-phong-studio": "Dịch vụ lắp phông",
+  "san-pham-cu":      "Sản phẩm cũ giá tốt",
+};
+
 export default function Products() {
   const { dark } = useTheme();
-  const [cat, setCat] = useState("Tất cả");
+  const [params, setParams] = useSearchParams();
+  const slug = params.get("cat") || "";
+  const initialCat = SLUG_TO_CAT[slug] ?? "Tất cả";
+  const pageTitle = SLUG_TO_TITLE[slug] ?? "Tất cả sản phẩm";
+
+  const [cat, setCat] = useState(initialCat);
   const [brand, setBrand] = useState("Tất cả");
   const [sort, setSort] = useState("Nổi bật");
   const [showFilter, setShowFilter] = useState(false);
+
+  useEffect(() => {
+    setCat(SLUG_TO_CAT[slug] ?? "Tất cả");
+  }, [slug]);
 
   let filtered = PRODUCTS.filter(p => {
     const catOk = cat === "Tất cả" || p.category === cat;
@@ -31,7 +67,7 @@ export default function Products() {
       <section className="border-b border-border py-8 sm:py-10" style={{ background: dark ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.55)" }}>
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
           <p className="text-[10px] font-mono tracking-[0.22em] text-muted-foreground uppercase mb-1.5">Danh mục</p>
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight">Tất cả sản phẩm</h1>
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight">{pageTitle}</h1>
         </div>
       </section>
 

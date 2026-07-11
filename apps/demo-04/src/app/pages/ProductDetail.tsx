@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router";
 import { ShoppingCart, Heart, ChevronRight, Star, Shield, Truck, RotateCcw, Zap, CheckCircle, Package } from "lucide-react";
 import { useTheme } from "../context";
-import { ACCENT, vnd, PRODUCTS } from "../data";
+import { ACCENT, vnd, PRODUCTS, TOP_CAMERAS, TOP_LENSES, HomepageProduct } from "../data";
 import { Stars, Chip, ProductCard } from "../components/ui";
 
 const FAKE_REVIEWS = [
@@ -19,7 +19,37 @@ export default function ProductDetail() {
   const [activeTab, setActiveTab] = useState(0);
   const [qty, setQty] = useState(1);
 
-  const product = PRODUCTS.find(p => p.id === Number(id));
+  // Tìm product theo slug (ưu tiên) hoặc id
+  const product = useMemo(() => {
+    if (!id) return undefined;
+    const idStr = decodeURIComponent(id);
+
+    // Thử lookup trong scraped products trước (slug-based)
+    const scraped: HomepageProduct[] = [...TOP_CAMERAS, ...TOP_LENSES];
+    const fromScraped = scraped.find(p => p.link.includes(idStr));
+    if (fromScraped) {
+      return {
+        id: parseInt(fromScraped.id.replace(/\D/g, '') || '0', 10),
+        brand: fromScraped.name.split(" ")[0],
+        name: fromScraped.name,
+        category: fromScraped.id.startsWith('cam') ? 'Máy ảnh' : 'Ống kính',
+        price: fromScraped.priceDisplay.includes('Vui lòng gọi') ? 0 : parseInt(fromScraped.priceDisplay.replace(/[^\d]/g, '')) || 0,
+        originalPrice: null,
+        badge: null,
+        rating: 4.8, reviews: 0,
+        img: fromScraped.img,
+        thumbs: fromScraped.img ? [fromScraped.img] : [],
+        specs: [], desc: '', features: [], inBox: [],
+      };
+    }
+
+    // Fallback PRODUCTS (id-based)
+    const asNumber = Number(idStr);
+    if (!isNaN(asNumber)) {
+      return PRODUCTS.find(p => p.id === asNumber);
+    }
+    return undefined;
+  }, [id]);
 
   if (!product) {
     return (

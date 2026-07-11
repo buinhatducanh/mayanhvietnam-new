@@ -49,8 +49,15 @@ export const REAL_BRANDS = [
   'DJI', 'Lumix', 'Godox', 'Opteka',
 ] as const;
 
-// Hero banners từ jsonTopBanner.js
+// Hero banners từ jsonTopBanner.js (canonical main hero — mayanhvietnam.com)
+// NOTE: banner ảnh nhỏ (Sonet-some*) bị loại khỏi carousel chính; chỉ dùng banner panoramic.
 export const REAL_BANNERS = [
+  {
+    title: 'Canon EOS R6 Mark III — Chính hãng',
+    subtitle: 'Máy ảnh hybrid đỉnh cao · Phù hợp mọi nhiếp ảnh gia',
+    image: `${CDN}/asset/imgs/img/banner/canon-r6-mark-III.webp`,
+    href: '/san-pham/may-anh-canon-eos-r6-mark-iii-body_may-anh-mirrorless-250315190440715',
+  },
   {
     title: 'Ra mắt Sony A7R VI',
     subtitle: 'Máy ảnh Full-frame đỉnh cao mới nhất từ Sony',
@@ -76,22 +83,10 @@ export const REAL_BANNERS = [
     href: '/san-pham/dji-neo_flycam-241016174248442',
   },
   {
-    title: 'Canon R6 Mark III',
-    subtitle: 'Chương trình khuyến mãi đặc biệt',
-    image: `${CDN}/asset/imgs/img/banner/canon-r6-mark-III.webp`,
-    href: '/san-pham/may-anh-canon-eos-r6-mark-iii-body_may-anh-mirrorless-250315190440715',
-  },
-  {
     title: 'Ống kính Sony — Ưu đãi tháng 1',
     subtitle: 'Đăng ký Sony CTKM — Nhận ngay quà tặng hấp dẫn',
     image: `${CDN}/asset/imgs/img/banner/sony-uu-dai-thang-1.webp`,
     href: '/danh-muc/may-anh-khuyen-mai-brd-sony',
-  },
-  {
-    title: 'Sony A6700 + ZV-E10 II',
-    subtitle: 'Bộ đôi máy ảnh Sony cho content creator',
-    image: `${CDN}/asset/imgs/img/banner/Sonet-some-zv-e10ii_zv-1ii.png`,
-    href: '/danh-muc/may-anh-brd-sony',
   },
   {
     title: 'Ống kính Sony — Tết siêu chuẩn sáng tạo',
@@ -338,6 +333,56 @@ export const REAL_PRODUCTS: RealProduct[] = [
     shortSpecs: ['Full-frame 20MP', '20fps', 'IBIS 8 stops', '4K 60p'],
   },
 ];
+
+// Per-category banners từ banner_header_sider/ (jsonBannerSanPhamNoiBat.js)
+export interface CategoryBanner {
+  title: string;
+  subtitle?: string;
+  image: string;
+  href: string;
+}
+
+// Banner carousel nhỏ (bannerSileSmall-2) — ảnh thật 1305x435 từ mayanhvietnam.com
+export const CATEGORY_BANNERS: Record<string, CategoryBanner[]> = {
+  'may-anh': [
+    { title: 'Sony A6700', image: `${CDN}/asset/imgs/img/banner/sonet-some_sony-a6700.png`, href: '/tim-kiem?v=sony%206700' },
+    { title: 'Sony A7C II', image: `${CDN}/asset/imgs/img/banner/sonet-some_a7cii.png`, href: '/tim-kiem?v=sony%207c%20ii' },
+    { title: 'Sony ZV-E10 II & ZV-1 II', image: `${CDN}/asset/imgs/img/banner/Sonet-some-zv-e10ii_zv-1ii.png`, href: '/danh-muc/may-anh-brd-sony' },
+    { title: 'Sony A7 V', image: `${CDN}/asset/imgs/img/banner/uuDai-sonya7v-DCHS.webp`, href: '/san-pham/may-anh-sony-a7-mark-v-a7m5-chinh-hang_may-anh-mirrorless-251126090035598' },
+    { title: 'Sony A7R VI', image: `${CDN}/asset/imgs/img/banner/sony-a7r-vi-1.webp`, href: '/san-pham/may-anh-sony-alpha-a7r-vi_may-anh-mirrorless-260328143107303' },
+    { title: 'Canon EOS R50', image: `${CDN}/asset/imgs/img/banner/canon_r50_trang_den.webp`, href: '/san-pham/may-anh-canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang_may-anh-mirrorless-241228112737843' },
+    { title: 'Canon EOS R6 Mark III', image: `${CDN}/asset/imgs/img/banner/canon-r6-mark-III.webp`, href: '/san-pham/may-anh-canon-eos-r6-mark-iii-body_may-anh-mirrorless-250315190440715' },
+  ],
+  'ong-kinh': [
+    { title: 'Sony Ưu đãi sáng tạo', image: `${CDN}/asset/imgs/img/banner/tetSieuChuansangtaoSony.webp`, href: '/danh-muc/ong-kinh-khuyen-mai-brd-sony' },
+    { title: 'Nhận ngay hộp quà Sony', image: `${CDN}/asset/imgs/img/banner/nhan-ngay-hop-qua-sony.webp`, href: '/danh-muc/ong-kinh-khuyen-mai' },
+    { title: 'Canon RF 50mm F1.4L VCM', image: `${CDN}/asset/imgs/img/banner/CANON-RF-50mm-F1.4L-VCM.webp`, href: '/san-pham/ong-kinh-canon-rf-50-f14l-vcm_ong-kinh-mirrorless-251129161537656' },
+    { title: 'Khuyến mãi ống kính', image: `${CDN}/asset/imgs/img/banner/Km-lens.webp`, href: '/danh-muc/ong-kinh-khuyen-mai-brd-sony' },
+    { title: 'Canon RF 45mm F1.2 STM', image: `${CDN}/asset/imgs/img/banner/RF-45mm-F1.2-STM.webp`, href: '/san-pham/ong-kinh-canon-rf-45-f12-stm_ong-kinh-mirrorless-251106133811267' },
+    { title: 'Nikkor Z DX 35mm f/1.7', image: `${CDN}/asset/imgs/img/banner/NIKKOR-Z-DX-MC-35mm-f_1.7.png`, href: '/san-pham/nikkor-z-dx-mc-35-f17_may-anh-mirrorless-251018134123898' },
+    { title: 'Kase AF 85mm F1.4 Nikon Z', image: `${CDN}/asset/imgs/img/banner/LENS-KASE-AF-85mm-F1.4-FOR-NIKON-Z.webp`, href: '/san-pham/kase-85-f14-af-lens-nikon-z_ong-kinh-mirrorless-251006173300230' },
+  ],
+  'action-camera': [
+    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: '/san-pham/may-quay-dji-osmo-pocket-4-creator-combo_action-camera-260330085702564' },
+    { title: 'DJI Osmo Action 6', image: `${CDN}/asset/imgs/img/banner/action-6.webp`, href: '/san-pham/may-quay-hanh-trinh-dji-osmo-action-6-standard-combo_action-camera-251114083734433' },
+    { title: 'DJI Osmo Pocket 3 Combo', image: `${CDN}/asset/imgs/img/banner/DJI-Osmo-Pocket-3.webp`, href: '/san-pham/dji-osmo-pocket-3-combo_action-camera-240808113242741' },
+    { title: 'Insta360 Go Ultra Standard', image: `${CDN}/asset/imgs/img/banner/Go-ultra-standard-bundle.webp`, href: '/san-pham/action-camera-insta360-go-ultra-standard-bundle-arctic-white_action-camera-250814102845826' },
+    { title: 'DJI Osmo Nano', image: `${CDN}/asset/imgs/img/banner/DJI-OSMO-NANO-01.webp`, href: '/san-pham/dji-osmo-nano-standard-combo-128gb-chinh-hang_action-camera-250925153519860' },
+    { title: 'DJI Osmo Action 5 Pro', image: `${CDN}/asset/imgs/img/banner/action5pro.webp`, href: '/san-pham/dji-osmo-action-5-pro_action-camera-241016174737304' },
+  ],
+  'flycam': [
+    { title: 'DJI Mini 5 Pro', image: `${CDN}/asset/imgs/img/banner/dji-mini-5-pro.webp`, href: '/san-pham/flycam-dji-mini-5-pro-fly-more-combo-dji-rcn3-chinh-hang_flycam-250929144721576' },
+    { title: 'DJI Mavic 4 Pro', image: `${CDN}/asset/imgs/img/banner/Mavic-4-Pro.webp`, href: '/san-pham/dji-mavic-4-pro_flycam-250515084647647' },
+    { title: 'DJI Mini 4K Fly More', image: `${CDN}/asset/imgs/img/banner/FLYCAM-DJI-MINI-4K-FLY-MORE-COMBO.webp`, href: '/san-pham/flycam-dji-mini-4k-fly-more-combo-gl-chinh-hang_flycam-241016175318300' },
+    { title: 'DJI Avata 2 Fly More', image: `${CDN}/asset/imgs/img/banner/dji-avata-2.webp`, href: '/san-pham/dji-avata-2-fly-more-combo-three-batteries-chinh-hang_flycam-241102151301701' },
+    { title: 'DJI Neo', image: `${CDN}/asset/imgs/img/banner/1200x400DJI_Neo.webp`, href: '/san-pham/flycam-dji-neo-chinh-hang_flycam-241016174248442' },
+    { title: 'DJI Mini 4 Pro Fly More', image: `${CDN}/asset/imgs/img/banner/1200X400_Flycam_DJI_Mini_4-Pro_Fly_More.webp`, href: '/san-pham/flycam-dji-mini-4-pro-fly-more-combo-dji-rc-2_flycam-240403190729530' },
+  ],
+  'may-quay-phim': [
+    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: '/san-pham/may-quay-dji-osmo-pocket-4-creator-combo_action-camera-260330085702564' },
+  ],
+  'thiet-bi-studio': [],
+};
 
 // Helper: lấy sản phẩm theo slug
 export function findProductBySlug(slug: string): RealProduct | undefined {

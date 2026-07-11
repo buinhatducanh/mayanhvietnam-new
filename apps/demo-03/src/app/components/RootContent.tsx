@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   Camera, Search, ShoppingCart, Heart, User, Phone, CreditCard, Shield,
@@ -21,14 +21,9 @@ const UTIL_LINKS = [
 
 export default function Root({ children }: { children?: React.ReactNode }) {
   const router = useRouter();
-  const pathname = usePathname();
   const [query, setQuery] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const { cartCount } = useCart();
-
-  if (pathname === '/' || pathname === '/store') {
-    return <>{children}</>;
-  }
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -198,12 +193,14 @@ export default function Root({ children }: { children?: React.ReactNode }) {
 
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-12 grid grid-cols-2 sm:grid-cols-5 gap-8">
           <div className="col-span-2 sm:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 bg-[#ff6b00] rounded-md flex items-center justify-center">
-                <Camera size={15} className="text-white" />
-              </div>
-              <span className="font-black text-white tracking-tight">LENS<span className="text-[#ff6b00]">PRO</span></span>
-            </div>
+            {/* Logo — real mayanhvietnam.com logo (dark bg = use orange logo) */}
+            <Link href="/" className="inline-block mb-4">
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/icon/Logo_white01.png"
+                alt="Máy Ảnh Việt Nam"
+                className="h-10 w-auto"
+              />
+            </Link>
             <p className="text-xs leading-relaxed text-zinc-500 mb-5">
               Hệ thống cửa hàng máy ảnh chuyên nghiệp. Phân phối chính hãng, bảo hành đầy đủ, hỗ trợ kỹ thuật tận tâm.
             </p>

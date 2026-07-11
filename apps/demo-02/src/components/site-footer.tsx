@@ -1,33 +1,39 @@
 import Link from 'next/link'
 import { Camera, Clock, Mail, MapPin, Phone } from 'lucide-react'
-import { HOTLINE, categories, storeLocations } from '@/lib/products'
+import { categories, storeLocations, HOTLINE } from '@/lib/products'
 
-const supportLinks = [
-  'Hướng dẫn mua hàng',
-  'Chính sách bảo hành',
-  'Chính sách đổi trả',
-  'Phương thức thanh toán',
-  'Câu hỏi thường gặp',
-  'Liên hệ hỗ trợ',
+const policies = [
+  { name: 'Chính sách bảo hành', href: '/chinh-sach-bao-hanh' },
+  { name: 'Chính sách thanh toán', href: '/chinh-sach-thanh-toan' },
+  { name: 'Chính sách đổi trả, Hoàn Tiền', href: '/chinh-sach-doi-tra' },
+  { name: 'Chính sách vận chuyển', href: '/chinh-sach-van-chuyen' },
+  { name: 'Chính sách bảo mật thông tin', href: '/chinh-sach-bao-mat-thong-tin-khach-hang' },
+  { name: 'Thông tin liên hệ', href: '/thong-tin-lien-he' },
+]
+
+const socialLinks = [
+  { name: 'YouTube', href: 'https://www.youtube.com/@mayanhvietnam' },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@mayanhvietnam' },
+  { name: 'Facebook', href: 'https://www.facebook.com/mayanhvietnam' },
 ]
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+        {/* Col 1: Brand + store locations */}
         <div>
           <Link href="/" className="flex items-center gap-3">
             <span className="brand-glow flex size-10 items-center justify-center rounded-xl bg-primary">
               <Camera className="size-5 text-primary-foreground" aria-hidden="true" />
             </span>
             <span className="flex flex-col">
-              <span className="font-serif text-lg font-bold tracking-wide">MAYANHVIETNAM</span>
+              <span className="font-serif text-lg font-bold tracking-wide">MÁY ẢNH VIỆT NAM</span>
               <span className="text-[11px] italic text-primary">Vì lợi ích khách hàng</span>
             </span>
           </Link>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Địa chỉ tin cậy hàng đầu về máy ảnh, ống kính và thiết bị nhiếp ảnh chính hãng tại
-            Việt Nam với hệ thống 4 chi nhánh.
+            Đơn vị tiên phong trong lĩnh vực phân phối và bán lẻ máy ảnh tại thị trường Việt Nam.
           </p>
           <ul className="mt-4 flex flex-col gap-2">
             {storeLocations.map((loc) => (
@@ -41,6 +47,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
+        {/* Col 2: Categories */}
         <nav aria-label="Danh mục sản phẩm">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest">
             Danh mục sản phẩm
@@ -59,25 +66,26 @@ export function SiteFooter() {
           </ul>
         </nav>
 
-        <nav aria-label="Hỗ trợ khách hàng">
+        {/* Col 3: Policies (real from mayanhvietnam.com) */}
+        <nav aria-label="Chính sách">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest">
-            Hỗ trợ khách hàng
+            Chính sách
           </h3>
           <ul className="flex flex-col gap-2.5">
-            {supportLinks.map((link) => (
-              <li key={link}>
+            {policies.map((p) => (
+              <li key={p.name}>
                 <Link
-                  href="/"
+                  href={p.href}
                   className="text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  {link}
+                  {p.name}
                 </Link>
               </li>
             ))}
             <li>
               <Link
                 href="/thu-cu-doi-moi"
-                className="text-sm text-primary transition-colors hover:text-accent"
+                className="text-sm font-semibold text-primary transition-colors hover:text-accent"
               >
                 Thu cũ đổi mới
               </Link>
@@ -85,6 +93,7 @@ export function SiteFooter() {
           </ul>
         </nav>
 
+        {/* Col 4: Contact */}
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest">
             Thông tin liên hệ
@@ -97,21 +106,46 @@ export function SiteFooter() {
               </span>
             </li>
             <li className="flex items-center gap-2.5">
+              <Phone className="size-4 shrink-0 text-primary" aria-hidden="true" />
+              <span>
+                Tổng đài: <span className="font-mono text-foreground">0907.215.252</span>
+              </span>
+            </li>
+            <li className="flex items-center gap-2.5">
               <Mail className="size-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>info@mayanhvietnam.vn</span>
+              <span>info@mayanhvietnam.com</span>
             </li>
             <li className="flex items-start gap-2.5">
               <Clock className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
               <span>{'Thời gian làm việc: 8:00 - 21:00 (T2 - CN)'}</span>
             </li>
           </ul>
+
+          {/* Social */}
+          <div className="mt-5">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest">Kết nối với chúng tôi</p>
+            <div className="flex gap-3">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  {s.name}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
+      {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-muted-foreground sm:flex-row lg:px-8">
-          <p>© 2025 Mayanhvietnam. All rights reserved.</p>
-          <p>Giấy phép ĐKKD số 0312345678 do Sở KH&ĐT TP.HCM cấp</p>
+          <p>© 2025 CÔNG TY TNHH DỊCH VỤ TƯ VẤN VÀ CÔNG NGHỆ SÀI GÒN. All rights reserved.</p>
+          <p>Giấy phép ĐKKD số 0313859872-002 do Sở KH&ĐT TP.HCM cấp ngày 05/08/2024</p>
         </div>
       </div>
     </footer>

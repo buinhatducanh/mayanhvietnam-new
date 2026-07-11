@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useTransform, type MotionValue } from 'framer-motion';
-import type { SpecCallout } from '@/lib/products';
+import type { SpecCallout } from '@/lib/adapter';
 
 type SpecCalloutsProps = {
   progress: MotionValue<number>;

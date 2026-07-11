@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Outfit, JetBrains_Mono } from 'next/font/google'
 import { CartProvider } from '@/components/cart-context'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin', 'vietnamese'], variable: '--font-inter' })
@@ -18,8 +19,22 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#060A14',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f8fafd' },
+    { media: '(prefers-color-scheme: dark)', color: '#060a14' },
+  ],
 }
+
+/* Inline script runs before paint to avoid flash of wrong theme */
+const themeScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('demo-02-theme');
+    var theme = stored === 'dark' || stored === 'light' ? stored : 'light';
+    if (theme === 'dark') document.documentElement.classList.add('dark');
+  } catch (_) {}
+})();
+`
 
 export default function RootLayout({
   children,
@@ -29,10 +44,16 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
+      suppressHydrationWarning
       className={`bg-background ${inter.variable} ${outfit.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="font-sans antialiased">
-        <CartProvider>{children}</CartProvider>
+        <ThemeProvider>
+          <CartProvider>{children}</CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

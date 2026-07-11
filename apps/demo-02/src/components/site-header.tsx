@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { useCart } from '@/components/cart-context'
 import { CartDrawer } from '@/components/cart-drawer'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { HOTLINE, formatVND, products } from '@/lib/products'
 
 const navItems = [
@@ -77,7 +78,7 @@ export function SiteHeader() {
               <Camera className="size-5 text-primary-foreground" aria-hidden="true" />
             </span>
             <span className="hidden flex-col sm:flex">
-              <span className="font-serif text-lg font-bold tracking-wide">MAYANHVIETNAM</span>
+              <span className="font-serif text-lg font-bold tracking-wide">MÁY ẢNH VIỆT NAM</span>
               <span className="text-[11px] italic text-primary">Vì lợi ích khách hàng</span>
             </span>
           </Link>
@@ -137,6 +138,7 @@ export function SiteHeader() {
                 <span className="font-mono text-sm font-semibold">{HOTLINE}</span>
               </span>
             </a>
+            <ThemeToggle />
             <button
               type="button"
               aria-label="Tài khoản"

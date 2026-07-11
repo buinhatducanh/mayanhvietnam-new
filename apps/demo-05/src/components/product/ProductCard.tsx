@@ -21,7 +21,8 @@ export function ProductCard({ product }: Props) {
           src={product.thumbnail}
           alt={product.name}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+          className="absolute inset-0 w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+          style={{ imageRendering: 'auto' }}
         />
         {discount > 0 && (
           <span className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold text-white" style={{ background: '#FF6B35' }}>

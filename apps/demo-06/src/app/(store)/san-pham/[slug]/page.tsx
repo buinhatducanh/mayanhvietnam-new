@@ -1,24 +1,24 @@
 import { notFound } from "next/navigation";
-import { products } from "@/lib/data";
+import { products, parseSlug } from "@/lib/data";
 import ProductDetailClient from "./ProductDetailClient";
 
 export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+  return products.map((p) => ({ slug: parseSlug(p.fullSlug) }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = products.find((p) => parseSlug(p.fullSlug) === slug);
   if (!product) return { title: "Không tìm thấy sản phẩm — Máy Ảnh Việt Nam" };
   return {
     title: `${product.name} — Máy Ảnh Việt Nam`,
-    description: `${product.name} chính hãng tại Máy Ảnh Việt Nam. ${product.callForPrice ? "Liên hệ để có giá tốt nhất." : `Giá từ ${new Intl.NumberFormat("vi-VN").format(product.price)}đ.`}`,
+    description: `${product.name} chính hãng tại Máy Ảnh Việt Nam. ${product.price === 0 ? "Liên hệ để có giá tốt nhất." : `Giá từ ${new Intl.NumberFormat("vi-VN").format(product.price)}đ.`}`,
   };
 }
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = products.find((p) => parseSlug(p.fullSlug) === slug);
   if (!product) notFound();
 
   const related = products

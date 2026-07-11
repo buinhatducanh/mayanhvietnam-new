@@ -1,45 +1,48 @@
-import { BadgeCheck, ShieldCheck, Truck } from 'lucide-react'
+import { BadgeCheck, CreditCard, ShieldCheck, Truck } from 'lucide-react'
 import { BannerSlider, type BannerSlide } from '@/components/banner-slider'
 
+// Trust badges from mayanhvietnam.com homepage
 const trustItems = [
-  { icon: BadgeCheck, title: 'Hàng chính hãng', desc: '100%' },
-  { icon: ShieldCheck, title: 'Bảo hành toàn quốc', desc: '12 - 24 tháng' },
-  { icon: Truck, title: 'Giao hàng nhanh', desc: 'Toàn quốc' },
+  { icon: Truck, title: 'Giao hàng Toàn quốc', desc: 'Miễn phí ship đơn từ 2tr' },
+  { icon: BadgeCheck, title: 'Sản phẩm Chính hãng', desc: '100% chính hãng' },
+  { icon: ShieldCheck, title: 'Bảo hành Lâu dài', desc: '12 - 24 tháng' },
+  { icon: CreditCard, title: 'Thanh toán Đa dạng', desc: 'VISA / MC / MoMo / Trả góp' },
 ]
 
+// Real product images from mayanhvietnam.com (500px product photos)
 const heroSlides: BannerSlide[] = [
   {
-    eyebrow: 'Khám phá công nghệ',
-    title: 'Bắt trọn khoảnh khắc',
-    highlight: 'Dẫn đầu công nghệ',
+    eyebrow: 'Máy ảnh Canon chính hãng',
+    title: 'Canon EOS R50 Black',
+    highlight: '17.500.000đ',
     subtitle:
-      'Cung cấp thiết bị máy ảnh, ống kính và phụ kiện chính hãng với chất lượng và dịch vụ tốt nhất tại Việt Nam.',
-    image: '/images/banner-camera.png',
-    imageAlt: 'Máy ảnh mirrorless full-frame trên bục trưng bày phát sáng xanh',
-    primaryCta: { label: 'Khám phá ngay', href: '/danh-muc/may-anh' },
-    secondaryCta: { label: 'Xem sản phẩm', href: '/danh-muc/ong-kinh' },
+      'Máy ảnh APS-C 24.2MP, DIGIC X, Dual Pixel AF II 4.503 điểm, quay 4K 30p. Nhỏ gọn 375g — lý tưởng cho người mới bắt đầu.',
+    image: '/images/p-canon-r50-1.jpg',
+    imageAlt: 'Máy ảnh Canon EOS R50 Black kèm Lens RF-S 18-45mm Chính Hãng',
+    primaryCta: { label: 'Mua ngay', href: '/san-pham/may-anh-canon-eos-r50-black-kem-lens-rfs-1845' },
+    secondaryCta: { label: 'Xem tất cả máy ảnh', href: '/danh-muc/may-anh' },
   },
   {
-    eyebrow: 'Ống kính G Master & L-Series',
-    title: 'Đỉnh cao quang học',
-    highlight: 'Sắc nét từng chi tiết',
+    eyebrow: 'Sony Alpha — Chuyên nghiệp',
+    title: 'Sony Alpha A7 Mark IV',
+    highlight: '47.500.000đ',
     subtitle:
-      'Bộ sưu tập ống kính cao cấp cho mọi hệ ngàm — Canon RF, Sony E, Fujifilm X, Nikon Z chính hãng.',
-    image: '/images/banner-lens.png',
-    imageAlt: 'Ống kính zoom cao cấp phát sáng viền xanh trên nền tối',
-    primaryCta: { label: 'Xem ống kính', href: '/danh-muc/ong-kinh' },
-    secondaryCta: { label: 'Kiểm tra tương thích', href: '/kiem-tra-ong-kinh' },
+      'Full-frame 33MP, 759 điểm AF pha, quay UHD 4K, dual card slot. Body + Kit FE 24-70mm F2.8 GM II từ 86.500.000đ.',
+    image: '/images/p-sony-a7iv-1.jpg',
+    imageAlt: 'Máy ảnh Sony Alpha A7 Mark IV Body Only Chính hãng',
+    primaryCta: { label: 'Xem chi tiết', href: '/san-pham/may-anh-sony-alpha-a7-mark-iv-body-only' },
+    secondaryCta: { label: 'Xem ống kính Sony', href: '/danh-muc/ong-kinh' },
   },
   {
-    eyebrow: 'Studio & Cinema',
-    title: 'Nâng tầm sản xuất',
-    highlight: 'Chuẩn điện ảnh',
+    eyebrow: 'Canon EOS R8 — Full-frame nhẹ',
+    title: 'Canon EOS R8 Body Only',
+    highlight: '26.900.000đ',
     subtitle:
-      'Máy quay Cinema Line, đèn LED và giải pháp setup phòng studio trọn gói cho nhà sáng tạo nội dung.',
-    image: '/images/hero-slide-studio.png',
-    imageAlt: 'Phòng studio với đèn softbox phát sáng xanh',
-    primaryCta: { label: 'Setup studio', href: '/setup-studio' },
-    secondaryCta: { label: 'Máy quay phim', href: '/danh-muc/may-quay-phim' },
+      'Full-frame 24.2MP, DIGIC X, chụp liên tiếp 40fps, quay 4K 60p. Body nhẹ 461g — lý tưởng cho nhiếp ảnh và video.',
+    image: '/images/p-canon-r8.jpg',
+    imageAlt: 'Máy ảnh Canon EOS R8 Body Only Chính hãng',
+    primaryCta: { label: 'Đặt hàng', href: '/san-pham/may-anh-canon-eos-r8-body-only' },
+    secondaryCta: { label: 'Xem tất cả Canon', href: '/danh-muc/may-anh' },
   },
 ]
 

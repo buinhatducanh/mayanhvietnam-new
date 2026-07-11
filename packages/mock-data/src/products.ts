@@ -33,17 +33,16 @@ export const allProducts: ProductSummary[] = [
     images: imgs(
       `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/avatar/01_may-anh-canon-eos-r6-mark-ii-chinh-hang.jpg`,
       [
-        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-preview/638791242846635718.jpg`,
-        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-preview/638791243241627094.jpg`,
-        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-preview/638791245082500064.jpg`,
-        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-preview/638791246871321218.jpg`,
-        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-preview/638791247584505226.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-bai-viet/638791981572649806.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-bai-viet/638791982369927579.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-bai-viet/638791983493111254.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-bai-viet/638791984119120066.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210223748534/hinh-bai-viet/638802183016936589.jpg`,
       ],
       'Canon EOS R6 Mark II'
     ),
     price: 40500000,
     originalPrice: 40500000,
-    callForPrice: true,
     badges: [{ type: 'hot', label: 'Bán chạy' }, { type: 'new', label: 'Mới 100%' }],
     rating: { average: 4.9, count: 312 },
     isUsed: false,
@@ -139,6 +138,108 @@ export const allProducts: ProductSummary[] = [
     sku: 'EOS-R6M2-BODY',
     hotline: '0937148222',
     sourceUrl: 'https://mayanhvietnam.com/san-pham/may-anh-canon-eos-r6-mark-ii-chinh-hang_may-anh-mirrorless-230210223748534',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 1b. Canon EOS R5 II Body ──────────────────────────────────
+  {
+    id: 'p1b',
+    slug: 'canon-eos-r5-mark-ii-body',
+    name: 'Máy ảnh Canon EOS R5 Mark II (Body) — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/avatar/638691049140819873_may-anh-canon-eos-r5-mark-ii-chinh-hang.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/avatar/638691049140819873_may-anh-canon-eos-r5-mark-ii-chinh-hang.jpg`,
+      [
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534571275388.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534571495273.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534571792646.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534571871307.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534571949763.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534572069212.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534572163819.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-06/241206115709218/hinh-bai-viet/638838534572294009.jpg`
+      ],
+      'Canon EOS R5 II'
+    ),
+    price: 78900000,
+    originalPrice: 78900000,
+    badges: [{ type: 'new', label: 'Mới 100%' }],
+    rating: { average: 4.9, count: 89 },
+    isUsed: false,
+    brand: 'Canon',
+    mount: 'Canon RF',
+    availability: 'in_stock',
+    category: 'may-anh',
+    shortSpecs: ['Full-frame 45MP', 'DIGIC X +Accelerator', '8K 60p RAW', 'IBIS 5 trục 8 stops'],
+    description: 'Canon EOS R5 Mark II thế hệ mới với cảm biến 45MP, DIGIC X + Accelerator, 8K 60p RAW, Eye Control AF, video creator-focused.',
+    highlights: ['Cảm biến 45MP Full-frame Stacked CMOS', 'DIGIC X +Accelerator — xử lý nhanh hơn', '8K 60p RAW / 4K 120p ProRes RAW', 'Eye Control AF — điều khiển AF bằng mắt'],
+    specs: specsCame([
+      { group: 'Cảm biến & Xử lý', items: [
+        { label: 'Cảm biến', value: 'Full-frame Stacked CMOS 45MP' },
+        { label: 'Bộ xử lý', value: 'DIGIC X +Accelerator' },
+        { label: 'ISO', value: '100 - 51200 (mở rộng 50 - 102400)' },
+      ]},
+      { group: ' Quay video', items: [
+        { label: '8K RAW', value: '60p / 30p' },
+        { label: '4K ProRes RAW', value: '120p / 60p / 30p' },
+        { label: 'Cooling fan', value: 'Tích hợp — quay 8K liên tục' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Trọng lượng', value: '746g' },
+        { label: 'Mount', value: 'Canon RF' },
+        { label: 'Pin', value: 'LP-E6NH (~430 ảnh)' },
+      ]},
+    ]),
+    packageIncludes: ['1× Thân máy Canon EOS R5 II', '1× Pin LP-E6NH', '1× Sạc', 'Phiếu bảo hành chính hãng'],
+    sku: 'EOS-R5M2-BODY',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/may-anh-canon-eos-r5-mark-ii-chinh-hang_may-anh-mirrorless-241206115709218',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 1c. Canon EOS R6 III ─────────────────────────────────────
+  {
+    id: 'p1c',
+    slug: 'may-anh-canon-eos-r6-mark-iii-body',
+    name: 'Máy ảnh Canon EOS R6 Mark III (Body) — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/25-03/25-03-15/250315190440715/avatar/638776622915433167_may-anh-canon-eos-r6-iii-chinh-hang.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/25-03/25-03-15/250315190440715/avatar/638776622915433167_may-anh-canon-eos-r6-iii-chinh-hang.jpg`,
+      [
+        `${CDN}/image-data/san-pham/25-03/25-03-15/250315190440715/hinh-bai-viet/638895498341907902.jpg`,
+        `${CDN}/image-data/san-pham/25-03/25-03-15/250315190440715/hinh-bai-viet/638895498342039148.jpg`,
+        `${CDN}/image-data/san-pham/25-03/25-03-15/250315190440715/hinh-bai-viet/638895498342142496.jpg`,
+        `${CDN}/image-data/san-pham/25-03/25-03-15/250315190440715/hinh-bai-viet/638895498342300123.jpg`
+      ],
+      'Canon EOS R6 III'
+    ),
+    price: 60500000,
+    originalPrice: 60500000,
+    badges: [{ type: 'new', label: 'Mới' }],
+    rating: { average: 4.9, count: 42 },
+    isUsed: false,
+    brand: 'Canon',
+    mount: 'Canon RF',
+    availability: 'in_stock',
+    category: 'may-anh',
+    shortSpecs: ['Full-frame 24.2MP', 'Stacked CMOS', '4K 120fps', 'IBIS 5 trục'],
+    description: 'Canon EOS R6 Mark III — cảm biến Stacked CMOS, burst 40fps, quay 4K 120fps, phù hợp sports/wildlife.',
+    highlights: ['Stacked CMOS — đọc nhanh hơn', 'Burst 40fps — không blackout', '4K 120fps slow-mo', 'IBIS 5 trục 8 stops'],
+    specs: specsCame([
+      { group: 'Cảm biến', items: [
+        { label: 'Cảm biến', value: 'Full-frame Stacked CMOS 24.2MP' },
+        { label: 'Bộ xử lý', value: 'DIGIC X' },
+        { label: 'Quay video', value: '4K 120fps / FHD 240fps' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Trọng lượng', value: '670g' },
+        { label: 'Mount', value: 'Canon RF' },
+      ]},
+    ]),
+    packageIncludes: ['1× Thân máy Canon EOS R6 III', '1× Pin', '1× Sạc', 'Phiếu bảo hành chính hãng'],
+    sku: 'EOS-R6M3-BODY',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/may-anh-canon-eos-r6-mark-iii-chinh-hang_may-anh-mirrorless-250315190440715',
     scrapedAt: '2026-07-09',
   },
 
@@ -266,7 +367,86 @@ export const allProducts: ProductSummary[] = [
     scrapedAt: '2026-07-09',
   },
 
-  // ── 3. Sony ZV-E10 II (Body) ─────────────────────────────────────
+  // ── 3. Canon EOS R50 + RF-S 18-45mm ────────────────────────────
+  {
+    id: 'p3a',
+    slug: 'canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang',
+    name: 'Máy ảnh Canon EOS R50 Black + Lens RF-S 18-45mm — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg`,
+      [
+        `${CDN}/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-bai-viet/638796242346696625.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-bai-viet/638796242346696627.jpg`,
+        `${CDN}/image-data/san-pham/24-12/24-12-28/241228112737843/hinh-bai-viet/638796242346696629.jpg`,
+      ],
+      'Canon EOS R50 Kit'
+    ),
+    price: 17500000,
+    originalPrice: 19900000,
+    badges: [{ type: 'hot', label: 'Bán chạy' }, { type: 'sale', label: '-12%' }],
+    rating: { average: 4.8, count: 128 },
+    isUsed: false,
+    brand: 'Canon',
+    mount: 'Canon RF',
+    availability: 'in_stock',
+    category: 'may-anh',
+    shortSpecs: ['APS-C 24.2MP', 'DIGIC X', '4K 30fps', 'Dual Pixel AF II', 'RF-S Mount'],
+    description:
+      'Canon EOS R50 là máy ảnh mirrorless APS-C nhỏ gọn nhất dòng EOS R, thân máy chỉ 375g. Cảm biến 24.2MP, DIGIC X, Dual Pixel CMOS AF II nhận diện mắt/động vật, quay 4K 30fps không crop.',
+    highlights: [
+      'Cảm biến APS-C CMOS 24.2MP + DIGIC X',
+      'Dual Pixel CMOS AF II — nhận diện mắt, động vật',
+      '4K 30fps không crop — ảnh 15fps',
+      'Body nhẹ 375g — nhỏ gọn nhất dòng EOS R',
+      'LCD cảm ứng 3" Vari-angle selfie-friendly',
+      'Wi-Fi + Bluetooth tích hợp — chia sẻ nhanh',
+    ],
+    specs: specsCame([
+      { group: 'Cảm biến & Xử lý', items: [
+        { label: 'Loại cảm biến', value: 'APS-C CMOS' },
+        { label: 'Độ phân giải', value: '24.2 Megapixel' },
+        { label: 'Bộ xử lý', value: 'DIGIC X' },
+      ]},
+      { group: 'Lấy nét', items: [
+        { label: 'Hệ thống AF', value: 'Dual Pixel CMOS AF II' },
+        { label: 'Điểm AF', value: '651 điểm theo pha' },
+        { label: 'Eye AF', value: 'Người + Động vật' },
+      ]},
+      { group: 'Chụp ảnh', items: [
+        { label: 'Tốc độ màn trập', value: '1/4000 - 30s, Bulb' },
+        { label: 'Burst rate', value: '15 fps (electronic shutter)' },
+        { label: 'Dải ISO', value: '100 - 32000 (mở rộng 51200)' },
+      ]},
+      { group: 'Video', items: [
+        { label: '4K UHD', value: '30p không crop' },
+        { label: 'Full HD', value: '120p / 60p / 30p' },
+      ]},
+      { group: 'Ống kính kèm theo', items: [
+        { label: 'Lens', value: 'RF-S 18-45mm f/4.5-6.3 IS STM' },
+        { label: 'Mount', value: 'Canon RF (APS-C)' },
+        { label: 'Filter size', value: '49mm' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Trọng lượng', value: '375g (body) / ~510g (with lens)' },
+        { label: 'Kích thước', value: '116.3 × 85.5 × 68.8 mm' },
+      ]},
+    ]),
+    packageIncludes: [
+      '1× Thân máy Canon EOS R50',
+      '1× Lens RF-S 18-45mm f/4.5-6.3 IS STM',
+      '1× Pin LP-E17',
+      '1× Sạc LC-E17',
+      '1× Dây đeo',
+      'Bao đựng + Phiếu bảo hành chính hãng',
+    ],
+    sku: 'EOS-R50-KIT-1845',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/may-anh-canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang_may-anh-mirrorless-241228112737843',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 4. Sony ZV-E10 II (Body) ─────────────────────────────────────
   {
     id: 'p3',
     slug: 'may-anh-sony-zve10-ii-black-body-only-chinh-hang',
@@ -380,6 +560,143 @@ export const allProducts: ProductSummary[] = [
     scrapedAt: '2026-07-09',
   },
 
+  // ── 3b. Sony A7R V Body ─────────────────────────────────────
+  {
+    id: 'p3b',
+    slug: 'may-anh-sony-alpha-a7r-v-body-chinh-hang',
+    name: 'Máy ảnh Sony A7R V (Body) — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/24-08/24-08-02/240802084419498/hinh-500-500/638692697572301947_may-anh-sony-alpha-a7r-mark-v-chinh-hang.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/24-08/24-08-02/240802084419498/hinh-500-500/638692697572301947_may-anh-sony-alpha-a7r-mark-v-chinh-hang.jpg`,
+      [
+        `${CDN}/image-data/san-pham/24-08/24-08-02/240802084419498/hinh-500-500/638692697064675290_may-anh-sony-alpha-a7r-mark-v-chinh-hang.jpg`,
+        `${CDN}/image-data/san-pham/24-08/24-08-02/240802084419498/hinh-500-500/638692697064519239_may-anh-sony-alpha-a7r-mark-v-chinh-hang.jpg`
+      ],
+      'Sony A7R V'
+    ),
+    price: 86390000,
+    originalPrice: 86390000,
+    badges: [{ type: 'new', label: 'Mới 100%' }],
+    rating: { average: 4.9, count: 48 },
+    isUsed: false,
+    brand: 'Sony',
+    mount: 'Sony E',
+    availability: 'in_stock',
+    category: 'may-anh',
+    shortSpecs: ['Full-frame 61MP', 'AI AF', '8K 24p', 'IBIS 8 stops'],
+    description: 'Sony A7R V — độ phân giải cao nhất dòng Alpha, AI AF nhận diện 8 loại chủ thể.',
+    highlights: ['61MP Full-frame — độ phân giải cao nhất Alpha', 'AI Processing Unit — AF thông minh 8 loại', '8K 24p / 4K 120p', 'IBIS 8 stops — ổn định 8 trục'],
+    specs: specsCame([
+      { group: 'Cảm biến', items: [
+        { label: 'Cảm biến', value: 'Full-frame BSI Exmor R 61.0MP' },
+        { label: 'Bộ xử lý', value: 'BIONZ XR + AI Processing Unit' },
+        { label: 'ISO', value: '100 - 32000 (mở rộng 50 - 102400)' },
+      ]},
+      { group: ' Quay video', items: [
+        { label: '8K', value: '24p / 30p' },
+        { label: '4K', value: '120p / 60p / 30p' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Trọng lượng', value: '723g' },
+        { label: 'Mount', value: 'Sony E' },
+      ]},
+    ]),
+    packageIncludes: ['1× Thân máy Sony A7R V', '1× Pin NP-FZ100', '1× Sạc', 'Phiếu bảo hành chính hãng'],
+    sku: 'ILCE-7RM5-BODY',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/may-anh-sony-alpha-a7r-mark-v-chinh-hang_may-anh-mirrorless-240802084419498',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 3c. Nikon Z50 II Body ──────────────────────────────────────
+  {
+    id: 'p3c',
+    slug: 'may-anh-nikon-z50-ii-body',
+    name: 'Máy ảnh Nikon Z50 II (Body) — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/25-06/25-06-23/250623090801566/avatar/638864677258042523_nikon-z50-ii-mirrorless-camera-kem-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-va-nikkor-z-dx-50-250mm-f-4-5-6-3-vr-lenses-kit.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/25-06/25-06-23/250623090801566/avatar/638864677258042523_nikon-z50-ii-mirrorless-camera-kem-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-va-nikkor-z-dx-50-250mm-f-4-5-6-3-vr-lenses-kit.jpg`,
+      [
+        `${CDN}/image-data/san-pham/25-06/25-06-23/250623090801566/hinh-500-500/638864677318435883_nikon-z50-ii-mirrorless-camera-kem-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-va-nikkor-z-dx-50-250mm-f-4-5-6-3-vr-lenses-kit.jpg`,
+        `${CDN}/image-data/san-pham/25-06/25-06-23/250623090801566/hinh-500-500/638864677318533258_nikon-z50-ii-mirrorless-camera-kem-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-va-nikkor-z-dx-50-250mm-f-4-5-6-3-vr-lenses-kit.jpg`
+      ],
+      'Nikon Z50 II'
+    ),
+    price: 24900000,
+    originalPrice: 24900000,
+    badges: [{ type: 'new', label: 'Mới' }],
+    rating: { average: 4.7, count: 42 },
+    isUsed: false,
+    brand: 'Nikon',
+    mount: 'Nikon Z',
+    availability: 'in_stock',
+    category: 'may-anh',
+    shortSpecs: ['APS-C 20.9MP', 'EXPEED 7', '4K 30fps', '11fps mechanical'],
+    description: 'Nikon Z50 II — cải tiến lớn với EXPEED 7, burst 11fps, 4K 30fps, phù hợp người mới bắt đầu chuyên nghiệp.',
+    highlights: ['EXPEED 7 — cải tiến AF nhanh hơn', 'Burst 11fps (mechanical)', '4K 30fps nội bộ', 'Hiệu suất ISO cao'],
+    specs: specsCame([
+      { group: 'Cảm biến', items: [
+        { label: 'Cảm biến', value: 'APS-C CMOS 20.9MP' },
+        { label: 'Bộ xử lý', value: 'EXPEED 7' },
+        { label: 'ISO', value: '100 - 51200 (mở rộng 100 - 102400)' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Trọng lượng', value: '397g' },
+        { label: 'Mount', value: 'Nikon Z' },
+      ]},
+    ]),
+    packageIncludes: ['1× Thân máy Nikon Z50 II', '1× Pin EN-EL25', '1× Sạc', 'Phiếu bảo hành chính hãng'],
+    sku: 'NIK-Z50II-BODY',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/nikon-z50-ii-mirrorless-camera-kem-nikkor-z-dx-1650-f3563-vr-va-nikkor-z-dx-50250-f4563-vr-lenses-kit_may-anh-mirrorless-250623090801566',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 3d. Fujifilm X-T5 Body ──────────────────────────────────
+  {
+    id: 'p3d',
+    slug: 'may-anh-fujifilm-x-t5-body',
+    name: 'Máy ảnh Fujifilm X-T5 (Body) — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-10/230210225801678/avatar/01_may-anh-fujifilm-x-t5-chinh-hang.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/23-02/23-02-10/230210225801678/avatar/01_may-anh-fujifilm-x-t5-chinh-hang.jpg`,
+      [
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210225801678/hinh-500-500/02_may-anh-fujifilm-x-t5-chinh-hang.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210225801678/hinh-500-500/03_may-anh-fujifilm-x-t5-chinh-hang.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-10/230210225801678/hinh-500-500/04_may-anh-fujifilm-x-t5-chinh-hang.jpg`
+      ],
+      'Fujifilm X-T5'
+    ),
+    price: 36990000,
+    originalPrice: 36990000,
+    badges: [{ type: 'hot', label: 'Retro' }],
+    rating: { average: 4.8, count: 95 },
+    isUsed: false,
+    brand: 'Fujifilm',
+    mount: 'Fujifilm X',
+    availability: 'in_stock',
+    category: 'may-anh',
+    shortSpecs: ['APS-C 40.2MP', 'X-Processor 5', '7.0fps mechanical', '19 Film Sim'],
+    description: 'Fujifilm X-T5 — thiết kế retro, cảm biến 40.2MP X-Trans, 19 Film Simulation, nhỏ gọn hơn X-T4.',
+    highlights: ['Cảm biến X-Trans 40.2MP — độ phân giải cao', 'X-Processor 5 — xử lý nhanh', '7.0fps cơ — không shock', '19 Film Simulation'],
+    specs: specsCame([
+      { group: 'Cảm biến', items: [
+        { label: 'Cảm biến', value: 'APS-C X-Trans CMOS 5 HR 40.2MP' },
+        { label: 'Bộ xử lý', value: 'X-Processor 5' },
+        { label: 'Film Simulation', value: '19 chế độ' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Trọng lượng', value: '476g' },
+        { label: 'Mount', value: 'Fujifilm X' },
+      ]},
+    ]),
+    packageIncludes: ['1× Thân máy Fujifilm X-T5', '1× Pin NP-W235', '1× Sạc', 'Phiếu bảo hành chính hãng'],
+    sku: 'FUJI-XT5-BODY',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/may-anh-fujifilm-x-t5-chinh-hang_may-anh-mirrorless-230210225801678',
+    scrapedAt: '2026-07-09',
+  },
+
   // ── 4. DJI Mavic 4 Pro 512GB Creator Combo ───────────────────────
   {
     id: 'p4',
@@ -487,7 +804,6 @@ export const allProducts: ProductSummary[] = [
     ),
     price: 48900000,
     originalPrice: 48900000,
-    callForPrice: true,
     badges: [{ type: 'hot', label: 'Professional' }, { type: 'new', label: 'Chính hãng' }],
     rating: { average: 4.9, count: 94 },
     isUsed: false,
@@ -770,6 +1086,141 @@ export const allProducts: ProductSummary[] = [
     sourceUrl: 'https://mayanhvietnam.com/san-pham/may-anh-fujifilm-xh2s-body-only-chinh-hang_may-anh-mirrorless-230210223540394',
     scrapedAt: '2026-07-09',
   },
+
+  // ── 10. Canon RF 50mm f/1.8 STM ──────────────────────────────
+  {
+    id: 'p10',
+    slug: 'ong-kinh-canon-rf-50mm-f1-8-stm-chinh-hang',
+    name: 'Ống kính Canon RF 50mm f/1.8 STM — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/24-08/24-08-03/240803094047373/avatar/638847186653427391_canon-rf-50mm-f1-8-stm-chinh-hang.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/24-08/24-08-03/240803094047373/avatar/638847186653427391_canon-rf-50mm-f1-8-stm-chinh-hang.jpg`,
+      [],
+      'Canon RF 50mm f/1.8 STM'
+    ),
+    price: 5990000,
+    originalPrice: 5990000,
+    badges: [{ type: 'hot', label: 'Best seller' }],
+    rating: { average: 4.8, count: 185 },
+    isUsed: false,
+    brand: 'Canon',
+    mount: 'Canon RF',
+    availability: 'in_stock',
+    category: 'ong-kinh',
+    shortSpecs: ['f/1.8', 'STM Motor', '50mm'],
+    highlights: ['f/1.8 nhanh — portrait đẹp bokeh mượt', 'STM Motor — lấy nét êm, không rung khi quay', '160g nhẹ — ống lens nhỏ gọn dòng RF'],
+    specs: specsCame([
+      { group: 'Quang học', items: [
+        { label: 'Focal length', value: '50mm' },
+        { label: 'Khẩu tối đa', value: 'f/1.8' },
+        { label: 'Cấu tạo', value: '7 thấu kính / 6 nhóm — 7 lá khẩu bokeh' },
+      ]},
+      { group: 'Lấy nét', items: [
+        { label: 'Motor', value: 'STM — stepping motor' },
+        { label: 'Khoảng cách lấy nét', value: '0.30m' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Mount', value: 'Canon RF (APS-C / Full-frame)' },
+        { label: 'Filter size', value: '43mm' },
+        { label: 'Trọng lượng', value: '160g' },
+      ]},
+    ]),
+    packageIncludes: ['1× Lens Canon RF 50mm f/1.8 STM', '1× Nắp trước E-43', '1× Nắp sau RF', 'Phiếu bảo hành chính hãng'],
+    sku: 'RF50F18STM',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/ong-kinh-canon-rf-50mm-f1-8-stm-chinh-hang_lens-240803094047373',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 11. Sony FE 70-200mm f/2.8 GM OSS II ─────────────────────
+  {
+    id: 'p11',
+    slug: 'ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss-chinh-hang',
+    name: 'Ống kinh Sony FE 70-200mm f/2.8 GM OSS II — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019_ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019_ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss.jpg`,
+      [],
+      'Sony FE 70-200mm f/2.8 GM II'
+    ),
+    price: 62900000,
+    originalPrice: 62900000,
+    badges: [{ type: 'hot', label: 'Flagship' }, { type: 'new', label: 'GM II' }],
+    rating: { average: 5.0, count: 28 },
+    isUsed: false,
+    brand: 'Sony',
+    mount: 'Sony E',
+    availability: 'in_stock',
+    category: 'ong-kinh',
+    shortSpecs: ['f/2.8 GM II', 'XD Linear', 'OSS 5.5 stops', '70-200mm'],
+    highlights: ['GM II thế hệ mới — 1045g nhẹ nhất dòng f/2.8', 'XA Element — bokeh mượt đỉnh cao', '4× XD Linear Motor — AF cực nhanh'],
+    specs: specsCame([
+      { group: 'Quang học', items: [
+        { label: 'Focal length', value: '70 – 200mm' },
+        { label: 'Khẩu tối đa', value: 'f/2.8' },
+        { label: 'Khẩu tối thiểu', value: 'f/22' },
+      ]},
+      { group: 'Ổn định', items: [
+        { label: 'Chống rung', value: 'OSS — Optical SteadyShot 5.5 stops' },
+        { label: 'Motor AF', value: 'XD Linear × 4' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Mount', value: 'Sony E (Full-frame / APS-C)' },
+        { label: 'Filter size', value: '77mm' },
+        { label: 'Trọng lượng', value: '1045g' },
+      ]},
+    ]),
+    packageIncludes: ['1× Lens Sony FE 70-200mm f/2.8 GM II OSS', '1× Nắp trước', '1× Nắp sau', '1× Hood', 'Bao đựng + Phiếu bảo hành chính hãng'],
+    sku: 'SEL70200GM2',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss-chinh-hang_lens-240803094242227',
+    scrapedAt: '2026-07-09',
+  },
+
+  // ── 12. DJI Mini 5 Pro ─────────────────────────────────────
+  {
+    id: 'p12',
+    slug: 'dji-mini-5-pro-base-chinh-hang',
+    name: 'DJI Mini 5 Pro Base — Chính hãng',
+    thumbnail: `${CDN}/image-data/san-pham/25-09/25-09-12/250912094317313/avatar/638932671190111464_dji-mini-5-pro-base-chinh-hang.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/25-09/25-09-12/250912094317313/avatar/638932671190111464_dji-mini-5-pro-base-chinh-hang.jpg`,
+      [],
+      'DJI Mini 5 Pro'
+    ),
+    price: 13990000,
+    originalPrice: 13990000,
+    badges: [{ type: 'new', label: 'Mới' }, { type: 'hot', label: '249g' }],
+    rating: { average: 4.8, count: 72 },
+    isUsed: false,
+    brand: 'DJI',
+    availability: 'in_stock',
+    category: 'flycam',
+    shortSpecs: ['249g', '1/1.3" CMOS 48MP', 'O4 20km', '34 phút'],
+    highlights: ['249g — không cần đăng ký tại VN', 'Cảm biến 1/1.3" CMOS — 4K/60fps HDR', 'O4 Transmission — 20km siêu xa', 'APAS omnidirectional — tránh vật cản 360°'],
+    specs: specsCame([
+      { group: 'Camera', items: [
+        { label: 'Cảm biến', value: '1/1.3" CMOS — 48MP' },
+        { label: 'Khẩu', value: 'f/1.7 — FOV 82°' },
+        { label: 'Video', value: '4K 60fps HDR / FHD 100fps' },
+      ]},
+      { group: 'Bay', items: [
+        { label: 'Thời gian', value: '34 phút' },
+        { label: 'Tốc độ', value: '57.6 km/h' },
+        { label: 'Tránh vật cản', value: 'APAS 5.0 omnidirectional' },
+      ]},
+      { group: 'Vật lý', items: [
+        { label: 'Trọng lượng', value: '249g' },
+        { label: 'Kích thước', value: 'Gấp: 148×90×66 mm' },
+        { label: 'Truyền sóng', value: 'O4 — 20km (FCC)' },
+      ]},
+    ]),
+    packageIncludes: ['1× DJI Mini 5 Pro', '1× Pin', '1× Sạc', '1× Cáp USB-C', 'Phiếu bảo hành chính hãng'],
+    sku: 'DJI-MINI5PRO-BASE',
+    hotline: '0937148222',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/dji-mini-5-pro-base-chinh-hang_flycam-250912094317313',
+    scrapedAt: '2026-07-09',
+  },
 ];
 
 // ============================================================
@@ -803,3 +1254,79 @@ export const getRelatedProducts = (product: ProductSummary, limit = 4) =>
   allProducts
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, limit);
+
+// ============================================================
+// Additional helpers — added 2026-07-10 to support demo-04/05/06
+// ============================================================
+
+/** Filter products by brand (case-insensitive) */
+export const getProductsByBrand = (brand: string) =>
+  allProducts.filter(
+    (p) => p.brand.toLowerCase() === brand.toLowerCase()
+  );
+
+/** Get all unique brands available in catalog */
+export const getAllBrands = (): string[] =>
+  Array.from(new Set(allProducts.map((p) => p.brand))).sort();
+
+/** Filter lenses by camera mount */
+export const getProductsByMount = (mount: string) =>
+  allProducts.filter(
+    (p) =>
+      (p.category === 'ong-kinh' || p.mount === mount) &&
+      p.mount?.toLowerCase() === mount.toLowerCase()
+  );
+
+/** Featured products — picked by best rating */
+export const getFeaturedProducts = (limit = 6) =>
+  [...allProducts]
+    .sort((a, b) => (b.rating?.average ?? 0) - (a.rating?.average ?? 0))
+    .slice(0, limit);
+
+/** Filter by price range (VND) */
+export const getProductsByPriceRange = (min: number, max: number) =>
+  allProducts.filter((p) => p.price >= min && p.price <= max);
+
+/** Search by name / brand / category / specs text */
+export const searchProducts = (query: string): ProductSummary[] => {
+  if (!query.trim()) return [];
+  const q = query.toLowerCase().trim();
+  return allProducts.filter((p) => {
+    if (p.name.toLowerCase().includes(q)) return true;
+    if (p.brand.toLowerCase().includes(q)) return true;
+    if (p.category.toLowerCase().includes(q)) return true;
+    if (p.shortSpecs?.some((s) => s.toLowerCase().includes(q))) return true;
+    if (p.description?.toLowerCase().includes(q)) return true;
+    return false;
+  });
+};
+
+/** Get all products grouped by category */
+export const getProductsGroupedByCategory = (): Record<string, ProductSummary[]> =>
+  allProducts.reduce<Record<string, ProductSummary[]>>((acc, p) => {
+    if (!acc[p.category]) acc[p.category] = [];
+    acc[p.category].push(p);
+    return acc;
+  }, {});
+
+/** Top-N cheapest */
+export const getCheapestProducts = (limit = 6) =>
+  [...allProducts].sort((a, b) => a.price - b.price).slice(0, limit);
+
+/** Top-N most expensive / premium */
+export const getPremiumProducts = (limit = 6) =>
+  [...allProducts].sort((a, b) => b.price - a.price).slice(0, limit);
+
+/** Get on-sale products (price < originalPrice) */
+export const getOnSaleProducts = () =>
+  allProducts.filter((p) => p.originalPrice && p.price < p.originalPrice);
+
+/** Stats summary for dashboard / homepage */
+export const getCatalogStats = () => ({
+  total: allProducts.length,
+  byCategory: getProductsGroupedByCategory(),
+  brands: getAllBrands(),
+  avgPrice: Math.round(
+    allProducts.reduce((s, p) => s + p.price, 0) / allProducts.length
+  ),
+});
