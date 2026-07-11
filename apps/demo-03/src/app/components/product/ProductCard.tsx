@@ -88,7 +88,7 @@ export default function ProductCard({ product, layout = "grid", showAddBtn = tru
           </span>
         )}
         <div className="absolute top-3 left-3 flex flex-col gap-1">
-          {product.badges.slice(0, 2).map((b) => (
+          {(product.badges ?? []).slice(0, 2).map((b) => (
             <span
               key={b.label}
               className={`text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md ${

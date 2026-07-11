@@ -15,6 +15,7 @@ export type {
   CameraBody,
   LensOption,
   PromotionalBanner,
+  CategoryBanner,
   SiteContent,
 } from './types';
 
@@ -29,6 +30,8 @@ export {
   actionCameras,
   cinema,
   studio,
+  accessories,
+  used,
   // Lookups
   getProductsByCategory,
   getProductBySlug,
@@ -64,7 +67,7 @@ export { stores } from './stores';
 export { reviews } from './reviews';
 
 // ─── Banners ────────────────────────────────────────────────────────────────
-export { heroSlides, dealBanners } from './banners';
+export { heroSlides, dealBanners, categoryBanners } from './banners';
 
 // ─── Lens checker ───────────────────────────────────────────────────────────
 export {

@@ -18,7 +18,7 @@ export default function RegisterPage() {
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center font-black text-white text-xl mb-4" style={{ background: '#FF6B35' }}>M</div>
+          <div className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center font-black text-white text-xl mb-4" style={{ background: '#2563eb' }}>M</div>
           <h1 className="text-2xl font-black text-foreground mb-1">Tạo tài khoản</h1>
           <p className="text-sm text-muted-foreground">Đăng ký để nhận ưu đãi dành riêng cho thành viên</p>
         </div>
@@ -48,7 +48,7 @@ export default function RegisterPage() {
             <input type="checkbox" required className="accent-primary mt-0.5" />
             <span className="text-xs text-muted-foreground leading-relaxed">Tôi đồng ý với <a href="#" className="text-primary hover:underline">Điều khoản sử dụng</a> và <a href="#" className="text-primary hover:underline">Chính sách bảo mật</a></span>
           </label>
-          <button type="submit" disabled={loading} className="w-full h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50 hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}>
+          <button type="submit" disabled={loading} className="w-full h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50 hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}>
             {loading ? 'Đang đăng ký...' : 'Tạo tài khoản'}
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>

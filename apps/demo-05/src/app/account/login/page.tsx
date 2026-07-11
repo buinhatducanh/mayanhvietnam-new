@@ -18,7 +18,7 @@ export default function LoginPage() {
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center font-black text-white text-xl mb-4" style={{ background: '#FF6B35' }}>M</div>
+          <div className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center font-black text-white text-xl mb-4" style={{ background: '#2563eb' }}>M</div>
           <h1 className="text-2xl font-black text-foreground mb-1">Đăng nhập</h1>
           <p className="text-sm text-muted-foreground">Chào mừng bạn quay trở lại!</p>
         </div>
@@ -44,7 +44,7 @@ export default function LoginPage() {
             </label>
             <a href="#" className="text-xs text-primary hover:underline">Quên mật khẩu?</a>
           </div>
-          <button type="submit" disabled={loading} className="w-full h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50 hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}>
+          <button type="submit" disabled={loading} className="w-full h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50 hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}>
             {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
             {!loading && <ArrowRight className="w-4 h-4" />}
           </button>

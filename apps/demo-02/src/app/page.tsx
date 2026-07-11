@@ -19,6 +19,8 @@ import { PromoCards } from '@/components/home/promo-cards'
 import { NewsletterSection } from '@/components/home/newsletter-section'
 import { ProductLineSection } from '@/components/home/product-line-section'
 import { ProductCard } from '@/components/product-card'
+import { YouTubeReviews } from '@/components/home/youtube-reviews'
+import { BrandStrip } from '@/components/home/brand-strip'
 import { categories, products } from '@/lib/products'
 
 const stats = [
@@ -110,6 +112,9 @@ export default function HomePage() {
       <SiteHeader />
       <main className="flex flex-col gap-16 pb-20 lg:gap-20">
         <HeroSection />
+
+        {/* Brand strip */}
+        <BrandStrip />
 
         {/* Category tiles */}
         <section aria-label="Danh mục nổi bật" className="mx-auto w-full max-w-7xl px-4 lg:px-8">
@@ -246,6 +251,64 @@ export default function HomePage() {
                 />
               </span>
             </Link>
+          </div>
+        </section>
+
+        {/* YouTube reviews — giống mẫu mayanhvietnam.com */}
+        <YouTubeReviews />
+
+        {/* Tại sao chọn chúng tôi */}
+        <section aria-label="Tại sao chọn mayanhvietnam" className="mx-auto w-full max-w-7xl px-4 lg:px-8">
+          <div className="rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card p-8 sm:p-10">
+            <div className="mb-8 flex items-center gap-2">
+              <div className="h-5 w-1 rounded-full bg-primary" />
+              <h2 className="text-xl font-bold sm:text-2xl">Tại sao chọn mayanhvietnam.com?</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+              {[
+                { icon: '🛡️', title: '100% Chính hãng', desc: 'Cam kết chính hãng, có hóa đơn VAT và bảo hành toàn quốc.' },
+                { icon: '🎯', title: 'Tư vấn chuyên sâu', desc: 'Đội ngũ nhiếp ảnh gia kinh nghiệm tư vấn free.' },
+                { icon: '🚚', title: 'Giao hàng nhanh', desc: 'Freeship đơn từ 5 triệu, đổi trả 7 ngày.' },
+                { icon: '💳', title: 'Trả góp linh hoạt', desc: '0% lãi suất qua thẻ tín dụng, thủ tục nhanh gọn.' },
+              ].map((f) => (
+                <div key={f.title} className="flex flex-col items-center text-center">
+                  <span className="mb-3 text-3xl">{f.icon}</span>
+                  <h3 className="mb-1.5 text-sm font-bold">{f.title}</h3>
+                  <p className="text-[11px] leading-relaxed text-muted-foreground">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Bộ Công Thương */}
+        <section aria-label="Bộ Công Thương" className="mx-auto w-full max-w-7xl px-4 pb-10 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-border bg-card p-6 sm:flex-row sm:p-8">
+            <div className="flex items-center gap-4">
+              <div className="relative h-14 w-14 shrink-0">
+                <Image
+                  src="https://mayanhvietnam.com/asset/imgs/icon/logoBCT.png"
+                  alt="Bộ Công Thương"
+                  fill
+                  className="object-contain"
+                  sizes="56px"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-bold">Đã đăng ký Bộ Công Thương</p>
+                <p className="text-[11px] text-muted-foreground">Website TMĐT chính thức · Giao dịch an toàn</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {['VISA', 'MASTERCARD', 'JCB', 'NAPAS', 'MOMO', 'Home PayLater'].map((p) => (
+                <div
+                  key={p}
+                  className="flex h-9 w-14 items-center justify-center rounded-lg border border-border bg-background text-[10px] font-bold text-muted-foreground"
+                >
+                  {p}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

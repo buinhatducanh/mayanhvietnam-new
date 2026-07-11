@@ -21,6 +21,8 @@ import { flycam } from './flycam';
 import { actionCameras } from './action-cameras';
 import { cinema } from './cinema';
 import { studio } from './studio';
+import { accessories } from './accessories';
+import { used } from './used';
 
 // ─── Unified catalog ────────────────────────────────────────────────────────
 
@@ -31,6 +33,8 @@ export const allProducts: ProductSummary[] = [
   ...actionCameras,
   ...cinema,
   ...studio,
+  ...accessories,
+  ...used,
 ];
 
 // ─── Flash sale ─────────────────────────────────────────────────────────────
@@ -57,6 +61,8 @@ export { flycam } from './flycam';
 export { actionCameras } from './action-cameras';
 export { cinema } from './cinema';
 export { studio } from './studio';
+export { accessories } from './accessories';
+export { used } from './used';
 
 // ─── Helper: basic lookups ──────────────────────────────────────────────────
 

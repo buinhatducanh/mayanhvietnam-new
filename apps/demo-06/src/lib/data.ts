@@ -214,7 +214,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 113,990,000đ",
     fullSlug: "/san-pham/may-anh-sony-alpha-a7r-vi_may-anh-mirrorless-260328143107303",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png_may-anh-sony-alpha-a7r-vi.jpg",
-    specs: ["61MP Full-frame BSI CMOS", "AI Processing Unit", "8K Video", "8-stop IBIS"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png_may-anh-sony-alpha-a7r-vi.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210224704223/avatar/01.jpg"
+    ],    specs: ["61MP Full-frame BSI CMOS", "AI Processing Unit", "8K Video", "8-stop IBIS"],
     badge: "Flagship",
   },
   {
@@ -226,7 +240,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 75,590,000đ",
     fullSlug: "/san-pham/may-anh-sony-alpha-a7s-mark-iii-ilce7sm3_may-anh-mirrorless-240802084518870",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629_may-anh-sony-alpha-a7s-mark-iii-ilce-7sm3.jpg",
-    specs: ["12.1MP Full-frame", "BIONZ XR", "4K 120p 16-bit RAW", "ISO up to 409,600"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629_may-anh-sony-alpha-a7s-mark-iii-ilce-7sm3.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210224704223/avatar/01.jpg"
+    ],    specs: ["12.1MP Full-frame", "BIONZ XR", "4K 120p 16-bit RAW", "ISO up to 409,600"],
     badge: "Video",
   },
   {
@@ -238,7 +266,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 86,390,000đ",
     fullSlug: "/san-pham/may-anh-sony-alpha-a7r-mark-v-chinh-hang_may-anh-mirrorless-240802084419498",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422_may-anh-sony-alpha-a7r-mark-v-chinh-hang.jpg",
-    specs: ["61MP Full-frame", "AI AF", "8K Video", "8-stop IBIS"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422_may-anh-sony-alpha-a7r-mark-v-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210224704223/avatar/01.jpg"
+    ],    specs: ["61MP Full-frame", "AI AF", "8K Video", "8-stop IBIS"],
     badge: "Chính hãng",
   },
   {
@@ -250,7 +292,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 78,500,000đ",
     fullSlug: "/san-pham/may-anh-sony-alpha-a7r-mark-iv-chinh-hang_may-anh-mirrorless-240824141547867",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748_may-anh-sony-alpha-a7r-mark-iv-chinh-hang.jpg",
-    specs: ["61MP Full-frame", "5-axis IBIS", "4K 60p", "Pixel Shift Multi-shot"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748_may-anh-sony-alpha-a7r-mark-iv-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["61MP Full-frame", "5-axis IBIS", "4K 60p", "Pixel Shift Multi-shot"],
     badge: "Chính hãng",
   },
   {
@@ -262,7 +318,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 69,990,000đ",
     fullSlug: "/san-pham/may-anh-sony-a7-mark-v-a7m5-chinh-hang_may-anh-mirrorless-251126090035598",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322_may-anh-sony-a7-mark-v-a7m5-chinh-hang.jpg",
-    specs: ["33MP Full-frame", "AI AF", "4K 120p", "Dual CFexpress"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322_may-anh-sony-a7-mark-v-a7m5-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210224704223/avatar/01.jpg"
+    ],    specs: ["33MP Full-frame", "AI AF", "4K 120p", "Dual CFexpress"],
     badge: "Mới",
   },
   {
@@ -274,7 +344,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 143,300,000đ",
     fullSlug: "/san-pham/may-anh-sony-a9-iii-chinh-hang_may-anh-mirrorless-251209090438536",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299_may-anh-sony-a9-iii-chinh-hang.jpg",
-    specs: ["24.6MP Stacked Global Shutter", "120fps", "1/80000s shutter", "4K 120p"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299_may-anh-sony-a9-iii-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210224704223/avatar/01.jpg"
+    ],    specs: ["24.6MP Stacked Global Shutter", "120fps", "1/80000s shutter", "4K 120p"],
     badge: "Flagship",
   },
   {
@@ -400,7 +484,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 23,060,000đ",
     fullSlug: "/san-pham/sony-a6400-kem-lens-1650-f3556-oss-ii-black-chinh-hang_may-anh-mirrorless-250711141506840",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088_sony-a6400-kem-lens-16-50mm-f-3-5-5-6-oss-ii-black-chinh-hang.jpg",
-    specs: ["24.2MP APS-C", "Real-time Eye AF", "4K 30p", "11fps"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088_sony-a6400-kem-lens-16-50mm-f-3-5-5-6-oss-ii-black-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638878401203332710.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["24.2MP APS-C", "Real-time Eye AF", "4K 30p", "11fps"],
     badge: "Chính hãng",
   },
   {
@@ -412,7 +510,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 21,000,000đ",
     fullSlug: "/san-pham/may-anh-canon-powershot-v1-chinh-hang_may-anh-compact-250401154750200",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514_may-anh-canon-powershot-v1-chinh-hang.jpg",
-    specs: ["1\" CMOS 20.4MP", "f/1.8-2.8 Lens", "4K 30p", "Compact"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514_may-anh-canon-powershot-v1-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210224704223/avatar/01.jpg"
+    ],    specs: ["1\" CMOS 20.4MP", "f/1.8-2.8 Lens", "4K 30p", "Compact"],
     badge: "Mới",
   },
   {
@@ -424,7 +536,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 31,000,000đ",
     fullSlug: "/san-pham/may-anh-canon-eos-r7-chinh-hang_may-anh-mirrorless-240801175147151",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637_may-anh-canon-eos-r7-chinh-hang.jpg",
-    specs: ["32.5MP APS-C", "DIGIC X", "4K 60p", "In-body IS"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637_may-anh-canon-eos-r7-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["32.5MP APS-C", "DIGIC X", "4K 60p", "In-body IS"],
     badge: "Chính hãng",
   },
   {
@@ -550,7 +676,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 26,900,000đ",
     fullSlug: "/san-pham/may-anh-canon-eos-r8-body-only_may-anh-mirrorless-230419151242054",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-19/230419151242054/avatar/canon-eos-r8-6-500x500_may-anh-canon-eos-r8-body-only.jpg",
-    specs: ["24.2MP Full-frame", "DIGIC X", "4K 60p", "461g"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-19/230419151242054/avatar/canon-eos-r8-6-500x500_may-anh-canon-eos-r8-body-only.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["24.2MP Full-frame", "DIGIC X", "4K 60p", "461g"],
     badge: "Chính hãng",
   },
   {
@@ -574,7 +714,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 38,000,000đ",
     fullSlug: "/san-pham/may-anh-canon-eos-r6-body-only_may-anh-mirrorless-230210223532542",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223532542/avatar/01_may-anh-canon-eos-r6-body-only.jpg",
-    specs: ["20.1MP Full-frame", "DIGIC X", "4K 60p", "IBIS"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223532542/avatar/01_may-anh-canon-eos-r6-body-only.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["20.1MP Full-frame", "DIGIC X", "4K 60p", "IBIS"],
     badge: "Chính hãng",
   },
   {
@@ -586,7 +740,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 26,000,000đ",
     fullSlug: "/san-pham/may-anh-sony-zve10-ii-black-body-only-chinh-hang_may-anh-mirrorless-240826174229493",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-26/240826174229493/avatar/638708944659930440_may-anh-sony-zv-e10-ii-black-body-only-chinh-hang.jpg",
-    specs: ["26MP APS-C", "4K 30p", "AI AF", "Vlog Camera"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-26/240826174229493/avatar/638708944659930440_may-anh-sony-zv-e10-ii-black-body-only-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["26MP APS-C", "4K 30p", "AI AF", "Vlog Camera"],
     badge: "Vlogger",
   },
   {
@@ -598,7 +766,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 16,680,000đ",
     fullSlug: "/san-pham/sony-zve10-kem-lens-sony-e-pz-1650-f3556-oss-mark-ii-chinh-hang_may-anh-mirrorless-250714103201041",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714103201041/avatar/639029506922725233_sony-zv-e10-kem-lens-sony-e-pz-16-50mm-f3-5-5-6-oss-mark-ii-chinh-hang.jpg",
-    specs: ["24.2MP APS-C", "Vlog Camera", "4K 30p", "Product Showcase"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714103201041/avatar/639029506922725233_sony-zv-e10-kem-lens-sony-e-pz-16-50mm-f3-5-5-6-oss-mark-ii-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714103201041/avatar/638880859404577715.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg"
+    ],    specs: ["24.2MP APS-C", "Vlog Camera", "4K 30p", "Product Showcase"],
     badge: "Vlogger",
   },
   {
@@ -610,7 +792,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 32,500,000đ",
     fullSlug: "/san-pham/may-anh-nikon-z6-ii-body-only-chinh-hang_may-anh-mirrorless-230418180440520",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-18/230418180440520/avatar/nikon-z6-ii-500x500_may-anh-nikon-z6-ii-body-only-chinh-hang.jpg",
-    specs: ["24.5MP Full-frame", "Dual EXPEED 6", "4K 60p", "Dual Card Slots"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-18/230418180440520/avatar/nikon-z6-ii-500x500_may-anh-nikon-z6-ii-body-only-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["24.5MP Full-frame", "Dual EXPEED 6", "4K 60p", "Dual Card Slots"],
     badge: "Chính hãng",
   },
   {
@@ -622,7 +818,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 67,600,000đ",
     fullSlug: "/san-pham/nikon-z6-mark-iii-kem-lens-z-2470-f4-s-chinh-hang-vic_may-anh-mirrorless-250520145943720",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-20/250520145943720/avatar/638833501469480006_nikon-z6-mark-iii-kem-lens-z-24-70-mm-f-4-s-chinh-hang-vic.jpg",
-    specs: ["24.5MP Full-frame", "6K 30p / 4K 60p", "Nikon Z mount", "Partially stacked sensor"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-20/250520145943720/avatar/638833501469480006_nikon-z6-mark-iii-kem-lens-z-24-70-mm-f-4-s-chinh-hang-vic.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["24.5MP Full-frame", "6K 30p / 4K 60p", "Nikon Z mount", "Partially stacked sensor"],
     badge: "Chính hãng",
   },
   {
@@ -634,7 +844,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 43,000,000đ",
     fullSlug: "/san-pham/may-anh-nikon-z5-iihang_may-anh-mirrorless-250704114217939",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-04/250704114217939/avatar/638872262359118095_may-anh-nikon-z5-ii-hang.jpg",
-    specs: ["24.5MP Full-frame", "AI AF", "4K 60p", "IBIS"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-04/250704114217939/avatar/638872262359118095_may-anh-nikon-z5-ii-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["24.5MP Full-frame", "AI AF", "4K 60p", "IBIS"],
     badge: "Mới",
   },
   {
@@ -646,7 +870,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 17,900,000đ",
     fullSlug: "/san-pham/may-anh-nikon-z30-den-kem-lens-nikkor-z-dx-1650-f3563-vr-chinh-hang_may-anh-mirrorless-250620115535850",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-06/25-06-20/250620115535850/avatar/638889641077470341_may-anh-nikon-z30-den-kem-lens-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-chinh-hang.jpg",
-    specs: ["20.9MP APS-C", "Vlog Camera", "4K 30p", "Flip LCD"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-06/25-06-20/250620115535850/avatar/638889641077470341_may-anh-nikon-z30-den-kem-lens-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["20.9MP APS-C", "Vlog Camera", "4K 30p", "Flip LCD"],
     badge: "Chính hãng",
   },
   {
@@ -658,7 +896,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 24,000,000đ",
     fullSlug: "/san-pham/nikon-zfc-lens-nikon-z-dx-1650-f3563-vr-silver_may-anh-mirrorless-260102105356303",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-02/260102105356303/avatar/639029480446269883_nikon-zfc-lens-nikon-z-dx-16-50mm-f3-5-6-3-vr-silver.jpg",
-    specs: ["20.9MP APS-C", "Retro Design", "4K 30p", "Vari-angle LCD"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-02/260102105356303/avatar/639029480446269883_nikon-zfc-lens-nikon-z-dx-16-50mm-f3-5-6-3-vr-silver.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["20.9MP APS-C", "Retro Design", "4K 30p", "Vari-angle LCD"],
     badge: "Retro",
   },
   {
@@ -670,7 +922,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 37,990,000đ",
     fullSlug: "/san-pham/may-anh-fujifilm-xh2s-body-only-chinh-hang_may-anh-mirrorless-230210223540394",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01_may-anh-fujifilm-x-h2s-body-only-chinh-hang.jpg",
-    specs: ["26.2MP APS-C X-Trans", "Stacked CMOS", "4K 120p", "7-stop IBIS"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01_may-anh-fujifilm-x-h2s-body-only-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg"
+    ],    specs: ["26.2MP APS-C X-Trans", "Stacked CMOS", "4K 120p", "7-stop IBIS"],
     badge: "Chính hãng",
   },
   {
@@ -682,7 +948,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 115,000,000đ",
     fullSlug: "/san-pham/may-anh-canon-eos-r3-body-only_may-anh-mirrorless-230210223530566",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01_may-anh-canon-eos-r3-body-only.jpg",
-    specs: ["24.2MP Stacked", "Eye Control AF", "4K 120p", "30fps"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01_may-anh-canon-eos-r3-body-only.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084518870/avatar/638719291858080629.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-24/240824141547867/avatar/638601115883421748.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637.jpg"
+    ],    specs: ["24.2MP Stacked", "Eye Control AF", "4K 120p", "30fps"],
     badge: "Flagship",
   },
   {
@@ -723,7 +1003,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 48,900,000đ",
     fullSlug: "/san-pham/ong-kinh-canon-rf-2470-f28l-is-usm-chinh-hang_ong-kinh-mirrorless-230210234357844",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234357844/avatar/01_ong-kinh-canon-rf-24-70mm-f-2-8l-is-usm-chinh-hang.jpg",
-    specs: ["24-70mm f/2.8", "L-series", "IS 5-stop", "Nano USM"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234357844/avatar/01_ong-kinh-canon-rf-24-70mm-f-2-8l-is-usm-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg"
+    ],    specs: ["24-70mm f/2.8", "L-series", "IS 5-stop", "Nano USM"],
     badge: "Chính hãng",
   },
   {
@@ -735,7 +1029,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 69,000,000đ",
     fullSlug: "/san-pham/ong-kinh-nikon-z-2470-f28-s-ii_ong-kinh-mirrorless-250922103851025",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-09/25-09-22/250922103851025/avatar/638941343754731632_ong-kinh-nikon-z-24-70mm-f-2-8-s-ii.jpg",
-    specs: ["24-70mm f/2.8", "S-line", "Multi-focus", "635g"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-09/25-09-22/250922103851025/avatar/638941343754731632_ong-kinh-nikon-z-24-70mm-f-2-8-s-ii.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg"
+    ],    specs: ["24-70mm f/2.8", "S-line", "Multi-focus", "635g"],
     badge: "Chính hãng",
   },
   {
@@ -747,7 +1055,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 17,900,000đ",
     fullSlug: "/san-pham/ong-kinh-tamron-2875-f28-di-iii-vxd-g2-for-nikon-z_ong-kinh-mirrorless-240831133137156",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-31/240831133137156/avatar/638722116807217083_ong-kinh-tamron-28-75mm-f2-8-di-iii-vxd-g2-for-nikon-z.jpg",
-    specs: ["28-75mm f/2.8", "VXD Motor", "G2", "540g"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-31/240831133137156/avatar/638722116807217083_ong-kinh-tamron-28-75mm-f2-8-di-iii-vxd-g2-for-nikon-z.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg"
+    ],    specs: ["28-75mm f/2.8", "VXD Motor", "G2", "540g"],
     badge: "Giá tốt",
   },
   {
@@ -783,7 +1105,21 @@ export const products: Product[] = [
     priceDisplay: "Giá từ: 4,500,000đ",
     fullSlug: "/san-pham/canon-rf-50-f18-stm-chinh-hang_ong-kinh-mirrorless-240803094047373",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094047373/avatar/638847186653427391_canon-rf-50mm-f1-8-stm-chinh-hang.jpg",
-    specs: ["50mm f/1.8", "STM Motor", "Lightweight", "160g"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094047373/avatar/638847186653427391_canon-rf-50mm-f1-8-stm-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg"
+    ],    specs: ["50mm f/1.8", "STM Motor", "Lightweight", "160g"],
     badge: "Bán chạy",
   },
   {
@@ -831,7 +1167,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 47,500,000đ",
     fullSlug: "/san-pham/ong-kinh-canon-rf-70200-f28l-is-usm-chinh-hang_ong-kinh-mirrorless-240802101451137",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751_ong-kinh-canon-rf-70-200mm-f2-8-l-is-usm.jpg",
-    specs: ["70-200mm f/2.8", "L-series", "IS 5-stop", "Nano USM"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751_ong-kinh-canon-rf-70-200mm-f2-8-l-is-usm.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803083448701/avatar/638694560018058513.jpg"
+    ],    specs: ["70-200mm f/2.8", "L-series", "IS 5-stop", "Nano USM"],
     badge: "Chính hãng",
   },
   {
@@ -843,7 +1193,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 52,000,000đ",
     fullSlug: "/san-pham/sony-fe-70200-gm-oss-ii_ong-kinh-mirrorless-240803094242227",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019_ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss.jpg",
-    specs: ["70-200mm f/2.8", "GM II", "Nano XD", "1045g"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019_ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751.jpg"
+    ],    specs: ["70-200mm f/2.8", "GM II", "Nano XD", "1045g"],
     badge: "Chính hãng",
   },
   {
@@ -855,7 +1219,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 12,500,000đ",
     fullSlug: "/san-pham/fujifilm-xf-27-f28-chinh-hang_ong-kinh-mirrorless-230211000754241",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01_ong-kinh-fujifilm-xf-27mm-f2-8-black-chinh-hang.jpg",
-    specs: ["27mm f/2.8", "Pancake", "84g", "XF Mount"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01_ong-kinh-fujifilm-xf-27mm-f2-8-black-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803083448701/avatar/638694560018058513.jpg"
+    ],    specs: ["27mm f/2.8", "Pancake", "84g", "XF Mount"],
     badge: "Chính hãng",
   },
   {
@@ -867,7 +1245,21 @@ export const products: Product[] = [
     priceDisplay: "Giá giao động: 18,500,000đ",
     fullSlug: "/san-pham/sigma-35-f14-dg-ii-art-for-sony-e_ong-kinh-mirrorless-260226193416226",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005_ong-kinh-sigma-35mm-f1-4-dg-ii-for-sony-e-chinh-hang.jpg",
-    specs: ["35mm f/1.4", "Art II", "HSL System", "545g"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193416226/avatar/639077312681395005_ong-kinh-sigma-35mm-f1-4-dg-ii-for-sony-e-chinh-hang.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211000754241/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234138629/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226193618145/avatar/639077314147947388.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210235800676/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-02/251002110911885/avatar/638956078646498942.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-04/251104163539639/avatar/639030467584578943.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-22/251122164647599/avatar/639030467065532802.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-01/26-01-03/260103141436632/avatar/639030465474557304.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803083448701/avatar/638694560018058513.jpg"
+    ],    specs: ["35mm f/1.4", "Art II", "HSL System", "545g"],
     badge: "Chính hãng",
   },
   {
@@ -896,7 +1288,21 @@ export const products: Product[] = [
     priceDisplay: "Vui lòng gọi",
     fullSlug: "/san-pham/flycam-dji-mavic-4-pro-512gb-creator-combo_flycam-250515085035248",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-15/250515085035248/avatar/638828964891489787_dji-mavic-4-pro-512gb-creator-combo.jpg",
-    specs: ["Hasselblad 100MP", "6K 60fps", "LiDAR", "35-40 phút bay"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-15/250515085035248/avatar/638828964891489787_dji-mavic-4-pro-512gb-creator-combo.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121228821/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121318146/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121223462/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-11/24-11-02/241102151301701/avatar/638836956737704928.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121328915/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-04/24-04-03/240403190729530/avatar/638477681327613275.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-11/24-11-02/241102144506281/avatar/638661555984717416.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-08/240808100041911/avatar/638587081597210818.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121323915/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121158931/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121246538/avatar/01.jpg"
+    ],    specs: ["Hasselblad 100MP", "6K 60fps", "LiDAR", "35-40 phút bay"],
     badge: "Flagship",
   },
   {
@@ -956,7 +1362,21 @@ export const products: Product[] = [
     priceDisplay: "Vui lòng gọi",
     fullSlug: "/san-pham/flycam-dji-mini-4-pro-dji-rc-2_flycam-240403185605233",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-04/24-04-03/240403185605233/avatar/638477676845468135_flycam-dji-mini-4-pro-dji-rc-2.jpg",
-    specs: ["<249g", "4K HDR", "O4", "34 phút bay"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-04/24-04-03/240403185605233/avatar/638477676845468135_flycam-dji-mini-4-pro-dji-rc-2.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121228821/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121318146/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121223462/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-11/24-11-02/241102151301701/avatar/638836956737704928.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121328915/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-04/24-04-03/240403190729530/avatar/638477681327613275.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-11/24-11-02/241102144506281/avatar/638661555984717416.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-08/240808100041911/avatar/638587081597210818.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121323915/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121158931/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121246538/avatar/01.jpg"
+    ],    specs: ["<249g", "4K HDR", "O4", "34 phút bay"],
     badge: "Chính hãng",
   },
   {
@@ -1153,7 +1573,21 @@ export const products: Product[] = [
     priceDisplay: "Giá: 9,690,000đ",
     fullSlug: "/san-pham/gopro-hero-13-black_action-camera-250102113303811",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/25-01/25-01-02/250102113303811/avatar/638714152413009638_gopro-hero-13-black.jpg",
-    specs: ["5.3K 60p", "27MP", "HyperSmooth 6.0", "Chống nước 10m"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/25-01/25-01-02/250102113303811/avatar/638714152413009638_gopro-hero-13-black.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-30/260330085702564/avatar/639120324002834549-dji-pocket-4-4-2000x2000-jpg.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226105739670/avatar/639077003951312982.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-21/251121164730482/avatar/638993405876903208.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001859280/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-06/24-06-13/240613101243439/avatar/638538719049533488.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001959018/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211002049598/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-08/240808103727368/avatar/638692606494745882.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211002016347/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001822989/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001923445/avatar/01.jpg"
+    ],    specs: ["5.3K 60p", "27MP", "HyperSmooth 6.0", "Chống nước 10m"],
     badge: "Bán chạy",
   },
   {
@@ -1165,7 +1599,21 @@ export const products: Product[] = [
     priceDisplay: "Giá: 14,740,000đ",
     fullSlug: "/san-pham/dji-osmo-pocket-4-creator-combo_action-camera-260330085702564",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-30/260330085702564/avatar/639120324002834549-dji-pocket-4-4-2000x2000-jpg_may-quay-dji-osmo-pocket-4-creator-combo.jpg",
-    specs: ["1-inch 50MP", "4K 120fps", "Gimbal 3 trục", "Màn hình xoay"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-30/260330085702564/avatar/639120324002834549-dji-pocket-4-4-2000x2000-jpg_may-quay-dji-osmo-pocket-4-creator-combo.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226105739670/avatar/639077003951312982.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-21/251121164730482/avatar/638993405876903208.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001859280/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-06/24-06-13/240613101243439/avatar/638538719049533488.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001959018/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211002049598/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-08/240808103727368/avatar/638692606494745882.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211002016347/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001822989/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001923445/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001920168/avatar/01.jpg"
+    ],    specs: ["1-inch 50MP", "4K 120fps", "Gimbal 3 trục", "Màn hình xoay"],
     badge: "Creator",
   },
   {
@@ -1177,7 +1625,21 @@ export const products: Product[] = [
     priceDisplay: "Giá: 12,990,000đ",
     fullSlug: "/san-pham/insta360-x4_action-camera-240508164520756",
     thumbnail: "https://mayanhvietnam.com/image-data/san-pham/24-05/24-05-08/240508164520756/avatar/638516255074470789_insta360-x4-one-x4.jpg",
-    specs: ["8K 30fps 360°", "72MP Ảnh", "4K Wide-Angle", "Me Mode"],
+
+    images: [
+      "https://mayanhvietnam.com/image-data/san-pham/24-05/24-05-08/240508164520756/avatar/638516255074470789_insta360-x4-one-x4.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-30/260330085702564/avatar/639120324002834549-dji-pocket-4-4-2000x2000-jpg.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226105739670/avatar/639077003951312982.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-21/251121164730482/avatar/638993405876903208.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001859280/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-06/24-06-13/240613101243439/avatar/638538719049533488.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001959018/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211002049598/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-08/240808103727368/avatar/638692606494745882.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211002016347/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001822989/avatar/01.jpg",
+      "https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211001923445/avatar/01.jpg"
+    ],    specs: ["8K 30fps 360°", "72MP Ảnh", "4K Wide-Angle", "Me Mode"],
     badge: "Mới",
   },
 

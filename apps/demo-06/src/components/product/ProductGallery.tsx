@@ -114,9 +114,14 @@ export default function ProductGallery({
 
         {/* Ảnh chính */}
         <div className="flex-1 min-w-0">
-          <button
+          <div
             onClick={() => setLightbox(true)}
-            className="group relative block w-full aspect-square bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") setLightbox(true);
+            }}
+            className="group relative block w-full aspect-square bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 cursor-zoom-in"
             aria-label="Mở lightbox"
           >
             <img
@@ -126,42 +131,48 @@ export default function ProductGallery({
             />
 
             {/* Counter */}
-            <span className="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+            <span className="absolute top-3 right-3 bg-black/70 backdrop-blur text-white text-[11px] font-bold px-3 py-1.5 rounded-full pointer-events-none">
               {idx + 1} / {total}
             </span>
 
             {/* Hint */}
-            <span className="absolute bottom-3 right-3 bg-black/70 backdrop-blur text-white text-[10px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5">
+            <span className="absolute bottom-3 right-3 bg-black/70 backdrop-blur text-white text-[10px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5 pointer-events-none">
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
               </svg>
               Click để phóng to
             </span>
 
-            {/* Prev/Next arrows */}
+            {/* Prev/Next arrows — dùng div role=button để không lồng button */}
             {total > 1 && (
               <>
-                <button
+                <div
                   onClick={(e) => { e.stopPropagation(); prev(); }}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center hover:bg-orange-500 transition-colors"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.stopPropagation(); prev(); } }}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center hover:bg-orange-500 transition-colors cursor-pointer"
                   aria-label="Ảnh trước"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
-                </button>
-                <button
+                </div>
+                <div
                   onClick={(e) => { e.stopPropagation(); next(); }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center hover:bg-orange-500 transition-colors"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.stopPropagation(); next(); } }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur text-white flex items-center justify-center hover:bg-orange-500 transition-colors cursor-pointer"
                   aria-label="Ảnh tiếp"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </button>
+                </div>
               </>
             )}
-          </button>
+          </div>
         </div>
       </div>
 

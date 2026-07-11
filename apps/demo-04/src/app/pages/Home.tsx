@@ -17,6 +17,7 @@ import {
   FEATURED_PRODUCT,
   REVIEWS_SECTION,
   categories,
+  PRODUCT_BY_SLUG,
 } from "../data";
 import { CAT_ICON_MAP } from "../components/BrandLogos";
 import { SectionHeader, ProductCard } from "../components/ui";
@@ -249,16 +250,20 @@ function ProductRow({
             const priceNum = p.priceDisplay.includes("Vui lòng gọi")
               ? 0
               : parseInt(p.priceDisplay.replace(/[^\d]/g, "")) || 0;
+            // Lookup rating/reviews thật từ mock-data theo slug
+            const slug = p.link.split('/san-pham/')[1]?.split('_')[0] ?? '';
+            const matched = PRODUCT_BY_SLUG[slug];
             const product = {
               id: parseInt(p.id.replace(/\D/g, "") || "0", 10),
+              slug,
               brand: p.name.split(" ")[0],
               name: p.name,
               category: p.id.startsWith("cam") ? "Máy ảnh" : p.id.startsWith("len") ? "Ống kính" : "Phụ kiện",
               price: priceNum,
               originalPrice: null,
               badge: null,
-              rating: 4.8,
-              reviews: 0,
+              rating: matched?.rating ?? 4.8,
+              reviews: matched?.reviews ?? 0,
               img: p.img,
               thumbs: p.img ? [p.img] : [],
               specs: [],

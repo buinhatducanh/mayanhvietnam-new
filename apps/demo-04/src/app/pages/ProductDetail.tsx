@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router";
 import { ShoppingCart, Heart, ChevronRight, Star, Shield, Truck, RotateCcw, Zap, CheckCircle, Package } from "lucide-react";
 import { useTheme } from "../context";
-import { ACCENT, vnd, PRODUCTS, TOP_CAMERAS, TOP_LENSES, HomepageProduct } from "../data";
+import { ACCENT, vnd, PRODUCTS, PRODUCT_BY_SLUG, HomepageProduct } from "../data";
 import { Stars, Chip, ProductCard } from "../components/ui";
 
 const FAKE_REVIEWS = [
@@ -12,44 +12,28 @@ const FAKE_REVIEWS = [
 ];
 
 export default function ProductDetail() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const { dark } = useTheme();
   const [activeThumb, setActiveThumb] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const [qty, setQty] = useState(1);
 
-  // Tìm product theo slug (ưu tiên) hoặc id
+  // Tìm product theo slug (PRODUCTS có rating + specs đầy đủ từ mock-data)
   const product = useMemo(() => {
-    if (!id) return undefined;
-    const idStr = decodeURIComponent(id);
+    if (!slug) return undefined;
+    const slugStr = decodeURIComponent(slug);
 
-    // Thử lookup trong scraped products trước (slug-based)
-    const scraped: HomepageProduct[] = [...TOP_CAMERAS, ...TOP_LENSES];
-    const fromScraped = scraped.find(p => p.link.includes(idStr));
-    if (fromScraped) {
-      return {
-        id: parseInt(fromScraped.id.replace(/\D/g, '') || '0', 10),
-        brand: fromScraped.name.split(" ")[0],
-        name: fromScraped.name,
-        category: fromScraped.id.startsWith('cam') ? 'Máy ảnh' : 'Ống kính',
-        price: fromScraped.priceDisplay.includes('Vui lòng gọi') ? 0 : parseInt(fromScraped.priceDisplay.replace(/[^\d]/g, '')) || 0,
-        originalPrice: null,
-        badge: null,
-        rating: 4.8, reviews: 0,
-        img: fromScraped.img,
-        thumbs: fromScraped.img ? [fromScraped.img] : [],
-        specs: [], desc: '', features: [], inBox: [],
-      };
-    }
+    // Lookup chính: PRODUCT_BY_SLUG (mock-data có rating.reviews + specs grouped đầy đủ)
+    const fromProducts = PRODUCT_BY_SLUG[slugStr];
+    if (fromProducts) return fromProducts;
 
-    // Fallback PRODUCTS (id-based)
-    const asNumber = Number(idStr);
-    if (!isNaN(asNumber)) {
-      return PRODUCTS.find(p => p.id === asNumber);
-    }
+    // Fallback: slug ngắn (ví dụ "canon-eos-r6-mark-ii-body-only") có thể match một phần
+    const matchByPartial = PRODUCTS.find(p => slugStr.includes(p.slug) || p.slug.includes(slugStr));
+    if (matchByPartial) return matchByPartial;
+
     return undefined;
-  }, [id]);
+  }, [slug]);
 
   if (!product) {
     return (
@@ -264,18 +248,33 @@ export default function ProductDetail() {
             )}
 
             {activeTab === 1 && (
-              <div className="max-w-2xl">
-                <div className="rounded-2xl border border-border overflow-hidden">
-                  {product.specs.map((spec, i) => (
-                    <div key={spec.label} className="flex items-center border-b border-border last:border-0"
-                      style={{ background: i % 2 === 0 ? (dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.018)") : "transparent" }}>
-                      <div className="w-44 px-4 py-3 flex-shrink-0 border-r border-border">
-                        <p className="text-[11px] font-mono font-semibold text-muted-foreground">{spec.label}</p>
+              <div className="max-w-2xl space-y-4">
+                {product.specs.length > 0 ? (
+                  product.specs.map((group, gi) => (
+                    <div key={gi}>
+                      <h3 className="text-[11px] font-mono font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                        {group.group}
+                      </h3>
+                      <div className="rounded-2xl border border-border overflow-hidden">
+                        {group.items.map((spec, i) => (
+                          <div key={spec.label} className="flex items-center border-b border-border last:border-0"
+                            style={{ background: i % 2 === 0 ? (dark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.018)") : "transparent" }}>
+                            <div className="w-44 px-4 py-3 flex-shrink-0 border-r border-border">
+                              <p className="text-[11px] font-mono font-semibold text-muted-foreground">{spec.label}</p>
+                            </div>
+                            <p className="px-4 py-3 text-xs font-medium">{spec.value}</p>
+                          </div>
+                        ))}
                       </div>
-                      <p className="px-4 py-3 text-xs font-medium">{spec.value}</p>
                     </div>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <div className="rounded-2xl border border-border overflow-hidden">
+                    {(product as any).specs?.map ? null : (
+                      <p className="px-4 py-6 text-xs text-muted-foreground text-center">Thông số kỹ thuật đang được cập nhật.</p>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 

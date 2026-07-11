@@ -52,7 +52,7 @@ export function HeroCarousel() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 {/* Text overlay */}
                 <div className="absolute bottom-5 left-6 sm:bottom-7 sm:left-8 right-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] mb-1.5" style={{ color: '#FF6B35' }}>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] mb-1.5" style={{ color: '#2563eb' }}>
                     mayanhvietnam.com
                   </p>
                   <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight mb-1 group-hover:text-primary transition-colors">

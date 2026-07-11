@@ -51,7 +51,7 @@ export function ProductCard({ p }: { p: Product }) {
 
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      onClick={() => navigate(`/san-pham/${p.id}`)}
+      onClick={() => navigate(`/san-pham/${p.slug}`)}
       className="rounded-2xl overflow-hidden border border-border bg-card cursor-pointer transition-all duration-300 flex flex-col"
       style={hov ? {
         borderColor: "rgba(255,107,53,0.5)",

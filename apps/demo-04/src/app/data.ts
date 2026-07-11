@@ -151,7 +151,7 @@ export interface Product {
   brand: string; name: string; category: string;
   price: number; originalPrice: number | null; badge: string | null;
   rating: number; reviews: number; img: string; thumbs: string[];
-  specs: { label: string; value: string }[]; desc: string;
+  specs: { group: string; items: { label: string; value: string }[] }[]; desc: string;
   features: string[]; inBox: string[];
 }
 export interface Brand {
@@ -176,7 +176,7 @@ export const PRODUCTS: Product[] = _allProducts.map((p, idx) => ({
   rating: p.rating?.average ?? 0, reviews: p.rating?.count ?? 0,
   img: p.thumbnail || p.images?.[0]?.url || '',
   thumbs: (p.images ?? []).map((i) => i.url),
-  specs: (p.specs ?? []).flatMap((g) => g.items),
+  specs: p.specs ?? [],  // giữ grouped specs (group + items) cho PDP render theo nhóm
   desc: p.description ?? '', features: p.highlights ?? [],
   inBox: p.packageIncludes ?? [],
 }));

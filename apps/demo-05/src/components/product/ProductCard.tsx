@@ -25,7 +25,7 @@ export function ProductCard({ product }: Props) {
           style={{ imageRendering: 'auto' }}
         />
         {discount > 0 && (
-          <span className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold text-white" style={{ background: '#FF6B35' }}>
+          <span className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold text-white" style={{ background: '#2563eb' }}>
             -{discount}%
           </span>
         )}
@@ -87,7 +87,7 @@ export function ProductCard({ product }: Props) {
           type="button"
           onClick={() => addItem(product)}
           className="mt-2 w-full flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-[0.98]"
-          style={{ background: '#FF6B35' }}
+          style={{ background: '#2563eb' }}
         >
           <ShoppingCart className="w-3.5 h-3.5" />
           Thêm vào giỏ

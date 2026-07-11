@@ -186,6 +186,14 @@ export interface LensOption {
   coverage: 'Full-frame' | 'APS-C';
 }
 
+// ─── Category Banner (carousel on homepage per section) ────────────────────
+export interface CategoryBanner {
+  title: string;
+  subtitle?: string;
+  image: string;
+  href: string;
+}
+
 // ─── Promotional banner ──────────────────────────────────────────────────────
 
 export interface PromotionalBanner {

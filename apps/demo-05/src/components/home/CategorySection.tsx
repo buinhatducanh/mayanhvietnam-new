@@ -161,7 +161,7 @@ function ProductMiniCard({ product }: { product: RealProduct }) {
         {discount > 0 && (
           <span
             className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold text-white"
-            style={{ background: '#FF6B35' }}
+            style={{ background: '#2563eb' }}
           >
             -{discount}%
           </span>

@@ -20,11 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="dark" suppressHydrationWarning>
+    <html lang="vi" suppressHydrationWarning>
       <body className="antialiased bg-background text-foreground">
         <CartProvider>
           <Header />
-          <main className="pt-28 md:pt-[108px]">{children}</main>
+          <main className="pt-[80px] md:pt-[136px]">{children}</main>
           <Footer />
           <CartDrawer />
         </CartProvider>

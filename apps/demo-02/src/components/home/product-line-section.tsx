@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { BannerSlider, type BannerSlide } from '@/components/banner-slider'
+import { SmallBannerCarousel } from '@/components/home/small-banner-carousel'
 import { ProductCard } from '@/components/product-card'
 import { getProductsByCategory } from '@/lib/products'
 
@@ -11,6 +12,8 @@ interface ProductLineSectionProps {
   title: string
   icon: LucideIcon
   adSlides: BannerSlide[]
+  /** Mini banners hiển thị sau products — pattern đúng mayanhvietnam.com */
+  miniBanners?: { title: string; image: string; href: string }[]
 }
 
 export function ProductLineSection({
@@ -19,6 +22,7 @@ export function ProductLineSection({
   title,
   icon: Icon,
   adSlides,
+  miniBanners,
 }: ProductLineSectionProps) {
   const items = getProductsByCategory(categorySlug).slice(0, 4)
   if (items.length === 0) return null
@@ -28,7 +32,7 @@ export function ProductLineSection({
       aria-label={title}
       className="mx-auto w-full max-w-7xl px-4 lg:px-8"
     >
-      {/* Ad banner slide for this product line */}
+      {/* Ad banner slide for this product line — giống demo-05 */}
       <BannerSlider slides={adSlides} variant="ad" interval={5000} />
 
       {/* Heading */}
@@ -63,6 +67,13 @@ export function ProductLineSection({
           </div>
         ))}
       </div>
+
+      {/* Small Banner Carousel — giống bannerSileSmall-2 trên mayanhvietnam.com */}
+      {miniBanners && miniBanners.length > 0 && (
+        <div className="mt-6">
+          <SmallBannerCarousel banners={miniBanners} />
+        </div>
+      )}
     </section>
   )
 }

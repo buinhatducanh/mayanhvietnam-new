@@ -18,18 +18,20 @@ export function Footer() {
   const visibleStores = stores.slice(0, 4);
 
   return (
-    <footer className="relative bg-[#0d0d12] text-muted-foreground border-t border-border/30">
+    <footer className="relative bg-white text-muted-foreground border-t border-border">
       {/* ── TOP SECTION — 4 columns ── */}
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* ── COLUMN 1: Logo + Description + Social ── */}
           <div>
             <Link href="/" className="block mb-4">
-              <img
-                src={REAL_ASSETS.logoFull}
-                alt="Máy Ảnh Việt Nam"
-                className="h-14 w-auto object-contain"
-              />
+              <div className="inline-flex items-center rounded-lg bg-primary px-3 py-2 shadow-sm">
+                <img
+                  src={REAL_ASSETS.logoFull}
+                  alt="Máy Ảnh Việt Nam"
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
             </Link>
             <p className="text-xs leading-relaxed text-muted-foreground mb-5">
               Máy Ảnh Việt Nam là đơn vị tiên phong trong lĩnh vực phân phối và bán lẻ các sản phẩm máy ảnh tại thị trường Việt Nam.
@@ -41,7 +43,7 @@ export function Footer() {
                 href="https://www.youtube.com/@benhvienmayanhvietnam950"
                 aria-label="Youtube"
                 title="Youtube: Máy Ảnh Việt Nam"
-                className="w-9 h-9 rounded-md bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-red-500 hover:border-red-500/40 transition-colors"
+                className="w-9 h-9 rounded-md bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-red-500 hover:border-red-500/40 transition-colors"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -51,7 +53,7 @@ export function Footer() {
                 href="https://www.tiktok.com/@mayanhvietnam"
                 aria-label="TikTok"
                 title="TikTok: Máy Ảnh Việt Nam"
-                className="w-9 h-9 rounded-md bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+                className="w-9 h-9 rounded-md bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.80 15.66a6.34 6.34 0 0 0 10.86-4.42V8.43a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.86z" />
@@ -61,7 +63,7 @@ export function Footer() {
                 href="https://www.facebook.com/mayanhvietnam"
                 aria-label="Facebook"
                 title="Facebook: Máy Ảnh Việt Nam"
-                className="w-9 h-9 rounded-md bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-blue-500 hover:border-blue-500/40 transition-colors"
+                className="w-9 h-9 rounded-md bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-blue-500 hover:border-blue-500/40 transition-colors"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
@@ -71,7 +73,7 @@ export function Footer() {
                 href="mailto:info@mayanhvietnam.com"
                 aria-label="Email"
                 title="Email: Máy Ảnh Việt Nam"
-                className="w-9 h-9 rounded-md bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
+                className="w-9 h-9 rounded-md bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -79,7 +81,7 @@ export function Footer() {
                 href="tel:0907215252"
                 aria-label="Gọi ngay: 0907215252"
                 title="Gọi ngay"
-                className="w-9 h-9 rounded-md bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-success hover:border-success/40 transition-colors"
+                className="w-9 h-9 rounded-md bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-success hover:border-success/40 transition-colors"
               >
                 <Phone className="w-4 h-4" />
               </a>
@@ -91,7 +93,7 @@ export function Footer() {
             </p>
             <div className="grid grid-cols-3 gap-1.5 mb-6">
               {REAL_ASSETS.paymentIcons.map((icon) => (
-                <div key={icon} className="relative aspect-[1.6/1] rounded bg-white overflow-hidden">
+                <div key={icon} className="relative aspect-[1.6/1] rounded bg-white border border-border overflow-hidden">
                   <img src={icon} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-contain p-1" />
                 </div>
               ))}
@@ -144,9 +146,9 @@ export function Footer() {
                 <Phone className="w-3.5 h-3.5 text-muted-foreground mt-0.5 shrink-0" />
                 <span>
                   Hotline:{' '}
-                  <a href="tel:0907215252" className="font-bold" style={{ color: '#FF6B35' }}>0907-215-252</a>
+                  <a href="tel:0907215252" className="font-bold text-primary">0907-215-252</a>
                   <span className="text-muted-foreground/60 mx-1">|</span>
-                  <a href="tel:0937148222" className="font-bold" style={{ color: '#FF6B35' }}>0937-148-222</a>
+                  <a href="tel:0937148222" className="font-bold text-primary">0937-148-222</a>
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -166,16 +168,15 @@ export function Footer() {
             <h4 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">Hệ thống cửa hàng</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {visibleStores.map((s) => (
-                <div key={s.id} className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 mt-0.5 shrink-0" style={{ color: '#FF6B35' }} />
+                <div key={s.id} className="flex items-start gap-2.5 p-3 rounded-lg border border-border bg-muted/40">
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
                   <div>
                     <p className="text-xs font-bold text-foreground mb-0.5">{s.name}</p>
                     <p className="text-[11px] text-muted-foreground leading-relaxed">{s.address}</p>
-                    <p className="text-[10px] text-text-muted mt-0.5 font-mono">{s.hours}</p>
+                    <p className="text-[10px] text-muted-foreground mt-0.5 font-mono">{s.hours}</p>
                     <a
                       href={`tel:${s.phone}`}
-                      className="text-[11px] font-semibold inline-block mt-0.5 hover:underline"
-                      style={{ color: '#FF6B35' }}
+                      className="text-[11px] font-semibold inline-block mt-0.5 text-primary hover:underline"
                     >
                       📞 {s.phone}
                     </a>
@@ -188,7 +189,7 @@ export function Footer() {
       </div>
 
       {/* ── COPYRIGHT SECTION ── */}
-      <div className="border-t border-border/30 bg-[#08080d]">
+      <div className="border-t border-border bg-muted">
         <div className="mx-auto max-w-[1280px] px-4 sm:px-6 py-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:items-center">
             {/* Copyright text — like mayanhvietnam.com */}

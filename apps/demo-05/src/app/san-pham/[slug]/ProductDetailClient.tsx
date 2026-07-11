@@ -77,7 +77,7 @@ export function ProductDetailClient({
               className="object-contain p-8"
             />
             {discount > 0 && (
-              <span className="absolute top-4 left-4 rounded-md px-3 py-1 text-xs font-mono font-bold text-white" style={{ background: '#FF6B35' }}>
+              <span className="absolute top-4 left-4 rounded-md px-3 py-1 text-xs font-mono font-bold text-white" style={{ background: '#2563eb' }}>
                 -{discount}%
               </span>
             )}
@@ -171,7 +171,7 @@ export function ProductDetailClient({
                 <Plus className="w-4 h-4" />
               </button>
             </div>
-            <button onClick={handleBuyNow} className="flex-1 h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}>
+            <button onClick={handleBuyNow} className="flex-1 h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}>
               <Zap className="w-4 h-4" />
               Mua ngay
             </button>
@@ -245,43 +245,63 @@ export function ProductDetailClient({
 
           {activeTab === 'specs' && (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <tbody>
-                  <tr className="border-b border-border">
-                    <td className="py-3 px-4 text-muted-foreground font-semibold w-1/3">Thương hiệu</td>
-                    <td className="py-3 px-4 text-foreground font-mono">{product.brand}</td>
-                  </tr>
-                  {product.mount && (
-                    <tr className="border-b border-border">
-                      <td className="py-3 px-4 text-muted-foreground font-semibold">Ngàm</td>
-                      <td className="py-3 px-4 text-foreground font-mono">{product.mount}</td>
-                    </tr>
-                  )}
-                  <tr className="border-b border-border">
-                    <td className="py-3 px-4 text-muted-foreground font-semibold">Danh mục</td>
-                    <td className="py-3 px-4 text-foreground capitalize">{product.category.replace(/-/g, ' ')}</td>
-                  </tr>
-                  <tr className="border-b border-border">
-                    <td className="py-3 px-4 text-muted-foreground font-semibold">Tình trạng</td>
-                    <td className="py-3 px-4 text-foreground">{product.isUsed ? 'Đã qua sử dụng' : 'Mới — Chính hãng'}</td>
-                  </tr>
-                  {realSpecs.length > 0 ? (
-                    realSpecs.map((s, i) => (
-                      <tr key={i} className="border-b border-border">
-                        <td className="py-3 px-4 text-muted-foreground font-semibold">Thông số {i + 1}</td>
-                        <td className="py-3 px-4 text-foreground font-mono">{s}</td>
+              {(() => {
+                const specGroups = realProduct?.specs ?? product.specs ?? [];
+                const hasGroupedSpecs = specGroups.length > 0 && specGroups.some((g) => g.items.length > 0);
+                if (hasGroupedSpecs) {
+                  return (
+                    <div className="space-y-6">
+                      {specGroups.map((group, gi) => (
+                        <div key={gi}>
+                          <h4 className="text-sm font-bold text-foreground mb-3 pb-2 border-b border-border">{group.group}</h4>
+                          <table className="w-full text-sm">
+                            <tbody>
+                              {group.items.map((item, ii) => (
+                                <tr key={ii} className="border-b border-border last:border-0">
+                                  <td className="py-3 px-4 text-muted-foreground font-semibold w-1/3">{item.label}</td>
+                                  <td className="py-3 px-4 text-foreground font-mono">{item.value}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+                // Fallback: flat shortSpecs list
+                const specsList = realSpecs.length > 0 ? realSpecs : (product.shortSpecs ?? []);
+                return (
+                  <table className="w-full text-sm">
+                    <tbody>
+                      <tr className="border-b border-border">
+                        <td className="py-3 px-4 text-muted-foreground font-semibold w-1/3">Thương hiệu</td>
+                        <td className="py-3 px-4 text-foreground font-mono">{product.brand}</td>
                       </tr>
-                    ))
-                  ) : (
-                    (product.shortSpecs ?? []).map((s, i) => (
-                      <tr key={i} className="border-b border-border">
-                        <td className="py-3 px-4 text-muted-foreground font-semibold">Thông số {i + 1}</td>
-                        <td className="py-3 px-4 text-foreground font-mono">{s}</td>
+                      {product.mount && (
+                        <tr className="border-b border-border">
+                          <td className="py-3 px-4 text-muted-foreground font-semibold">Ngàm</td>
+                          <td className="py-3 px-4 text-foreground font-mono">{product.mount}</td>
+                        </tr>
+                      )}
+                      <tr className="border-b border-border">
+                        <td className="py-3 px-4 text-muted-foreground font-semibold">Danh mục</td>
+                        <td className="py-3 px-4 text-foreground capitalize">{product.category.replace(/-/g, ' ')}</td>
                       </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
+                      <tr className="border-b border-border">
+                        <td className="py-3 px-4 text-muted-foreground font-semibold">Tình trạng</td>
+                        <td className="py-3 px-4 text-foreground">{product.isUsed ? 'Đã qua sử dụng' : 'Mới — Chính hãng'}</td>
+                      </tr>
+                      {specsList.map((s, i) => (
+                        <tr key={i} className="border-b border-border">
+                          <td className="py-3 px-4 text-muted-foreground font-semibold">Thông số {i + 1}</td>
+                          <td className="py-3 px-4 text-foreground font-mono">{s}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                );
+              })()}
             </div>
           )}
 

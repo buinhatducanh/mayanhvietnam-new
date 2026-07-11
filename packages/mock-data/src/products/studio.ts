@@ -9,9 +9,9 @@ export const studio: ProductSummary[] = [
     id: 'p22',
     slug: 'godox-sl150w-iii',
     name: 'Godox SL150W III LED Video Light',
-    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/01_den-godox-la200d-daylight-led-light-230w.jpeg`,
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175122862/avatar/01_den-godox-la150-daylight-led-light.jpeg`,
     images: imgs(
-      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/01_den-godox-la200d-daylight-led-light-230w.jpeg`,
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175122862/avatar/01_den-godox-la150-daylight-led-light.jpeg`,
       [],
       'Godox SL150W III LED Video Light',
     ),
@@ -67,7 +67,7 @@ export const studio: ProductSummary[] = [
       { id: 'sl150-std', name: 'Chính hãng Godox VN', price: 6490000, discountPrice: 5690000 },
     ],
     hotline: COMMON_HOTLINE,
-    sourceUrl: 'https://mayanhvietnam.com/san-pham/den-godox-sl150w-iii_thiet-bi-studio-230214175317364',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/den-godox-la150-daylight_thiet-bi-studio-230214175122862',
     scrapedAt: '2026-07-09',
   },
 
@@ -76,9 +76,9 @@ export const studio: ProductSummary[] = [
     id: 'p23',
     slug: 'aputure-600d-pro',
     name: 'Aputure LS 600d Pro Daylight LED Light',
-    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/aputure-600d-pro.jpg`,
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175152305/avatar/01_den-led-nanlite-forza-300.jpg`,
     images: imgs(
-      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/aputure-600d-pro.jpg`,
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175152305/avatar/01_den-led-nanlite-forza-300.jpg`,
       [],
       'Aputure LS 600d Pro',
     ),
@@ -134,7 +134,7 @@ export const studio: ProductSummary[] = [
       { id: '600d-pro', name: 'Body + Controller', price: 42990000 },
     ],
     hotline: COMMON_HOTLINE,
-    sourceUrl: 'https://mayanhvietnam.com/san-pham/aputure-600d-pro_thiet-bi-studio-230214175317364',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/den-led-nanlite-forza-300_thiet-bi-studio-230214175152305',
     scrapedAt: '2026-07-09',
   },
 
@@ -143,9 +143,9 @@ export const studio: ProductSummary[] = [
     id: 'p24',
     slug: 'nanlite-forza-60c',
     name: 'Nanlite Forza 60C RGBWW LED Light',
-    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/nanlite-forza-60c.jpg`,
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175312051/avatar/01_den-led-nanlite-compac-200b.jpg`,
     images: imgs(
-      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/nanlite-forza-60c.jpg`,
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175312051/avatar/01_den-led-nanlite-compac-200b.jpg`,
       [],
       'Nanlite Forza 60C',
     ),
@@ -202,7 +202,7 @@ export const studio: ProductSummary[] = [
       { id: 'forza-60c', name: 'Chính hãng Nanlite', price: 8990000, discountPrice: 8590000 },
     ],
     hotline: COMMON_HOTLINE,
-    sourceUrl: 'https://mayanhvietnam.com/san-pham/nanlite-forza-60c_thiet-bi-studio-230214175317364',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/den-led-nanlite-compac-200b_thiet-bi-studio-230214175312051',
     scrapedAt: '2026-07-09',
   },
 
@@ -211,9 +211,9 @@ export const studio: ProductSummary[] = [
     id: 'p25',
     slug: 'godox-ad200-pro',
     name: 'Godox AD200 Pro Pocket Flash',
-    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/godox-ad200-pro.jpg`,
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-14/230214175128058/avatar/01_den-studio-godox-dp600iii.jpg`,
     images: imgs(
-      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/godox-ad200-pro.jpg`,
+      `${CDN}/image-data/san-pham/23-02/23-02-14/230214175128058/avatar/01_den-studio-godox-dp600iii.jpg`,
       [],
       'Godox AD200 Pro',
     ),
@@ -269,7 +269,7 @@ export const studio: ProductSummary[] = [
       { id: 'ad200pro', name: 'Chính hãng Godox VN', price: 4590000, discountPrice: 4290000 },
     ],
     hotline: COMMON_HOTLINE,
-    sourceUrl: 'https://mayanhvietnam.com/san-pham/godox-ad200-pro_thiet-bi-studio-230214175317364',
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/den-studio-godox-dp600iii_thiet-bi-studio-230214175128058',
     scrapedAt: '2026-07-09',
   },
 ];

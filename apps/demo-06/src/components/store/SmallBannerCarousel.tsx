@@ -2,9 +2,13 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { CategoryBanner } from "@/lib/data";
+
+interface CategoryBanner {
+  title: string;
+  image: string;
+  href: string;
+}
 
 interface Props {
   banners: CategoryBanner[];
@@ -65,14 +69,14 @@ export function SmallBannerCarousel({ banners }: Props) {
             onClick={prev}
             className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white opacity-0 group-hover/banner:opacity-100 transition-opacity"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
           </button>
           <button
             type="button"
             onClick={next}
             className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white opacity-0 group-hover/banner:opacity-100 transition-opacity"
           >
-            <ChevronRight className="w-4 h-4" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
           </button>
         </>
       )}

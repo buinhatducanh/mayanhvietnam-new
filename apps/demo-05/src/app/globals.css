@@ -2,38 +2,38 @@
 
 /* ============================================================
    MÁY ẢNH VIỆT NAM — Design System
-   Dark cinematic, teal accent (≤10% surface), JetBrains Mono for prices
+   White surface · Blue (#2563eb) primary · Slate neutrals
    ============================================================ */
 
 @theme {
   /* Core surfaces */
-  --color-background: #0a0a0f;
-  --color-foreground: #f0f0f5;
-  --color-card: #16161f;
-  --color-elevated: #1c1c28;
-  --color-muted: #16161f;
-  --color-muted-foreground: #8888a0;
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-card: #ffffff;
+  --color-elevated: #f8fafc;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
 
   /* Borders */
-  --color-border: #2a2a38;
-  --color-border-subtle: #1e1e2a;
+  --color-border: #e2e8f0;
+  --color-border-subtle: #f1f5f9;
 
-  /* Brand */
-  --color-primary: #00d4aa;
-  --color-primary-deep: #00b894;
-  --color-primary-foreground: #0a0a0f;
+  /* Brand — blue */
+  --color-primary: #2563eb;
+  --color-primary-deep: #1d4ed8;
+  --color-primary-foreground: #ffffff;
 
-  /* Commerce */
-  --color-sale: #ff6b35;
-  --color-sale-deep: #e85d2a;
-  --color-error: #ff4757;
-  --color-warning: #ffc107;
-  --color-info: #5b9aff;
-  --color-success: #00d4aa;
+  /* Commerce accents */
+  --color-sale: #e11d48;
+  --color-sale-deep: #be123c;
+  --color-error: #dc2626;
+  --color-warning: #d97706;
+  --color-info: #0284c7;
+  --color-success: #059669;
 
   /* Text */
-  --color-text-secondary: #8888a0;
-  --color-text-muted: #55556a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
 
   /* Radius */
   --radius-sm: 6px;

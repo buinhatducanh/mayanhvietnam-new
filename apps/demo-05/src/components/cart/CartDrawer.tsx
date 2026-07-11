@@ -33,7 +33,7 @@ export function CartDrawer() {
               </div>
               <p className="text-sm font-semibold text-foreground mb-1">Giỏ hàng trống</p>
               <p className="text-xs text-muted-foreground mb-4">Hãy thêm sản phẩm vào giỏ nhé!</p>
-              <Link href="/san-pham" onClick={closeDrawer} className="h-9 px-4 rounded-lg text-xs font-bold text-primary-foreground" style={{ background: '#FF6B35' }}>
+              <Link href="/san-pham" onClick={closeDrawer} className="h-9 px-4 rounded-lg text-xs font-bold text-primary-foreground" style={{ background: '#2563eb' }}>
                 Khám phá sản phẩm
               </Link>
             </div>
@@ -80,7 +80,7 @@ export function CartDrawer() {
               <Link href="/gio-hang" onClick={closeDrawer} className="h-10 rounded-lg border border-border bg-card text-foreground text-xs font-bold flex items-center justify-center hover:border-primary/40 transition-colors">
                 Xem giỏ hàng
               </Link>
-              <Link href="/thanh-toan" onClick={closeDrawer} className="h-10 rounded-lg text-xs font-bold text-primary-foreground flex items-center justify-center hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}>
+              <Link href="/thanh-toan" onClick={closeDrawer} className="h-10 rounded-lg text-xs font-bold text-primary-foreground flex items-center justify-center hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}>
                 Thanh toán
               </Link>
             </div>

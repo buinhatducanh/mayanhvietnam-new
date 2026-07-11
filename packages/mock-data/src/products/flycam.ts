@@ -6,7 +6,7 @@ const CDN = 'https://mayanhvietnam.com';
 export const flycam: ProductSummary[] = [
   // ── 1. DJI Mavic 4 Pro 512GB Creator Combo ──────────────────────────────
   {
-    id: 'p4',
+    id: 'p26',
     slug: 'dji-mavic-4-pro-512gb-creator-combo',
     name: 'DJI Mavic 4 Pro 512GB Creator Combo',
     thumbnail: mavic4Paths.avatar,

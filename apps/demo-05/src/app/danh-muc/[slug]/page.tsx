@@ -30,7 +30,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <Image src={cat.image} alt={cat.name} fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
         <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10">
-          <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#FF6B35' }}>Danh mục</p>
+          <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] mb-2" style={{ color: '#2563eb' }}>Danh mục</p>
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1">{cat.name}</h1>
           <p className="text-sm text-white/80">
             {products.length > 0
@@ -68,7 +68,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                   <div className="relative aspect-square overflow-hidden bg-elevated">
                     <Image src={p.image} alt={p.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" className="object-contain p-4 group-hover:scale-105 transition-transform duration-500" />
                     {discount > 0 && (
-                      <span className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold text-white" style={{ background: '#FF6B35' }}>
+                      <span className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold text-white" style={{ background: '#2563eb' }}>
                         -{discount}%
                       </span>
                     )}

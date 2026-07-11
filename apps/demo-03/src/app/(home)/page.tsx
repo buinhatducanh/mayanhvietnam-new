@@ -10,6 +10,7 @@ import {
 import { formatVND, calcDiscountPercent } from "@mayanhvietnam/shared-utils";
 import ProductCard from "@/app/components/product/ProductCard";
 import CountdownTimer from "@/app/components/home/CountdownTimer";
+import CategorySection from "@/app/components/home/CategorySection";
 
 // ═══════════════════════════════════════════════════════════════
 // HERO SLIDER
@@ -321,10 +322,10 @@ export default function Home() {
         <FlashSaleSection />
         <DealBanners />
 
-        <ProductSection title="Máy ảnh Mirrorless" icon="📷" categorySlug="may-anh" />
-        <ProductSection title="Ống kính Lens" icon="🔭" categorySlug="ong-kinh" />
-        <ProductSection title="Flycam / Drone" icon="🚁" categorySlug="flycam" />
-        <ProductSection title="Camera hành động" icon="🏃" categorySlug="action-camera" />
+        <CategorySection catSlug="may-anh" icon="📷" />
+        <CategorySection catSlug="ong-kinh" icon="🔭" />
+        <CategorySection catSlug="flycam" icon="🚁" />
+        <CategorySection catSlug="action-camera" icon="🏃" />
 
         <div>
           <div className="flex items-center justify-between mb-4">

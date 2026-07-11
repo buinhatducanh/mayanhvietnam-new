@@ -1,17 +1,27 @@
-export default function DemoPage() {
+import StoreHeader from '@/components/store/StoreHeader';
+import HeroBanner from '@/components/store/HeroBanner';
+import GraphicNavigation from '@/components/store/GraphicNavigation';
+import TrustBar from '@/components/store/TrustBar';
+import ProductGrid from '@/components/store/ProductGrid';
+import ShopByInterest from '@/components/store/ShopByInterest';
+import CommunityGallery from '@/components/store/CommunityGallery';
+import AccessoriesSection from '@/components/store/AccessoriesSection';
+import StoreFooter from '@/components/store/StoreFooter';
+
+export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-[var(--color-primary)] mb-4">
-          Demo 10
-        </h1>
-        <p className="text-[var(--color-text-secondary)] text-lg">
-          mayanhvietnam.com — Interface Demo 10
-        </p>
-        <p className="text-[var(--color-text-secondary)] mt-2 text-sm">
-          Replace this placeholder with your Figma-exported content.
-        </p>
-      </div>
-    </div>
+    <>
+      <StoreHeader />
+      <main>
+        <HeroBanner />
+        <GraphicNavigation />
+        <TrustBar />
+        <ProductGrid />
+        <ShopByInterest />
+        <CommunityGallery />
+        <AccessoriesSection />
+      </main>
+      <StoreFooter />
+    </>
   );
 }
