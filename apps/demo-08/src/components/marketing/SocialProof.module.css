@@ -1,0 +1,208 @@
+.section {
+  padding: var(--space-12) 0;
+  background: var(--color-bg-soft);
+}
+
+/* Stats */
+.stats_row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+@media (min-width: 768px) {
+  .stats_row { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stat_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-6);
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-base);
+}
+
+.stat_item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-200);
+}
+
+.stat_icon { font-size: 32px; margin-bottom: var(--space-2); }
+
+.stat_value {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: var(--font-extrabold);
+  color: var(--color-primary-600);
+  line-height: 1;
+}
+
+.stat_label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+/* Reviews */
+.reviews_header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.reviews_title {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.overall_rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.rating_text {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+}
+
+.reviews_total {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.reviews_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+@media (min-width: 640px) {
+  .reviews_grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .reviews_grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.review_card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.review_card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-200);
+  transform: translateY(-2px);
+}
+
+.review_header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  position: relative;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--color-primary-200);
+}
+
+.reviewer_name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.verified_badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.review_text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  flex: 1;
+}
+
+.review_product {
+  font-size: var(--text-xs);
+  color: var(--color-primary-600);
+  font-weight: var(--font-medium);
+}
+
+.review_date {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Brands */
+.brands_section {
+  text-align: center;
+}
+
+.brands_title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+}
+
+.brands_grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.brand_item {
+  padding: var(--space-3) var(--space-5);
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+
+.brand_item:hover {
+  border-color: var(--color-primary-300);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.brand_name {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.05em;
+}
