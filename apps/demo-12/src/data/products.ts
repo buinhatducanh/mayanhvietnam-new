@@ -1,0 +1,811 @@
+export interface Product {
+  id: number
+  name: string
+  slug: string
+  price: number
+  originalPrice?: number
+  category: string
+  categorySlug: string
+  brand: string
+  badge?: string
+  rating: number
+  image: string
+  description: string
+  specs: Record<string, string>
+}
+
+export const products: Product[] = [
+  // ============ SONY CAMERAS (10) ============
+  {
+    id: 1,
+    name: 'Sony Alpha A7R VI - Body',
+    slug: 'sony-alpha-a7r-vi-body',
+    price: 89900000,
+    originalPrice: 95900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: 'MỚI',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328143107303/avatar/639103051286629766-Alpha-A7R-Mark-VI-png_may-anh-sony-alpha-a7r-vi.jpg',
+    description: 'Sony Alpha A7R VI - Máy ảnh mirrorless Full-frame với cảm biến 61MP, xử lý ảnh tiên tiến nhất, AF AI tracking.',
+    specs: { 'Cảm biến': '61MP Full-frame BSI', 'Quay video': '8K 30p / 4K 120p', 'Lấy nét': 'AF AI tracking', 'Chống rung': 'IBIS 5.5 stop' }
+  },
+  {
+    id: 2,
+    name: 'Sony A7 V (A7M5) - Body',
+    slug: 'sony-a7-mark-v-body',
+    price: 65900000,
+    originalPrice: 69900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: 'MỚI',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-11/25-11-26/251126090035598/avatar/639005206164966322_may-anh-sony-a7-mark-v-a7m5-chinh-hang.jpg',
+    description: 'Sony A7 V - Thế hệ máy ảnh fullframe mới nhất với cảm biến 33MP, AF AI và quay video chuyên nghiệp.',
+    specs: { 'Cảm biến': '33MP Full-frame', 'Quay video': '4K 60p 10-bit', 'Lấy nét': 'AF AI - 759 điểm', 'Chống rung': 'IBIS 5.0 stop' }
+  },
+  {
+    id: 3,
+    name: 'Sony A9 III - Body',
+    slug: 'sony-a9-iii-body',
+    price: 79900000,
+    originalPrice: 85900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: 'BÁN CHẠY',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-12/25-12-09/251209090438536/avatar/639008696959464299_may-anh-sony-a9-iii-chinh-hang.jpg',
+    description: 'Sony A9 III - Máy ảnh thể thao hàng đầu với cảm biến stacked 24.6MP, tốc độ chụp 120fps và AF cực nhanh.',
+    specs: { 'Cảm biến': '24.6MP Stacked CMOS', 'Quay video': '4K 120p', 'Lấy nét': 'AI tracking', 'Chống rung': 'IBIS 5.5 stop' }
+  },
+  {
+    id: 4,
+    name: 'Sony A7 IV - Body',
+    slug: 'sony-a7-iv-body',
+    price: 59900000,
+    originalPrice: 64900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: 'HOT',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540859/avatar/01_may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang.jpg',
+    description: 'Sony A7 IV - Máy ảnh fullframe đa năng với cảm biến 33MP, AF 759 điểm, quay 4K 60fps.',
+    specs: { 'Cảm biến': '33MP Full-frame', 'Quay video': '4K 60fps', 'Lấy nét': 'AF 759 điểm', 'Chống rung': 'IBIS 5.5 stop' }
+  },
+  {
+    id: 5,
+    name: 'Sony A7R V - Body',
+    slug: 'sony-a7r-v-body',
+    price: 72900000,
+    originalPrice: 78900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802084419498/avatar/638692697759009422_may-anh-sony-alpha-a7r-mark-v-chinh-hang.jpg',
+    description: 'Sony A7R V - Máy ảnh độ phân giải cao 61MP với AF AI, quay 8K 24p và màn hình xoay 4 trục.',
+    specs: { 'Cảm biến': '61MP Full-frame', 'Quay video': '8K 24p / 4K 60p', 'Lấy nét': 'AI tracking', 'Chống rung': 'IBIS 5.5 stop' }
+  },
+  {
+    id: 6,
+    name: 'Sony A7C II - Body (Silver)',
+    slug: 'sony-a7c-ii-body-silver',
+    price: 48900000,
+    originalPrice: 52900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: 'GIẢM GIÁ',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-08/23-08-30/230830134714949/avatar/638308197638831519_may-anh-sony-alpha-a7c-ii-body-only-silver-chinh-hang.jpg',
+    description: 'Sony A7C II - Máy ảnh fullframe nhỏ gọn, nhẹ chỉ 514g, AF AI, quay 4K 60fps 10-bit.',
+    specs: { 'Cảm biến': '33MP Full-frame', 'Quay video': '4K 60p 10-bit', 'Lấy nét': 'AF AI', 'Chống rung': 'IBIS 5.0 stop' }
+  },
+  {
+    id: 7,
+    name: 'Sony A6400 + 16-50mm OSS II',
+    slug: 'sony-a6400-16-50mm',
+    price: 18900000,
+    originalPrice: 20900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: '',
+    rating: 4.6,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-11/250711141506840/avatar/638955413887000088_sony-a6400-kem-lens-16-50mm-f-3-5-5-6-oss-ii-black-chinh-hang.jpg',
+    description: 'Sony A6400 - Máy ảnh APS-C với AF siêu nhanh 0.02 giây, lật màn hình 180°, quay 4K.',
+    specs: { 'Cảm biến': '24.2MP APS-C', 'Quay video': '4K 30p', 'Lấy nét': 'AF 425 điểm', 'Trọng lượng': '403g' }
+  },
+  {
+    id: 8,
+    name: 'Sony ZV-E10 II - Body (White)',
+    slug: 'sony-zv-e10-ii-body-white',
+    price: 13900000,
+    originalPrice: 15900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: 'MỚI',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-10/25-10-07/251007153637860/avatar/638954482403644703_may-anh-sony-zv-e10-ii-white-body-only-chinh-hang.jpg',
+    description: 'Sony ZV-E10 II - Máy ảnh Vlog nhỏ gọn với cảm biến APS-C, lấy nét AI, màn hình lật, quay 4K 60fps.',
+    specs: { 'Cảm biến': '26MP APS-C', 'Quay video': '4K 60p', 'Lấy nét': 'AF AI', 'Trọng lượng': '377g' }
+  },
+  {
+    id: 9,
+    name: 'Sony ZV-E1 - Body',
+    slug: 'sony-zv-e1-body',
+    price: 29900000,
+    originalPrice: 32900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-25/240825103429290/avatar/638692655273255872_may-anh-sony-zv-e1-body-only-chinh-hang.jpg',
+    description: 'Sony ZV-E1 - Máy ảnh Vlog fullframe đầu tiên, cảm biến 12MP, AI tracking, quay 4K 120fps.',
+    specs: { 'Cảm biến': '12MP Full-frame', 'Quay video': '4K 120p', 'Lấy nét': 'AI tracking', 'Trọng lượng': '483g' }
+  },
+  {
+    id: 10,
+    name: 'Sony ZV-1F - White',
+    slug: 'sony-zv-1f-white',
+    price: 8900000,
+    originalPrice: 9900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Sony',
+    badge: 'GIẢM GIÁ',
+    rating: 4.5,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210225752079/avatar/01_may-anh-sony-zv-1f-white-chinh-hang.jpg',
+    description: 'Sony ZV-1F - Máy ảnh Vlog compact với ống kính 20mm, lấy nét AI, phù hợp quay vlog và stream.',
+    specs: { 'Cảm biến': '20.1MP 1"', 'Quay video': '4K 30p', 'Lấy nét': 'AF AI', 'Trọng lượng': '256g' }
+  },
+
+  // ============ CANON CAMERAS (6) ============
+  {
+    id: 11,
+    name: 'Canon EOS R50 Black + RF-S 18-45mm',
+    slug: 'canon-eos-r50-18-45mm',
+    price: 17900000,
+    originalPrice: 19900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Canon',
+    badge: 'BÁN CHẠY',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg',
+    description: 'Canon EOS R50 - Máy ảnh mirrorless APS-C nhẹ nhất, lấy nét Dual Pixel CMOS AF II, quay 4K 30fps.',
+    specs: { 'Cảm biến': '24.2MP APS-C', 'Quay video': '4K 30p', 'Lấy nét': 'Dual Pixel AF II', 'Trọng lượng': '375g' }
+  },
+  {
+    id: 12,
+    name: 'Canon EOS R8 - Body',
+    slug: 'canon-eos-r8-body',
+    price: 42900000,
+    originalPrice: 46900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Canon',
+    badge: 'HOT',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-19/230419151242054/avatar/canon-eos-r8-6-500x500_may-anh-canon-eos-r8-body-only.jpg',
+    description: 'Canon EOS R8 - Máy ảnh fullframe nhẹ nhất của Canon, lấy nét AF II, quay 4K 60fps 10-bit.',
+    specs: { 'Cảm biến': '24.2MP Full-frame', 'Quay video': '4K 60p', 'Lấy nét': 'Dual Pixel AF II', 'Trọng lượng': '461g' }
+  },
+  {
+    id: 13,
+    name: 'Canon EOS R7 - Body',
+    slug: 'canon-eos-r7-body',
+    price: 38900000,
+    originalPrice: 41900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Canon',
+    badge: '',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-01/240801175147151/avatar/638692586740986637_may-anh-canon-eos-r7-chinh-hang.jpg',
+    description: 'Canon EOS R7 - Máy ảnh APS-C chuyên nghiệp với IBIS 7 stop, quay 4K 60fps, chụp 30fps.',
+    specs: { 'Cảm biến': '32.5MP APS-C', 'Quay video': '4K 60p', 'Lấy nét': 'Dual Pixel AF II', 'Chống rung': 'IBIS 7 stop' }
+  },
+  {
+    id: 14,
+    name: 'Canon EOS R3 - Body',
+    slug: 'canon-eos-r3-body',
+    price: 89900000,
+    originalPrice: 95900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Canon',
+    badge: '',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223530566/avatar/01_may-anh-canon-eos-r3-body-only.jpg',
+    description: 'Canon EOS R3 - Máy ảnh thể thao hàng đầu, cảm biến stacked 24MP, chụp 30fps, lấy nét cực nhanh.',
+    specs: { 'Cảm biến': '24MP Stacked Full-frame', 'Quay video': '6K 60p RAW', 'Lấy nét': 'Dual Pixel AF', 'Chống rung': 'IBIS 8 stop' }
+  },
+  {
+    id: 15,
+    name: 'Canon EOS RP - Body',
+    slug: 'canon-eos-rp-body',
+    price: 29900000,
+    originalPrice: 32900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Canon',
+    badge: 'GIẢM GIÁ',
+    rating: 4.5,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210224704223/avatar/01_may-anh-canon-eos-rp-body-only.jpg',
+    description: 'Canon EOS RP - Máy ảnh fullframe giá rẻ, nhẹ 440g, lấy nét Dual Pixel AF, quay 4K 25fps.',
+    specs: { 'Cảm biến': '26.2MP Full-frame', 'Quay video': '4K 25p', 'Lấy nét': 'Dual Pixel AF', 'Trọng lượng': '440g' }
+  },
+  {
+    id: 16,
+    name: 'Canon PowerShot V1',
+    slug: 'canon-powershot-v1',
+    price: 18900000,
+    originalPrice: 20900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Canon',
+    badge: 'MỚI',
+    rating: 4.6,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-04/25-04-01/250401154750200/avatar/638791195089528514_may-anh-canon-powershot-v1-chinh-hang.jpg',
+    description: 'Canon PowerShot V1 - Máy ảnh compact mới, ống kính 16-50mm f/2.8-4.5, quay 4K, phù hợp Vlog.',
+    specs: { 'Cảm biến': '1" CMOS', 'Quay video': '4K 30p', 'Lấy nét': 'Dual Pixel AF', 'Trọng lượng': '381g' }
+  },
+
+  // ============ NIKON CAMERAS (12) ============
+  {
+    id: 17,
+    name: 'Nikon Z6 III + 24-70mm f/4 S',
+    slug: 'nikon-z6-iii-24-70mm',
+    price: 57900000,
+    originalPrice: 62900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Nikon',
+    badge: 'HOT',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-20/250520145943720/avatar/638833501469480006_nikon-z6-mark-iii-kem-lens-z-24-70-mm-f-4-s-chinh-hang-vic.jpg',
+    description: 'Nikon Z6 III - Máy ảnh fullframe đa năng, cảm biến 24.5MP stacked, quay 6K RAW, AF Subject Detection.',
+    specs: { 'Cảm biến': '24.5MP Stacked CMOS', 'Quay video': '6K RAW / 4K 120p', 'Lấy nét': 'Subject Detection AF', 'Chống rung': 'VR 8 stop' }
+  },
+  {
+    id: 18,
+    name: 'Nikon Z5 II - Body',
+    slug: 'nikon-z5-ii-body',
+    price: 35900000,
+    originalPrice: 38900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Nikon',
+    badge: 'MỚI',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-04/250704114217939/avatar/638872262359118095_may-anh-nikon-z5-ii-hang.jpg',
+    description: 'Nikon Z5 II - Máy ảnh fullframe tầm trung với 2 khe thẻ nhớ, quay 4K 60fps, AF cải tiến.',
+    specs: { 'Cảm biến': '24.5MP Full-frame', 'Quay video': '4K 60p', 'Lấy nét': 'Hybrid AF', 'Chống rung': 'VR 5 stop' }
+  },
+  {
+    id: 19,
+    name: 'Nikon Zf - Body (Black)',
+    slug: 'nikon-zf-body-black',
+    price: 39900000,
+    originalPrice: 42900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Nikon',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-30/250530073748218/avatar/638841874800416073_may-anh-nikon-zf-kit-z-40mm-f2-se.jpg',
+    description: 'Nikon Zf - Máy ảnh retro với cảm biến 24.5MP, lấy nét subject detection, quay 4K 60fps 10-bit.',
+    specs: { 'Cảm biến': '24.5MP Full-frame', 'Quay video': '4K 60p', 'Lấy nét': 'Subject Detection', 'Chống rung': 'VR 8 stop' }
+  },
+  {
+    id: 20,
+    name: 'Nikon Z6 II - Body',
+    slug: 'nikon-z6-ii-body',
+    price: 45900000,
+    originalPrice: 49900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Nikon',
+    badge: '',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-04/23-04-18/230418180440520/avatar/nikon-z6-ii-500x500_may-anh-nikon-z6-ii-body-only-chinh-hang.jpg',
+    description: 'Nikon Z6 II - Máy ảnh fullframe 24.5MP, 2 khe thẻ, quay 4K 60fps, lấy nét nhanh.',
+    specs: { 'Cảm biến': '24.5MP Full-frame', 'Quay video': '4K 60p', 'Lấy nét': 'Hybrid AF', 'Chống rung': 'VR 5 stop' }
+  },
+  {
+    id: 21,
+    name: 'Nikon Z50 II - Body',
+    slug: 'nikon-z50-ii-body',
+    price: 15900000,
+    originalPrice: 17900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Nikon',
+    badge: 'MỚI',
+    rating: 4.6,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-02/25-02-06/250206095656295/avatar/638745179216782096_may-anh-nikon-z50-ii-body.jpg',
+    description: 'Nikon Z50 II - Máy ảnh APS-C mới, lấy nét subject detection, quay 4K 30fps, màn hình lật.',
+    specs: { 'Cảm biến': '20.9MP APS-C', 'Quay video': '4K 30p', 'Lấy nét': 'Subject Detection', 'Trọng lượng': '450g' }
+  },
+  {
+    id: 22,
+    name: 'Nikon Z30 + 16-50mm VR',
+    slug: 'nikon-z30-16-50mm',
+    price: 13900000,
+    originalPrice: 15900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Nikon',
+    badge: '',
+    rating: 4.5,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-06/25-06-20/250620115535850/avatar/638889641077470341_may-anh-nikon-z30-den-kem-lens-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-chinh-hang.jpg',
+    description: 'Nikon Z30 - Máy ảnh Vlog APS-C, màn hình lật, micro stereo, quay 4K 30fps, nhẹ 405g.',
+    specs: { 'Cảm biến': '20.9MP APS-C', 'Quay video': '4K 30p', 'Lấy nét': 'Hybrid AF', 'Trọng lượng': '405g' }
+  },
+  {
+    id: 23,
+    name: 'Nikon Zfc + 16-50mm VR (Silver)',
+    slug: 'nikon-zfc-16-50mm-silver',
+    price: 16900000,
+    originalPrice: 18900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Nikon',
+    badge: '',
+    rating: 4.6,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-06/25-06-20/250620114819084/avatar/638864423515360825_may-anh-nikon-z-fc-bac-kem-ong-kinh-nikkor-z-dx-16-50mm-f-3-5-6-3-vr-chinh-hang.jpg',
+    description: 'Nikon Zfc - Máy ảnh retro APS-C, 5 trục VR, màn hình xoay, quay 4K 30fps, thiết kế cổ điển.',
+    specs: { 'Cảm biến': '20.9MP APS-C', 'Quay video': '4K 30p', 'Lấy nét': 'Hybrid AF', 'Chống rung': 'VR 5 stop' }
+  },
+
+  // ============ FUJIFILM (1) ============
+  {
+    id: 24,
+    name: 'Fujifilm X-H2S - Body',
+    slug: 'fujifilm-x-h2s-body',
+    price: 59900000,
+    originalPrice: 64900000,
+    category: 'Máy Ảnh',
+    categorySlug: 'may-anh',
+    brand: 'Fujifilm',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210223540394/avatar/01_may-anh-fujifilm-x-h2s-body-only-chinh-hang.jpg',
+    description: 'Fujifilm X-H2S - Máy ảnh APS-C chuyên nghiệp, cảm biến stacked 26MP, quay 6K 30fps, AF nhanh.',
+    specs: { 'Cảm biến': '26MP Stacked APS-C', 'Quay video': '6K 30p / 4K 120p', 'Lấy nét': 'AF AI', 'Chống rung': 'IBIS 7 stop' }
+  },
+
+  // ============ LENSES - CANON RF (5) ============
+  {
+    id: 25,
+    name: 'Canon RF 24-70mm f/2.8L IS USM',
+    slug: 'canon-rf-24-70mm-f28l',
+    price: 62900000,
+    originalPrice: 68000000,
+    category: 'Ống Kính',
+    categorySlug: 'ong-kinh',
+    brand: 'Canon',
+    badge: 'HOT',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-10/230210234357844/avatar/01_ong-kinh-canon-rf-24-70mm-f-2-8l-is-usm-chinh-hang.jpg',
+    description: 'Canon RF 24-70mm f/2.8L IS USM - Ống kính zoom tiêu chuẩn L-series, ống kính all-in-one tốt nhất cho hệ RF.',
+    specs: { 'Tiêu cự': '24-70mm', 'Khẩu độ': 'f/2.8 không đổi', 'Ổn định': 'IS 5 stop', 'Trọng lượng': '900g' }
+  },
+  {
+    id: 26,
+    name: 'Canon RF 70-200mm f/2.8L IS USM',
+    slug: 'canon-rf-70-200mm-f28l',
+    price: 72900000,
+    originalPrice: 78900000,
+    category: 'Ống Kính',
+    categorySlug: 'ong-kinh',
+    brand: 'Canon',
+    badge: '',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-02/240802101451137/avatar/638692749614202751_ong-kinh-canon-rf-70-200mm-f2-8-l-is-usm.jpg',
+    description: 'Canon RF 70-200mm f/2.8L IS USM - Ống kính tele L-series, nhẹ hơn 30% so với thế hệ trước.',
+    specs: { 'Tiêu cự': '70-200mm', 'Khẩu độ': 'f/2.8', 'Ổn định': 'IS 5 stop', 'Trọng lượng': '1070g' }
+  },
+  {
+    id: 27,
+    name: 'Canon RF 50mm f/1.8 STM',
+    slug: 'canon-rf-50mm-f18-stm',
+    price: 5990000,
+    originalPrice: 6990000,
+    category: 'Ống Kính',
+    categorySlug: 'ong-kinh',
+    brand: 'Canon',
+    badge: 'GIẢM GIÁ',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094047373/avatar/638847186653427391_canon-rf-50mm-f1-8-stm-chinh-hang.jpg',
+    description: 'Canon RF 50mm f/1.8 STM - Ống kính prime giá rẻ, nhỏ gọn, chất lượng ảnh sắc nét.',
+    specs: { 'Tiêu cự': '50mm', 'Khẩu độ': 'f/1.8', 'Lấy nét': 'STM', 'Trọng lượng': '160g' }
+  },
+  {
+    id: 28,
+    name: 'Canon RF 75-300mm f/4-5.6',
+    slug: 'canon-rf-75-300mm',
+    price: 12900000,
+    originalPrice: 14900000,
+    category: 'Ống Kính',
+    categorySlug: 'ong-kinh',
+    brand: 'Canon',
+    badge: '',
+    rating: 4.4,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-13/250513172540477/avatar/638827544573482242_canon-rf-75-300mm-f-4-5-6.jpg',
+    description: 'Canon RF 75-300mm f/4-5.6 - Ống kính tele giá rẻ cho hệ RF, phù hợp chụp thể thao và động vật.',
+    specs: { 'Tiêu cự': '75-300mm', 'Khẩu độ': 'f/4-5.6', 'Lấy nét': 'STM', 'Trọng lượng': '530g' }
+  },
+
+  // ============ LENSES - SONY FE (4) ============
+  {
+    id: 29,
+    name: 'Sony FE 70-200mm f/2.8 GM II OSS',
+    slug: 'sony-fe-70-200mm-f28-gm-ii',
+    price: 69900000,
+    originalPrice: 75900000,
+    category: 'Ống Kính',
+    categorySlug: 'ong-kinh',
+    brand: 'Sony',
+    badge: 'BÁN CHẠY',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803094242227/avatar/638692469929544019_ong-kinh-sony-fe-70-200mm-f2-8-gm-ii-oss.jpg',
+    description: 'Sony FE 70-200mm f/2.8 GM II OSS - Ống kính tele G Master nhẹ nhất phân khúc, lấy nét nhanh.',
+    specs: { 'Tiêu cự': '70-200mm', 'Khẩu độ': 'f/2.8', 'Ổn định': 'OSS', 'Trọng lượng': '1045g' }
+  },
+  {
+    id: 30,
+    name: 'Sony FE 70-200mm f/4 Macro G OSS II',
+    slug: 'sony-fe-70-200mm-f4-macro-g',
+    price: 39900000,
+    originalPrice: 42900000,
+    category: 'Ống Kính',
+    categorySlug: 'ong-kinh',
+    brand: 'Sony',
+    badge: '',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-07/23-07-26/230726141003445/avatar/0_ong-kinh-sony-fe-70-200mm-f4-macro-g-oss-ii.jpg',
+    description: 'Sony FE 70-200mm f/4 Macro G OSS II - Ống kính macro-tele nhẹ, lấy nét gần 0.26m.',
+    specs: { 'Tiêu cự': '70-200mm', 'Khẩu độ': 'f/4', 'Ổn định': 'OSS', 'Trọng lượng': '794g' }
+  },
+  {
+    id: 31,
+    name: 'Sony Distagon T* FE 35mm f/1.4 ZA',
+    slug: 'sony-distagon-35mm-f14-za',
+    price: 34900000,
+    originalPrice: 37900000,
+    category: 'Ống Kính',
+    categorySlug: 'ong-kinh',
+    brand: 'Sony',
+    badge: '',
+    rating: 4.6,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-03/240803093623571/avatar/638692514067383350_ong-kinh-sony-distagon-t-fe-35mm-f1-4-za.jpg',
+    description: 'Sony Distagon T* FE 35mm f/1.4 ZA - Ống kính prime góc rộng, chất lượng quang học cao cấp.',
+    specs: { 'Tiêu cự': '35mm', 'Khẩu độ': 'f/1.4', 'Lấy nét': 'SSM', 'Trọng lượng': '630g' }
+  },
+
+  // ============ FLYCAM / DRONES ============
+  {
+    id: 32,
+    name: 'DJI Mavic 4 Pro 512GB Creator Combo',
+    slug: 'dji-mavic-4-pro-creator-combo',
+    price: 59900000,
+    originalPrice: 65900000,
+    category: 'Flycam',
+    categorySlug: 'flycam',
+    brand: 'DJI',
+    badge: 'MỚI',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-05/25-05-15/250515085035248/avatar/638828964891489787_dji-mavic-4-pro-512gb-creator-combo.jpg',
+    description: 'DJI Mavic 4 Pro - Flycam flagship mới nhất, camera 4/3 CMOS 50MP, quay 8K, AI tracking.',
+    specs: { 'Camera': '4/3 CMOS 50MP', 'Quay video': '8K 30p / 4K 120p', 'Thời gian bay': '43 phút', 'Tầm xa': '30km' }
+  },
+  {
+    id: 33,
+    name: 'DJI Mavic 3 Pro + RC Pro',
+    slug: 'dji-mavic-3-pro-rc-pro',
+    price: 48900000,
+    originalPrice: 52900000,
+    category: 'Flycam',
+    categorySlug: 'flycam',
+    brand: 'DJI',
+    badge: 'BÁN CHẠY',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-08/240808101913354/avatar/638587093009322839_flycam-dji-mavic-3-pro-pro-combo-dji-rc-pro.jpg',
+    description: 'DJI Mavic 3 Pro - Flycam hàng đầu với 3 camera, cảm biến 4/3 CMOS, quay 5.1K 50fps.',
+    specs: { 'Camera': '4/3 CMOS 20MP', 'Quay video': '5.1K 50p', 'Thời gian bay': '43 phút', 'Tầm xa': '15km' }
+  },
+  {
+    id: 34,
+    name: 'DJI Air 3S Fly More Combo + RC 2',
+    slug: 'dji-air-3s-fly-more-rc2',
+    price: 27900000,
+    originalPrice: 30900000,
+    category: 'Flycam',
+    categorySlug: 'flycam',
+    brand: 'DJI',
+    badge: 'MỚI',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-11/24-11-02/241102144506281/avatar/638661555984717416_flycam-dji-air-3s-fly-more-combo-dji-rc-2-chinh-hang.jpg',
+    description: 'DJI Air 3S - Flycam tầm trung với camera 1" CMOS, quay 4K 100fps, tránh vật cản 4 hướng.',
+    specs: { 'Camera': '1" CMOS 50MP', 'Quay video': '4K 100p', 'Thời gian bay': '45 phút', 'Tầm xa': '20km' }
+  },
+  {
+    id: 35,
+    name: 'DJI Mini 5 Pro Base',
+    slug: 'dji-mini-5-pro-base',
+    price: 18900000,
+    originalPrice: 20900000,
+    category: 'Flycam',
+    categorySlug: 'flycam',
+    brand: 'DJI',
+    badge: 'MỚI',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-09/25-09-12/250912094317313/avatar/638932671190111464_dji-mini-5-pro-base-chinh-hang.jpg',
+    description: 'DJI Mini 5 Pro - Flycam dưới 249g với camera 1/1.3" CMOS, quay 4K 60fps, tránh vật cản đa hướng.',
+    specs: { 'Camera': '1/1.3" CMOS 48MP', 'Quay video': '4K 60p', 'Thời gian bay': '34 phút', 'Trọng lượng': '<249g' }
+  },
+  {
+    id: 36,
+    name: 'DJI Mini 4 Pro Fly More Plus + RC 2',
+    slug: 'dji-mini-4-pro-fly-more-plus-rc2',
+    price: 23900000,
+    originalPrice: 25900000,
+    category: 'Flycam',
+    categorySlug: 'flycam',
+    brand: 'DJI',
+    badge: 'BÁN CHẠY',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-09/23-09-26/230926111234846/avatar/638313238790810792_dji-mini-4-pro-fly-more-combo-plus-dji-rc-2-gl.jpg',
+    description: 'DJI Mini 4 Pro - Flycam dưới 249g quay 4K/60fps HDR, tránh vật cản đa hướng APAS 5.0.',
+    specs: { 'Camera': '1/1.3" CMOS 48MP', 'Quay video': '4K 60p HDR', 'Thời gian bay': '45 phút', 'Trọng lượng': '<249g' }
+  },
+
+  // ============ ACTION CAMERA - GoPro ============
+  {
+    id: 37,
+    name: 'GoPro HERO 13 Black',
+    slug: 'gopro-hero-13-black',
+    price: 11900000,
+    originalPrice: 13900000,
+    category: 'Action Camera',
+    categorySlug: 'action-camera',
+    brand: 'GoPro',
+    badge: 'MỚI',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-01/25-01-02/250102113303811/avatar/638714152413009638_gopro-hero-13-black.jpg',
+    description: 'GoPro HERO 13 Black - Action camera mới nhất với HyperSmooth 6.0, quay 5.3K/60fps, 4K/120fps.',
+    specs: { 'Video': '5.3K/60p, 4K/120p', 'Ảnh': '27MP', 'Chống rung': 'HyperSmooth 6.0', 'Chống nước': '10m' }
+  },
+
+  // ============ ACTION CAMERA - DJI Osmo ============
+  {
+    id: 38,
+    name: 'DJI Osmo Action 5 Pro Adventure Combo',
+    slug: 'dji-osmo-action-5-pro-adventure',
+    price: 15900000,
+    originalPrice: 17900000,
+    category: 'Action Camera',
+    categorySlug: 'action-camera',
+    brand: 'DJI',
+    badge: 'BÁN CHẠY',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/26-02/26-02-26/260226105739670/avatar/639077003951312982_dji-osmo-action-5-pro-adventure-combo.jpg',
+    description: 'DJI Osmo Action 5 Pro - Action camera 360°, quay 8K, chống nước 10m, AI editing.',
+    specs: { 'Video 360°': '8K 30p', 'Quay thường': '4K 60p', 'Chống nước': '10m', 'Ổn định': 'RockSteady 3.0' }
+  },
+
+  // ============ ACTION CAMERA - Insta360 ============
+  {
+    id: 39,
+    name: 'Insta360 X4',
+    slug: 'insta360-x4',
+    price: 13900000,
+    originalPrice: 15500000,
+    category: 'Action Camera',
+    categorySlug: 'action-camera',
+    brand: 'Insta360',
+    badge: '',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-05/24-05-08/240508164520756/avatar/638516255074470789_insta360-x4-one-x4.jpg',
+    description: 'Insta360 X4 quay 360° 8K, chống nước 10m, AI editing thông minh tự động tạo video.',
+    specs: { 'Video 360°': '8K 30p', 'Chế độ thẳng': '4K 60p', 'Chống nước': '10m', 'Ổn định': 'FlowState' }
+  },
+  {
+    id: 40,
+    name: 'Insta360 GO 3S 128GB (Black)',
+    slug: 'insta360-go-3s-128gb',
+    price: 8990000,
+    originalPrice: 9990000,
+    category: 'Action Camera',
+    categorySlug: 'action-camera',
+    brand: 'Insta360',
+    badge: '',
+    rating: 4.6,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-17/241217142735047/avatar/638700425450690776_camera-insta360-go-3s-128gb-midnight-black.jpg',
+    description: 'Insta360 GO 3S - Camera mini nhỏ nhất thế giới, quay 2.7K, chống rung FlowState.',
+    specs: { 'Video': '2.7K 30p', 'Ảnh': '12MP', 'Chống rung': 'FlowState', 'Trọng lượng': '35g' }
+  },
+
+  // ============ STUDIO EQUIPMENT - LED LIGHTS ============
+  {
+    id: 41,
+    name: 'Godox LA200D Daylight 230W',
+    slug: 'godox-la200d-daylight',
+    price: 8200000,
+    originalPrice: 9200000,
+    category: 'Thiết Bị Studio',
+    categorySlug: 'studio',
+    brand: 'Godox',
+    badge: '',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-14/230214175317364/avatar/01_den-godox-la200d-daylight-led-light-230w.jpeg',
+    description: 'Godox LA200D - Đèn LED studio công suất 230W, CRI≥96, điều khiển qua app, fanless.',
+    specs: { 'Công suất': '230W', 'Nhiệt độ màu': '5600K', 'CRI': 'CRI≥96', 'Điều khiển': 'App Godox' }
+  },
+  {
+    id: 42,
+    name: 'Nanlite FC-300B Bi-Color',
+    slug: 'nanlite-fc-300b-bi-color',
+    price: 9800000,
+    originalPrice: 10900000,
+    category: 'Thiết Bị Studio',
+    categorySlug: 'studio',
+    brand: 'Nanlite',
+    badge: 'HOT',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-11/23-11-15/231115113349123/avatar/638356451394903043_den-led-nanlite-fc-300b-bi-color.jpg',
+    description: 'Nanlite FC-300B - Đèn LED Bi-Color 300W, CRI≥95, điều khiển từ xa, phù hợp quay phim.',
+    specs: { 'Công suất': '300W', 'Nhiệt độ màu': '2700-6500K', 'CRI': 'CRI≥95', 'Điều khiển': 'App Nanlite' }
+  },
+
+  // ============ ACCESSORIES - Billingham Bags ============
+  {
+    id: 43,
+    name: 'Billingham 335 MKII Khaki/Tan',
+    slug: 'billingham-335-mkii-khaki-tan',
+    price: 8900000,
+    originalPrice: 9900000,
+    category: 'Phụ Kiện',
+    categorySlug: 'phu-kien',
+    brand: 'Billingham',
+    badge: '',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714115139516/avatar/638881651139692471_tui-may-anh-billingham-335-mkii-khaki-tan.jpg',
+    description: 'Billingham 335 MKII - Túi đựng máy ảnh cao cấp, vải canvas, da thật, chống nước, 2 ngăn.',
+    specs: { 'Chất liệu': 'Canvas + da thật', 'Số ngăn': '2', 'Phụ kiện': 'Đệm chống sốc', 'Xuất xứ': 'Anh' }
+  },
+  {
+    id: 44,
+    name: 'Billingham 445 MKII Black/Black',
+    slug: 'billingham-445-mkii-black-black',
+    price: 10900000,
+    originalPrice: 11900000,
+    category: 'Phụ Kiện',
+    categorySlug: 'phu-kien',
+    brand: 'Billingham',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714115513746/avatar/638881653558571076_tui-may-anh-billingham-445-mkii-black-fibrenyte-black.jpg',
+    description: 'Billingham 445 MKII - Túi đựng máy ảnh lớn, phù hợp cho 2 body + 4-5 ống kính, chống nước.',
+    specs: { 'Chất liệu': 'Fibrenyte + da', 'Số ngăn': '3', 'Phụ kiện': 'Đệm chống sốc', 'Xuất xứ': 'Anh' }
+  },
+  {
+    id: 45,
+    name: 'Billingham Airline Stowaway Khaki/Tan',
+    slug: 'billingham-airline-stowaway-khaki-tan',
+    price: 5900000,
+    originalPrice: 6900000,
+    category: 'Phụ Kiện',
+    categorySlug: 'phu-kien',
+    brand: 'Billingham',
+    badge: 'GIẢM GIÁ',
+    rating: 4.7,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/25-07/25-07-14/250714133840294/avatar/638881656582412816_tui-may-anh-billingham-airline-stowaway-khaki-tan.jpg',
+    description: 'Billingham Airline Stowaway - Túi nhỏ gọn phù hợp mang theo máy ảnh và ống kính khi đi du lịch.',
+    specs: { 'Chất liệu': 'Canvas + da', 'Số ngăn': '1', 'Phụ kiện': 'Đệm chống sốc', 'Xuất xứ': 'Anh' }
+  },
+
+  // ============ CINEMA CAMERAS ============
+  {
+    id: 46,
+    name: 'Sony FX3 II',
+    slug: 'sony-fx3-ii',
+    price: 89900000,
+    originalPrice: 95900000,
+    category: 'Máy Quay',
+    categorySlug: 'may-quay',
+    brand: 'Sony',
+    badge: 'MỚI',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/26-03/26-03-28/260328145950429/avatar/639103067985726326-Sony-FX3-II-png_may-quay-sony-fx3-ii.jpg',
+    description: 'Sony FX3 II - Máy quay cinema fullframe, cảm biến 12.1MP, quay 4K 120fps, kèm XLR handle.',
+    specs: { 'Cảm biến': '12.1MP Full-frame', 'Quay video': '4K 120p', 'Lấy nét': 'AF AI', 'Trọng lượng': '715g' }
+  },
+  {
+    id: 47,
+    name: 'Blackmagic BMPCC 6K Pro',
+    slug: 'blackmagic-bmpcc-6k-pro',
+    price: 59900000,
+    originalPrice: 64900000,
+    category: 'Máy Quay',
+    categorySlug: 'may-quay',
+    brand: 'Blackmagic',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211125329527/avatar/01_blackmagic-pocket-cinema-camera-6k-pro.jpg',
+    description: 'Blackmagic Pocket Cinema 6K Pro - Máy quay cinema với sensor 6K Super 35, quay RAW, màn hình lật.',
+    specs: { 'Cảm biến': '6K Super 35', 'Quay video': '6K RAW / ProRes', 'Lấy nét': 'AF', 'Trọng lượng': '1.2kg' }
+  },
+  {
+    id: 48,
+    name: 'Canon EOS C70 Body',
+    slug: 'canon-eos-c70-body',
+    price: 82900000,
+    originalPrice: 88900000,
+    category: 'Máy Quay',
+    categorySlug: 'may-quay',
+    brand: 'Canon',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211125332512/avatar/01_may-quay-phim-canon-eos-c70-body-only.jpg',
+    description: 'Canon EOS C70 - Máy quay cinema RF mount, sensor DGO 20MP, quay 4K 120fps, ND tích hợp.',
+    specs: { 'Cảm biến': '20MP DGO', 'Quay video': '4K 120p', 'Lấy nét': 'Dual Pixel AF', 'ND': 'ND 10 stop' }
+  },
+  {
+    id: 49,
+    name: 'DJI Ronin 4D 8K',
+    slug: 'dji-ronin-4d-8k',
+    price: 159000000,
+    originalPrice: 169000000,
+    category: 'Máy Quay',
+    categorySlug: 'may-quay',
+    brand: 'DJI',
+    badge: '',
+    rating: 4.9,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-11/230211125328649/avatar/01_may-quay-dji-ronin-4d-8k.jpg',
+    description: 'DJI Ronin 4D 8K - Máy quay cinema 4D trục, sensor 8K, gimbal tích hợp, lidar focus.',
+    specs: { 'Cảm biến': '8K Full-frame', 'Quay video': '8K 60p', 'Lấy nét': 'Lidar AF', 'Trọng lượng': '4.6kg' }
+  },
+  {
+    id: 50,
+    name: 'Sony FX6 V',
+    slug: 'sony-fx6-v',
+    price: 109000000,
+    originalPrice: 119000000,
+    category: 'Máy Quay',
+    categorySlug: 'may-quay',
+    brand: 'Sony',
+    badge: '',
+    rating: 4.8,
+    image: 'https://mayanhvietnam.com/image-data/san-pham/24-08/24-08-29/240829180441768/avatar/638617303744186654_may-quay-sony-alpha-cinema-line-ilme-fx6-v.jpg',
+    description: 'Sony FX6 V - Máy quay cinema fullframe, quay 4K 120fps, ND tích hợp, S-Cinetone.',
+    specs: { 'Cảm biến': 'Full-frame 4K', 'Quay video': '4K 120p', 'ND': 'ND 9 stop', 'Trọng lượng': '1.9kg' }
+  },
+]
+
+// Helper functions
+export const getProductsByCategory = (slug: string) =>
+  products.filter(p => p.categorySlug === slug)
+
+export const getProductBySlug = (slug: string) =>
+  products.find(p => p.slug === slug)
+
+export const getCategories = () => {
+  const cats = new Map()
+  products.forEach(p => {
+    if (!cats.has(p.categorySlug)) {
+      cats.set(p.categorySlug, { name: p.category, slug: p.categorySlug, count: 0 })
+    }
+    cats.get(p.categorySlug).count++
+  })
+  return Array.from(cats.values())
+}
