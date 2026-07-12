@@ -1,0 +1,10 @@
+{
+  "description": "This e-commerce platform offers a comprehensive selection of photography equipment and services, enhancing user experience with modern design and SEO optimization.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
