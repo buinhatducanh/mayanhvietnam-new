@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  /* Primary - Cam chủ đạo */
+  --color-primary: #FF6B00;
+  --color-primary-light: #FF8A3C;
+  --color-primary-lighter: #FFB07C;
+  --color-primary-soft: #FFF0E6;
+
+  /* Secondary - Cam nhạt */
+  --color-secondary: #FF6B00;
+  --color-accent: #FF8A3C;
+  --color-accent-light: #FFB07C;
+  
+  /* Gradients */
+  --gradient-cta: linear-gradient(135deg, #FF6B00 0%, #FF8A3C 50%, #FFB07C 100%);
+  --gradient-hero: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #404040 100%);
+
+  /* Neutral */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F8F6F3;
+  --color-card-bg: #F5F2ED;
+  --color-text-strong: #1A1A1A;
+  --color-text-soft: #666666;
+  --color-text-muted: #999999;
+  --color-border: #E8E4DE;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text-strong);
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-soft: var(--color-primary-soft);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-bg: var(--color-bg);
+  --color-bg-alt: var(--color-bg-alt);
+  --color-card-bg: var(--color-card-bg);
+  --color-text-strong: var(--color-text-strong);
+  --color-text-soft: var(--color-text-soft);
+  --color-text-muted: var(--color-text-muted);
+  --color-border: var(--color-border);
+  --color-card: var(--color-card-bg);
+  --color-card-foreground: var(--color-text-soft);
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary-foreground: var(--color-text-soft);
+  --color-muted: var(--color-text-muted);
+  --color-muted-foreground: var(--color-text-muted);
+  --color-border: rgba(255, 107, 0, 0.08);
+  --color-ring: var(--color-primary);
+  --radius-default: 12px;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+}
+
+.glass-dark {
+  background: rgba(26, 26, 26, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #FF6B00 0%, #FF8A3C 50%, #FFB07C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-strong);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-dark {
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-primary {
+  background: var(--gradient-cta);
+}
+
+.gradient-bg {
+  background: var(--gradient-hero);
+}
+
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shadow-sm { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); }
+.shadow-md { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06); }
+.shadow-lg { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08); }
+.shadow-xl { box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12); }
