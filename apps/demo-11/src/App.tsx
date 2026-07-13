@@ -12,9 +12,12 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const navigate = (to: Page, product?: Product) => {
+  const navigate = (to: Page, product?: Product, category?: string) => {
     if (product) setSelectedProduct(product);
+    if (category) setSelectedCategory(category);
+    else if (to !== 'plp') setSelectedCategory(null);
     setPage(to);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -60,6 +63,7 @@ export default function App() {
         onNavigate={navigate}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        onCategorySelect={(slug) => { setSelectedCategory(slug); setSearchQuery(''); setPage('plp'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
       />
 
       <main>
@@ -67,7 +71,7 @@ export default function App() {
           <HomePage onNavigate={navigate} onAddToCart={addToCart} />
         )}
         {page === 'plp' && (
-          <PLPPage onNavigate={navigate} onAddToCart={addToCart} />
+          <PLPPage onNavigate={navigate} onAddToCart={addToCart} searchQuery={searchQuery} selectedCategory={selectedCategory} />
         )}
         {page === 'pdp' && selectedProduct && (
           <PDPPage

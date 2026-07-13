@@ -17,7 +17,7 @@ export const used: ProductSummary[] = [
     originalPrice: 52_900_000,
     thumbnail: `${CDN}/image-data/san-pham/23-04/23-04-19/230419151242054/avatar/canon-eos-r8-6-500x500_may-anh-canon-eos-r8-body-only.jpg`,
     images: [
-      { url: `${CDN}/image-data/san-pham/23-04/23-04-19/230419151242054/avatar/canon-eos-r8-6-500x500_may-anh-canon-eos-r8-body-only.jpg` },
+      { url: `${CDN}/image-data/san-pham/23-04/23-04-19/230419151242054/avatar/canon-eos-r8-6-500x500_may-anh-canon-eos-r8-body-only.jpg`, alt: '' },
     ],
     availability: 'in_stock',
     isNew: false,
@@ -44,7 +44,7 @@ export const used: ProductSummary[] = [
     originalPrice: 47_500_000,
     thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-10/230210223540859/avatar/01_may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang.jpg`,
     images: [
-      { url: `${CDN}/image-data/san-pham/23-02/23-02-10/230210223540859/avatar/01_may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang.jpg` },
+      { url: `${CDN}/image-data/san-pham/23-02/23-02-10/230210223540859/avatar/01_may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang.jpg`, alt: '' },
     ],
     availability: 'in_stock',
     isNew: false,
@@ -70,7 +70,7 @@ export const used: ProductSummary[] = [
     originalPrice: 48_900_000,
     thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-10/230210234357844/avatar/01_ong-kinh-canon-rf-24-70mm-f-2-8l-is-usm-chinh-hang.jpg`,
     images: [
-      { url: `${CDN}/image-data/san-pham/23-02/23-02-10/230210234357844/avatar/01_ong-kinh-canon-rf-24-70mm-f-2-8l-is-usm-chinh-hang.jpg` },
+      { url: `${CDN}/image-data/san-pham/23-02/23-02-10/230210234357844/avatar/01_ong-kinh-canon-rf-24-70mm-f-2-8l-is-usm-chinh-hang.jpg`, alt: '' },
     ],
     availability: 'in_stock',
     isNew: false,
@@ -96,7 +96,7 @@ export const used: ProductSummary[] = [
     originalPrice: 56_900_000,
     thumbnail: `${CDN}/image-data/san-pham/24-08/24-08-31/240831133137156/avatar/638722116807217083_ong-kinh-tamron-28-75mm-f2-8-di-iii-vxd-g2-for-nikon-z.jpg`,
     images: [
-      { url: `${CDN}/image-data/san-pham/24-08/24-08-31/240831133137156/avatar/638722116807217083_ong-kinh-tamron-28-75mm-f2-8-di-iii-vxd-g2-for-nikon-z.jpg` },
+      { url: `${CDN}/image-data/san-pham/24-08/24-08-31/240831133137156/avatar/638722116807217083_ong-kinh-tamron-28-75mm-f2-8-di-iii-vxd-g2-for-nikon-z.jpg`, alt: '' },
     ],
     availability: 'pre_order',
     isNew: false,

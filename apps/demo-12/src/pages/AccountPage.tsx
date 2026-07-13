@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { products } from '../data/products'
@@ -14,11 +14,6 @@ const tabs = ['Thông tin cá nhân', 'Lịch sử đơn hàng', 'Sản phẩm y
 
 export default function AccountPage() {
   const [activeTab, setActiveTab] = useState('Lịch sử đơn hàng')
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
 
   return (
     <div style={{ backgroundColor: '#F6F8FB', minHeight: '100vh', padding: '32px 0' }}>
@@ -211,7 +206,7 @@ export default function AccountPage() {
                           </tr>
                         </thead>
                         <tbody>
-                          {orders.map((order, idx) => (
+                          {orders.map((order) => (
                             <tr
                               key={order.id}
                               style={{

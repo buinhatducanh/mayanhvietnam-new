@@ -2,7 +2,7 @@
   "name": "demo-02",
   "version": "0.1.0",
   "private": true,
-  "description": "Demo 02 — E-commerce website design (from website-design-request.zip)",
+  "description": "Demo 02 — E-commerce website design (from website-design-request.zip, port 8002)",
   "scripts": {
     "dev": "next dev -p 8002",
     "build": "next build",

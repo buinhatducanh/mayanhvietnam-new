@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #fafaf8; -webkit-font-smoothing: antialiased; }
+    a { color: #16130f; }
+    a:hover { color: #ff6a00; }
+    ::selection { background: rgba(255,106,0,0.22); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</helmet>
+
+<div style="font-family: 'Outfit', sans-serif; background: #fafaf8; color: #16130f; min-height: 100vh;">
+  <dc-import name="SiteHeader" active="{{ activeNav }}" hint-size="100%,110px" style="position: sticky; top: 0; z-index: 50; display: block;"></dc-import>
+
+  <!-- Breadcrumb -->
+  <div style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 0;">
+    <nav aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #a39d94;">
+      <a href="Trang Chủ.dc.html" style="color: #a39d94; text-decoration: none;" style-hover="color: #ff6a00;">Trang chủ</a>
+      <span>/</span>
+      <a href="{{ catHref }}" style="color: #a39d94; text-decoration: none;" style-hover="color: #ff6a00;">{{ catName }}</a>
+      <span>/</span>
+      <span style="color: #16130f; font-weight: 550; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 420px;">{{ name }}</span>
+    </nav>
+  </div>
+
+  <!-- Top: gallery + info -->
+  <section data-screen-label="Chi tiết sản phẩm" style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 0; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: start;">
+    <!-- Gallery -->
+    <div style="position: sticky; top: 132px;">
+      <div style="position: relative; border: 1px solid #e9e6e1; background: #ffffff; border-radius: 24px; overflow: hidden; aspect-ratio: 1;">
+        <sc-if value="{{ hasProduct }}" hint-placeholder-val="{{ false }}">
+          <img key="{{ mainImage }}" src="{{ mainImage }}" alt="{{ name }}" referrerpolicy="no-referrer" style="width: 100%; height: 100%; object-fit: contain; padding: 28px; animation: fadeIn 0.35s ease both;">
+        </sc-if>
+        <sc-if value="{{ hasDiscount }}" hint-placeholder-val="{{ false }}">
+          <span style="position: absolute; left: 16px; top: 16px; font-size: 11.5px; font-weight: 800; color: #ffffff; background: #ff6a00; border-radius: 999px; padding: 5px 12px; box-shadow: 0 8px 18px -6px rgba(255,106,0,0.6);">{{ discountLabel }}</span>
+        </sc-if>
+      </div>
+      <sc-if value="{{ hasThumbs }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 9px; margin-top: 12px; flex-wrap: wrap;">
+          <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="5">
+            <button type="button" onClick="{{ t.pick }}" aria-label="Xem ảnh" sc-camel-style="width: 72px; height: 72px; border-radius: 13px; border: 1.5px solid {{ t.border }}; background: #ffffff; cursor: pointer; overflow: hidden; padding: 0; transition: border-color 0.2s ease, transform 0.2s ease;" style-hover="border-color: rgba(255,106,0,0.6); transform: translateY(-2px);">
+              <img src="{{ t.src }}" alt="" referrerpolicy="no-referrer" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; padding: 5px;">
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- Info -->
+    <div>
+      <div style="display: flex; flex-wrap: wrap; gap: 7px;">
+        <sc-for list="{{ badgeList }}" as="b" hint-placeholder-count="2">
+          <span sc-camel-style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: {{ b.color }}; background: {{ b.bg }}; border: 1px solid {{ b.border }}; border-radius: 999px; padding: 5px 12px;">{{ b.label }}</span>
+        </sc-for>
+      </div>
+      <h1 style="margin: 14px 0 0; font-size: 32px; line-height: 1.2; font-weight: 550; letter-spacing: -0.015em; text-wrap: balance;">{{ name }}</h1>
+      <div style="display: flex; align-items: center; gap: 14px; margin-top: 10px;">
+        <span style="display: flex; align-items: center; gap: 5px; font-size: 13.5px; color: #7a746c;"><span style="color: #ff6a00;">★★★★★</span> {{ ratingLabel }}</span>
+        <span style="width: 4px; height: 4px; border-radius: 50%; background: #dcd8d2;"></span>
+        <span style="font-size: 13.5px; color: #1a9e5c; font-weight: 600;">✓ {{ stockStatus }}</span>
+        <span style="width: 4px; height: 4px; border-radius: 50%; background: #dcd8d2;"></span>
+        <span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #a39d94;">SKU: {{ sku }}</span>
+      </div>
+
+      <!-- Price -->
+      <div style="margin-top: 20px; border: 1px solid #e9e6e1; background: #ffffff; border-radius: 18px; padding: 20px 24px;">
+        <div style="display: flex; align-items: baseline; gap: 14px;">
+          <span style="font-size: 34px; font-weight: 650; letter-spacing: -0.01em; color: #ff6a00;">{{ priceLabel }}</span>
+          <sc-if value="{{ hasDiscount }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size: 17px; color: #a39d94; text-decoration: line-through;">{{ origLabel }}</span>
+            <span style="font-size: 12.5px; font-weight: 700; color: #1a9e5c;">Tiết kiệm {{ savedLabel }}</span>
+          </sc-if>
+        </div>
+        <p style="margin: 10px 0 0; font-size: 12.5px; color: #a39d94;">Giá đã bao gồm VAT · Bảo hành chính hãng {{ warrantyLabel }} tháng</p>
+      </div>
+
+      <!-- Promotions -->
+      <sc-if value="{{ hasPromos }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 14px; border: 1px solid rgba(255,106,0,0.3); background: rgba(255,106,0,0.05); border-radius: 18px; padding: 18px 24px;">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #c85200;">Khuyến mãi kèm theo</p>
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+            <sc-for list="{{ promotions }}" as="pm" hint-placeholder-count="2">
+              <p style="margin: 0; font-size: 14px; color: #16130f;">{{ pm }}</p>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- Highlights -->
+      <sc-if value="{{ hasHighlights }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 14px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="4">
+              <div style="display: flex; align-items: flex-start; gap: 10px;">
+                <span style="margin-top: 3px; width: 16px; height: 16px; border-radius: 50%; background: rgba(255,106,0,0.12); color: #ff6a00; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">✓</span>
+                <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5f5a53;">{{ h }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- CTAs -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 22px;">
+        <button type="button" style="height: 54px; border-radius: 14px; border: none; background: #ff6a00; color: #ffffff; font-family: 'Outfit', sans-serif; font-size: 15.5px; font-weight: 700; cursor: pointer; box-shadow: 0 16px 34px -12px rgba(255,106,0,0.6); transition: background 0.2s ease, transform 0.2s ease;" style-hover="background: #ea6100; transform: translateY(-2px);" style-active="transform: scale(0.98);">Mua ngay — giao hỏa tốc</button>
+        <button type="button" style="height: 54px; border-radius: 14px; border: 1.5px solid #ff6a00; background: rgba(255,106,0,0.05); color: #c85200; font-family: 'Outfit', sans-serif; font-size: 15.5px; font-weight: 700; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease;" style-hover="background: rgba(255,106,0,0.12); transform: translateY(-2px);" style-active="transform: scale(0.98);">Thêm vào giỏ hàng</button>
+      </div>
+      <a href="tel:0937148222" style="display: flex; align-items: center; justify-content: center; gap: 9px; height: 48px; margin-top: 11px; border-radius: 14px; border: 1px solid #e9e6e1; background: #ffffff; color: #16130f; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s ease;" style-hover="border-color: rgba(255,106,0,0.5); color: #ff6a00;">✆ Gọi tư vấn: 0937.148.222 (9:00 – 19:00)</a>
+
+      <!-- Trust -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px;">
+        <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 14px; padding: 13px 14px; text-align: center;">
+          <p style="margin: 0; font-size: 17px;">🛡️</p>
+          <p style="margin: 6px 0 0; font-size: 11.5px; font-weight: 600; color: #16130f;">Chính hãng 100%</p>
+        </div>
+        <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 14px; padding: 13px 14px; text-align: center;">
+          <p style="margin: 0; font-size: 17px;">🚚</p>
+          <p style="margin: 6px 0 0; font-size: 11.5px; font-weight: 600; color: #16130f;">Giao hỏa tốc toàn quốc</p>
+        </div>
+        <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 14px; padding: 13px 14px; text-align: center;">
+          <p style="margin: 0; font-size: 17px;">🔄</p>
+          <p style="margin: 6px 0 0; font-size: 11.5px; font-weight: 600; color: #16130f;">Đổi trả trong 7 ngày</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Description -->
+  <section data-screen-label="Mô tả" style="max-width: 1280px; margin: 0 auto; padding: 72px 32px 0;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+      <div>
+        <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">Giới thiệu</p>
+        <h2 style="margin: 10px 0 0; font-size: 30px; font-weight: 200; letter-spacing: -0.02em; text-wrap: balance;">Về {{ shortName }}</h2>
+        <p style="margin: 16px 0 0; font-size: 15px; font-weight: 300; line-height: 1.75; color: #5f5a53; text-wrap: pretty;">{{ description }}</p>
+      </div>
+      <sc-if value="{{ hasIncluded }}" hint-placeholder-val="{{ true }}">
+        <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 20px; padding: 26px 30px;">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: #ff6a00;">Trọn bộ trong hộp</p>
+          <div style="display: flex; flex-direction: column; margin-top: 12px;">
+            <sc-for list="{{ includedItems }}" as="it" hint-placeholder-count="5">
+              <p style="margin: 0; padding: 9px 0; border-top: 1px solid #f1eee9; font-size: 14px; color: #5f5a53;">{{ it }}</p>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- Specs -->
+  <sc-if value="{{ hasSpecs }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Thông số" style="max-width: 1280px; margin: 0 auto; padding: 72px 32px 0;">
+      <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">Thông số kỹ thuật</p>
+      <h2 style="margin: 10px 0 0; font-size: 30px; font-weight: 200; letter-spacing: -0.02em;">Chi tiết từng thông số</h2>
+      <div style="margin-top: 26px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start;">
+        <sc-for list="{{ specGroups }}" as="g" hint-placeholder-count="6">
+          <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 18px; padding: 20px 24px; transition: border-color 0.22s ease, box-shadow 0.28s ease, transform 0.22s ease;" style-hover="border-color: rgba(255,106,0,0.4); box-shadow: 0 22px 44px -24px rgba(255,106,0,0.35); transform: translateY(-3px);">
+            <h3 style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #ff6a00;">{{ g.group }}</h3>
+            <div style="margin-top: 12px; display: flex; flex-direction: column;">
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid #f1eee9;">
+                  <span style="font-size: 12.5px; color: #a39d94; flex-shrink: 0;">{{ it.label }}</span>
+                  <span style="font-size: 13.5px; font-weight: 550; color: #16130f; text-align: right;">{{ it.value }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- Specs fallback: short chips -->
+  <sc-if value="{{ hasOnlyShortSpecs }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width: 1280px; margin: 0 auto; padding: 72px 32px 0;">
+      <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">Thông số chính</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px;">
+        <sc-for list="{{ shortSpecs }}" as="s" hint-placeholder-count="5">
+          <span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #5f5a53; border: 1px solid #e9e6e1; background: #ffffff; border-radius: 999px; padding: 9px 16px;">{{ s }}</span>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- Related -->
+  <section data-screen-label="Sản phẩm liên quan" style="max-width: 1280px; margin: 0 auto; padding: 88px 32px 0;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;">
+      <div>
+        <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">Có thể bạn quan tâm</p>
+        <h2 style="margin: 10px 0 0; font-size: 30px; font-weight: 200; letter-spacing: -0.02em;">Sản phẩm liên quan</h2>
+      </div>
+      <a href="{{ catHref }}" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #7a746c; text-decoration: none; transition: color 0.2s ease, gap 0.2s ease;" style-hover="color: #ff6a00; gap: 12px;">Xem tất cả <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    </div>
+    <div style="margin-top: 26px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+      <sc-for list="{{ related }}" as="p" hint-placeholder-count="4">
+        <a href="{{ p.href }}" onClick="{{ p.nav }}" style="position: relative; display: flex; flex-direction: column; border: 1px solid #e9e6e1; background: #ffffff; border-radius: 18px; overflow: hidden; text-decoration: none; transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.28s ease;" style-hover="border-color: rgba(255,106,0,0.45); transform: translateY(-4px); box-shadow: 0 24px 48px -22px rgba(255,106,0,0.42);">
+          <span style="display: block; aspect-ratio: 1; background: #ffffff; overflow: hidden;">
+            <img src="{{ p.thumbnail }}" alt="{{ p.name }}" referrerpolicy="no-referrer" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; padding: 16px; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);" style-hover="transform: scale(1.06);">
+          </span>
+          <span style="display: flex; flex-direction: column; flex: 1; padding: 14px 16px 16px; border-top: 1px solid #f1eee9;">
+            <span style="font-family: 'Geist Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #a39d94;">{{ p.brand }}</span>
+            <span style="margin-top: 5px; font-size: 14px; font-weight: 550; line-height: 1.38; color: #16130f; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 39px;">{{ p.name }}</span>
+            <span style="margin-top: 9px; font-size: 15.5px; font-weight: 750; color: #ff6a00;">{{ p.priceLabel }}</span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="height: 96px;"></div>
+  <dc-import name="SiteFooter" hint-size="100%,620px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { slug: '', imageIndex: 0, data: null };
+
+  async componentDidMount() {
+    const data = await import('./data/products.js');
+    const hash = decodeURIComponent((location.hash || '').replace('#', ''));
+    if (hash === 'canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang') {
+      location.replace('Máy Ảnh Canon R50.dc.html');
+      return;
+    }
+    if (hash === 'flycam-dji-mavic-air-2-chinh-hang') {
+      location.replace('Flycam DJI.dc.html');
+      return;
+    }
+    if (hash === 'insta360-one-rs-1-inch-360-edition') {
+      location.replace('Action Camera Insta360.dc.html');
+      return;
+    }
+    this.setState({ data, slug: hash });
+    this._onHash = () => {
+      const h = decodeURIComponent((location.hash || '').replace('#', ''));
+      if (h === 'canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang') {
+        location.replace('Máy Ảnh Canon R50.dc.html');
+        return;
+      }
+      if (h === 'flycam-dji-mavic-air-2-chinh-hang') {
+        location.replace('Flycam DJI.dc.html');
+        return;
+      }
+      if (h === 'insta360-one-rs-1-inch-360-edition') {
+        location.replace('Action Camera Insta360.dc.html');
+        return;
+      }
+      this.setState({ slug: h, imageIndex: 0 });
+      window.scrollTo({ top: 0 });
+    };
+    window.addEventListener('hashchange', this._onHash);
+  }
+
+  componentWillUnmount() { window.removeEventListener('hashchange', this._onHash); }
+
+  renderVals() {
+    const d = this.state.data;
+    const fmt = (n) => `${n.toLocaleString('vi-VN')}đ`;
+    const empty = { hasProduct: false, activeNav: 'home', catHref: '#', catName: '…', name: 'Đang tải…', shortName: '…', ratingLabel: '', stockStatus: 'Còn hàng', sku: '…', mainImage: '', hasThumbs: false, thumbs: [], badgeList: [], hasDiscount: false, discountLabel: '', priceLabel: '…', origLabel: '', savedLabel: '', warrantyLabel: '12', hasPromos: false, promotions: [], hasHighlights: false, highlights: [], hasIncluded: false, includedItems: [], hasSpecs: false, specGroups: [], hasOnlyShortSpecs: false, shortSpecs: [], related: [], description: '' };
+    if (!d) return empty;
+
+    const p = d.getBySlug(this.state.slug) || d.getBySlug('canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang');
+    if (!p) return empty;
+
+    const cat = d.categories.find((c) => c.slug === p.category);
+    const gallery = (p.gallery && p.gallery.length ? p.gallery : [p.thumbnail]).filter(Boolean);
+    const idx = Math.min(this.state.imageIndex, gallery.length - 1);
+    const hasDiscount = !!p.originalPrice && p.originalPrice > p.price && !p.callForPrice;
+    const badgeStyles = {
+      hot: { color: '#ffffff', bg: '#e2483d', border: '#e2483d' },
+      sale: { color: '#ffffff', bg: '#ff6a00', border: '#ff6a00' },
+      new: { color: '#0f7a44', bg: 'rgba(26,158,92,0.1)', border: 'rgba(26,158,92,0.35)' },
+    };
+    const related = d.products.filter((x) => x.category === p.category && x.id !== p.id && x.thumbnail).slice(0, 4);
+    const words = p.name.split(' ').filter((w) => !['Máy', 'ảnh', 'Ống', 'kính', 'quay', '—', 'Chính', 'hãng', '|'].includes(w));
+
+    return {
+      hasProduct: true,
+      activeNav: ['may-anh', 'ong-kinh', 'flycam', 'action-camera'].includes(p.category) ? p.category : 'home',
+      catHref: `Danh Mục.dc.html#${p.category}`,
+      catName: cat ? cat.name : p.category,
+      name: p.name,
+      shortName: words.slice(0, 4).join(' '),
+      ratingLabel: p.rating ? `${p.rating.average} · ${p.rating.count} đánh giá` : '',
+      stockStatus: 'Còn hàng',
+      sku: p.id.toUpperCase(),
+      mainImage: gallery[idx] || '',
+      hasThumbs: gallery.length > 1,
+      thumbs: gallery.slice(0, 8).map((src, i) => ({
+        src,
+        border: i === idx ? '#ff6a00' : '#e9e6e1',
+        pick: () => this.setState({ imageIndex: i }),
+      })),
+      badgeList: p.badges.map((b) => ({ label: b.label, ...(badgeStyles[b.type] || badgeStyles.new) })),
+      hasDiscount,
+      discountLabel: hasDiscount ? `Giảm ${Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}%` : '',
+      priceLabel: p.callForPrice ? 'Liên hệ báo giá' : fmt(p.price),
+      origLabel: hasDiscount ? fmt(p.originalPrice) : '',
+      savedLabel: hasDiscount ? fmt(p.originalPrice - p.price) : '',
+      warrantyLabel: String(p.warrantyMonths || 12),
+      hasPromos: (p.promotions || []).length > 0,
+      promotions: p.promotions || [],
+      hasHighlights: (p.highlights || []).length > 0,
+      highlights: (p.highlights || []).slice(0, 6),
+      hasIncluded: (p.packageIncludes || []).length > 0,
+      includedItems: p.packageIncludes || [],
+      hasSpecs: (p.specs || []).length > 0,
+      specGroups: p.specs || [],
+      hasOnlyShortSpecs: (p.specs || []).length === 0 && (p.shortSpecs || []).length > 0,
+      shortSpecs: p.shortSpecs || [],
+      description: p.description || '',
+      related: related.map((x) => ({
+        href: d.getProductUrl(x.slug),
+        nav: () => { this.setState({ slug: x.slug, imageIndex: 0 }); window.scrollTo({ top: 0 }); },
+        thumbnail: x.thumbnail, name: x.name, brand: x.brand,
+        priceLabel: x.callForPrice ? 'Liên hệ' : fmt(x.price),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

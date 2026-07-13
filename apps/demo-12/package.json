@@ -1,13 +1,13 @@
 {
-  "name": "figma-make-app",
+  "name": "demo-12",
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "Demo 12 — Figma Make export B (Vite, port 8012)",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite --port 8012 --host",
     "build": "vite build",
-    "preview": "vite preview",
-    "format": "oxfmt"
+    "preview": "vite preview --port 8012"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",

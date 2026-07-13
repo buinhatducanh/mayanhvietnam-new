@@ -79,7 +79,7 @@ export interface ProductSummary {
   images: ProductImage[];
   price: number;
   originalPrice?: number;
-  badges: { type: string; label: string }[];
+  badges?: { type: string; label: string }[];
   rating?: { average: number; count: number };
   isUsed: boolean;
   brand: string;

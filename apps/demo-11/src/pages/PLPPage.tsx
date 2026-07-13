@@ -1,11 +1,14 @@
 import { useState, useMemo } from 'react';
 import type { Page, Product } from '../types';
-import { products, brands, mounts, formatPrice } from '../data';
+import { products, brands, mounts, formatPrice, categories } from '../data';
+
 import ProductCard from '../components/ProductCard';
 
 interface PLPPageProps {
   onNavigate: (page: Page, product?: Product) => void;
   onAddToCart: (product: Product) => void;
+  searchQuery?: string;
+  selectedCategory?: string | null;
 }
 
 const sortOptions = [
@@ -17,7 +20,7 @@ const sortOptions = [
   { value: 'newest', label: 'Mới nhất trước' },
 ];
 
-export default function PLPPage({ onNavigate, onAddToCart }: PLPPageProps) {
+export default function PLPPage({ onNavigate, onAddToCart, searchQuery, selectedCategory }: PLPPageProps) {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedMounts, setSelectedMounts] = useState<string[]>([]);
   const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
@@ -39,8 +42,14 @@ export default function PLPPage({ onNavigate, onAddToCart }: PLPPageProps) {
   };
 
   const filteredProducts = useMemo(() => {
+    const activeCategory = selectedCategory
+      ? categories.find(c => c.slug === selectedCategory)
+      : null;
+    const categoryName = activeCategory?.name;
     return products
       .filter(p => {
+        if (categoryName && p.category !== categoryName) return false;
+        if (searchQuery && !p.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
         if (selectedBrands.length > 0 && !selectedBrands.includes(p.brand)) return false;
         if (selectedMounts.length > 0 && (!p.mount || !selectedMounts.includes(p.mount))) return false;
         if (selectedConditions.length > 0 && !selectedConditions.includes(p.condition)) return false;
@@ -55,7 +64,7 @@ export default function PLPPage({ onNavigate, onAddToCart }: PLPPageProps) {
         if (sortBy === 'newest') return b.id - a.id;
         return 0;
       });
-  }, [selectedBrands, selectedMounts, selectedConditions, priceRange, sortBy]);
+  }, [selectedBrands, selectedMounts, selectedConditions, priceRange, sortBy, searchQuery, selectedCategory]);
 
   return (
     <div className="bg-cream min-h-screen py-8">
@@ -246,7 +255,7 @@ export default function PLPPage({ onNavigate, onAddToCart }: PLPPageProps) {
                       </div>
                       <div className="flex-1 flex flex-col justify-between py-1">
                         <div>
-                          <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">{product.brand} · {product.condition === 'New' ? 'Mới' : 'Lướt'}</div>
+                          <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">{product.brand} · {product.condition === 'New' ? 'Mới Chính Hãng' : 'Lướt'}</div>
                           <h3 onClick={() => onNavigate('pdp', product)} className="font-bold text-base text-navy mt-1 group-hover:text-orange transition-colors cursor-pointer line-clamp-2 leading-snug">{product.name}</h3>
                           <div className="flex items-center gap-1 mt-2">
                             <span className="text-xs font-bold text-star">⭐ {product.rating}</span>

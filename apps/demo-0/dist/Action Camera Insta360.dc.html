@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #fafaf8; -webkit-font-smoothing: antialiased; }
+    a { color: #16130f; }
+    a:hover { color: #ff6a00; }
+    ::selection { background: rgba(255,106,0,0.22); }
+    @keyframes bounceDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+    @keyframes glowPulse { 0%, 100% { opacity: 0.75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+    @keyframes recBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+    @keyframes speedLines { from { background-position: 0 0; } to { background-position: -1200px 0; } }
+    @keyframes ringSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+  <script type="module" src="./glb-stage.js"></script>
+</helmet>
+
+<div style="font-family: 'Outfit', sans-serif; background: #fafaf8; color: #16130f;">
+  <dc-import name="SiteHeader" active="action-camera" hint-size="100%,110px" style="position: sticky; top: 0; z-index: 50; display: block;"></dc-import>
+
+  <!-- ═══════════ SCROLL EXPERIENCE (620vh) ═══════════ -->
+  <div ref="{{ containerRef }}" data-screen-label="Scroll Action Cam" style="position: relative; height: 620vh;">
+    <div style="position: sticky; top: 0; height: 100vh; overflow: hidden; background: #0b0a09;">
+
+      <!-- Layer 0: race video (scroll = timeline) -->
+      <video ref="{{ videoRef }}" src="assets/video/race.mp4" muted="{{ true }}" playsInline="{{ true }}" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.15) contrast(1.07) brightness(1.03);"></video>
+
+      <!-- Video-missing placeholder -->
+      <div ref="{{ noVideoRef }}" style="position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: linear-gradient(180deg, #14110e 0%, #0b0a09 100%); background-image: repeating-linear-gradient(100deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 90px), repeating-linear-gradient(100deg, rgba(255,106,0,0.08) 0px, rgba(255,106,0,0.08) 1px, transparent 1px, transparent 46px); animation: speedLines 3s linear infinite;">
+        <div style="border: 1px dashed rgba(255,255,255,0.25); background: rgba(11,10,9,0.7); backdrop-filter: blur(6px); border-radius: 16px; padding: 20px 28px; text-align: center;">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #ff8a3d;">video đua xe · placeholder</p>
+          <p style="margin: 8px 0 0; font-family: 'Geist Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.65);">Nén &lt; 30MB rồi thả vào assets/video/race.mp4</p>
+        </div>
+      </div>
+
+      <!-- Legibility scrims -->
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,7,6,0.6) 0%, rgba(8,7,6,0.22) 40%, rgba(8,7,6,0.02) 62%, rgba(8,7,6,0.22) 100%); pointer-events: none;"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,7,6,0.6), transparent 24%), linear-gradient(to bottom, rgba(8,7,6,0.38), transparent 18%); pointer-events: none;"></div>
+      <div ref="{{ dimRef }}" aria-hidden="true" style="position: absolute; inset: 0; background: rgba(8,7,6,0.65); opacity: 0; pointer-events: none;"></div>
+
+      <!-- Cinematic: vignette + letterbox 2.39:1 + anamorphic flare -->
+      <div ref="{{ vignetteRef }}" aria-hidden="true" style="position: absolute; inset: 0; z-index: 14; background: radial-gradient(ellipse at center, transparent 52%, rgba(0,0,0,0.4) 100%); opacity: 0; pointer-events: none;"></div>
+      <div ref="{{ barTopRef }}" aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 0; background: #050403; z-index: 27; pointer-events: none;"></div>
+      <div ref="{{ barBotRef }}" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: #050403; z-index: 27; pointer-events: none;"></div>
+      <div ref="{{ flareRef }}" aria-hidden="true" style="position: absolute; left: -10%; right: -10%; top: 50%; height: 2px; z-index: 26; background: linear-gradient(90deg, transparent, rgba(255,138,61,0.85) 35%, rgba(255,224,196,1) 50%, rgba(255,138,61,0.85) 65%, transparent); box-shadow: 0 0 26px 5px rgba(255,106,0,0.45); opacity: 0; pointer-events: none; will-change: opacity, transform;"></div>
+
+      <!-- Layer 1: 3D model (right side, above video) -->
+      <div style="position: absolute; top: 0; bottom: 0; right: 0; width: 46%; z-index: 12; pointer-events: none;">
+        <!-- Sân khấu ánh sáng cho sản phẩm -->
+        <div ref="{{ glowRef }}" aria-hidden="true" style="position: absolute; left: 50%; top: 50%; width: 500px; height: 500px; transform: translate(-50%, -50%); opacity: 0; will-change: opacity, transform;">
+          <div style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,106,0,0.34), rgba(255,106,0,0.08) 55%, transparent 72%); filter: blur(6px); animation: glowPulse 5s ease-in-out infinite;"></div>
+          <div style="position: absolute; inset: 42px; border-radius: 50%; border: 1px dashed rgba(255,164,96,0.5); animation: ringSpin 32s linear infinite;"></div>
+          <div style="position: absolute; inset: 92px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.16);"></div>
+        </div>
+        <glb-stage id="action-stage" src="assets/models/action-cam.glb" color-parts="body,paint,frame" fit="2.6" exposure="1.15" style="width: 100%; height: 100%;"></glb-stage>
+        <div ref="{{ noModelRef }}" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none; width: 300px; height: 300px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.3); background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 8px, transparent 8px, transparent 20px); align-items: center; justify-content: center; text-align: center;">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.9; color: rgba(255,255,255,0.6);">model 3d insta360<br>assets/models/action-cam.glb<br>(nén draco &lt; 30MB)</p>
+        </div>
+      </div>
+
+      <!-- Layer 2: hero overlay -->
+      <div ref="{{ heroRef }}" style="position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; will-change: transform, opacity;">
+        <div style="width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px;">
+          <div style="max-width: 560px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,138,61,0.5); background: rgba(11,10,9,0.55); backdrop-filter: blur(8px); border-radius: 999px; padding: 8px 16px;">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: #ff6a00; box-shadow: 0 0 10px 2px rgba(255,106,0,0.7); animation: recBlink 1.4s ease-in-out infinite;"></span>
+              <span style="font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: #ff8a3d;">Cuộn chuột = tua video đua xe</span>
+            </div>
+            <h1 style="margin: 24px 0 0; font-size: 74px; line-height: 1.0; font-weight: 200; letter-spacing: -0.02em; color: #ffffff; text-wrap: balance; text-shadow: 0 4px 30px rgba(0,0,0,0.45);">Insta360 <span style="font-weight: 650; color: #ff6a00;">ONE RS</span><br><span style="font-size: 44px; font-weight: 300; color: rgba(255,255,255,0.92);">1-Inch 360 Edition</span></h1>
+            <p style="margin: 20px 0 0; max-width: 440px; font-size: 17.5px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.75); text-wrap: pretty;">Cảm biến kép 1-inch đồng phát triển cùng Leica. Quay 6K 360° — bắt trọn mọi khoảnh khắc tốc độ.</p>
+            <div style="display: flex; align-items: baseline; gap: 14px; margin-top: 26px;">
+              <span style="font-size: 32px; font-weight: 500; color: #ffffff;">18.990.000đ</span>
+              <span style="font-size: 17px; color: rgba(255,255,255,0.45); text-decoration: line-through;">20.990.000đ</span>
+              <span style="font-size: 12px; font-weight: 800; color: #ffffff; background: #ff6a00; border-radius: 999px; padding: 4px 10px; box-shadow: 0 6px 18px -4px rgba(255,106,0,0.7);">-10%</span>
+            </div>
+            <p style="display: flex; align-items: center; gap: 9px; margin: 32px 0 0; font-size: 14px; color: rgba(255,255,255,0.7);">
+              <svg style="animation: bounceDown 1.6s ease-in-out infinite;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+              Cuộn xuống — video chạy theo từng cú lăn chuột
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 3: spec segments (left) -->
+      <div style="position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; pointer-events: none;">
+        <div style="width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; height: 100%;">
+          <div ref="{{ seg0 }}" style="position: absolute; left: 32px; top: 50%; transform: translateY(-50%); max-width: 460px; opacity: 0; will-change: transform, opacity;">
+            <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff8a3d;">01 · Cảm biến</p>
+            <h2 style="margin: 14px 0 0; font-size: 88px; line-height: 0.95; font-weight: 200; letter-spacing: -0.03em; color: #ffffff; text-shadow: 0 4px 30px rgba(0,0,0,0.5);">1-inch <span style="font-weight: 650; color: #ff6a00;">×2</span></h2>
+            <p style="margin: 16px 0 0; font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.9);">Cảm biến kép CMOS — đồng phát triển cùng <span style="font-weight: 600;">Leica</span></p>
+            <p style="margin: 10px 0 0; font-size: 14.5px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.65); text-wrap: pretty;">Dải nhạy sáng vượt trội, chi tiết sắc nét cả trong điều kiện thiếu sáng — chuẩn chất lượng ống kính Đức.</p>
+          </div>
+          <div ref="{{ seg1 }}" style="position: absolute; left: 32px; top: 50%; transform: translateY(-50%); max-width: 460px; opacity: 0; will-change: transform, opacity;">
+            <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff8a3d;">02 · Video 360°</p>
+            <h2 style="margin: 14px 0 0; font-size: 88px; line-height: 0.95; font-weight: 200; letter-spacing: -0.03em; color: #ffffff; text-shadow: 0 4px 30px rgba(0,0,0,0.5);">6K <span style="font-weight: 650; color: #ff6a00;">360°</span></h2>
+            <p style="margin: 16px 0 0; font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.9);">6144 × 3072 @ 30fps — quay trước, chọn góc sau</p>
+            <p style="margin: 10px 0 0; font-size: 14.5px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.65); text-wrap: pretty;">Reframe mọi góc máy sau khi quay: đặt camera một lần, thu về vô số góc quay điện ảnh của cả đường đua.</p>
+          </div>
+          <div ref="{{ seg2 }}" style="position: absolute; left: 32px; top: 50%; transform: translateY(-50%); max-width: 460px; opacity: 0; will-change: transform, opacity;">
+            <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff8a3d;">03 · Chống rung</p>
+            <h2 style="margin: 14px 0 0; font-size: 76px; line-height: 0.98; font-weight: 200; letter-spacing: -0.03em; color: #ffffff; text-shadow: 0 4px 30px rgba(0,0,0,0.5);">FlowState<span style="font-weight: 650; color: #ff6a00;">™</span></h2>
+            <p style="margin: 16px 0 0; font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.9);">+ 360 Horizon Lock — chân trời luôn thẳng</p>
+            <p style="margin: 10px 0 0; font-size: 14.5px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.65); text-wrap: pretty;">Xe nghiêng 90° qua cua, khung hình vẫn phẳng lặng như lướt trên ray — không cần gimbal.</p>
+          </div>
+          <div ref="{{ seg3 }}" style="position: absolute; left: 32px; top: 50%; transform: translateY(-50%); max-width: 460px; opacity: 0; will-change: transform, opacity;">
+            <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff8a3d;">04 · Độ bền</p>
+            <h2 style="margin: 14px 0 0; font-size: 88px; line-height: 0.95; font-weight: 200; letter-spacing: -0.03em; color: #ffffff; text-shadow: 0 4px 30px rgba(0,0,0,0.5);">IPX8 <span style="font-weight: 650; color: #ff6a00;">10m</span></h2>
+            <p style="margin: 16px 0 0; font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.9);">Chống nước chuẩn thi đấu · chỉ 239g</p>
+            <p style="margin: 10px 0 0; font-size: 14.5px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.65); text-wrap: pretty;">Bụi đường, mưa xối hay cú ngã sát mặt nước — sẵn sàng cho mọi đường đua khắc nghiệt.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 4: final CTA — chữ bên trái, sản phẩm pose dáng hero bên phải -->
+      <div ref="{{ finalRef }}" style="position: absolute; inset: 0; z-index: 25; display: flex; align-items: center; opacity: 0; pointer-events: none; will-change: transform, opacity;">
+        <div style="width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px;">
+        <div style="text-align: left; max-width: 560px;">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff8a3d;">Về đích — sẵn sàng sở hữu</p>
+          <h2 style="margin: 16px 0 0; font-size: 56px; font-weight: 200; letter-spacing: -0.02em; color: #ffffff; text-wrap: balance; text-shadow: 0 4px 30px rgba(0,0,0,0.5);">Một camera. <span style="font-weight: 650; color: #ff6a00;">Mọi góc quay.</span></h2>
+          <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-top: 22px; flex-wrap: wrap;">
+            <span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.25); background: rgba(11,10,9,0.5); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 14px;">6K 360°</span>
+            <span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.25); background: rgba(11,10,9,0.5); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 14px;">21MP</span>
+            <span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.25); background: rgba(11,10,9,0.5); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 14px;">FlowState</span>
+            <span style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.25); background: rgba(11,10,9,0.5); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 14px;">239g</span>
+          </div>
+          <div style="display: flex; align-items: baseline; justify-content: flex-start; gap: 14px; margin-top: 24px;">
+            <span style="font-size: 36px; font-weight: 500; color: #ffffff;">18.990.000đ</span>
+            <span style="font-size: 18px; color: rgba(255,255,255,0.45); text-decoration: line-through;">20.990.000đ</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: flex-start; gap: 12px; margin-top: 28px;">
+            <a href="javascript:alert('Cảm ơn bạn! Insta360 ONE RS đã được thêm vào giỏ hàng.')" style="pointer-events: auto; display: inline-flex; align-items: center; gap: 9px; height: 50px; padding: 0 28px; border-radius: 13px; background: #ff6a00; color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 700; box-shadow: 0 16px 40px -10px rgba(255,106,0,0.7); transition: background 0.2s ease, transform 0.2s ease;" style-hover="background: #ea6100; color: #ffffff; transform: translateY(-2px);" style-active="transform: scale(0.97);">Mua ngay</a>
+            <a href="tel:0937148222" style="pointer-events: auto; display: inline-flex; align-items: center; gap: 9px; height: 50px; padding: 0 24px; border-radius: 13px; border: 1px solid rgba(255,255,255,0.35); background: rgba(11,10,9,0.4); backdrop-filter: blur(8px); color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 600; transition: all 0.2s ease;" style-hover="border-color: rgba(255,106,0,0.7); background: rgba(255,106,0,0.15); color: #ffffff;">✆ Tư vấn 0937.148.222</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Layer 5: timeline HUD -->
+      <div style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; padding: 0 32px 22px; pointer-events: none;">
+        <div style="max-width: 1216px; margin: 0 auto;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px;">
+            <span style="display: flex; align-items: center; gap: 8px; font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.8);">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #e2483d; box-shadow: 0 0 10px 2px rgba(226,72,61,0.6); animation: recBlink 1.2s ease-in-out infinite;"></span>
+              REC <span ref="{{ tcRef }}">00:00:00</span>
+            </span>
+            <span style="font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55);">Scroll = Timeline · 6K 360°</span>
+          </div>
+          <div style="height: 3px; border-radius: 999px; background: rgba(255,255,255,0.18); overflow: hidden;">
+            <div ref="{{ tlRef }}" style="height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, #ff6a00, #ff8a3d); box-shadow: 0 0 12px rgba(255,106,0,0.8);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ HIGHLIGHTS ═══════════ -->
+  <section data-screen-label="Điểm nổi bật" style="max-width: 1280px; margin: 0 auto; padding: 88px 32px 0;">
+    <div style="text-align: center;">
+      <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">Vì sao chọn ONE RS 1-Inch 360</p>
+      <h2 style="margin: 10px 0 0; font-size: 38px; font-weight: 200; letter-spacing: -0.02em; text-wrap: balance;">Sinh ra cho tốc độ và sáng tạo</h2>
+    </div>
+    <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="3">
+        <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 20px; padding: 28px; transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.28s ease;" style-hover="border-color: rgba(255,106,0,0.45); transform: translateY(-4px); box-shadow: 0 24px 48px -22px rgba(255,106,0,0.4);">
+          <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: #ff6a00;">{{ h.num }}</p>
+          <h3 style="margin: 14px 0 0; font-size: 21px; font-weight: 550; letter-spacing: -0.01em; color: #16130f;">{{ h.title }}</h3>
+          <p style="margin: 9px 0 0; font-size: 14px; font-weight: 300; line-height: 1.6; color: #7a746c; text-wrap: pretty;">{{ h.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ═══════════ SPEC TABLE ═══════════ -->
+  <section data-screen-label="Bảng thông số" style="max-width: 1280px; margin: 0 auto; padding: 88px 32px 0;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;">
+      <div>
+        <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">Thông số chi tiết</p>
+        <h2 style="margin: 10px 0 0; font-size: 34px; font-weight: 200; letter-spacing: -0.02em;">Insta360 ONE RS 1-Inch 360 Edition</h2>
+      </div>
+      <a href="#action-stage" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #7a746c; text-decoration: none; transition: color 0.2s ease, gap 0.2s ease;" style-hover="color: #ff6a00; gap: 12px;">Xem mô hình 3D <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    </div>
+    <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+      <sc-for list="{{ specGroups }}" as="g" hint-placeholder-count="4">
+        <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 18px; padding: 22px 24px; transition: border-color 0.22s ease, box-shadow 0.28s ease, transform 0.22s ease;" style-hover="border-color: rgba(255,106,0,0.4); box-shadow: 0 22px 44px -24px rgba(255,106,0,0.35); transform: translateY(-3px);">
+          <h3 style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #ff6a00;">{{ g.group }}</h3>
+          <div style="margin-top: 14px; display: flex; flex-direction: column;">
+            <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+              <div style="display: flex; flex-direction: column; gap: 3px; padding: 9px 0; border-top: 1px solid #f1eee9;">
+                <span style="font-size: 12px; color: #a39d94;">{{ it.label }}</span>
+                <span style="font-size: 13.5px; font-weight: 550; color: #16130f;">{{ it.value }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA ═══════════ -->
+  <section data-screen-label="CTA mua hàng" style="max-width: 1280px; margin: 88px auto 0; padding: 0 32px;">
+    <div style="position: relative; overflow: hidden; background: #16130f; border-radius: 28px; padding: 52px 56px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+      <div aria-hidden="true" style="position: absolute; top: -160px; right: 10%; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,106,0,0.3), transparent 70%); filter: blur(20px); animation: glowPulse 6s ease-in-out infinite;"></div>
+      <div style="position: relative;">
+        <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.24em; color: #ff8a3d;">Còn hàng · Bảo hành chính hãng 12 tháng</p>
+        <h2 style="margin: 12px 0 0; font-size: 38px; font-weight: 200; letter-spacing: -0.02em; color: #f7f4ef;">ONE RS 1-Inch 360 — <span style="font-weight: 600; color: #ff6a00;">18.990.000đ</span></h2>
+        <p style="margin: 14px 0 0; font-size: 13.5px; color: #a39d94;">🎁 Tặng thẻ nhớ 128GB UHS-I V30 · 🛡️ Dán màn hình miễn phí trọn đời</p>
+      </div>
+      <div style="position: relative; display: flex; flex-direction: column; gap: 12px; min-width: 260px;">
+        <a href="javascript:alert('Cảm ơn bạn! Insta360 ONE RS đã được thêm vào giỏ hàng.')" style="display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 14px; background: #ff6a00; color: #ffffff; text-decoration: none; font-size: 15.5px; font-weight: 700; box-shadow: 0 16px 36px -12px rgba(255,106,0,0.6); transition: background 0.2s ease, transform 0.2s ease;" style-hover="background: #ea6100; color: #ffffff; transform: translateY(-2px);" style-active="transform: scale(0.97);">Mua ngay — nhận quà hôm nay</a>
+        <a href="tel:0937148222" style="display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.2); color: #f7f4ef; text-decoration: none; font-size: 15px; font-weight: 600; transition: all 0.2s ease;" style-hover="border-color: rgba(255,106,0,0.6); background: rgba(255,106,0,0.1); color: #ffffff;">✆ 0937.148.222 — tư vấn miễn phí</a>
+      </div>
+    </div>
+  </section>
+
+  <div style="height: 96px;"></div>
+  <dc-import name="SiteFooter" hint-size="100%,620px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;videoStart&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:25,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;default&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Video đua xe&quot;},&quot;videoLength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:4,&quot;max&quot;:30,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;default&quot;:13,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Video đua xe&quot;}}">
+class Component extends DCLogic {
+  state = { specGroups: [], highlights: [] };
+
+  containerRef = React.createRef();
+  videoRef = React.createRef();
+  noVideoRef = React.createRef();
+  noModelRef = React.createRef();
+  heroRef = React.createRef();
+  dimRef = React.createRef();
+  finalRef = React.createRef();
+  tcRef = React.createRef();
+  tlRef = React.createRef();
+  vignetteRef = React.createRef();
+  barTopRef = React.createRef();
+  barBotRef = React.createRef();
+  flareRef = React.createRef();
+  glowRef = React.createRef();
+  seg0 = React.createRef(); seg1 = React.createRef(); seg2 = React.createRef(); seg3 = React.createRef();
+
+  async componentDidMount() {
+    const data = await import('./data/products.js');
+    const p = data.getBySlug('insta360-one-rs-1-inch-360-edition');
+    this.setState({
+      specGroups: p ? p.specs : [],
+      highlights: [
+        { num: '01', title: 'Chất lượng ống kính Leica', body: 'Cảm biến kép 1-inch đồng phát triển cùng Leica — màu sắc trung thực, chi tiết vượt trội cả ngày lẫn đêm.' },
+        { num: '02', title: 'Gậy selfie tàng hình', body: 'Thuật toán tự động xoá gậy khỏi khung hình 360° — góc quay thứ ba như có flycam bám theo xe.' },
+        { num: '03', title: 'Quay trước, chọn góc sau', body: 'App AI reframe: một lần quay 360°, xuất vô số góc máy điện ảnh — không bỏ lỡ khoảnh khắc nào.' },
+      ],
+    });
+
+    const v = this.videoRef.current;
+    if (v) {
+      v.addEventListener('error', () => { if (!this._blobUrl) this._noVideo(); });
+      // Server không hỗ trợ range-request → seekable = 0 → không tua được.
+      // Tải trọn file thành Blob: tua tự do tức thì trong bộ nhớ.
+      fetch('assets/video/race.mp4')
+        .then((res) => { if (!res.ok) throw new Error('http ' + res.status); return res.blob(); })
+        .then((blob) => {
+          this._blobUrl = URL.createObjectURL(blob);
+          this._dur = 0;
+          v.src = this._blobUrl;
+          v.load();
+        })
+        .catch(() => { if (!(v.duration > 0)) this._noVideo(); });
+    }
+
+    // 3D stage vs placeholder — flag only; hiển thị được đồng bộ mỗi frame trong _tick
+    const stage = document.getElementById('action-stage');
+    if (stage) stage.addEventListener('glb-error', () => { this._fbFlag = true; });
+    setTimeout(() => { if (!customElements.get('glb-stage')) this._fbFlag = true; }, 4000);
+    this._fallbackTimer = setTimeout(() => {
+      const st = document.getElementById('action-stage');
+      if (!st || !st.ready) this._fbFlag = true;
+    }, 14000);
+
+    this._p = 0;
+    this._raf = requestAnimationFrame(() => this._tick());
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearTimeout(this._fallbackTimer);
+  }
+
+  _noVideo() {
+    const ph = this.noVideoRef.current;
+    if (ph) ph.style.display = 'flex';
+    const v = this.videoRef.current;
+    if (v) v.style.display = 'none';
+  }
+
+  _noModel() { this._fbFlag = true; }
+
+  _tick() {
+    this._raf = requestAnimationFrame(() => this._tick());
+    const c = this.containerRef.current;
+    if (!c) return;
+    const rect = c.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const raw = Math.min(1, Math.max(0, -rect.top / (rect.height - vh)));
+    this._p += (raw - this._p) * 0.05;
+    const p = this._p;
+
+    const clamp01 = (v) => Math.min(1, Math.max(0, v));
+    const r = (v, a, b) => clamp01((v - a) / (b - a));
+    const sm = (t) => t * t * (3 - 2 * t);
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    // video scrub: whole scroll = whole clip
+    const v = this.videoRef.current;
+    if (v && !this._dur) {
+      let d = v.duration;
+      if (!d || !isFinite(d)) d = (v.seekable && v.seekable.length) ? v.seekable.end(v.seekable.length - 1) : 0;
+      if (d && isFinite(d)) this._dur = d;
+    }
+    if (v && this._dur) {
+      // Chỉ dùng một cửa sổ ngắn của clip → chuyển động chậm lại, cuộn mượt hơn
+      const clipStart = Math.min(Math.max(0, Number(this.props.videoStart ?? 0)), Math.max(0, this._dur - 2));
+      const clipLen = Math.max(2, Number(this.props.videoLength ?? 10));
+      const clipEnd = Math.min(this._dur - 0.06, clipStart + clipLen);
+      const target = Math.min(clipEnd, clipStart + p * (clipEnd - clipStart));
+      // chỉ seek khi seek trước đó đã xong — tránh dồn hàng đợi gây giật
+      if (!v.seeking && Math.abs((v.currentTime || 0) - target) > 0.02 && v.readyState >= 1) {
+        try { v.currentTime = target; } catch (e) {}
+      }
+      const tc = this.tcRef.current;
+      if (tc) {
+        const t = v.currentTime || 0;
+        const mm = String(Math.floor(t / 60)).padStart(2, '0');
+        const ss = String(Math.floor(t % 60)).padStart(2, '0');
+        const ff = String(Math.floor((t % 1) * 30)).padStart(2, '0');
+        tc.textContent = `${mm}:${ss}:${ff}`;
+      }
+    }
+    const tl = this.tlRef.current;
+    if (tl) tl.style.width = `${(p * 100).toFixed(2)}%`;
+
+    // hero
+    const hero = this.heroRef.current;
+    if (hero) {
+      const op = 1 - r(p, 0.02, 0.12);
+      hero.style.opacity = op;
+      hero.style.transform = `translateY(${-70 * r(p, 0.02, 0.12)}px)`;
+      hero.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
+    }
+
+    // segments
+    const windows = [
+      [0.14, 0.30], [0.30, 0.46], [0.46, 0.62], [0.62, 0.78],
+    ];
+    const segs = [this.seg0, this.seg1, this.seg2, this.seg3];
+    segs.forEach((ref, i) => {
+      const el = ref.current;
+      if (!el) return;
+      const [a, b] = windows[i];
+      const op = Math.min(r(p, a, a + 0.035), 1 - r(p, b - 0.03, b));
+      el.style.opacity = op;
+      el.style.transform = `translateY(calc(-50% + ${lerp(36, -20, r(p, a, b))}px))`;
+    });
+
+    // final CTA + dim
+    const fin = this.finalRef.current;
+    if (fin) {
+      const op = r(p, 0.82, 0.9);
+      fin.style.opacity = op;
+      fin.style.transform = `translateY(${lerp(46, 0, sm(r(p, 0.82, 0.92)))}px)`;
+      fin.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
+    }
+    const dim = this.dimRef.current;
+    if (dim) dim.style.opacity = 0.65 * r(p, 0.8, 0.9);
+
+    // Khung hình điện ảnh: letterbox + vignette + lóe sáng anamorphic tại ranh giới phân đoạn
+    const cine = Math.min(r(p, 0.08, 0.16), 1 - r(p, 0.84, 0.92));
+    const bt = this.barTopRef.current, bb = this.barBotRef.current;
+    if (bt) bt.style.height = `${(6.2 * cine).toFixed(2)}vh`;
+    if (bb) bb.style.height = `${(6.2 * cine).toFixed(2)}vh`;
+    const vg = this.vignetteRef.current;
+    if (vg) vg.style.opacity = (0.85 * cine).toFixed(3);
+    const flare = this.flareRef.current;
+    if (flare) {
+      const bounds = [0.14, 0.3, 0.46, 0.62, 0.78];
+      let k = 0;
+      for (const b of bounds) k = Math.max(k, 1 - Math.abs(p - b) / 0.022);
+      k = Math.max(0, k) * cine;
+      flare.style.opacity = (k * 0.9).toFixed(3);
+      flare.style.transform = `translateY(-50%) scaleX(${(0.55 + k * 0.55).toFixed(3)}) rotate(-0.4deg)`;
+    }
+
+    // Sân khấu ánh sáng theo model
+    const glow = this.glowRef.current;
+    if (glow) {
+      const gEntry = sm(r(p, 0.02, 0.14));
+      const gExit = 1 - sm(r(p, 0.8, 0.9));
+      glow.style.opacity = (Math.min(gEntry * 1.4, gExit) * 0.95).toFixed(3);
+      glow.style.transform = `translate(-50%, -50%) scale(${(0.85 + 0.15 * gEntry).toFixed(3)})`;
+    }
+
+    // model choreography: rotates through segments on the right
+    const stage = document.getElementById('action-stage');
+    const ready = !!(stage && stage.ready);
+    const mode = ready ? '3d' : (this._fbFlag ? 'fb' : 'wait');
+    if (this._mode !== mode) {
+      this._mode = mode;
+      const ph = this.noModelRef.current;
+      if (stage) stage.style.display = mode === 'fb' ? 'none' : 'block';
+      if (ph) ph.style.display = mode === 'fb' ? 'flex' : 'none';
+    }
+    if (stage && stage.setPose && mode === '3d') {
+      // Animation chia theo phân đoạn: mỗi đoạn một pose cố định,
+      // stage tự easing mượt giữa các pose → không churn theo từng pixel scroll
+      let seg = -1;
+      for (let i = 0; i < windows.length; i++) {
+        if (p >= windows[i][0] && p < windows[i][1]) { seg = i; break; }
+      }
+      if (p >= windows[windows.length - 1][1]) seg = windows.length;
+      const entry = sm(r(p, 0.02, 0.14));
+      const finPose = sm(r(p, 0.8, 0.9));
+      const poses = [
+        { rotY: 0.5, rotX: 0.02, s: 1.0 },
+        { rotY: 0.5 + Math.PI * 0.85, rotX: 0.1, s: 1.05 },
+        { rotY: 0.5 + Math.PI * 1.7, rotX: -0.08, s: 1.0 },
+        { rotY: 0.5 + Math.PI * 2.55, rotX: 0.12, s: 1.05 },
+        { rotY: 0.5 + Math.PI * 3.4, rotX: 0, s: 0.98 },
+        { rotY: 0.5 + Math.PI * 4.25, rotX: -0.05, s: 0.9 },
+      ];
+      const pose = poses[Math.max(0, seg + 1)];
+      // Kết màn: không rời khung — xoay về dáng hero 3/4, thu nhẹ, giữ nhịp thở
+      stage.setPose({
+        x: 0,
+        y: lerp(-1.4, 0.05, entry) - finPose * 0.08,
+        rotY: lerp(pose.rotY, 0.5 + Math.PI * 4.6, finPose),
+        rotX: lerp(pose.rotX, 0.05, finPose),
+        scale: lerp(0.7, 1.06, entry) * lerp(pose.s, 0.94, finPose),
+        opacity: Math.min(entry * 1.4, 1),
+        idle: seg >= 0 ? lerp(0.35, 1, finPose) : 1,
+      });
+    }
+  }
+
+  renderVals() {
+    return {
+      containerRef: this.containerRef,
+      videoRef: this.videoRef,
+      noVideoRef: this.noVideoRef,
+      noModelRef: this.noModelRef,
+      heroRef: this.heroRef,
+      dimRef: this.dimRef,
+      finalRef: this.finalRef,
+      tcRef: this.tcRef,
+      tlRef: this.tlRef,
+      vignetteRef: this.vignetteRef,
+      barTopRef: this.barTopRef,
+      barBotRef: this.barBotRef,
+      flareRef: this.flareRef,
+      glowRef: this.glowRef,
+      seg0: this.seg0, seg1: this.seg1, seg2: this.seg2, seg3: this.seg3,
+      specGroups: this.state.specGroups,
+      highlights: this.state.highlights,
+      true: true,
+    };
+  }
+}
+</script>
+</body>
+</html>

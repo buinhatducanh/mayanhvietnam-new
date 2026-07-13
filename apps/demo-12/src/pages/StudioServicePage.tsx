@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -685,7 +685,7 @@ export default function StudioServicePage() {
                 className="gallery-item"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
                 style={{
                   borderRadius: 16,
@@ -696,7 +696,6 @@ export default function StudioServicePage() {
                   cursor: 'pointer',
                 }}
                 whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
               >
                 <img
                   src={project.image}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Page, Product } from '../types';
-import { products, formatPrice } from '../data';
+import { products, formatPrice, getProductImages } from '../data';
+import { getRelatedPosts } from '../data/posts';
 import ProductCard from '../components/ProductCard';
 
 interface PDPPageProps {
@@ -14,12 +15,13 @@ type Tab = typeof tabs[number];
 
 export default function PDPPage({ product, onNavigate, onAddToCart }: PDPPageProps) {
   const [activeImage, setActiveImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('Mô tả chi tiết');
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState('Thân máy (Body Only)');
   const [added, setAdded] = useState(false);
 
-  const images = product.images ?? [product.image];
+  const images = getProductImages(product);
   const discount = product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : 0;
@@ -57,33 +59,93 @@ export default function PDPPage({ product, onNavigate, onAddToCart }: PDPPagePro
         <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
           {/* Gallery Media Column */}
           <div className="md:col-span-5 flex flex-col gap-4">
-            <div className="bg-cream/20 rounded-xl overflow-hidden border border-gray-100 aspect-square relative flex items-center justify-center">
-              <img src={images[activeImage]} alt={product.name} className="w-full h-full object-cover" />
+            {/* Main Image */}
+            <div
+              className="bg-cream/20 rounded-xl overflow-hidden border border-gray-100 aspect-square relative flex items-center justify-center cursor-zoom-in"
+              onClick={() => setLightboxOpen(true)}
+            >
+              <img src={images[activeImage]} alt={product.name} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
               {product.badge && (
                 <span className={`absolute top-4 left-4 text-xs font-black text-white px-3 py-1 rounded-full ${product.badge === 'HOT' ? 'bg-badge-hot' : product.badge === 'NEW' ? 'bg-badge-new' : 'bg-badge-sale'}`}>
                   {product.badge}
                 </span>
               )}
+              {/* Zoom icon */}
+              <span className="absolute bottom-3 right-3 bg-white/80 rounded-full w-8 h-8 flex items-center justify-center shadow-sm text-navy text-sm">🔍</span>
             </div>
+
+            {/* Thumbnails */}
+            <div className="flex gap-2.5 overflow-x-auto pb-1">
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImage(idx)}
+                  className={`w-16 h-16 rounded-lg border-2 overflow-hidden shrink-0 bg-white transition-all ${idx === activeImage ? 'border-orange scale-95 shadow-md' : 'border-gray-100 opacity-70 hover:opacity-100'}`}
+                >
+                  <img src={img} alt={`view-${idx + 1}`} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+
+            {/* Multi-image grid preview */}
             {images.length > 1 && (
-              <div className="flex gap-2.5 overflow-x-auto pb-1">
+              <div className="grid grid-cols-4 gap-2">
                 {images.map((img, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setActiveImage(idx)}
-                    className={`w-16 h-16 rounded-lg border-2 overflow-hidden shrink-0 bg-white transition-all ${idx === activeImage ? 'border-orange scale-95 shadow-md' : 'border-gray-100 opacity-70 hover:opacity-100'}`}
+                    onClick={() => { setActiveImage(idx); setLightboxOpen(true); }}
+                    className="aspect-square rounded-lg overflow-hidden border border-gray-100 hover:border-orange hover:shadow-md transition-all"
                   >
-                    <img src={img} alt={`view-${idx}`} className="w-full h-full object-cover" />
+                    <img src={img} alt={`preview-${idx + 1}`} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" />
                   </button>
                 ))}
               </div>
             )}
           </div>
 
+          {/* Lightbox overlay */}
+          {lightboxOpen && (
+            <div
+              className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-8"
+              onClick={() => setLightboxOpen(false)}
+            >
+              <button
+                className="absolute top-6 right-6 text-white text-3xl font-bold hover:text-orange transition-colors z-50"
+                onClick={() => setLightboxOpen(false)}
+              >✕</button>
+              <button
+                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white text-3xl bg-white/10 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                onClick={(e) => { e.stopPropagation(); setActiveImage(i => (i - 1 + images.length) % images.length); }}
+              >‹</button>
+              <img
+                src={images[activeImage]}
+                alt={product.name}
+                className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg"
+                onClick={(e) => e.stopPropagation()}
+              />
+              <button
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white text-3xl bg-white/10 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                onClick={(e) => { e.stopPropagation(); setActiveImage(i => (i + 1) % images.length); }}
+              >›</button>
+              {/* Thumbnails in lightbox */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                {images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => { e.stopPropagation(); setActiveImage(idx); }}
+                    className={`w-14 h-14 rounded-lg overflow-hidden border-2 transition-all ${idx === activeImage ? 'border-orange' : 'border-white/30 opacity-60 hover:opacity-100'}`}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Checkout & Detail Information */}
           <div className="md:col-span-7 flex flex-col justify-between">
             <div>
-              <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">{product.brand} · {product.condition === 'New' ? 'Hàng Mới Chình Hãng' : 'Hàng Qua Sử Dụng'}</div>
+              <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">{product.brand} · {product.condition === 'New' ? 'Hàng Mới Chính Hãng' : 'Hàng Qua Sử Dụng'}</div>
               <h1 className="text-2xl md:text-3xl font-black text-navy mt-1.5 leading-tight">{product.name}</h1>
               
               <div className="flex items-center gap-4 mt-3 pb-4 border-b border-gray-100">
@@ -231,7 +293,7 @@ export default function PDPPage({ product, onNavigate, onAddToCart }: PDPPagePro
 
         {/* Sản phẩm liên quan */}
         {relatedProducts.length > 0 && (
-          <section className="mb-8">
+          <section className="mb-12">
             <h2 className="text-xl font-bold text-navy mb-5">📸 Sản phẩm liên quan</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {relatedProducts.map(p => (
@@ -240,6 +302,45 @@ export default function PDPPage({ product, onNavigate, onAddToCart }: PDPPagePro
             </div>
           </section>
         )}
+
+        {/* Bài viết liên quan */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-navy mb-5">📰 Bài viết liên quan</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {getRelatedPosts(product.categorySlug).map(post => (
+              <article
+                key={post.id}
+                className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-lg transition-all group cursor-pointer"
+              >
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-4">
+                  <span className="text-[10px] font-bold text-orange uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded">
+                    {post.category}
+                  </span>
+                  <h3 className="text-sm font-bold text-navy mt-2 leading-snug line-clamp-2 group-hover:text-orange transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-xs text-gray-400 mt-2 line-clamp-2 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-50 text-[11px] text-gray-400">
+                    <span>{post.author}</span>
+                    <span>·</span>
+                    <span>{post.date}</span>
+                    <span>·</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

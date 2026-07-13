@@ -1,13 +1,13 @@
 {
-  "name": "figma-make-app",
+  "name": "demo-11",
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "description": "Demo 11 — Figma Make export A (Vite, port 8011)",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite --port 8011 --host",
     "build": "vite build",
-    "preview": "vite preview",
-    "format": "oxfmt"
+    "preview": "vite preview --port 8011"
   },
   "dependencies": {
     "react": "^19.0.0",

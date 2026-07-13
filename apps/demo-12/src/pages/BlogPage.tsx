@@ -64,7 +64,7 @@ const posts = [
 ]
 
 const categoryColors: Record<string, string> = {
-  'Review': 'var(--color-secondary)',
+  'Review': '#FF8A3C',
   'Hướng Dẫn': '#10B981',
   'So Sánh': '#0EA5E9',
 }

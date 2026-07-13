@@ -9,7 +9,7 @@ interface CartPageProps {
   onNavigate: (page: Page) => void;
 }
 
-const steps = ['Kiểm tra giỏ hàng', 'Thông tin giao hàng', 'Xác nhận thanh toán'] as const;
+const steps = ['Kiểm tra giỏ hàng', 'Thông tin giao hàng', 'Xác nhận thanh toán', 'Hoàn tất'] as const;
 type Step = 0 | 1 | 2 | 3;
 
 const shippingMethods = [

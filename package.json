@@ -2,12 +2,21 @@
   "name": "mayanhvietnam-new",
   "version": "1.0.0",
   "private": true,
-  "description": "Rebuild website mayanhvietnam.com - Monorepo gồm 10 demo FE projects + admin + API",
+  "description": "Rebuild website mayanhvietnam.com - Monorepo gồm 12 demo FE projects + admin + API. Demo apps: demo-0..demo-12, demo-shell, admin-next (8080), api (4000).",
   "scripts": {
-    "dev:admin-next": "pnpm --filter admin-next dev",
-    "build:admin-next": "pnpm --filter admin-next build",
+    "dev:admin": "pnpm --filter admin-next dev",
+    "build:admin": "pnpm --filter admin-next build",
     "dev:api": "pnpm --filter api dev",
     "build:api": "pnpm --filter api build",
+
+    "dev:demo-0": "pnpm --filter demo-0 dev",
+    "dev:demo-00": "pnpm --filter demo-0 dev",
+    "build:demo-0": "pnpm --filter demo-0 build",
+    "build:demo-00": "pnpm --filter demo-0 build",
+    "dev:demo-01": "pnpm --filter demo-01 dev",
+    "build:demo-01": "pnpm --filter demo-01 build",
+    "dev:demo-02": "pnpm --filter demo-02 dev",
+    "build:demo-02": "pnpm --filter demo-02 build",
     "dev:demo-03": "pnpm --filter demo-03 dev",
     "build:demo-03": "pnpm --filter demo-03 build",
     "dev:demo-04": "pnpm --filter demo-04 dev",
@@ -24,24 +33,32 @@
     "build:demo-09": "pnpm --filter demo-09 build",
     "dev:demo-10": "pnpm --filter demo-10 dev",
     "build:demo-10": "pnpm --filter demo-10 build",
-    "dev:demo-shell": "pnpm --filter demo-shell dev",
-    "build:demo-shell": "pnpm --filter demo-shell build",
-    "dev:demo-0": "pnpm --filter demo-0 dev",
-    "build:demo-0": "pnpm --filter demo-0 build",
-    "dev:demo-01": "pnpm --filter demo-01 dev",
-    "build:demo-01": "pnpm --filter demo-01 build",
-    "dev:demo-02": "pnpm --filter demo-02 dev",
-    "build:demo-02": "pnpm --filter demo-02 build",
-    "dev:all": "pnpm --filter admin-next dev & pnpm --filter api dev & pnpm --filter demo-01 dev & pnpm --filter demo-02 dev & pnpm --filter demo-03 dev & pnpm --filter demo-04 dev & pnpm --filter demo-05 dev & pnpm --filter demo-06 dev & pnpm --filter demo-07 dev & pnpm --filter demo-08 dev & pnpm --filter demo-09 dev & pnpm --filter demo-10 dev & pnpm --filter demo-shell dev",
+    "dev:demo-11": "pnpm --filter demo-11 dev",
+    "build:demo-11": "pnpm --filter demo-11 build",
+    "dev:demo-12": "pnpm --filter demo-12 dev",
+    "build:demo-12": "pnpm --filter demo-12 build",
+
+    "dev:shell": "pnpm --filter demo-shell dev",
+    "build:shell": "pnpm --filter demo-shell build",
+
+    "dev:all": "concurrently -k -n api,admin,d0,d01,d02,d03,d04,d05,d06,d07,d08,d09,d10,d11,d12,shell -c blue,green,magenta,cyan,white,red,gray,grayBright,gray,gray,gray,gray,gray,gray,gray,grayBright \"pnpm dev:api\" \"pnpm dev:admin\" \"pnpm dev:demo-0\" \"pnpm dev:demo-01\" \"pnpm dev:demo-02\" \"pnpm dev:demo-03\" \"pnpm dev:demo-04\" \"pnpm dev:demo-05\" \"pnpm dev:demo-06\" \"pnpm dev:demo-07\" \"pnpm dev:demo-08\" \"pnpm dev:demo-09\" \"pnpm dev:demo-10\" \"pnpm dev:demo-11\" \"pnpm dev:demo-12\" \"pnpm dev:shell\"",
+    "dev:web": "concurrently -k -n d0,d01,d02,d03,d04,d05,d06,d07,d08,d09,d10,d11,d12,shell -c magenta,cyan,white,red,gray,grayBright,gray,gray,gray,gray,gray,gray,gray,grayBright \"pnpm dev:demo-0\" \"pnpm dev:demo-01\" \"pnpm dev:demo-02\" \"pnpm dev:demo-03\" \"pnpm dev:demo-04\" \"pnpm dev:demo-05\" \"pnpm dev:demo-06\" \"pnpm dev:demo-07\" \"pnpm dev:demo-08\" \"pnpm dev:demo-09\" \"pnpm dev:demo-10\" \"pnpm dev:demo-11\" \"pnpm dev:demo-12\" \"pnpm dev:shell\"",
+
     "db:migrate": "pnpm --filter api prisma:migrate",
     "db:seed": "pnpm --filter api prisma:seed",
     "db:studio": "pnpm --filter api prisma:studio",
+
     "lint": "pnpm -r lint",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+
+    "ports": "node scripts/print-ports.mjs"
   },
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=9.0.0"
   },
-  "packageManager": "pnpm@9.0.0"
+  "packageManager": "pnpm@9.0.0",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
 }

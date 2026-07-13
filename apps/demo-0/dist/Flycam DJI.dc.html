@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./support.js"></script>
+</head>
+
+<body>
+  <x-dc>
+    <helmet>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+      <style>
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          margin: 0;
+          background: #fafaf8;
+          -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+          color: #16130f;
+        }
+
+        a:hover {
+          color: #ff6a00;
+        }
+
+        ::selection {
+          background: rgba(255, 106, 0, 0.22);
+        }
+
+        @keyframes bounceDown {
+
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(5px);
+          }
+        }
+
+        @keyframes glowPulse {
+
+          0%,
+          100% {
+            opacity: 0.75;
+            transform: scale(1);
+          }
+
+          50% {
+            opacity: 1;
+            transform: scale(1.06);
+          }
+        }
+
+        @keyframes ringSpin {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes recBlink {
+
+          0%,
+          100% {
+            opacity: 1;
+          }
+
+          50% {
+            opacity: 0.25;
+          }
+        }
+      </style>
+      <script type="module" src="./glb-stage.js"></script>
+    </helmet>
+
+    <div style="font-family: 'Outfit', sans-serif; background: #fafaf8; color: #16130f;">
+      <dc-import name="SiteHeader" active="flycam" hint-size="100%,110px"
+        style="position: sticky; top: 0; z-index: 50; display: block;"></dc-import>
+
+      <!-- ═══════════ SCROLL EXPERIENCE (560vh) ═══════════ -->
+      <div ref="{{ containerRef }}" data-screen-label="Scroll 3D Flycam" style="position: relative; height: 560vh;">
+        <div
+          style="position: sticky; top: 0; height: 100vh; overflow: hidden; background: linear-gradient(180deg, #ffffff 0%, #f6f4f0 100%);">
+          <div aria-hidden="true"
+            style="position: absolute; inset: 0; background-image: radial-gradient(rgba(22,19,15,0.05) 1px, transparent 1px); background-size: 26px 26px;">
+          </div>
+          <div aria-hidden="true"
+            style="position: absolute; top: -200px; right: -140px; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,106,0,0.13), transparent 70%); filter: blur(12px); animation: glowPulse 6s ease-in-out infinite;">
+          </div>
+
+          <!-- Layer 2: 3D stage -->
+          <div style="position: absolute; inset: 0; z-index: 10; pointer-events: none;">
+            <glb-stage id="flycam-stage" src="assets/models/drone.glb" spin-parts="propeller,rotor,blade,fan"
+              color-parts="body,paint,frame,canopy" fit="2.5" exposure="1.05"
+              style="width: 100%; height: 100%;"></glb-stage>
+            <img ref="{{ fallbackRef }}"
+              src="https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121212567/avatar/01_flycam-dji-mavic-air-2-chinh-hang.jpg"
+              alt="DJI Mavic Air 2" referrerpolicy="no-referrer"
+              style="position: absolute; left: 50%; top: 50%; width: 430px; height: 430px; margin: -215px 0 0 -215px; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 34px 44px rgba(22,19,15,0.24)); display: none; will-change: transform, opacity;">
+          </div>
+
+          <!-- Layer 3: hero overlay -->
+          <div ref="{{ heroRef }}"
+            style="position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; will-change: transform, opacity;">
+            <div
+              style="width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+              <div style="pointer-events: auto;">
+                <div
+                  style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,106,0,0.35); background: rgba(255,106,0,0.07); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 15px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z">
+                    </path>
+                  </svg>
+                  <span
+                    style="font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: #c85200;">Giảm
+                    10% hôm nay · Chính hãng</span>
+                </div>
+                <h1
+                  style="margin: 24px 0 0; font-size: 76px; line-height: 1.02; font-weight: 200; letter-spacing: -0.025em; color: #16130f; text-wrap: balance;">
+                  DJI Mavic <span style="font-weight: 600; color: #ff6a00;">Air 2</span></h1>
+                <p
+                  style="margin: 20px 0 0; max-width: 420px; font-size: 18px; font-weight: 300; line-height: 1.6; color: #7a746c; text-wrap: pretty;">
+                  Bầu trời trong tầm tay — 4K 60fps, cảm biến 1/2 inch 48MP, bay liên tục 34 phút.</p>
+                <div style="display: flex; align-items: baseline; gap: 14px; margin-top: 28px;">
+                  <span style="font-size: 32px; font-weight: 500; letter-spacing: -0.01em;">17.900.000đ</span>
+                  <span style="font-size: 17px; color: #a39d94; text-decoration: line-through;">19.900.000đ</span>
+                </div>
+                <p
+                  style="display: flex; align-items: center; gap: 9px; margin: 30px 0 0; font-size: 14px; color: #7a746c;">
+                  <svg style="animation: bounceDown 1.6s ease-in-out infinite;" width="16" height="16"
+                    viewBox="0 0 24 24" fill="none" stroke="#ff6a00" stroke-width="2.4" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"></path>
+                  </svg>
+                  Cuộn xuống — bay thử rồi nhìn qua ống kính drone
+                </p>
+              </div>
+              <div id="hero-frame-fly" aria-hidden="true"
+                style="position: relative; aspect-ratio: 1; max-height: 62vh;">
+                <div
+                  style="position: absolute; inset: 0; border-radius: 28px; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.35); backdrop-filter: blur(2px);">
+                </div>
+                <div
+                  style="position: absolute; left: 20px; top: 20px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,106,0,0.4); background: rgba(255,255,255,0.75); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 13px;">
+                  <span
+                    style="width: 6px; height: 6px; border-radius: 50%; background: #ff6a00; box-shadow: 0 0 9px 2px rgba(255,106,0,0.55);"></span>
+                  <span
+                    style="font-family: 'Geist Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #c85200;">Xem
+                    trực tiếp 3D</span>
+                </div>
+                <div
+                  style="position: absolute; right: 20px; bottom: 20px; font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em; color: #a39d94;">
+                  Tự động xoay — 360°</div>
+                <div
+                  style="position: absolute; left: 50%; top: 50%; width: 300px; height: 300px; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(255,106,0,0.12), transparent 72%); animation: glowPulse 5s ease-in-out infinite;">
+                </div>
+                <div
+                  style="position: absolute; left: 50%; top: 50%; width: 340px; height: 340px; margin: -170px 0 0 -170px; border-radius: 50%; border: 1px dashed rgba(255,106,0,0.35); animation: ringSpin 40s linear infinite;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 3b: specs phase title -->
+          <div ref="{{ specsTitleRef }}"
+            style="position: absolute; left: 0; right: 0; top: 96px; z-index: 20; text-align: center; pointer-events: none; opacity: 0;">
+            <p
+              style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">
+              Thông số kỹ thuật</p>
+            <h2 style="margin: 10px 0 0; font-size: 40px; font-weight: 200; letter-spacing: -0.02em; color: #16130f;">
+              Phô diễn mọi góc cạnh</h2>
+          </div>
+
+          <!-- Spec callouts -->
+          <div
+            style="position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 0 64px; pointer-events: none;">
+            <div style="display: flex; flex-direction: column; gap: 84px;">
+              <div ref="{{ co0 }}"
+                style="display: flex; align-items: center; opacity: 0; will-change: transform, opacity;">
+                <div
+                  style="max-width: 210px; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); border-radius: 14px; padding: 13px 17px; box-shadow: 0 18px 40px -18px rgba(22,19,15,0.2);">
+                  <p
+                    style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #ff6a00;">
+                    Sensor</p>
+                  <p style="margin: 5px 0 0; font-size: 14.5px; font-weight: 650; color: #16130f;">Cảm biến</p>
+                  <p style="margin: 2px 0 0; font-size: 12.5px; color: #7a746c;">1/2" CMOS 48MP</p>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div
+                    style="height: 1px; width: 110px; background: linear-gradient(to right, rgba(255,106,0,0.7), rgba(255,106,0,0.15));">
+                  </div>
+                  <div
+                    style="width: 7px; height: 7px; border-radius: 50%; background: #ff6a00; box-shadow: 0 0 10px 3px rgba(255,106,0,0.45);">
+                  </div>
+                </div>
+              </div>
+              <div ref="{{ co2 }}"
+                style="display: flex; align-items: center; opacity: 0; will-change: transform, opacity;">
+                <div
+                  style="max-width: 210px; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); border-radius: 14px; padding: 13px 17px; box-shadow: 0 18px 40px -18px rgba(22,19,15,0.2);">
+                  <p
+                    style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #ff6a00;">
+                    Flight</p>
+                  <p style="margin: 5px 0 0; font-size: 14.5px; font-weight: 650; color: #16130f;">Thời gian bay</p>
+                  <p style="margin: 2px 0 0; font-size: 12.5px; color: #7a746c;">34 phút mỗi lần sạc</p>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div
+                    style="height: 1px; width: 110px; background: linear-gradient(to right, rgba(255,106,0,0.7), rgba(255,106,0,0.15));">
+                  </div>
+                  <div
+                    style="width: 7px; height: 7px; border-radius: 50%; background: #ff6a00; box-shadow: 0 0 10px 3px rgba(255,106,0,0.45);">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 84px;">
+              <div ref="{{ co1 }}"
+                style="display: flex; align-items: center; flex-direction: row-reverse; opacity: 0; will-change: transform, opacity;">
+                <div
+                  style="max-width: 210px; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); border-radius: 14px; padding: 13px 17px; text-align: right; box-shadow: 0 18px 40px -18px rgba(22,19,15,0.2);">
+                  <p
+                    style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #ff6a00;">
+                    Video</p>
+                  <p style="margin: 5px 0 0; font-size: 14.5px; font-weight: 650; color: #16130f;">Quay phim</p>
+                  <p style="margin: 2px 0 0; font-size: 12.5px; color: #7a746c;">4K UHD @ 60fps</p>
+                </div>
+                <div style="display: flex; align-items: center; flex-direction: row-reverse;">
+                  <div
+                    style="height: 1px; width: 110px; background: linear-gradient(to left, rgba(255,106,0,0.7), rgba(255,106,0,0.15));">
+                  </div>
+                  <div
+                    style="width: 7px; height: 7px; border-radius: 50%; background: #ff6a00; box-shadow: 0 0 10px 3px rgba(255,106,0,0.45);">
+                  </div>
+                </div>
+              </div>
+              <div ref="{{ co3 }}"
+                style="display: flex; align-items: center; flex-direction: row-reverse; opacity: 0; will-change: transform, opacity;">
+                <div
+                  style="max-width: 210px; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); border-radius: 14px; padding: 13px 17px; text-align: right; box-shadow: 0 18px 40px -18px rgba(22,19,15,0.2);">
+                  <p
+                    style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #ff6a00;">
+                    Link</p>
+                  <p style="margin: 5px 0 0; font-size: 14.5px; font-weight: 650; color: #16130f;">Truyền sóng</p>
+                  <p style="margin: 2px 0 0; font-size: 12.5px; color: #7a746c;">OcuSync 2.0 — 10km</p>
+                </div>
+                <div style="display: flex; align-items: center; flex-direction: row-reverse;">
+                  <div
+                    style="height: 1px; width: 110px; background: linear-gradient(to left, rgba(255,106,0,0.7), rgba(255,106,0,0.15));">
+                  </div>
+                  <div
+                    style="width: 7px; height: 7px; border-radius: 50%; background: #ff6a00; box-shadow: 0 0 10px 3px rgba(255,106,0,0.45);">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Color picker -->
+          <div ref="{{ colorsRef }}"
+            style="position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%); z-index: 30; display: flex; align-items: center; gap: 10px; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); border-radius: 999px; padding: 8px 16px; box-shadow: 0 18px 40px -18px rgba(22,19,15,0.22);">
+            <span
+              style="font-family: 'Geist Mono', monospace; font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: #a39d94;">Màu
+              thân máy</span>
+            <button type="button" aria-label="Xám Titanium" onClick="{{ pickGray }}"
+              sc-camel-style="width: 26px; height: 26px; border-radius: 50%; background: #4a4a4a; border: 2px solid {{ grayRing }}; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;"
+              style-hover="transform: scale(1.15);"></button>
+            <button type="button" aria-label="Đen Carbon" onClick="{{ pickBlack }}"
+              sc-camel-style="width: 26px; height: 26px; border-radius: 50%; background: #1c1c1c; border: 2px solid {{ blackRing }}; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease;"
+              style-hover="transform: scale(1.15);"></button>
+            <span style="font-size: 12px; font-weight: 600; color: #16130f;">{{ colorName }}</span>
+          </div>
+
+          <!-- ═══ FPV: nhìn xuyên qua camera drone ═══ -->
+          <div ref="{{ fpvRef }}" style="position: absolute; inset: 0; z-index: 35; opacity: 0; will-change: opacity;">
+            <div ref="{{ fpvCardRef }}"
+              style="position: absolute; inset: 0; overflow: hidden; will-change: transform; transform-origin: 50% 44%;">
+              <img ref="{{ fpvImgRef }}" src="assets/images/ed-wingate-lTtpCwWdc84-unsplash.jpg"
+                alt="Góc nhìn từ camera DJI Mavic Air 2"
+                style="position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; will-change: transform;">
+              <!-- Gimbal HUD -->
+              <div ref="{{ hudRef }}"
+                style="position: absolute; inset: 0; opacity: 0; font-family: 'Geist Mono', monospace; color: #ffffff; text-shadow: 0 1px 10px rgba(0,0,0,0.55);">
+                <div aria-hidden="true"
+                  style="position: absolute; left: 33.33%; top: 8%; bottom: 8%; width: 1px; background: rgba(255,255,255,0.16);">
+                </div>
+                <div aria-hidden="true"
+                  style="position: absolute; left: 66.66%; top: 8%; bottom: 8%; width: 1px; background: rgba(255,255,255,0.16);">
+                </div>
+                <div aria-hidden="true"
+                  style="position: absolute; top: 33.33%; left: 6%; right: 6%; height: 1px; background: rgba(255,255,255,0.16);">
+                </div>
+                <div aria-hidden="true"
+                  style="position: absolute; top: 66.66%; left: 6%; right: 6%; height: 1px; background: rgba(255,255,255,0.16);">
+                </div>
+                <span aria-hidden="true"
+                  style="position: absolute; left: 26px; top: 26px; width: 30px; height: 30px; border-left: 2px solid rgba(255,255,255,0.85); border-top: 2px solid rgba(255,255,255,0.85);"></span>
+                <span aria-hidden="true"
+                  style="position: absolute; right: 26px; top: 26px; width: 30px; height: 30px; border-right: 2px solid rgba(255,255,255,0.85); border-top: 2px solid rgba(255,255,255,0.85);"></span>
+                <span aria-hidden="true"
+                  style="position: absolute; left: 26px; bottom: 26px; width: 30px; height: 30px; border-left: 2px solid rgba(255,255,255,0.85); border-bottom: 2px solid rgba(255,255,255,0.85);"></span>
+                <span aria-hidden="true"
+                  style="position: absolute; right: 26px; bottom: 26px; width: 30px; height: 30px; border-right: 2px solid rgba(255,255,255,0.85); border-bottom: 2px solid rgba(255,255,255,0.85);"></span>
+                <span aria-hidden="true"
+                  style="position: absolute; left: 50%; top: 50%; width: 18px; height: 1.5px; margin: -0.75px 0 0 -9px; background: rgba(255,255,255,0.9);"></span>
+                <span aria-hidden="true"
+                  style="position: absolute; left: 50%; top: 50%; width: 1.5px; height: 18px; margin: -9px 0 0 -0.75px; background: rgba(255,255,255,0.9);"></span>
+                <div style="position: absolute; left: 34px; top: 34px; display: flex; align-items: center; gap: 12px;">
+                  <span
+                    style="display: flex; align-items: center; gap: 7px; font-size: 12px; letter-spacing: 0.14em;"><span
+                      style="width: 9px; height: 9px; border-radius: 50%; background: #ff3b30; box-shadow: 0 0 10px 2px rgba(255,59,48,0.6); animation: recBlink 1.2s ease-in-out infinite;"></span>REC
+                    <span ref="{{ tcRef }}">00:00:00</span></span>
+                  <span
+                    style="font-size: 10px; letter-spacing: 0.16em; border: 1px solid rgba(255,255,255,0.5); border-radius: 5px; padding: 3px 8px;">4K
+                    · 60FPS</span>
+                </div>
+                <div
+                  style="position: absolute; right: 34px; top: 36px; display: flex; align-items: center; gap: 14px; font-size: 11px; letter-spacing: 0.14em;">
+                  <span>GPS 14</span>
+                  <span>⌁ 87%</span>
+                </div>
+                <div
+                  style="position: absolute; left: 50%; top: 34px; transform: translateX(-50%); font-size: 10px; letter-spacing: 0.22em; color: rgba(255,255,255,0.85);">
+                  GIMBAL FOLLOW · ỔN ĐỊNH 3 TRỤC</div>
+                <div
+                  style="position: absolute; left: 34px; bottom: 34px; font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.9);">
+                  ISO 100 · 1/1600 · ƒ/2.8 · EV +0.0</div>
+                <div
+                  style="position: absolute; right: 34px; bottom: 34px; display: flex; align-items: center; gap: 16px; font-size: 11px; letter-spacing: 0.14em;">
+                  <span>ALT <span ref="{{ altRef }}">024</span> M</span>
+                  <span>SPD <span ref="{{ spdRef }}">28</span> KM/H</span>
+                  <span>D 1.2 KM</span>
+                </div>
+                <div ref="{{ zoomRef }}"
+                  style="position: absolute; right: 34px; top: 50%; transform: translateY(-50%); font-size: 13px; letter-spacing: 0.14em; border: 1px solid rgba(255,255,255,0.45); border-radius: 999px; padding: 6px 13px;">
+                  1.0×</div>
+              </div>
+            </div>
+            <!-- End card caption -->
+            <div ref="{{ endRef }}"
+              style="position: absolute; left: 0; right: 0; bottom: 6%; text-align: center; opacity: 0; will-change: transform, opacity;">
+              <p
+                style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">
+                Đây là những gì bạn sẽ quay được</p>
+              <h2 style="margin: 12px 0 0; font-size: 40px; font-weight: 200; letter-spacing: -0.02em; color: #16130f;">
+                4K 60fps — mượt như <span style="font-weight: 600; color: #ff6a00;">đang bay</span></h2>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px;">
+                <a href="javascript:alert('Cảm ơn bạn! DJI Mavic Air 2 đã được thêm vào giỏ hàng.')"
+                  style="pointer-events: auto; display: inline-flex; align-items: center; gap: 9px; height: 48px; padding: 0 26px; border-radius: 13px; background: #ff6a00; color: #ffffff; text-decoration: none; font-size: 15px; font-weight: 700; box-shadow: 0 14px 30px -10px rgba(255,106,0,0.55); transition: background 0.2s ease, transform 0.2s ease;"
+                  style-hover="background: #ea6100; color: #ffffff; transform: translateY(-2px);">Mua ngay —
+                  17.900.000đ</a>
+                <a href="tel:0937148222"
+                  style="pointer-events: auto; display: inline-flex; align-items: center; gap: 9px; height: 48px; padding: 0 24px; border-radius: 13px; border: 1px solid #dcd8d2; background: #ffffff; color: #16130f; text-decoration: none; font-size: 15px; font-weight: 600; transition: all 0.2s ease;"
+                  style-hover="border-color: rgba(255,106,0,0.5); color: #ff6a00;">✆ Tư vấn miễn phí</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 4: flash -->
+          <div ref="{{ flashRef }}" aria-hidden="true"
+            style="position: absolute; inset: 0; z-index: 40; background: #ffffff; opacity: 0; pointer-events: none;">
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════ SPEC TABLE ═══════════ -->
+      <section data-screen-label="Bảng thông số" style="max-width: 1280px; margin: 0 auto; padding: 88px 32px 0;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;">
+          <div>
+            <p
+              style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #ff6a00;">
+              Thông số chi tiết</p>
+            <h2 style="margin: 10px 0 0; font-size: 34px; font-weight: 200; letter-spacing: -0.02em;">DJI Mavic Air 2 —
+              đầy đủ thông số</h2>
+          </div>
+          <a href="#flycam-stage"
+            style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #7a746c; text-decoration: none; transition: color 0.2s ease, gap 0.2s ease;"
+            style-hover="color: #ff6a00; gap: 12px;">Xem mô hình 3D <svg width="15" height="15" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg></a>
+        </div>
+        <div
+          style="margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start;">
+          <sc-for list="{{ specGroups }}" as="g" hint-placeholder-count="3">
+            <div
+              style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 18px; padding: 22px 24px; transition: border-color 0.22s ease, box-shadow 0.28s ease, transform 0.22s ease;"
+              style-hover="border-color: rgba(255,106,0,0.4); box-shadow: 0 22px 44px -24px rgba(255,106,0,0.35); transform: translateY(-3px);">
+              <h3
+                style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #ff6a00;">
+                {{ g.group }}</h3>
+              <div style="margin-top: 14px; display: flex; flex-direction: column;">
+                <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+                  <div
+                    style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 9px 0; border-top: 1px solid #f1eee9;">
+                    <span style="font-size: 12.5px; color: #a39d94; flex-shrink: 0;">{{ it.label }}</span>
+                    <span style="font-size: 13.5px; font-weight: 550; color: #16130f; text-align: right;">{{ it.value
+                      }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- ═══════════ CTA ═══════════ -->
+      <section data-screen-label="CTA mua hàng" style="max-width: 1280px; margin: 88px auto 0; padding: 0 32px;">
+        <div
+          style="position: relative; overflow: hidden; background: #16130f; border-radius: 28px; padding: 52px 56px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+          <div aria-hidden="true"
+            style="position: absolute; top: -160px; right: 10%; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,106,0,0.3), transparent 70%); filter: blur(20px); animation: glowPulse 6s ease-in-out infinite;">
+          </div>
+          <div style="position: relative;">
+            <p
+              style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.24em; color: #ff8a3d;">
+              Sẵn hàng · Giao hỏa tốc toàn quốc</p>
+            <h2 style="margin: 12px 0 0; font-size: 38px; font-weight: 200; letter-spacing: -0.02em; color: #f7f4ef;">Sở
+              hữu Mavic Air 2 <span style="font-weight: 600; color: #ff6a00;">hôm nay</span></h2>
+            <div style="display: flex; align-items: baseline; gap: 13px; margin-top: 14px;">
+              <span style="font-size: 30px; font-weight: 500; color: #ffffff;">17.900.000đ</span>
+              <span style="font-size: 16px; color: #7a746c; text-decoration: line-through;">19.900.000đ</span>
+              <span
+                style="font-size: 11.5px; font-weight: 800; color: #ffffff; background: #ff6a00; border-radius: 999px; padding: 4px 10px;">-10%</span>
+            </div>
+            <p style="margin: 14px 0 0; font-size: 13.5px; color: #a39d94;">🎁 Tặng thẻ Sandisk Extreme 64GB · 📦 Miễn
+              phí giao hỏa tốc</p>
+          </div>
+          <div style="position: relative; display: flex; flex-direction: column; gap: 12px; min-width: 260px;">
+            <a href="javascript:alert('Cảm ơn bạn! DJI Mavic Air 2 đã được thêm vào giỏ hàng.')"
+              style="display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 14px; background: #ff6a00; color: #ffffff; text-decoration: none; font-size: 15.5px; font-weight: 700; box-shadow: 0 16px 36px -12px rgba(255,106,0,0.6); transition: background 0.2s ease, transform 0.2s ease;"
+              style-hover="background: #ea6100; color: #ffffff; transform: translateY(-2px);"
+              style-active="transform: scale(0.97);">Mua ngay — nhận quà hôm nay</a>
+            <a href="tel:0937148222"
+              style="display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.2); color: #f7f4ef; text-decoration: none; font-size: 15px; font-weight: 600; transition: border-color 0.2s ease, background 0.2s ease;"
+              style-hover="border-color: rgba(255,106,0,0.6); background: rgba(255,106,0,0.1); color: #ffffff;">✆
+              0937.148.222 — tư vấn miễn phí</a>
+          </div>
+        </div>
+      </section>
+
+      <div style="height: 96px;"></div>
+      <dc-import name="SiteFooter" hint-size="100%,620px"></dc-import>
+
+      <!-- Sticky buy bar -->
+      <div ref="{{ buyBarRef }}"
+        style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; transform: translateY(110%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);">
+        <div
+          style="max-width: 1080px; margin: 0 auto 18px; padding: 12px 14px 12px 22px; border-radius: 18px; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.92); backdrop-filter: blur(14px); box-shadow: 0 24px 60px -20px rgba(22,19,15,0.3); display: flex; align-items: center; gap: 18px;">
+          <span
+            style="width: 8px; height: 8px; border-radius: 50%; background: #1a9e5c; box-shadow: 0 0 8px 2px rgba(26,158,92,0.4); flex-shrink: 0;"></span>
+          <div style="min-width: 0; flex: 1;">
+            <p
+              style="margin: 0; font-size: 14.5px; font-weight: 650; color: #16130f; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              Flycam DJI Mavic Air 2 — Chính hãng</p>
+            <p
+              style="margin: 1px 0 0; font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #a39d94;">
+              Còn hàng · Bảo hành 12 tháng</p>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 9px;">
+            <span style="font-size: 19px; font-weight: 750; color: #ff6a00;">17.900.000đ</span>
+            <span style="font-size: 13px; color: #a39d94; text-decoration: line-through;">19.900.000đ</span>
+          </div>
+          <a href="javascript:alert('Cảm ơn bạn! DJI Mavic Air 2 đã được thêm vào giỏ hàng.')"
+            style="display: flex; align-items: center; height: 44px; padding: 0 24px; border-radius: 12px; background: #ff6a00; color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 700; box-shadow: 0 12px 26px -10px rgba(255,106,0,0.6); transition: background 0.2s ease, transform 0.2s ease;"
+            style-hover="background: #ea6100; color: #ffffff; transform: translateY(-1px);">Mua ngay</a>
+        </div>
+      </div>
+    </div>
+  </x-dc>
+  <script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { color: '#4a4a4a', colorName: 'Xám Titanium', specGroups: [] };
+
+  containerRef = React.createRef();
+  heroRef = React.createRef();
+  specsTitleRef = React.createRef();
+  flashRef = React.createRef();
+  colorsRef = React.createRef();
+  fallbackRef = React.createRef();
+  buyBarRef = React.createRef();
+  fpvRef = React.createRef();
+  fpvCardRef = React.createRef();
+  fpvImgRef = React.createRef();
+  hudRef = React.createRef();
+  endRef = React.createRef();
+  tcRef = React.createRef();
+  altRef = React.createRef();
+  spdRef = React.createRef();
+  zoomRef = React.createRef();
+  co0 = React.createRef(); co1 = React.createRef(); co2 = React.createRef(); co3 = React.createRef();
+
+  async componentDidMount() {
+    const data = await import('./data/products.js');
+    const mavic = data.getBySlug('flycam-dji-mavic-air-2-chinh-hang');
+    this.setState({ specGroups: mavic ? mavic.specs : [] });
+
+    const stage = document.getElementById('flycam-stage');
+    if (stage) stage.addEventListener('glb-error', () => { this._fbFlag = true; });
+    setTimeout(() => { if (!customElements.get('glb-stage')) this._fbFlag = true; }, 4000);
+    this._fallbackTimer = setTimeout(() => {
+      const st = document.getElementById('flycam-stage');
+      if (!st || !st.ready) this._fbFlag = true;
+    }, 14000);
+
+    this._p = 0;
+    this._raf = requestAnimationFrame(() => this._tick());
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearTimeout(this._fallbackTimer);
+  }
+
+  _tick() {
+    this._raf = requestAnimationFrame(() => this._tick());
+    const c = this.containerRef.current;
+    if (!c) return;
+    const rect = c.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const raw = Math.min(1, Math.max(0, -rect.top / (rect.height - vh)));
+    this._p += (raw - this._p) * 0.05;
+    const p = this._p;
+
+    const clamp01 = (v) => Math.min(1, Math.max(0, v));
+    const r = (v, a, b) => clamp01((v - a) / (b - a));
+    const sm = (t) => t * t * (3 - 2 * t);
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    // ── Hero ──
+    const hero = this.heroRef.current;
+    if (hero) {
+      const op = 1 - r(p, 0, 0.12);
+      hero.style.opacity = op;
+      hero.style.transform = `translateY(${-80 * r(p, 0, 0.12)}px)`;
+      hero.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
+    }
+
+    // ── Specs phase ──
+    const st = this.specsTitleRef.current;
+    if (st) st.style.opacity = Math.min(r(p, 0.2, 0.25), 1 - r(p, 0.4, 0.46));
+    const cos = [this.co0, this.co1, this.co2, this.co3];
+    cos.forEach((ref, i) => {
+      const el = ref.current;
+      if (!el) return;
+      const start = 0.22 + i * 0.02;
+      el.style.opacity = Math.min(r(p, start, start + 0.05), 1 - r(p, 0.4, 0.46));
+      const dir = i % 2 === 0 ? -1 : 1;
+      el.style.transform = `translateX(${dir * 40 * (1 - r(p, start, start + 0.07))}px)`;
+    });
+    const cp = this.colorsRef.current;
+    if (cp) {
+      const op = 1 - r(p, 0.4, 0.47);
+      cp.style.opacity = op;
+      cp.style.pointerEvents = op > 0.4 ? 'auto' : 'none';
+    }
+
+    // ── Flash chuyển cảnh sang FPV ──
+    const fl = this.flashRef.current;
+    if (fl) fl.style.opacity = Math.min(r(p, 0.5, 0.535), 1 - r(p, 0.535, 0.6));
+
+    // ── Model: bay vào → xoay → lao về phía ống kính ──
+    const idle = 1 - sm(r(p, 0.04, 0.18));
+    const move = sm(r(p, 0.05, 0.26));
+    const spin = sm(r(p, 0.26, 0.46)) * Math.PI * 2;
+    const dive = sm(r(p, 0.46, 0.56));
+    const fade = 1 - sm(r(p, 0.5, 0.56));
+
+    const stage = document.getElementById('flycam-stage');
+    const frame = document.getElementById('hero-frame-fly');
+    let fx = 1.7, fy = 0.05, heroScale = 0.72;
+    if (stage && frame) {
+      const sr = stage.getBoundingClientRect();
+      const fr = frame.getBoundingClientRect();
+      if (sr.width > 1 && fr.width > 1) {
+        const worldH = 4.513;
+        const worldW = worldH * (sr.width / sr.height);
+        fx = (((fr.left + fr.width / 2) - (sr.left + sr.width / 2)) / sr.width) * worldW;
+        fy = -(((fr.top + fr.height / 2) - (sr.top + sr.height / 2)) / sr.height) * worldH;
+        heroScale = ((fr.height / sr.height) * worldH * 0.5) / 2.5;
+        this._worldW = worldW;
+      }
+    }
+    const scale = lerp(heroScale, 1.12, move) * lerp(1, 2.1, dive);
+    // Kết màn: drone bay trở lại, pose dáng hero cạnh màn hình FPV thu nhỏ
+    const back = sm(r(p, 0.9, 0.975));
+
+    const ready = !!(stage && stage.ready);
+    const mode = ready ? '3d' : (this._fbFlag ? 'fb' : 'wait');
+    if (this._mode !== mode) {
+      this._mode = mode;
+      const fbImg = this.fallbackRef.current;
+      if (stage) stage.style.display = mode === 'fb' ? 'none' : 'block';
+      if (fbImg) fbImg.style.display = mode === 'fb' ? 'block' : 'none';
+    }
+    if (stage && stage.setPose && mode === '3d') {
+      const zHost = stage.parentElement;
+      if (zHost) {
+        const wantZ = back > 0.02 ? '36' : '10';
+        if (zHost.style.zIndex !== wantZ) zHost.style.zIndex = wantZ;
+      }
+      const wW = this._worldW || 8;
+      stage.setPose({
+        x: lerp(lerp(fx, 0, move), -wW * 0.27, back),
+        y: lerp(lerp(fy, 0.15, move) - dive * 0.4, 0.5, back),
+        rotY: spin + back * 0.7,
+        rotX: dive * 0.5 * (1 - back),
+        scale: lerp(scale, 0.55, back),
+        opacity: Math.max(fade, back),
+        idle: Math.max(idle, back),
+        ground: 1 - back,
+      });
+      if (this._pickedColor) stage.setColor(this._pickedColor);
+    }
+    const img = this.fallbackRef.current;
+    if (img && this._mode === 'fb') {
+      img.style.opacity = fade;
+      img.style.transform = `translateX(${lerp(24, 0, move)}vw) translateY(${Math.sin(Date.now() / 700) * 8 * idle}px) rotate(${Math.sin(spin) * 6}deg) scale(${scale * 0.9})`;
+    }
+
+    // ── FPV qua ống kính drone ──
+    const fpv = this.fpvRef.current;
+    if (fpv) {
+      const op = r(p, 0.52, 0.56);
+      fpv.style.opacity = op;
+      fpv.style.pointerEvents = op > 0.9 ? 'auto' : 'none';
+    }
+    const fpvProg = r(p, 0.56, 0.88);
+    const zoomT = sm(r(p, 0.72, 0.8));
+    const shrink = sm(r(p, 0.88, 0.97));
+    const fpvImg = this.fpvImgRef.current;
+    if (fpvImg) {
+      const t = Date.now() / 1000;
+      const sway = (Math.sin(t * 0.9) * 0.45 + Math.sin(t * 0.53) * 0.3) * (1 - shrink) * (1 - zoomT * 0.5);
+      const panX = lerp(3.4, -3.4, fpvProg);
+      const panY = lerp(2.4, -2.4, sm(fpvProg));
+      const s = 1.16 * lerp(1, 1.28, zoomT);
+      fpvImg.style.transform = `translate(${panX}%, ${panY}%) rotate(${sway}deg) scale(${s})`;
+    }
+    const card = this.fpvCardRef.current;
+    if (card) {
+      card.style.transform = `translateY(${-6 * shrink}%) scale(${lerp(1, 0.6, shrink)})`;
+      card.style.borderRadius = `${lerp(0, 26, shrink)}px`;
+      card.style.boxShadow = shrink > 0.02 ? `0 ${40 * shrink}px ${90 * shrink}px -30px rgba(22,19,15,0.35)` : 'none';
+    }
+    const hud = this.hudRef.current;
+    if (hud) hud.style.opacity = Math.min(r(p, 0.55, 0.6), 1 - r(p, 0.86, 0.91));
+    if (this.tcRef.current) {
+      const sec = fpvProg * 24;
+      const mm = String(Math.floor(sec / 60)).padStart(2, '0');
+      const ss = String(Math.floor(sec % 60)).padStart(2, '0');
+      const ff = String(Math.floor((sec % 1) * 30)).padStart(2, '0');
+      this.tcRef.current.textContent = `${mm}:${ss}:${ff}`;
+    }
+    if (this.altRef.current) this.altRef.current.textContent = String(Math.round(24 + 96 * sm(fpvProg))).padStart(3, '0');
+    if (this.spdRef.current) this.spdRef.current.textContent = String(Math.round(28 + 14 * Math.sin(fpvProg * Math.PI)));
+    if (this.zoomRef.current) this.zoomRef.current.textContent = `${(1 + zoomT).toFixed(1)}×`;
+    const end = this.endRef.current;
+    if (end) {
+      const op = r(p, 0.94, 0.99);
+      end.style.opacity = op;
+      end.style.transform = `translateY(${lerp(30, 0, op)}px)`;
+      end.style.pointerEvents = op > 0.5 ? 'auto' : 'none';
+    }
+
+    // ── Sticky buy bar ──
+    const bar = this.buyBarRef.current;
+    if (bar) {
+      const show = raw > 0.99 || rect.bottom < vh * 0.6;
+      bar.style.transform = show ? 'translateY(0)' : 'translateY(110%)';
+    }
+  }
+
+  renderVals() {
+    return {
+      containerRef: this.containerRef,
+      heroRef: this.heroRef,
+      specsTitleRef: this.specsTitleRef,
+      flashRef: this.flashRef,
+      colorsRef: this.colorsRef,
+      fallbackRef: this.fallbackRef,
+      buyBarRef: this.buyBarRef,
+      fpvRef: this.fpvRef,
+      fpvCardRef: this.fpvCardRef,
+      fpvImgRef: this.fpvImgRef,
+      hudRef: this.hudRef,
+      endRef: this.endRef,
+      tcRef: this.tcRef,
+      altRef: this.altRef,
+      spdRef: this.spdRef,
+      zoomRef: this.zoomRef,
+      co0: this.co0, co1: this.co1, co2: this.co2, co3: this.co3,
+      specGroups: this.state.specGroups,
+      colorName: this.state.colorName,
+      grayRing: this.state.color === '#4a4a4a' ? '#ff6a00' : '#e9e6e1',
+      blackRing: this.state.color === '#1c1c1c' ? '#ff6a00' : '#e9e6e1',
+      pickGray: () => { this._pickedColor = '#4a4a4a'; this.setState({ color: '#4a4a4a', colorName: 'Xám Titanium' }); },
+      pickBlack: () => { this._pickedColor = '#1c1c1c'; this.setState({ color: '#1c1c1c', colorName: 'Đen Carbon' }); },
+    };
+  }
+}
+</script>
+</body>
+
+</html>

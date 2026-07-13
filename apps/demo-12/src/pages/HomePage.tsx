@@ -148,42 +148,49 @@ export default function HomePage() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    gsap.from('.category-grid', {
-      scrollTrigger: {
-        trigger: '.category-grid',
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
+    const ctx = gsap.context(() => {
+      gsap.from('.category-grid', {
+        scrollTrigger: {
+          trigger: '.category-grid',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      })
+
+      gsap.from('.product-grid', {
+        scrollTrigger: {
+          trigger: '.product-grid',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+      })
+
+      gsap.from('.brand-grid', {
+        scrollTrigger: {
+          trigger: '.brand-grid',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      })
     })
 
-    gsap.from('.product-grid', {
-      scrollTrigger: {
-        trigger: '.product-grid',
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power3.out',
-    })
-
-    gsap.from('.brand-grid', {
-      scrollTrigger: {
-        trigger: '.brand-grid',
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    })
+    return () => {
+      ctx.revert()
+      ScrollTrigger.getAll().forEach(t => t.kill())
+    }
   }, [])
 
   // Lọc sản phẩm theo danh mục

@@ -11,9 +11,24 @@ export default function SearchPage() {
   const [activeCategory, setActiveCategory] = useState('Tất cả')
   const [query, setQuery] = useState(q)
 
-  const results = q
-    ? products.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.brand.toLowerCase().includes(q.toLowerCase()) || p.category.toLowerCase().includes(q.toLowerCase()))
-    : []
+  const categorySlugMap: Record<string, string> = {
+    'Máy ảnh': 'may-anh',
+    'Ống kính': 'ong-kinh',
+    'Flycam': 'flycam',
+    'Action Camera': 'action-camera',
+    'Phụ kiện': 'phu-kien',
+  }
+
+  const filteredProducts = products.filter(p => {
+    const matchesQuery = q
+      ? p.name.toLowerCase().includes(q.toLowerCase()) || p.brand.toLowerCase().includes(q.toLowerCase()) || p.category.toLowerCase().includes(q.toLowerCase())
+      : true
+    const matchesCategory = activeCategory === 'Tất cả' || activeCategory === 'Bài viết'
+      ? true
+      : p.categorySlug === categorySlugMap[activeCategory]
+    return matchesQuery && matchesCategory
+  })
+  const results = q ? filteredProducts : []
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()

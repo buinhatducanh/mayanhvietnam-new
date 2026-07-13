@@ -14,7 +14,8 @@ const categories = [
 
 export default function Header() {
   const [search, setSearch] = useState('')
-  const [cartCount] = useState(2)
+  // TODO: wire up real cart state via context once a global cart store is added
+  const [cartCount] = useState(0)
   const [isScrolled, setIsScrolled] = useState(false)
   const navigate = useNavigate()
 
@@ -85,20 +86,7 @@ export default function Header() {
         }}>
           {/* Logo */}
           <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{
-                width: 40, height: 40, borderRadius: 10,
-                background: 'linear-gradient(135deg, #FF6B00 0%, #FF8A3C 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20
-              }}>📷</div>
-              <div>
-                <div style={{ fontFamily: 'Plus Jakarta Sans', fontWeight: 800, fontSize: 16, color: '#fff', lineHeight: 1 }}>
-                  Máy Ảnh
-                </div>
-                <div style={{ fontFamily: 'Plus Jakarta Sans', fontWeight: 800, fontSize: 16, lineHeight: 1 }}
-                  className="gradient-text">Việt Nam</div>
-              </div>
-            </div>
+            <img src="/logo-white.png" alt="Máy Ảnh Việt Nam" style={{ height: 44, width: 'auto', objectFit: 'contain' }} />
           </Link>
 
           {/* Search */}
@@ -228,8 +216,8 @@ export default function Header() {
               const target = e.currentTarget
               target.style.borderBottomColor = 'transparent'
               target.style.background = 'linear-gradient(135deg, #FF6B00 0%, #FF8A3C 100%)'
-              target.style.WebkitBackgroundClip = 'text'
-              target.style.WebkitTextFillColor = 'transparent'
+              target.style.webkitBackgroundClip = 'text'
+              target.style.webkitTextFillColor = 'transparent'
               target.style.backgroundClip = 'text'
             }}
           >

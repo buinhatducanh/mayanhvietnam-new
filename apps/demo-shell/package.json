@@ -2,10 +2,11 @@
   "name": "demo-shell",
   "version": "0.1.0",
   "private": true,
+  "description": "Shell wrapper for mayanhvietnam demos (port 8099)",
   "scripts": {
-    "dev": "next dev -p 8001",
+    "dev": "next dev -p 8099",
     "build": "next build",
-    "start": "next start -p 8001",
+    "start": "next start -p 8099",
     "lint": "eslint"
   },
   "dependencies": {

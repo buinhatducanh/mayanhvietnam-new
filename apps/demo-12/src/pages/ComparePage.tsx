@@ -223,11 +223,24 @@ export default function ComparePage() {
 
                 {specRows.map((row, rowIdx) => {
                   const vals = compareList.map(p => p.specs[row] || '—')
-                  const bestValue = vals.filter(v => v !== '—').reduce((best, v) => {
-                    const numV = parseFloat(v)
-                    const numB = parseFloat(best)
-                    return !isNaN(numV) && !isNaN(numB) ? (numV > numB ? v : best) : best
-                  }, vals[0] || '—')
+                  const lowerIsBetter = row === 'Trọng lượng'
+                  const numericVals = vals.map(v => {
+                    const m = v !== '—' ? v.match(/[\d.]+/) : null
+                    return m ? parseFloat(m[0]) : NaN
+                  })
+                  const allNumeric = numericVals.every(n => !isNaN(n))
+                  let bestIdx = -1
+                  if (allNumeric) {
+                    bestIdx = 0
+                    for (let i = 1; i < numericVals.length; i++) {
+                      if (lowerIsBetter) {
+                        if (numericVals[i] < numericVals[bestIdx]) bestIdx = i
+                      } else {
+                        if (numericVals[i] > numericVals[bestIdx]) bestIdx = i
+                      }
+                    }
+                  }
+                  const showBest = allNumeric && vals.filter(v => v !== '—').length > 1
 
                   return (
                     <tr key={row}>
@@ -252,7 +265,7 @@ export default function ComparePage() {
                         }}>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
                             {vals[i]}
-                            {vals[i] !== '—' && vals[i] === bestValue && vals.filter(v => v !== '—').length > 1 && (
+                            {showBest && i === bestIdx && (
                               <span style={{
                                 fontSize: 9,
                                 padding: '2px 6px',

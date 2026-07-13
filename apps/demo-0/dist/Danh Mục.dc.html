@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #fafaf8; -webkit-font-smoothing: antialiased; }
+    a { color: #16130f; }
+    a:hover { color: #ff6a00; }
+    ::selection { background: rgba(255,106,0,0.22); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</helmet>
+
+<div style="font-family: 'Outfit', sans-serif; background: #fafaf8; color: #16130f; min-height: 100vh;">
+  <dc-import name="SiteHeader" active="{{ activeNav }}" hint-size="100%,110px" style="position: sticky; top: 0; z-index: 50; display: block;"></dc-import>
+
+  <!-- Page head -->
+  <section data-screen-label="Đầu trang danh mục" style="background: #ffffff; border-bottom: 1px solid #e9e6e1;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 36px 32px 30px;">
+      <nav aria-label="Breadcrumb" style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #a39d94;">
+        <a href="Trang Chủ.dc.html" style="color: #a39d94; text-decoration: none;" style-hover="color: #ff6a00;">Trang chủ</a>
+        <span>/</span>
+        <span style="color: #16130f; font-weight: 550;">{{ catName }}</span>
+      </nav>
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 18px; flex-wrap: wrap;">
+        <div>
+          <h1 style="margin: 0; font-size: 42px; font-weight: 200; letter-spacing: -0.02em;">{{ catName }}</h1>
+          <p style="margin: 8px 0 0; max-width: 560px; font-size: 14.5px; font-weight: 300; line-height: 1.6; color: #7a746c;">{{ catDesc }}</p>
+        </div>
+        <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: #a39d94;">{{ resultCount }} sản phẩm</p>
+      </div>
+      <!-- Category pills -->
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;">
+        <sc-for list="{{ catPills }}" as="c" hint-placeholder-count="8">
+          <button type="button" onClick="{{ c.pick }}" sc-camel-style="height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid {{ c.border }}; background: {{ c.bg }}; color: {{ c.color }}; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;" style-hover="border-color: rgba(255,106,0,0.55); transform: translateY(-1px);">{{ c.name }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner slide theo danh mục -->
+  <sc-if value="{{ hasBanners }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Banner danh mục" style="max-width: 1280px; margin: 0 auto; padding: 26px 32px 0;">
+      <div onMouseEnter="{{ bnPause }}" onMouseLeave="{{ bnResume }}" style="position: relative;">
+        <div style="overflow: hidden; margin: 0 -5px;">
+          <div sc-camel-style="display: flex; transform: translateX({{ bnOffset }}); transition: transform 0.55s cubic-bezier(0.22,1,0.36,1); will-change: transform;">
+            <sc-for list="{{ bnItems }}" as="bn" hint-placeholder-count="3">
+              <a href="{{ bn.href }}" title="{{ bn.title }}" style="flex: 0 0 33.3333%; min-width: 33.3333%; padding: 0 5px; text-decoration: none;">
+                <span style="display: block; overflow: hidden; border-radius: 14px; border: 1px solid #e9e6e1; background: #0b0a09; transition: border-color 0.25s ease, box-shadow 0.3s ease, transform 0.25s ease;" style-hover="border-color: rgba(255,106,0,0.5); box-shadow: 0 20px 40px -20px rgba(255,106,0,0.45); transform: translateY(-3px);">
+                  <img src="{{ bn.image }}" alt="{{ bn.title }}" referrerpolicy="no-referrer" loading="lazy" style="width: 100%; aspect-ratio: 1305 / 435; object-fit: cover; display: block;">
+                </span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+        <sc-if value="{{ hasBnNav }}" hint-placeholder-val="{{ false }}">
+          <button type="button" aria-label="Banner trước" onClick="{{ bnPrev }}" style="position: absolute; left: -2px; top: 50%; transform: translateY(-50%); z-index: 5; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); color: #5f5a53; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -10px rgba(22,19,15,0.35); transition: all 0.22s ease;" style-hover="background: #ff6a00; border-color: #ff6a00; color: #ffffff; transform: translateY(-50%) scale(1.1);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
+          <button type="button" aria-label="Banner sau" onClick="{{ bnNext }}" style="position: absolute; right: -2px; top: 50%; transform: translateY(-50%); z-index: 5; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e9e6e1; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); color: #5f5a53; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -10px rgba(22,19,15,0.35); transition: all 0.22s ease;" style-hover="background: #ff6a00; border-color: #ff6a00; color: #ffffff; transform: translateY(-50%) scale(1.1);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+          <div style="display: flex; justify-content: center; gap: 6px; margin-top: 12px;">
+            <sc-for list="{{ bnDots }}" as="dt" hint-placeholder-count="4">
+              <button type="button" aria-label="{{ dt.label }}" onClick="{{ dt.pick }}" sc-camel-style="width: {{ dt.width }}; height: 6px; border-radius: 999px; border: none; background: {{ dt.bg }}; cursor: pointer; padding: 0; transition: width 0.3s cubic-bezier(0.22,1,0.36,1), background 0.3s ease;"></button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- Body -->
+  <section data-screen-label="Lưới sản phẩm" style="max-width: 1280px; margin: 0 auto; padding: 36px 32px 0; display: grid; grid-template-columns: 240px 1fr; gap: 28px; align-items: start;">
+    <!-- Sidebar filters -->
+    <aside style="position: sticky; top: 132px; display: flex; flex-direction: column; gap: 22px;">
+      <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 16px; padding: 18px 20px;">
+        <h3 style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: #ff6a00;">Thương hiệu</h3>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 12px;">
+          <sc-for list="{{ brandRows }}" as="b" hint-placeholder-count="6">
+            <button type="button" onClick="{{ b.toggle }}" sc-camel-style="display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 9px; border: none; background: {{ b.bg }}; cursor: pointer; font-family: 'Outfit', sans-serif; text-align: left; transition: background 0.18s ease;" style-hover="background: #f5f2ed;">
+              <span sc-camel-style="width: 16px; height: 16px; border-radius: 5px; border: 1.5px solid {{ b.boxBorder }}; background: {{ b.boxBg }}; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.18s ease;">
+                <sc-if value="{{ b.checked }}" hint-placeholder-val="{{ false }}">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                </sc-if>
+              </span>
+              <span style="font-size: 13.5px; font-weight: 500; color: #16130f; flex: 1;">{{ b.name }}</span>
+              <span style="font-family: 'Geist Mono', monospace; font-size: 10px; color: #a39d94;">{{ b.count }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="border: 1px solid #e9e6e1; background: #ffffff; border-radius: 16px; padding: 18px 20px;">
+        <h3 style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: #ff6a00;">Khoảng giá</h3>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 12px;">
+          <sc-for list="{{ priceRows }}" as="pr" hint-placeholder-count="4">
+            <button type="button" onClick="{{ pr.pick }}" sc-camel-style="display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 9px; border: none; background: {{ pr.bg }}; cursor: pointer; font-family: 'Outfit', sans-serif; text-align: left; transition: background 0.18s ease;" style-hover="background: #f5f2ed;">
+              <span sc-camel-style="width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid {{ pr.dotBorder }}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <sc-if value="{{ pr.checked }}" hint-placeholder-val="{{ false }}">
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #ff6a00;"></span>
+                </sc-if>
+              </span>
+              <span style="font-size: 13.5px; font-weight: 500; color: #16130f;">{{ pr.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="border: 1px solid rgba(255,106,0,0.3); background: rgba(255,106,0,0.05); border-radius: 16px; padding: 18px 20px;">
+        <p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #c85200;">Cần tư vấn?</p>
+        <p style="margin: 8px 0 0; font-size: 13px; line-height: 1.55; color: #7a746c;">Đội ngũ kỹ thuật viên sẵn sàng hỗ trợ chọn máy phù hợp.</p>
+        <a href="tel:0937148222" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 15px; font-weight: 750; color: #ff6a00; text-decoration: none;">✆ 0937.148.222</a>
+      </div>
+    </aside>
+
+    <!-- Grid -->
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <sc-for list="{{ sortPills }}" as="s" hint-placeholder-count="3">
+            <button type="button" onClick="{{ s.pick }}" sc-camel-style="height: 34px; padding: 0 14px; border-radius: 10px; border: 1px solid {{ s.border }}; background: {{ s.bg }}; color: {{ s.color }}; font-family: 'Outfit', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;" style-hover="border-color: rgba(255,106,0,0.55);">{{ s.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ hasFilters }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ clearFilters }}" style="height: 34px; padding: 0 14px; border-radius: 10px; border: none; background: transparent; color: #a39d94; font-family: 'Outfit', sans-serif; font-size: 12.5px; font-weight: 600; cursor: pointer; text-decoration: underline; transition: color 0.2s ease;" style-hover="color: #e2483d;">Xoá bộ lọc ✕</button>
+        </sc-if>
+      </div>
+
+      <div key="{{ gridKey }}" style="margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;">
+        <sc-for list="{{ items }}" as="p" hint-placeholder-count="6">
+          <a href="{{ p.href }}" style="position: relative; display: flex; flex-direction: column; border: 1px solid #e9e6e1; background: #ffffff; border-radius: 18px; overflow: hidden; text-decoration: none; transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.28s ease;" style-hover="border-color: rgba(255,106,0,0.45); transform: translateY(-4px); box-shadow: 0 24px 48px -22px rgba(255,106,0,0.42);">
+            <span style="position: absolute; left: 10px; top: 10px; z-index: 2; display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+              <sc-for list="{{ p.badgeList }}" as="b" hint-placeholder-count="1">
+                <span sc-camel-style="font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #ffffff; background: {{ b.bg }}; border-radius: 999px; padding: 3.5px 9px;">{{ b.label }}</span>
+              </sc-for>
+            </span>
+            <sc-if value="{{ p.hasDiscount }}" hint-placeholder-val="{{ false }}">
+              <span style="position: absolute; right: 10px; top: 10px; z-index: 2; font-size: 10px; font-weight: 800; color: #ffffff; background: #ff6a00; border-radius: 999px; padding: 3.5px 8px; box-shadow: 0 6px 14px -6px rgba(255,106,0,0.7);">{{ p.discountLabel }}</span>
+            </sc-if>
+            <span style="display: block; aspect-ratio: 1; background: #ffffff; overflow: hidden;">
+              <img src="{{ p.thumbnail }}" alt="{{ p.name }}" referrerpolicy="no-referrer" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; padding: 16px; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);" style-hover="transform: scale(1.06);">
+            </span>
+            <span style="display: flex; flex-direction: column; flex: 1; padding: 14px 16px 16px; border-top: 1px solid #f1eee9;">
+              <span style="font-family: 'Geist Mono', monospace; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: #a39d94;">{{ p.brand }}</span>
+              <span style="margin-top: 5px; font-size: 14.5px; font-weight: 550; line-height: 1.38; color: #16130f; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 40px;">{{ p.name }}</span>
+              <span style="margin-top: 6px; font-size: 11.5px; color: #a39d94; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ p.specsLine }}</span>
+              <span style="margin-top: 10px; display: flex; align-items: baseline; gap: 8px;">
+                <span style="font-size: 16px; font-weight: 750; color: #ff6a00;">{{ p.priceLabel }}</span>
+                <sc-if value="{{ p.hasDiscount }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 12px; color: #a39d94; text-decoration: line-through;">{{ p.origLabel }}</span>
+                </sc-if>
+              </span>
+              <span style="margin-top: 8px; display: flex; align-items: center; gap: 5px; font-size: 12px; color: #7a746c;"><span style="color: #ff6a00;">★</span> {{ p.ratingLabel }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 20px; border: 1px dashed #dcd8d2; border-radius: 18px; background: #ffffff; padding: 64px 24px; text-align: center;">
+          <p style="margin: 0; font-size: 16px; font-weight: 550; color: #16130f;">Không có sản phẩm phù hợp bộ lọc</p>
+          <p style="margin: 8px 0 0; font-size: 13.5px; color: #a39d94;">Thử bỏ bớt bộ lọc thương hiệu hoặc khoảng giá.</p>
+          <button type="button" onClick="{{ clearFilters }}" style="margin-top: 18px; height: 40px; padding: 0 22px; border-radius: 11px; border: 1px solid #dcd8d2; background: #ffffff; color: #16130f; font-family: 'Outfit', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;" style-hover="border-color: rgba(255,106,0,0.5); color: #ff6a00;">Xoá tất cả bộ lọc</button>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <div style="height: 96px;"></div>
+  <dc-import name="SiteFooter" hint-size="100%,620px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cat: 'tat-ca', brands: [], price: 'all', sort: 'featured', data: null, bnPage: 0 };
+
+  async componentDidMount() {
+    const data = await import('./data/products.js');
+    const hash = decodeURIComponent((location.hash || '').replace('#', ''));
+    const valid = ['tat-ca', ...data.categories.map((c) => c.slug)];
+    this.setState({ data, cat: valid.includes(hash) ? hash : 'tat-ca' });
+    this._onHash = () => {
+      const h = decodeURIComponent((location.hash || '').replace('#', ''));
+      if (valid.includes(h)) this.setState({ cat: h, brands: [], price: 'all', bnPage: 0 });
+    };
+    window.addEventListener('hashchange', this._onHash);
+
+    // Banner carousel tự chạy
+    this._bnTimer = setInterval(() => {
+      if (this._bnPaused) return;
+      const max = Math.max(0, (this._bnCount || 0) - 3);
+      if (max <= 0) return;
+      this.setState((s) => ({ bnPage: s.bnPage >= max ? 0 : s.bnPage + 1 }));
+    }, 3800);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this._onHash);
+    clearInterval(this._bnTimer);
+  }
+
+  renderVals() {
+    const d = this.state.data;
+    const fmt = (n) => `${n.toLocaleString('vi-VN')}đ`;
+    const badgeBg = (t) => (t === 'hot' ? '#e2483d' : t === 'sale' ? '#ff6a00' : '#1a9e5c');
+
+    const CAT_META = { 'tat-ca': { name: 'Tất cả sản phẩm', description: 'Toàn bộ máy ảnh, ống kính, flycam và action camera chính hãng đang có mặt tại Máy Ảnh Việt Nam.' } };
+    const PRICE_RANGES = [
+      { id: 'all', label: 'Tất cả mức giá', min: 0, max: Infinity },
+      { id: 'p1', label: 'Dưới 15 triệu', min: 0, max: 15000000 },
+      { id: 'p2', label: '15 – 40 triệu', min: 15000000, max: 40000000 },
+      { id: 'p3', label: '40 – 70 triệu', min: 40000000, max: 70000000 },
+      { id: 'p4', label: 'Trên 70 triệu', min: 70000000, max: Infinity },
+    ];
+
+    if (!d) return { activeNav: 'home', catName: 'Đang tải…', catDesc: '', resultCount: '0', catPills: [], brandRows: [], priceRows: [], sortPills: [], items: [], empty: false, hasFilters: false, gridKey: 'g', clearFilters: () => {}, hasBanners: false, bnItems: [], bnOffset: '0%', hasBnNav: false, bnDots: [], bnPrev: () => {}, bnNext: () => {}, bnPause: () => {}, bnResume: () => {} };
+
+    const cat = this.state.cat;
+    const catObj = d.categories.find((c) => c.slug === cat);
+    const pool = (cat === 'tat-ca' ? d.products : d.products.filter((p) => p.category === cat)).filter((p) => p.thumbnail);
+
+    const brandCounts = {};
+    pool.forEach((p) => { brandCounts[p.brand] = (brandCounts[p.brand] || 0) + 1; });
+    const brands = Object.keys(brandCounts).sort();
+
+    const range = PRICE_RANGES.find((r) => r.id === this.state.price) || PRICE_RANGES[0];
+    let items = pool.filter((p) =>
+      (this.state.brands.length === 0 || this.state.brands.includes(p.brand)) &&
+      p.price >= range.min && p.price < range.max);
+    if (this.state.sort === 'asc') items = [...items].sort((a, b) => a.price - b.price);
+    if (this.state.sort === 'desc') items = [...items].sort((a, b) => b.price - a.price);
+
+    const navMap = { 'may-anh': 'may-anh', 'ong-kinh': 'ong-kinh', 'flycam': 'flycam', 'action-camera': 'action-camera' };
+
+    // Banner slide theo danh mục (demo-05 bannerSileSmall)
+    const banners = d.getCategoryBanners ? d.getCategoryBanners(cat) : [];
+    this._bnCount = banners.length;
+    const bnMax = Math.max(0, banners.length - 3);
+    const bnPage = Math.min(this.state.bnPage, bnMax);
+
+    return {
+      hasBanners: banners.length > 0,
+      bnItems: banners,
+      bnOffset: `${-(bnPage * (100 / 3)).toFixed(4)}%`,
+      hasBnNav: banners.length > 3,
+      bnPrev: () => this.setState((s) => ({ bnPage: Math.min(Math.max(0, s.bnPage - 1), bnMax) === s.bnPage && s.bnPage === 0 ? bnMax : Math.max(0, s.bnPage - 1) })),
+      bnNext: () => this.setState((s) => ({ bnPage: s.bnPage >= bnMax ? 0 : s.bnPage + 1 })),
+      bnPause: () => { this._bnPaused = true; },
+      bnResume: () => { this._bnPaused = false; },
+      bnDots: Array.from({ length: bnMax + 1 }, (_, i) => ({
+        label: `Trang banner ${i + 1}`,
+        width: i === bnPage ? '22px' : '6px',
+        bg: i === bnPage ? '#ff6a00' : '#dcd8d2',
+        pick: () => this.setState({ bnPage: i }),
+      })),
+      activeNav: navMap[cat] || 'home',
+      catName: catObj ? catObj.name : CAT_META['tat-ca'].name,
+      catDesc: catObj ? catObj.description : CAT_META['tat-ca'].description,
+      resultCount: String(items.length).padStart(2, '0'),
+      gridKey: `${cat}-${this.state.sort}-${this.state.brands.join(',')}-${this.state.price}`,
+      catPills: [{ slug: 'tat-ca', name: 'Tất cả' }, ...d.categories].map((c) => {
+        const on = cat === c.slug;
+        return {
+          name: c.name,
+          border: on ? '#ff6a00' : '#e9e6e1',
+          bg: on ? '#ff6a00' : '#ffffff',
+          color: on ? '#ffffff' : '#5f5a53',
+          pick: () => { location.hash = c.slug; this.setState({ cat: c.slug, brands: [], price: 'all' }); },
+        };
+      }),
+      brandRows: brands.map((b) => {
+        const on = this.state.brands.includes(b);
+        return {
+          name: b, count: String(brandCounts[b]).padStart(2, '0'), checked: on,
+          bg: on ? 'rgba(255,106,0,0.06)' : 'transparent',
+          boxBorder: on ? '#ff6a00' : '#dcd8d2',
+          boxBg: on ? '#ff6a00' : '#ffffff',
+          toggle: () => this.setState((s) => ({ brands: on ? s.brands.filter((x) => x !== b) : [...s.brands, b] })),
+        };
+      }),
+      priceRows: PRICE_RANGES.map((r) => {
+        const on = this.state.price === r.id;
+        return {
+          label: r.label, checked: on,
+          bg: on ? 'rgba(255,106,0,0.06)' : 'transparent',
+          dotBorder: on ? '#ff6a00' : '#dcd8d2',
+          pick: () => this.setState({ price: r.id }),
+        };
+      }),
+      sortPills: [
+        { id: 'featured', label: 'Nổi bật' },
+        { id: 'asc', label: 'Giá tăng dần' },
+        { id: 'desc', label: 'Giá giảm dần' },
+      ].map((s) => {
+        const on = this.state.sort === s.id;
+        return { label: s.label, border: on ? '#ff6a00' : '#e9e6e1', bg: on ? 'rgba(255,106,0,0.08)' : '#ffffff', color: on ? '#c85200' : '#5f5a53', pick: () => this.setState({ sort: s.id }) };
+      }),
+      hasFilters: this.state.brands.length > 0 || this.state.price !== 'all',
+      clearFilters: () => this.setState({ brands: [], price: 'all' }),
+      empty: items.length === 0,
+      items: items.map((p) => ({
+        href: d.getProductUrl(p.slug),
+        thumbnail: p.thumbnail, name: p.name, brand: p.brand,
+        badgeList: p.badges.slice(0, 1).map((b) => ({ label: b.label, bg: badgeBg(b.type) })),
+        hasDiscount: !!p.originalPrice && p.originalPrice > p.price,
+        discountLabel: p.originalPrice > p.price ? `-${Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}%` : '',
+        priceLabel: p.callForPrice ? 'Liên hệ' : fmt(p.price),
+        origLabel: p.originalPrice > p.price ? fmt(p.originalPrice) : '',
+        specsLine: (p.shortSpecs || []).slice(0, 3).join(' · '),
+        ratingLabel: p.rating ? `${p.rating.average} (${p.rating.count} đánh giá)` : '',
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

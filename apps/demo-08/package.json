@@ -2,6 +2,7 @@
   "name": "demo-08",
   "version": "0.1.0",
   "private": true,
+  "description": "Demo 08 — Blog + e-commerce (port 8008)",
   "scripts": {
     "dev": "next dev -p 8008",
     "build": "next build",

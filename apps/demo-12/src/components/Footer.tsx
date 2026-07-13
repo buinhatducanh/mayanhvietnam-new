@@ -92,7 +92,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ fontSize: 13, color: '#999999' }}>© 2024 Máy Ảnh Việt Nam. Tất cả quyền được bảo lưu.</p>
+          <p style={{ fontSize: 13, color: '#999999' }}>© 2025 Máy Ảnh Việt Nam. Tất cả quyền được bảo lưu.</p>
           <div style={{ display: 'flex', gap: 20 }}>
             {[['Điều khoản', '/chinh-sach/dieu-khoan'], ['Bảo mật', '/chinh-sach/bao-mat'], ['Sitemap', '/sitemap']].map(([name, href]) => (
               <Link key={name} to={href} style={{ fontSize: 13, color: '#999999', textDecoration: 'none' }}>{name}</Link>

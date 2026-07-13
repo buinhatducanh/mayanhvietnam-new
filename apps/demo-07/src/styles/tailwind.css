@@ -1,0 +1,152 @@
+@import 'tailwindcss' source(none);
+@source '../**/*.{js,ts,jsx,tsx}';
+
+@import 'tw-animate-css';
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ── Motion Keyframes ──────────────────────────────────────────── */
+
+@keyframes hero-photo-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes ken-burns {
+  from { transform: scale(1.0) translateX(0px); }
+  to   { transform: scale(1.04) translateX(-10px); }
+}
+
+@keyframes shutter-flash {
+  0%   { opacity: 0; }
+  40%  { opacity: 0.28; }
+  100% { opacity: 0; }
+}
+
+@keyframes accent-bar-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes upgrade-line-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes film-develop {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes eyebrow-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes exif-slide-up {
+  from { transform: translateY(48px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Ticker ───────────────────────────────────────────────────── */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker-scroll 80s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── CTA Button Physical Compression ─────────────────────────── */
+.cta-primary:active {
+  transform: scale(0.97);
+  transition: transform 60ms ease-in;
+}
+
+/* ── Crosshair cursor on photography panels ──────────────────── */
+.cursor-photography {
+  cursor: crosshair;
+}
+
+/* ── Scene 1 — Cinematic breathe (both image layers, identical) ── */
+@keyframes scene-breathe {
+  from { transform: scale(1.00) translate(0px, 0px); }
+  to   { transform: scale(1.045) translate(-10px, -5px); }
+}
+
+/* ── Scene 1 — Leaf fall with wind sway ──────────────────────── */
+@keyframes leaf-sway {
+  0%   { transform: translate(0px, 0px)    rotate(-8deg);  opacity: 0;    }
+  7%   {                                                    opacity: 0.62; }
+  44%  { transform: translate(14px, 34vh)  rotate(20deg);  opacity: 0.55; }
+  84%  { transform: translate(-7px, 72vh)  rotate(-6deg);  opacity: 0.18; }
+  100% { transform: translate(4px, 90vh)   rotate(14deg);  opacity: 0;    }
+}
+
+/* ── Scene 2 — Editorial image Ken Burns ─────────────────────── */
+@keyframes scene2-ken-burns {
+  from { transform: scale(1.00); }
+  to   { transform: scale(1.03); }
+}
+
+/* ── Scene 3 — Mountain sunset Ken Burns (very subtle) ────────── */
+@keyframes scene3-ken-burns {
+  from { transform: scale(1.000); }
+  to   { transform: scale(1.025); }
+}
+
+/* ── Scene 2 — Autofocus bracket animations ──────────────────── */
+@keyframes af-search-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.28; }
+}
+
+@keyframes af-confirm-pop {
+  0%   { transform: translate(-50%, -50%) scale(0);   opacity: 0; }
+  55%  { transform: translate(-50%, -50%) scale(2.0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+}
+
+/* ── Scene 3 — Cinemagraph overlays ──────────────────────────── */
+
+/* Cloud blobs drifting slowly in the sky — two directions */
+@keyframes cine-cloud-r {
+  from { transform: translateX(0px);   }
+  to   { transform: translateX(24px);  }
+}
+@keyframes cine-cloud-l {
+  from { transform: translateX(0px);   }
+  to   { transform: translateX(-18px); }
+}
+
+/* Grass blades swaying from their root — ±1.6° feels like wind */
+@keyframes cine-grass {
+  from { transform: rotate(-1.4deg); }
+  to   { transform: rotate( 1.8deg); }
+}
+
+/* Water ripple ring expanding from a point, fading as it grows */
+@keyframes cine-ripple {
+  0%   { transform: scale(0.06); opacity: 0;    }
+  12%  {                         opacity: 0.07; }
+  78%  {                         opacity: 0.02; }
+  100% { transform: scale(1);    opacity: 0;    }
+}
+
+/* ── Reduced Motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ticker-track { animation: none; }
+}

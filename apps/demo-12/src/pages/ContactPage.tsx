@@ -28,7 +28,7 @@ export default function ContactPage() {
             { icon: '📞', title: 'Hotline', desc: '1900 1234', sub: 'Miễn phí, 8:00 - 21:00' },
             { icon: '💬', title: 'Messenger', desc: 'Máy Ảnh Việt Nam', sub: 'Chat trực tuyến 24/7' },
             { icon: '🔵', title: 'Zalo', desc: '0901 234 567', sub: 'Zalo chat ngay' },
-            { icon: '✉️', title: 'Email', desc: 'hotro@mavietnam.com', sub: 'Phản hồi trong 2 giờ' },
+            { icon: '✉️', title: 'Email', desc: 'hotro@mayanhvietnam.com', sub: 'Phản hồi trong 2 giờ' },
           ].map(item => (
             <div key={item.title} style={{
               background: 'var(--color-card-bg)', border: '1px solid rgba(255,255,255,0.08)',

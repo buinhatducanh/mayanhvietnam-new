@@ -1123,3 +1123,17 @@ export const mounts = ['E-mount', 'RF-mount', 'Z-mount', 'X-mount', 'L-mount', '
 export const formatPrice = (price: number): string => {
   return price.toLocaleString('vi-VN') + '₫';
 };
+
+// ============================================
+// MULTI-IMAGE GALLERY (giả lập từ các sản phẩm cùng brand)
+// Trong production, mỗi product sẽ có mảng `images` riêng
+// ============================================
+export const getProductImages = (product: Product): string[] => {
+  // Nếu đã có sẵn images array dùng luôn
+  if (product.images && product.images.length > 1) return product.images;
+
+  // Lấy 4 ảnh: chính + 3 ảnh phụ từ sản phẩm cùng brand
+  const sameBrand = products.filter(p => p.brand === product.brand && p.id !== product.id);
+  const extras = sameBrand.slice(0, 3).map(p => p.image);
+  return [product.image, ...extras].slice(0, 4);
+};

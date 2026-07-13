@@ -2,6 +2,7 @@
   "name": "demo-06",
   "version": "0.1.0",
   "private": true,
+  "description": "Demo 06 — minimal storefront (port 8006)",
   "scripts": {
     "dev": "next dev -p 8006",
     "build": "next build",

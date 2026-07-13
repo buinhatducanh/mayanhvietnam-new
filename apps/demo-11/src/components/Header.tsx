@@ -7,9 +7,10 @@ interface HeaderProps {
   onNavigate: (page: Page) => void;
   searchQuery: string;
   onSearchChange: (q: string) => void;
+  onCategorySelect?: (slug: string) => void;
 }
 
-export default function Header({ cartCount, onNavigate, searchQuery, onSearchChange }: HeaderProps) {
+export default function Header({ cartCount, onNavigate, searchQuery, onSearchChange, onCategorySelect }: HeaderProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -51,15 +52,7 @@ export default function Header({ cartCount, onNavigate, searchQuery, onSearchCha
             onClick={() => onNavigate('home')}
             className="flex items-center gap-2 shrink-0 group"
           >
-            <div className="w-9 h-9 bg-orange rounded-lg flex items-center justify-center shadow-md group-hover:bg-orange-dark transition-colors">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-              </svg>
-            </div>
-            <div className="leading-tight">
-              <div className="text-base font-bold text-white tracking-tight">Máy Ảnh</div>
-              <div className="text-xs text-orange font-semibold tracking-widest uppercase">Việt Nam</div>
-            </div>
+            <img src="/logo-white.png" alt="Máy Ảnh Việt Nam" className="h-10 w-auto object-contain" />
           </button>
 
           {/* Search bar */}
@@ -140,7 +133,7 @@ export default function Header({ cartCount, onNavigate, searchQuery, onSearchCha
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button
-                  onClick={() => onNavigate('plp')}
+                  onClick={() => onCategorySelect?.(cat.slug)}
                   className={`flex items-center gap-1.5 px-4 py-3.5 text-sm font-medium transition-all border-b-2 ${
                     activeDropdown === cat.slug
                       ? 'text-orange border-orange'
@@ -158,7 +151,7 @@ export default function Header({ cartCount, onNavigate, searchQuery, onSearchCha
                     {cat.subcategories.map(sub => (
                       <button
                         key={sub}
-                        onClick={() => { onNavigate('plp'); setActiveDropdown(null); }}
+                        onClick={() => { onCategorySelect?.(cat.slug); setActiveDropdown(null); }}
                         className="w-full text-left px-4 py-2 text-sm text-navy hover:bg-orange-50 hover:text-orange transition-colors flex items-center gap-2"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-orange/40" />
@@ -192,7 +185,7 @@ export default function Header({ cartCount, onNavigate, searchQuery, onSearchCha
             {categories.map(cat => (
               <button
                 key={cat.slug}
-                onClick={() => { onNavigate('plp'); setMobileMenuOpen(false); }}
+                onClick={() => { onCategorySelect?.(cat.slug); setMobileMenuOpen(false); }}
                 className="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
               >
                 <span>{cat.icon}</span>

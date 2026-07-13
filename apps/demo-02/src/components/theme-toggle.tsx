@@ -5,7 +5,9 @@ import { useTheme } from '@/components/theme-provider'
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
-  const isDark = theme === 'dark'
+  // Guard: server renders 'light' (matches ThemeProvider's initial state),
+  // so the toggle shows sun on first paint and switches to moon after hydration.
+  const isDark = theme === 'dark' && theme !== 'light'
 
   return (
     <button

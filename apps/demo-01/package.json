@@ -2,6 +2,7 @@
   "name": "demo-01",
   "version": "0.1.0",
   "private": true,
+  "description": "Demo 01 — E-commerce dark theme (port 8001)",
   "scripts": {
     "dev": "next dev -p 8001",
     "build": "next build",

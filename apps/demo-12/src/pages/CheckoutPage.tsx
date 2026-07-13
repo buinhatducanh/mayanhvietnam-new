@@ -14,6 +14,14 @@ const paymentMethods = [
 export default function CheckoutPage() {
   const [step, setStep] = useState(1)
   const [payment, setPayment] = useState('cod')
+  const [fullName, setFullName] = useState('Nguyễn Văn A')
+  const [phone, setPhone] = useState('0901 234 567')
+  const [email, setEmail] = useState('example@gmail.com')
+  const [address, setAddress] = useState('123 Nguyễn Trãi')
+  const [ward, setWard] = useState('Phường 1')
+  const [district, setDistrict] = useState('Quận 1')
+  const [city, setCity] = useState('TP. Hồ Chí Minh')
+  const [notes, setNotes] = useState('')
   const items = [{ ...products[0], qty: 1 }, { ...products[3], qty: 1 }]
   const total = items.reduce((s, i) => s + i.price * i.qty, 0) - 500000
 
@@ -123,47 +131,204 @@ export default function CheckoutPage() {
                       Thông Tin Giao Hàng
                     </h2>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                      {[
-                        ['Họ và tên *', 'Nguyễn Văn A'],
-                        ['Số điện thoại *', '0901 234 567'],
-                        ['Email', 'example@gmail.com'],
-                        ['Địa chỉ *', '123 Nguyễn Trãi'],
-                        ['Phường/Xã *', 'Phường 1'],
-                        ['Quận/Huyện *', 'Quận 1']
-                      ].map(([label, placeholder]) => (
-                        <div key={label as string}>
-                          <label style={{
-                            display: 'block',
-                            fontSize: 13,
-                            fontWeight: 600,
-                            color: '#5D6B7F',
-                            marginBottom: 6,
-                          }}>
-                            {label as string}
-                          </label>
-                          <input
-                            defaultValue={placeholder as string}
-                            style={{
-                              width: '100%',
-                              padding: '12px 14px',
-                              background: '#F6F8FB',
-                              border: '1px solid #E8ECF0',
-                              borderRadius: 10,
-                              color: '#1A2332',
-                              fontSize: 14,
-                              fontFamily: 'Inter',
-                              transition: 'border-color 0.3s ease',
-                            }}
-                            onFocus={(e) => {
-                              e.currentTarget.style.borderColor = '#E24A50'
-                              e.currentTarget.style.outline = 'none'
-                            }}
-                            onBlur={(e) => {
-                              e.currentTarget.style.borderColor = '#E8ECF0'
-                            }}
-                          />
-                        </div>
-                      ))}
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: '#5D6B7F',
+                          marginBottom: 6,
+                        }}>
+                          Họ và tên *
+                        </label>
+                        <input
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '12px 14px',
+                            background: '#F6F8FB',
+                            border: '1px solid #E8ECF0',
+                            borderRadius: 10,
+                            color: '#1A2332',
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            transition: 'border-color 0.3s ease',
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#E24A50'
+                            e.currentTarget.style.outline = 'none'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = '#E8ECF0'
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: '#5D6B7F',
+                          marginBottom: 6,
+                        }}>
+                          Số điện thoại *
+                        </label>
+                        <input
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '12px 14px',
+                            background: '#F6F8FB',
+                            border: '1px solid #E8ECF0',
+                            borderRadius: 10,
+                            color: '#1A2332',
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            transition: 'border-color 0.3s ease',
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#E24A50'
+                            e.currentTarget.style.outline = 'none'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = '#E8ECF0'
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: '#5D6B7F',
+                          marginBottom: 6,
+                        }}>
+                          Email
+                        </label>
+                        <input
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '12px 14px',
+                            background: '#F6F8FB',
+                            border: '1px solid #E8ECF0',
+                            borderRadius: 10,
+                            color: '#1A2332',
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            transition: 'border-color 0.3s ease',
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#E24A50'
+                            e.currentTarget.style.outline = 'none'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = '#E8ECF0'
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: '#5D6B7F',
+                          marginBottom: 6,
+                        }}>
+                          Địa chỉ *
+                        </label>
+                        <input
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '12px 14px',
+                            background: '#F6F8FB',
+                            border: '1px solid #E8ECF0',
+                            borderRadius: 10,
+                            color: '#1A2332',
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            transition: 'border-color 0.3s ease',
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#E24A50'
+                            e.currentTarget.style.outline = 'none'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = '#E8ECF0'
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: '#5D6B7F',
+                          marginBottom: 6,
+                        }}>
+                          Phường/Xã *
+                        </label>
+                        <input
+                          value={ward}
+                          onChange={(e) => setWard(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '12px 14px',
+                            background: '#F6F8FB',
+                            border: '1px solid #E8ECF0',
+                            borderRadius: 10,
+                            color: '#1A2332',
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            transition: 'border-color 0.3s ease',
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#E24A50'
+                            e.currentTarget.style.outline = 'none'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = '#E8ECF0'
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: '#5D6B7F',
+                          marginBottom: 6,
+                        }}>
+                          Quận/Huyện *
+                        </label>
+                        <input
+                          value={district}
+                          onChange={(e) => setDistrict(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '12px 14px',
+                            background: '#F6F8FB',
+                            border: '1px solid #E8ECF0',
+                            borderRadius: 10,
+                            color: '#1A2332',
+                            fontSize: 14,
+                            fontFamily: 'Inter',
+                            transition: 'border-color 0.3s ease',
+                          }}
+                          onFocus={(e) => {
+                            e.currentTarget.style.borderColor = '#E24A50'
+                            e.currentTarget.style.outline = 'none'
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.style.borderColor = '#E8ECF0'
+                          }}
+                        />
+                      </div>
                       <div style={{ gridColumn: '1/-1' }}>
                         <label style={{
                           display: 'block',
@@ -175,6 +340,8 @@ export default function CheckoutPage() {
                           Tỉnh/Thành phố *
                         </label>
                         <select
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
                           style={{
                             width: '100%',
                             padding: '12px 14px',
@@ -214,6 +381,8 @@ export default function CheckoutPage() {
                         <textarea
                           rows={3}
                           placeholder="Ghi chú thêm..."
+                          value={notes}
+                          onChange={(e) => setNotes(e.target.value)}
                           style={{
                             width: '100%',
                             padding: '12px 14px',
@@ -429,6 +598,21 @@ export default function CheckoutPage() {
                       marginBottom: 8,
                     }}>
                       Mã đơn hàng: <strong style={{ color: '#E24A50' }}>#MAVNHCM241215001</strong>
+                    </p>
+                    <p style={{
+                      fontSize: 15,
+                      color: '#1A2332',
+                      marginBottom: 4,
+                      fontWeight: 600,
+                    }}>
+                      {fullName} · {phone}
+                    </p>
+                    <p style={{
+                      fontSize: 14,
+                      color: '#5D6B7F',
+                      marginBottom: 8,
+                    }}>
+                      {address}, {ward}, {district}, {city}
                     </p>
                     <p style={{
                       fontSize: 14,
