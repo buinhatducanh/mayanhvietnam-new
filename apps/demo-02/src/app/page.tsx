@@ -20,6 +20,7 @@ import { NewsletterSection } from '@/components/home/newsletter-section'
 import { ProductLineSection } from '@/components/home/product-line-section'
 import { ProductCard } from '@/components/product-card'
 import { YouTubeReviews } from '@/components/home/youtube-reviews'
+import { YouTubeShorts } from '@/components/home/youtube-shorts'
 import { BrandStrip } from '@/components/home/brand-strip'
 import { categories, products } from '@/lib/products'
 
@@ -54,6 +55,10 @@ const productLines = [
         primaryCta: { label: 'Xem chi tiết', href: '/san-pham/may-anh-sony-alpha-a7-mark-iv-body-only' },
       },
     ],
+    miniBanners: [
+      { title: 'Canon EOS R6 Mark III', image: '/images/banner-camera.png', href: '/danh-muc/may-anh' },
+      { title: 'Nikon Z6 Mark III', image: '/images/banner-z6iii.jpg', href: '/danh-muc/may-anh' },
+    ],
   },
   {
     categorySlug: 'ong-kinh',
@@ -71,6 +76,9 @@ const productLines = [
         secondaryCta: { label: 'Kiểm tra ngàm', href: '/kiem-tra-ong-kinh' },
       },
     ],
+    miniBanners: [
+      { title: 'Khuyến mãi ống kính Sony', image: '/images/banner-lens.png', href: '/danh-muc/ong-kinh' },
+    ],
   },
   {
     categorySlug: 'may-quay-phim',
@@ -87,6 +95,9 @@ const productLines = [
         primaryCta: { label: 'Xem máy quay', href: '/danh-muc/may-quay-phim' },
       },
     ],
+    miniBanners: [
+      { title: 'Setup phòng Studio', image: '/images/banner-video.png', href: '/setup-studio' },
+    ],
   },
   {
     categorySlug: 'flycam',
@@ -102,6 +113,10 @@ const productLines = [
         imageAlt: 'DJI Mini 4 Pro Fly More Combo Plus DJI RC 2',
         primaryCta: { label: 'Xem flycam', href: '/danh-muc/flycam' },
       },
+    ],
+    miniBanners: [
+      { title: 'DJI Mavic Series', image: '/images/banner-flycam-large.jpg', href: '/danh-muc/flycam' },
+      { title: 'DJI Neo 135g', image: '/images/p-dji-neo.jpg', href: '/danh-muc/flycam' },
     ],
   },
 ] as const
@@ -171,7 +186,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Per product-line sections, each with its own ad banner slide */}
+        {/* Per product-line sections, each with its own ad banner slide + mini banner carousel */}
         {productLines.map((line) => (
           <ProductLineSection
             key={line.categorySlug}
@@ -180,6 +195,7 @@ export default function HomePage() {
             title={line.title}
             icon={line.icon}
             adSlides={[...line.adSlides]}
+            miniBanners={[...line.miniBanners]}
           />
         ))}
 
@@ -256,6 +272,9 @@ export default function HomePage() {
 
         {/* YouTube reviews — giống mẫu mayanhvietnam.com */}
         <YouTubeReviews />
+
+        {/* Short video — TikTok @mayanhvietnam */}
+        <YouTubeShorts />
 
         {/* Tại sao chọn chúng tôi */}
         <section aria-label="Tại sao chọn mayanhvietnam" className="mx-auto w-full max-w-7xl px-4 lg:px-8">

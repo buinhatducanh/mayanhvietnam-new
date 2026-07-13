@@ -143,7 +143,7 @@ export function SiteHeader() {
                         className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-[#2a2a38]"
                       >
                         <div className="relative size-10 shrink-0 overflow-hidden rounded-lg bg-[#0a0a0f]">
-                          <Image src={p.image || '/placeholder.svg'} alt="" fill className="object-cover" />
+                          <Image src={p.image || '/placeholder.svg'} alt="" fill sizes="40px" className="object-cover" />
                         </div>
                         <div className="flex-1">
                           <p className="text-sm font-medium text-[#f0f0f5]">{p.name}</p>
@@ -260,7 +260,7 @@ export function SiteHeader() {
                         className="group flex items-center gap-3 rounded-xl border border-[#1e1e2a] bg-[#16161f] p-3 transition-all hover:border-[#00d4aa]/40 hover:shadow-lg hover:shadow-black/40"
                       >
                         <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-[#0a0a0f]">
-                          <Image src={p.image || '/placeholder.svg'} alt="" fill className="object-cover" />
+                          <Image src={p.image || '/placeholder.svg'} alt="" fill sizes="56px" className="object-cover" />
                         </div>
                         <div>
                           <p className="text-sm font-medium leading-snug text-[#f0f0f5] transition-colors group-hover:text-[#00d4aa]">

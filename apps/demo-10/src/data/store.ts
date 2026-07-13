@@ -157,14 +157,7 @@ export const footerColumns = [
 
 export const brandBanners = getBrandBanners().slice(0, 6);
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-const CDN = 'https://mayanhvietnam.com';
-
-function formatVND(amount: number): string {
-  if (amount >= 100_000_000) return `${(amount / 1_000_000).toFixed(1)} triệu`;
-  return new Intl.NumberFormat('vi-VN').format(amount) + 'đ';
-}
+// ─── Helpers (CDN + formatVND moved to top of file) ─────────────────────────
 
 // Re-export for component imports
 export {
@@ -176,4 +169,7 @@ export {
   SITE_EMAIL,
   COMPANY_ADDRESS,
   paymentIcons,
+  socialLinks,
+  paymentMethods,
+  footerPolicies,
 };

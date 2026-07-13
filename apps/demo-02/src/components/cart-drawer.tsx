@@ -48,7 +48,7 @@ export function CartDrawer() {
                   className="flex gap-4 border-b border-border py-4 last:border-0"
                 >
                   <div className="relative size-20 shrink-0 overflow-hidden rounded-lg bg-secondary">
-                    <Image src={item.image || '/placeholder.svg'} alt={item.name} fill className="object-cover" />
+                    <Image src={item.image || '/placeholder.svg'} alt={item.name} fill sizes="80px" className="object-cover" />
                   </div>
                   <div className="flex flex-1 flex-col gap-1">
                     <p className="text-sm font-medium leading-snug">{item.name}</p>

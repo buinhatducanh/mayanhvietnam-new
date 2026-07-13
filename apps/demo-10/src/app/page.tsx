@@ -4,7 +4,7 @@ import GraphicNavigation from '@/components/store/GraphicNavigation';
 import TrustBar from '@/components/store/TrustBar';
 import ProductGrid from '@/components/store/ProductGrid';
 import ShopByInterest from '@/components/store/ShopByInterest';
-import CommunityGallery from '@/components/store/CommunityGallery';
+import YouTubeReviews from '@/components/store/YouTubeReviews';
 import AccessoriesSection from '@/components/store/AccessoriesSection';
 import StoreFooter from '@/components/store/StoreFooter';
 
@@ -18,7 +18,7 @@ export default function Home() {
         <TrustBar />
         <ProductGrid />
         <ShopByInterest />
-        <CommunityGallery />
+        <YouTubeReviews />
         <AccessoriesSection />
       </main>
       <StoreFooter />

@@ -108,7 +108,7 @@ export function SiteHeader() {
                         className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-secondary"
                       >
                         <div className="relative size-10 shrink-0 overflow-hidden rounded-lg bg-secondary">
-                          <Image src={p.image || '/placeholder.svg'} alt="" fill className="object-cover" />
+                          <Image src={p.image || '/placeholder.svg'} alt="" fill sizes="40px" className="object-cover" />
                         </div>
                         <div className="flex-1">
                           <p className="text-sm font-medium">{p.name}</p>
@@ -237,7 +237,7 @@ export function SiteHeader() {
                         className="group flex items-center gap-3 rounded-xl border border-border bg-card p-3 transition-all hover:border-primary/50"
                       >
                         <div className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-secondary">
-                          <Image src={p.image || '/placeholder.svg'} alt="" fill className="object-cover" />
+                          <Image src={p.image || '/placeholder.svg'} alt="" fill sizes="56px" className="object-cover" />
                         </div>
                         <div>
                           <p className="text-sm font-medium leading-snug group-hover:text-primary">
