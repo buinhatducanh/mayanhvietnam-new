@@ -1,0 +1,160 @@
+{
+  "instructions": {
+    "role": "Senior UI UX Designer and Creative Frontend Engineer",
+    "project": "Rebuilding mayanhvietnam.com e-commerce platform — camera and photography equipment store in Vietnam",
+    "goal": "Design a premium, high-end web interface with absolute data accuracy. Express full creative freedom in modern layouts and luxury transition animations. The site must convert visitors into buyers of high-value camera gear (20M-150M VND range) with an immersive, cinematic feel.",
+    "primaryColorTheme": "Orange"
+  },
+  "brandTheme": {
+    "colorSystem": {
+      "darkMode": {
+        "background": "#08080C",
+        "surface": "rgba(15, 15, 23, 0.65)",
+        "primaryAccent": "#FF6B35",
+        "glowEffect": "0px 0px 25px rgba(255, 107, 53, 0.15)",
+        "description": "Premium cinematic black base with cyber neon orange highlights and glowing accents"
+      },
+      "lightMode": {
+        "background": "#FFF9F3",
+        "surface": "#FFFFFF",
+        "primaryAccent": "#E0531B",
+        "description": "Warm soft cream base with a deep rich orange accent"
+      }
+    },
+    "typography": {
+      "body": "Inter",
+      "headers": "Outfit or Roboto Condensed",
+      "numbersAndPrices": "JetBrains Mono"
+    }
+  },
+  "realProductData": {
+    "description": "Use this exact real product data scraped from mayanhvietnam.com. Do not invent product names, prices, or specs.",
+    "priceFormat": "X,XXX,XXXđ (Vietnamese Dong). For items without listed price use 'Vui lòng gọi'.",
+    "hotline": "0937.148.222",
+    "brands": ["Canon", "Sony", "Nikon", "Fujifilm", "DJI", "Fimi", "GoPro", "Insta360", "Godox", "Nanlite", "Sigma", "Tamron"],
+    "mountTypes": ["RF", "RF-S", "EF", "EF-M", "F", "Z", "FE", "E", "L", "M4/3", "X"],
+    "sampleProducts": [
+      {
+        "name": "Máy ảnh Canon EOS R50 Black kèm Lens RF-S 18-45mm Chính Hãng",
+        "slug": "/san-pham/may-anh-canon-eos-r50-black-kem-lens-rfs-1845-chinh-hang_may-anh-mirrorless-241228112737843",
+        "brand": "Canon",
+        "price": "17,500,000đ",
+        "stockStatus": "Còn hàng",
+        "badges": ["MỚI 100%", "Like new (2)", "Ngoại hình Đẹp (1)", "CHÍNH HÃNG"],
+        "variants": [
+          {"condition": "MỚI 100%", "price": "17,500,000đ"},
+          {"condition": "Like new", "quantity": 2, "price": "16,790,000đ"},
+          {"condition": "Đẹp", "quantity": 1, "price": "Liên hệ"}
+        ],
+        "specs": {
+          "sensorType": "CMOS APS-C 24.2 megapixel",
+          "processor": "DIGIC X",
+          "iso": "100 – 32,000 (mở rộng 51,200)",
+          "video": "4K 30fps; Full HD 120fps",
+          "autofocus": "Dual Pixel CMOS AF II, 4,503 điểm",
+          "lensMount": "RF",
+          "weight": "375g (body only)",
+          "dimensions": "116.3 x 85.5 x 68.8 mm",
+          "battery": "LP-E17, ~370 ảnh/lần sạc"
+        },
+        "promotions": ["Tặng ngay thẻ nhớ 32Gb", "Dán màn hình free trọn đời máy ảnh"],
+        "images": [
+          "https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg"
+        ]
+      },
+      {
+        "name": "Máy ảnh Sony Alpha A7R VI",
+        "brand": "Sony",
+        "price": "113,990,000đ",
+        "slug": "/san-pham/may-anh-sony-alpha-a7r-vi_may-anh-mirrorless-260328143107303"
+      },
+      {
+        "name": "Máy ảnh Nikon Z9 (Chính Hãng)",
+        "brand": "Nikon",
+        "price": "Vui lòng gọi"
+      },
+      {
+        "name": "FLYCAM DJI Mavic 3 Pro (Pro Combo | DJI RC Pro)",
+        "brand": "DJI",
+        "price": "Vui lòng gọi",
+        "category": "flycam"
+      },
+      {
+        "name": "FLYCAM DJI NEO (CHÍNH HÃNG)",
+        "brand": "DJI",
+        "price": "3,900,000đ",
+        "category": "flycam"
+      }
+    ],
+    "topBrandsOnSite": {
+      "cameras": ["Canon", "Sony", "Nikon", "Fujifilm"],
+      "lenses": ["Canon", "Sony", "Nikon", "Sigma", "Tamron", "Viltrox"],
+      "flycams": ["DJI", "Fimi"],
+      "actionCameras": ["GoPro", "DJI", "Insta360", "Sony"],
+      "studioGear": ["Godox", "Nanlite", "Jinbei"]
+    }
+  },
+  "categoryTaxonomy": [
+    {"name": "Máy ảnh", "slug": "may-anh"},
+    {"name": "Ống kính", "slug": "ong-kinh"},
+    {"name": "Sản phẩm cũ", "slug": "san-pham-cu"},
+    {"name": "Setup phòng", "slug": "setup-phong"},
+    {"name": "Action camera", "slug": "action-camera"},
+    {"name": "Flycam", "slug": "flycam"},
+    {"name": "Thiết bị studio", "slug": "thiet-bi-studio"},
+    {"name": "Phụ kiện", "slug": "phu-kien"},
+    {"name": "Máy quay phim", "slug": "may-quay-phim"}
+  ],
+  "storeLocations": [
+    {"city": "TP.HCM", "address": "09 Nam Quốc Cang, P. Bến Thành", "hours": "09:00 – 19:00"},
+    {"city": "Cần Thơ", "address": "Số 58 Nguyễn Hiền, KDC 91B, P. Tân An", "hours": "08:00 – 20:00"},
+    {"city": "An Giang", "address": "Số 1 Đường số 1, Tây sông Hậu, P. Long Xuyên", "hours": "08:00 – 17:30"},
+    {"city": "Đồng Tháp", "address": "126 Hoàng Sa, KP 4, P. Thới Sơn", "hours": "08:00 – 18:00"}
+  ],
+  "contactInfo": {
+    "hotlineSales": "0937.148.222",
+    "hotlineOther": "0907.21.52.52 / 02866.54.52.52",
+    "email": "info@mayanhvietnam.com"
+  },
+  "warrantyPolicy": {
+    "newProducts": {
+      "camerasAndLenses": "12 tháng bảo hành",
+      "otherEquipment": "Theo chế độ hãng"
+    },
+    "usedProducts": {
+      "flycamPinsStudio": "Không bảo hành",
+      "gimbal": "15 ngày",
+      "flashAndStudioLights": "30 ngày (không bảo hành bóng, phím, chân đèn)"
+    },
+    "exchangePolicy": {
+      "newWithDefect": "7 ngày đổi mới",
+      "newDifferentProduct": "3 ngày (còn nguyên nhãn mác, chưa sử dụng)",
+      "usedProduct": "2 ngày (mua không quá 2 ngày)"
+    }
+  },
+  "requiredComponents": [
+    "Navigation Header with intelligent Search and Category Megamenu showing all 9 categories with thumbnails",
+    "Hero Banner Slider with 5 real banners from mayanhvietnam.com (Tết banners, promotional banners)",
+    "Category Grid with icon thumbnails for all 9 categories",
+    "Product Grid and Product Card showing real prices, discount badges, stock status, and wishlist triggers",
+    "Lens Compatibility Checker: test if lenses fit specific camera bodies by mount type (RF, Z, FE, EF, etc.)",
+    "Condition Variant Selector: handle multi-condition products (MỚI 100%, Like new, Đẹp) with per-condition pricing",
+    "Trade-in Widget: submit requests to sell old gear",
+    "Studio Setup Wizard: custom studio room layout suggestions",
+    "Footer with localized store addresses, contact info, warranty policy summary, and payment icons"
+  ],
+  "creativeFreedom": {
+    "layoutPhilosophy": "Modern, clean, visual-first, and content-rich. Design unique bold layouts such as asymmetrical grids, floating menus, or horizontal scroll sections. Prioritize product photography. The camera/flycam gear should feel premium and immersive — this is not generic e-commerce.",
+    "luxuryMotion": [
+      "Staggered fade-ins and clip-mask banner reveals on page load",
+      "Premium hover effects: subtle card lift, text slide-ups, and glowing orange borders",
+      "Apple-style scroll storytelling showcasing camera mechanics, sensors, and lens elements",
+      "Ken Burns zoom effects for sliders and backdrop-blur transitions for overlays and cart drawer",
+      "Smooth button state transitions with clean loading animations",
+      "Dynamic mechanic snapping animation when testing compatible lenses in the Lens Checker widget"
+    ],
+    "recommendedStack": ["Next.js", "Tailwind CSS", "Framer Motion or GSAP"],
+    "noPlaceholderImages": "All images must use real CDN URLs from mayanhvietnam.com or realistic placeholder descriptions. Never use generic placeholder images."
+  },
+  "outputRequirement": "Deliver clean, fully responsive Next.js and Tailwind CSS code. Every product, price, spec, and image must come from the real data above. Do not fabricate product names, prices, or technical specifications."
+}

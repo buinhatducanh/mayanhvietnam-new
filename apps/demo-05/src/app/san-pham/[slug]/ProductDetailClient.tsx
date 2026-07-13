@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import type { ProductSummary } from '@mayanhvietnam/mock-data';
 import { reviews } from '@/lib/mock-data';
+import { findProductBySlug } from '@/lib/real-products';
 import { useCart } from '@/lib/cart-context';
 import { formatVND, calcDiscountPercent, cn } from '@/lib/utils';
 import { ProductGrid } from '@/components/product/ProductGrid';
@@ -28,10 +29,16 @@ type TabKey = 'overview' | 'specs' | 'reviews';
 export function ProductDetailClient({
   product,
   related,
+  realSlug,
 }: {
   product: ProductSummary;
   related: ProductSummary[];
+  realSlug?: string;
 }) {
+  // Pull real description + shortSpecs from crawled data
+  const realProduct = realSlug ? findProductBySlug(realSlug) : null;
+  const realDescription = realProduct?.description ?? '';
+  const realSpecs = realProduct?.shortSpecs ?? [];
   const { addItem } = useCart();
   const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -70,7 +77,7 @@ export function ProductDetailClient({
               className="object-contain p-8"
             />
             {discount > 0 && (
-              <span className="absolute top-4 left-4 rounded-md px-3 py-1 text-xs font-mono font-bold text-white" style={{ background: '#FF6B35' }}>
+              <span className="absolute top-4 left-4 rounded-md px-3 py-1 text-xs font-mono font-bold text-white" style={{ background: '#2563eb' }}>
                 -{discount}%
               </span>
             )}
@@ -164,7 +171,7 @@ export function ProductDetailClient({
                 <Plus className="w-4 h-4" />
               </button>
             </div>
-            <button onClick={handleBuyNow} className="flex-1 h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}>
+            <button onClick={handleBuyNow} className="flex-1 h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}>
               <Zap className="w-4 h-4" />
               Mua ngay
             </button>
@@ -208,49 +215,93 @@ export function ProductDetailClient({
         <div className="rounded-xl border border-border bg-card p-6">
           {activeTab === 'overview' && (
             <div className="space-y-4">
-              {product.shortSpecs && product.shortSpecs.length > 0 && (
+              {(realSpecs.length > 0 ? realSpecs : (product.shortSpecs ?? [])).length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {product.shortSpecs.map((s) => (
+                  {(realSpecs.length > 0 ? realSpecs : (product.shortSpecs ?? [])).map((s) => (
                     <span key={s} className="rounded-md border border-border bg-elevated px-2.5 py-1 text-xs text-foreground font-mono">{s}</span>
                   ))}
                 </div>
               )}
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Sản phẩm {product.name} chính hãng từ {product.brand}, bảo hành 24 tháng tại mayanhvietnam.com. Freeship đơn từ 5 triệu, trả góp 0% lãi suất qua thẻ tín dụng. Hỗ trợ thu cũ đổi mới trợ giá 30%.
+                {realDescription || product.description || (
+                  <>Sản phẩm {product.name} chính hãng từ {product.brand}, bảo hành 24 tháng tại mayanhvietnam.com. Freeship đơn từ 5 triệu, trả góp 0% lãi suất qua thẻ tín dụng. Hỗ trợ thu cũ đổi mới trợ giá 30%.</>
+                )}
               </p>
+              <div className="grid sm:grid-cols-2 gap-3 mt-4">
+                {[
+                  'Freeship đơn từ 5 triệu',
+                  'Bảo hành chính hãng 24 tháng',
+                  'Trả góp 0% lãi suất',
+                  'Thu cũ trợ giá 30%',
+                ].map((t) => (
+                  <div key={t} className="flex items-center gap-2 px-3 py-2 rounded-md bg-elevated border border-border text-xs text-muted-foreground">
+                    <Check className="w-3.5 h-3.5 text-primary shrink-0" />
+                    {t}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
           {activeTab === 'specs' && (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <tbody>
-                  <tr className="border-b border-border">
-                    <td className="py-3 px-4 text-muted-foreground font-semibold w-1/3">Thương hiệu</td>
-                    <td className="py-3 px-4 text-foreground">{product.brand}</td>
-                  </tr>
-                  {product.mount && (
-                    <tr className="border-b border-border">
-                      <td className="py-3 px-4 text-muted-foreground font-semibold">Ngàm</td>
-                      <td className="py-3 px-4 text-foreground">{product.mount}</td>
-                    </tr>
-                  )}
-                  <tr className="border-b border-border">
-                    <td className="py-3 px-4 text-muted-foreground font-semibold">Danh mục</td>
-                    <td className="py-3 px-4 text-foreground capitalize">{product.category.replace(/-/g, ' ')}</td>
-                  </tr>
-                  <tr className="border-b border-border">
-                    <td className="py-3 px-4 text-muted-foreground font-semibold">Tình trạng</td>
-                    <td className="py-3 px-4 text-foreground">{product.isUsed ? 'Đã qua sử dụng' : 'Mới'}</td>
-                  </tr>
-                  {product.shortSpecs && product.shortSpecs.map((s, i) => (
-                    <tr key={i} className="border-b border-border">
-                      <td className="py-3 px-4 text-muted-foreground font-semibold">Thông số {i + 1}</td>
-                      <td className="py-3 px-4 text-foreground font-mono">{s}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {(() => {
+                const specGroups = realProduct?.specs ?? product.specs ?? [];
+                const hasGroupedSpecs = specGroups.length > 0 && specGroups.some((g) => g.items.length > 0);
+                if (hasGroupedSpecs) {
+                  return (
+                    <div className="space-y-6">
+                      {specGroups.map((group, gi) => (
+                        <div key={gi}>
+                          <h4 className="text-sm font-bold text-foreground mb-3 pb-2 border-b border-border">{group.group}</h4>
+                          <table className="w-full text-sm">
+                            <tbody>
+                              {group.items.map((item, ii) => (
+                                <tr key={ii} className="border-b border-border last:border-0">
+                                  <td className="py-3 px-4 text-muted-foreground font-semibold w-1/3">{item.label}</td>
+                                  <td className="py-3 px-4 text-foreground font-mono">{item.value}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+                // Fallback: flat shortSpecs list
+                const specsList = realSpecs.length > 0 ? realSpecs : (product.shortSpecs ?? []);
+                return (
+                  <table className="w-full text-sm">
+                    <tbody>
+                      <tr className="border-b border-border">
+                        <td className="py-3 px-4 text-muted-foreground font-semibold w-1/3">Thương hiệu</td>
+                        <td className="py-3 px-4 text-foreground font-mono">{product.brand}</td>
+                      </tr>
+                      {product.mount && (
+                        <tr className="border-b border-border">
+                          <td className="py-3 px-4 text-muted-foreground font-semibold">Ngàm</td>
+                          <td className="py-3 px-4 text-foreground font-mono">{product.mount}</td>
+                        </tr>
+                      )}
+                      <tr className="border-b border-border">
+                        <td className="py-3 px-4 text-muted-foreground font-semibold">Danh mục</td>
+                        <td className="py-3 px-4 text-foreground capitalize">{product.category.replace(/-/g, ' ')}</td>
+                      </tr>
+                      <tr className="border-b border-border">
+                        <td className="py-3 px-4 text-muted-foreground font-semibold">Tình trạng</td>
+                        <td className="py-3 px-4 text-foreground">{product.isUsed ? 'Đã qua sử dụng' : 'Mới — Chính hãng'}</td>
+                      </tr>
+                      {specsList.map((s, i) => (
+                        <tr key={i} className="border-b border-border">
+                          <td className="py-3 px-4 text-muted-foreground font-semibold">Thông số {i + 1}</td>
+                          <td className="py-3 px-4 text-foreground font-mono">{s}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                );
+              })()}
             </div>
           )}
 

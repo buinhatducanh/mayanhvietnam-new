@@ -38,7 +38,7 @@ export default function CheckoutPage() {
         <p className="text-sm text-muted-foreground mb-2">Đơn hàng <span className="font-bold text-primary">#{Math.floor(Math.random() * 90000 + 10000)}</span> đang được xử lý.</p>
         <p className="text-xs text-muted-foreground mb-8">Chúng tôi sẽ liên hệ bạn trong 30 phút để xác nhận.</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/" className="h-11 px-6 rounded-lg text-sm font-bold text-white flex items-center justify-center gap-2 hover:opacity-90" style={{ background: '#FF6B35' }}>Về trang chủ</Link>
+          <Link href="/" className="h-11 px-6 rounded-lg text-sm font-bold text-white flex items-center justify-center gap-2 hover:opacity-90" style={{ background: '#2563eb' }}>Về trang chủ</Link>
           <Link href="/san-pham" className="h-11 px-6 rounded-lg bg-card border border-border text-foreground text-sm font-semibold flex items-center justify-center gap-2 hover:border-primary/40">Tiếp tục mua sắm</Link>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default function CheckoutPage() {
       <div className="flex items-center gap-2 mb-8">
         {(['shipping', 'payment', 'confirm'] as Step[]).map((s, i) => (
           <div key={s} className="flex items-center gap-2">
-            <div className={cn('w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors', step === s ? 'text-white' : ['payment', 'confirm'].indexOf(step) > ['shipping', 'payment', 'confirm'].indexOf(s) ? 'bg-success text-white' : 'bg-card border border-border text-muted-foreground')} style={step === s ? { background: '#FF6B35' } : {}}>
+            <div className={cn('w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors', step === s ? 'text-white' : ['payment', 'confirm'].indexOf(step) > ['shipping', 'payment', 'confirm'].indexOf(s) ? 'bg-success text-white' : 'bg-card border border-border text-muted-foreground')} style={step === s ? { background: '#2563eb' } : {}}>
               {['payment', 'confirm'].indexOf(step) > ['shipping', 'payment', 'confirm'].indexOf(s) ? <Check className="w-4 h-4" /> : i + 1}
             </div>
             <span className="text-xs font-semibold text-muted-foreground hidden sm:inline">{s === 'shipping' ? 'Giao hàng' : s === 'payment' ? 'Thanh toán' : 'Xác nhận'}</span>
@@ -83,7 +83,7 @@ export default function CheckoutPage() {
                 </div>
                 <div><label className="block text-xs font-semibold text-muted-foreground mb-1.5">Ghi chú</label><textarea value={shipping.note} onChange={(e) => setShipping({ ...shipping, note: e.target.value })} rows={3} className="w-full px-4 py-3 rounded-lg bg-background border border-border text-sm text-foreground focus:border-primary focus:outline-none resize-none" placeholder="Ghi chú đơn hàng..." /></div>
               </div>
-              <div className="flex justify-end mt-6"><button onClick={() => setStep('payment')} className="h-11 px-8 rounded-lg text-sm font-bold text-primary-foreground hover:opacity-90" style={{ background: '#FF6B35' }}>Tiếp tục</button></div>
+              <div className="flex justify-end mt-6"><button onClick={() => setStep('payment')} className="h-11 px-8 rounded-lg text-sm font-bold text-primary-foreground hover:opacity-90" style={{ background: '#2563eb' }}>Tiếp tục</button></div>
             </section>
           )}
 
@@ -107,7 +107,7 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between mt-6">
                 <button onClick={() => setStep('shipping')} className="h-11 px-6 rounded-lg bg-card border border-border text-muted-foreground font-semibold text-sm hover:border-primary/40 flex items-center gap-2"><ArrowLeft className="w-4 h-4" /> Quay lại</button>
-                <button onClick={() => setStep('confirm')} className="h-11 px-8 rounded-lg text-sm font-bold text-primary-foreground hover:opacity-90" style={{ background: '#FF6B35' }}>Tiếp tục</button>
+                <button onClick={() => setStep('confirm')} className="h-11 px-8 rounded-lg text-sm font-bold text-primary-foreground hover:opacity-90" style={{ background: '#2563eb' }}>Tiếp tục</button>
               </div>
             </section>
           )}
@@ -137,7 +137,7 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between mt-6">
                 <button onClick={() => setStep('payment')} className="h-11 px-6 rounded-lg bg-card border border-border text-muted-foreground font-semibold text-sm hover:border-primary/40 flex items-center gap-2"><ArrowLeft className="w-4 h-4" /> Quay lại</button>
-                <button onClick={handlePlaceOrder} className="h-11 px-8 rounded-lg text-white font-bold text-sm flex items-center gap-2 hover:opacity-90" style={{ background: '#FF6B35' }}><Lock className="w-4 h-4" /> Đặt hàng · {formatVND(finalTotal)}</button>
+                <button onClick={handlePlaceOrder} className="h-11 px-8 rounded-lg text-white font-bold text-sm flex items-center gap-2 hover:opacity-90" style={{ background: '#2563eb' }}><Lock className="w-4 h-4" /> Đặt hàng · {formatVND(finalTotal)}</button>
               </div>
             </section>
           )}

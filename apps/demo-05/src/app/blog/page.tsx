@@ -46,7 +46,7 @@ export default function BlogPage() {
       {/* Category pills */}
       <div className="flex gap-2 overflow-x-auto mb-8 pb-1">
         {categories.map((cat, i) => (
-          <button key={cat} className={`shrink-0 h-9 px-4 rounded-full text-xs font-semibold transition-colors ${i === 0 ? 'text-primary-foreground' : 'bg-card border border-border text-muted-foreground hover:border-primary/40 hover:text-foreground'}`} style={i === 0 ? { background: '#FF6B35' } : {}}>
+          <button key={cat} className={`shrink-0 h-9 px-4 rounded-full text-xs font-semibold transition-colors ${i === 0 ? 'text-primary-foreground' : 'bg-card border border-border text-muted-foreground hover:border-primary/40 hover:text-foreground'}`} style={i === 0 ? { background: '#2563eb' } : {}}>
             {cat}
           </button>
         ))}
@@ -80,7 +80,7 @@ export default function BlogPage() {
         <p className="text-sm text-muted-foreground mb-5">Nhận thông tin sản phẩm mới, khuyến mãi qua email</p>
         <div className="flex gap-2 max-w-md mx-auto">
           <input type="email" placeholder="Nhập email..." className="flex-1 h-11 px-4 rounded-lg bg-background border border-border text-sm text-foreground focus:border-primary focus:outline-none" />
-          <button className="h-11 px-5 rounded-lg text-sm font-bold text-primary-foreground hover:opacity-90 transition-opacity shrink-0" style={{ background: '#FF6B35' }}>Đăng ký</button>
+          <button className="h-11 px-5 rounded-lg text-sm font-bold text-primary-foreground hover:opacity-90 transition-opacity shrink-0" style={{ background: '#2563eb' }}>Đăng ký</button>
         </div>
       </section>
     </div>

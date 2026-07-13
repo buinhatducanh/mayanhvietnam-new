@@ -1,0 +1,134 @@
+/* ===== REVIEWS SẢN PHẨM (YOUTUBE REVIEWS) ===== */
+.section {
+  padding: 40px 0;
+  border-top: 1px solid var(--color-border);
+  background: #ffffff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title_wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.view_channel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f97316;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.view_channel:hover {
+  color: #ea580c;
+}
+
+.carousel_wrap {
+  position: relative;
+}
+
+.scroll_container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroll_container::-webkit-scrollbar {
+  display: none;
+}
+
+.video_card {
+  flex-shrink: 0;
+  width: 320px;
+  scroll-snap-align: start;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000000;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (min-width: 640px) {
+  .video_card {
+    width: 360px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .video_card {
+    width: 400px;
+  }
+}
+
+.video_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(249, 115, 22, 0.2);
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+}
+
+.nav_btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s;
+}
+
+.carousel_wrap:hover .nav_btn {
+  opacity: 1;
+}
+
+.nav_btn:hover {
+  background: #f97316;
+  border-color: #f97316;
+}
+
+.nav_prev {
+  left: 10px;
+}
+
+.nav_next {
+  right: 10px;
+}

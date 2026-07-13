@@ -10,6 +10,7 @@ import {
 import { formatVND, calcDiscountPercent } from "@mayanhvietnam/shared-utils";
 import ProductCard from "@/app/components/product/ProductCard";
 import CountdownTimer from "@/app/components/home/CountdownTimer";
+import CategorySection from "@/app/components/home/CategorySection";
 
 // ═══════════════════════════════════════════════════════════════
 // HERO SLIDER
@@ -27,8 +28,19 @@ function HeroSlider() {
         {heroSlides.map((slide) => (
           <div
             key={slide.id}
-            className={`min-w-full bg-gradient-to-r ${slide.gradient} rounded-3xl p-8 sm:p-12 min-h-[240px] sm:min-h-[340px] flex items-center relative overflow-hidden`}
+            className="min-w-full rounded-3xl p-8 sm:p-12 min-h-[280px] sm:min-h-[380px] flex items-center relative overflow-hidden"
+            style={{ background: slide.gradient }}
           >
+            {slide.image && (
+              <div className="absolute inset-0">
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 h-[90%] w-auto object-contain opacity-50 sm:opacity-60 pointer-events-none"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+              </div>
+            )}
             <div className="relative z-10 max-w-md">
               <span className="inline-block text-xs font-bold tracking-wider text-white/60 uppercase mb-3">
                 {slide.product}
@@ -36,24 +48,20 @@ function HeroSlider() {
               <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-3">
                 {slide.title}
               </h2>
-              <p className="text-sm sm:text-base text-white/70 mb-6 whitespace-pre-line leading-relaxed">
+              <p className="text-sm sm:text-base text-white/80 mb-6 whitespace-pre-line leading-relaxed">
                 {slide.subtitle}
               </p>
               <Link
                 href={slide.ctaHref}
-                className="inline-flex items-center gap-2 bg-white text-zinc-900 font-semibold text-sm px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors"
+                className="inline-flex items-center gap-2 bg-[#ff6b00] text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-[#e85f00] transition-colors shadow-lg shadow-orange-500/30"
               >
                 {slide.ctaLabel} <ArrowRight size={16} />
               </Link>
-            </div>
-            <div className="absolute right-8 bottom-0 w-40 h-40 sm:w-64 sm:h-64 opacity-20 pointer-events-none">
-              <div className="w-full h-full rounded-full bg-white/10" />
             </div>
           </div>
         ))}
       </div>
 
-      {/* Dots */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
         {heroSlides.map((_, i) => (
           <button
@@ -63,7 +71,6 @@ function HeroSlider() {
           />
         ))}
       </div>
-      {/* Arrows */}
       <button
         onClick={() => setIdx((i) => Math.max(0, i - 1))}
         className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/20 hover:bg-white/40 rounded-full flex items-center justify-center text-white backdrop-blur-sm transition-colors"
@@ -91,10 +98,19 @@ function CategoryGrid() {
         <Link
           key={cat.slug}
           href={`/danh-muc/${cat.slug}`}
-          className="group flex flex-col items-center gap-2.5 bg-white rounded-2xl border border-black/[0.06] hover:border-orange-200 hover:shadow-lg hover:shadow-orange-100/40 transition-all p-4"
+          className="group flex flex-col items-center gap-2.5 bg-white rounded-2xl border border-black/[0.06] hover:border-orange-200 hover:shadow-lg hover:shadow-orange-100/40 transition-all p-3 overflow-hidden"
         >
-          <span className="text-2xl group-hover:scale-110 transition-transform">{cat.icon}</span>
-          <span className="text-xs font-medium text-zinc-700 text-center leading-tight">{cat.name}</span>
+          {cat.image ? (
+            <img
+              src={cat.image}
+              alt={cat.name}
+              className="w-full aspect-square object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          ) : (
+            <span className="text-2xl">{cat.icon}</span>
+          )}
+          <span className="text-[11px] sm:text-xs font-medium text-zinc-700 text-center leading-tight">{cat.name}</span>
         </Link>
       ))}
     </div>
@@ -139,7 +155,6 @@ function FlashSaleSection() {
               {p.originalPrice && (
                 <p className="text-[11px] text-zinc-400 line-through">{formatVND(p.originalPrice)}</p>
               )}
-              {/* Progress bar */}
               <div className="mt-2 h-1.5 bg-red-100 rounded-full overflow-hidden">
                 <div className="h-full bg-red-500 rounded-full" style={{ width: `${p.soldPercent}%` }} />
               </div>
@@ -153,7 +168,7 @@ function FlashSaleSection() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// PRODUCT SECTION (per category)
+// PRODUCT SECTION
 // ═══════════════════════════════════════════════════════════════
 
 function ProductSection({ title, icon, categorySlug }: { title: string; icon: string; categorySlug: string }) {
@@ -192,13 +207,23 @@ function DealBanners() {
         <Link
           key={b.id}
           href={b.ctaHref}
-          className={`group bg-gradient-to-br ${b.gradient} rounded-2xl p-6 sm:p-8 flex flex-col justify-center min-h-[140px] relative overflow-hidden`}
+          className="group rounded-2xl p-6 sm:p-8 flex flex-col justify-center min-h-[160px] relative overflow-hidden"
+          style={{ background: b.gradient }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.06),_transparent_60%)]" />
+          {b.image && (
+            <div className="absolute inset-0">
+              <img
+                src={b.image}
+                alt={b.title}
+                className="absolute right-0 top-1/2 -translate-y-1/2 h-[90%] w-auto object-contain opacity-50 pointer-events-none"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+            </div>
+          )}
           <div className="relative z-10">
             <h3 className="text-lg font-bold text-white mb-1">{b.title}</h3>
-            <p className="text-sm text-white/60 mb-4">{b.subtitle}</p>
-            <span className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
+            <p className="text-sm text-white/80 mb-4">{b.subtitle}</p>
+            <span className="inline-flex items-center gap-2 bg-[#ff6b00] hover:bg-[#e85f00] text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
               {b.ctaLabel} <ArrowRight size={14} />
             </span>
           </div>
@@ -209,7 +234,7 @@ function DealBanners() {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// SOCIAL PROOF / REVIEWS
+// SOCIAL PROOF
 // ═══════════════════════════════════════════════════════════════
 
 function SocialProof() {
@@ -221,7 +246,6 @@ function SocialProof() {
         <h2 className="text-xl font-bold text-zinc-900">Từ cộng đồng</h2>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {[
           { label: "Sản phẩm", value: "500+", icon: "📷" },
@@ -237,7 +261,6 @@ function SocialProof() {
         ))}
       </div>
 
-      {/* Reviews */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {reviews.map((r) => (
           <div key={r.id} className="bg-white rounded-2xl border border-black/[0.06] p-5">
@@ -275,17 +298,14 @@ export default function Home() {
     <div className="bg-[#f8f8f8] pb-16">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 pt-4 sm:pt-6 space-y-8 sm:space-y-10">
 
-        {/* Hero */}
         <HeroSlider />
-
-        {/* Category grid */}
         <CategoryGrid />
 
         {/* Trust strip */}
         <div className="bg-white rounded-2xl border border-black/[0.06] shadow-sm grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-zinc-100">
           {[
             { icon: <Truck size={18} className="text-[#ff6b00]" />, title: "Giao hàng miễn phí", sub: "Đơn từ 500.000đ" },
-            { icon: <Shield size={18} className="text-emerald-500" />, title: "BH chính hãng 24th", sub: "Canon / Sony / Nikon..." },
+            { icon: <Shield size={18} className="text-emerald-500" />, title: "BH chính hãng 24 tháng", sub: "Canon / Sony / Nikon..." },
             { icon: <Tag size={18} className="text-blue-500" />, title: "Giá tốt nhất", sub: "Cam kết hoàn tiền" },
             { icon: <RotateCcw size={18} className="text-amber-500" />, title: "Đổi trả 30 ngày", sub: "Không cần lý do" },
           ].map(p => (
@@ -299,19 +319,14 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Flash Sale */}
         <FlashSaleSection />
-
-        {/* Deal banners */}
         <DealBanners />
 
-        {/* Product sections */}
-        <ProductSection title="Máy ảnh Mirrorless" icon="📷" categorySlug="may-anh" />
-        <ProductSection title="Ống kính Lens" icon="🔭" categorySlug="ong-kinh" />
-        <ProductSection title="Flycam / Drone" icon="🚁" categorySlug="flycam" />
-        <ProductSection title="Camera hành động" icon="🏃" categorySlug="action-camera" />
+        <CategorySection catSlug="may-anh" icon="📷" />
+        <CategorySection catSlug="ong-kinh" icon="🔭" />
+        <CategorySection catSlug="flycam" icon="🚁" />
+        <CategorySection catSlug="action-camera" icon="🏃" />
 
-        {/* All products */}
         <div>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -326,7 +341,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Social Proof */}
         <SocialProof />
       </div>
     </div>

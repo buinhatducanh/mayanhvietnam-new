@@ -1,5 +1,528 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
-@source "../../src";
+@theme inline {
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-outfit), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+  --background: #f8fafd;
+  --foreground: #0c1322;
+  --card: #ffffff;
+  --card-foreground: #0c1322;
+  --surface: rgba(240, 245, 252, 0.8);
+  --popover: #ffffff;
+  --popover-foreground: #0c1322;
+  --primary: #2b7fff;
+  --primary-foreground: #ffffff;
+  --secondary: #eef3fb;
+  --secondary-foreground: #0c1322;
+  --muted: #f1f5fb;
+  --muted-foreground: #5a6b82;
+  --accent: #1a6adf;
+  --accent-foreground: #ffffff;
+  --destructive: #dc3545;
+  --border: rgba(12, 19, 34, 0.1);
+  --input: rgba(12, 19, 34, 0.08);
+  --ring: #2b7fff;
+  --radius: 0.75rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #060a14;
+  --foreground: #eef3fb;
+  --card: #0c1322;
+  --card-foreground: #eef3fb;
+  --surface: rgba(12, 19, 34, 0.65);
+  --popover: #0d1626;
+  --popover-foreground: #eef3fb;
+  --primary: #2b7fff;
+  --primary-foreground: #04122e;
+  --secondary: #131c30;
+  --secondary-foreground: #eef3fb;
+  --muted: #111a2c;
+  --muted-foreground: #8ea0bd;
+  --accent: #58a6ff;
+  --accent-foreground: #04122e;
+  --destructive: #e5484d;
+  --border: rgba(120, 170, 255, 0.12);
+  --input: rgba(120, 170, 255, 0.16);
+  --ring: #2b7fff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .brand-glow {
+    box-shadow: 0px 0px 25px rgba(43, 127, 255, 0.2);
+  }
+  .brand-glow-strong {
+    box-shadow: 0px 0px 55px rgba(43, 127, 255, 0.4);
+  }
+  .text-glow {
+    text-shadow: 0 0 30px rgba(43, 127, 255, 0.55);
+  }
+  /* Moving sheen/shine overlay for cards and banners */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(120, 180, 255, 0.15) 45%,
+      rgba(180, 215, 255, 0.28) 50%,
+      rgba(120, 180, 255, 0.15) 55%,
+      transparent 80%
+    );
+    transform: translateX(-120%);
+    pointer-events: none;
+    opacity: 0;
+  }
+  .shine:hover::after {
+    opacity: 1;
+    animation: sheen 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .shine-auto::after {
+    opacity: 1;
+    animation: sheen 3.8s ease-in-out infinite;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse-ring {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-rise-in {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  85% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Light rays — god-rays radiating from an off-canvas light source */
+@keyframes light-rays {
+  0%,
+  65%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(var(--ray-rot, 0deg));
+  }
+  15% {
+    opacity: 0.75;
+    transform: translate3d(-3%, 1%, 0) rotate(calc(var(--ray-rot, 0deg) + 2deg));
+  }
+  45% {
+    opacity: 0.45;
+    transform: translate3d(-9%, 4%, 0) rotate(calc(var(--ray-rot, 0deg) + 5deg));
+  }
+}
+
+.light-ray {
+  position: absolute;
+  top: -30%;
+  width: 18%;
+  height: 160%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(180, 220, 255, 0.08) 35%,
+    rgba(220, 240, 255, 0.32) 50%,
+    rgba(180, 220, 255, 0.08) 65%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  transform-origin: top center;
+  animation: light-rays 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Light leak — soft warm wash on MANUAL transitions only */
+@keyframes light-leak {
+  0% {
+    opacity: 0;
+    transform: translateX(-30%) skewX(-18deg);
+  }
+  18% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(80%) skewX(-18deg);
+  }
+}
+
+.light-leak {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(190, 230, 255, 0.3) 48%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(190, 230, 255, 0.3) 52%,
+    transparent 70%
+  );
+  filter: blur(24px);
+  mix-blend-mode: screen;
+  animation: light-leak 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Aurora drift — soft chromatic ribbon that slowly moves behind content */
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(-8%, -4%, 0) rotate(-4deg);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(6%, 3%, 0) rotate(3deg);
+    opacity: 0.85;
+  }
+}
+
+.aurora {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 220deg at 65% 35%,
+    rgba(43, 127, 255, 0) 0deg,
+    rgba(43, 127, 255, 0.22) 40deg,
+    rgba(120, 190, 255, 0.32) 90deg,
+    rgba(180, 220, 255, 0.18) 140deg,
+    rgba(43, 127, 255, 0) 220deg
+  );
+  filter: blur(40px);
+  mix-blend-mode: screen;
+  animation: aurora-drift 12s ease-in-out infinite;
+}
+
+@keyframes ken-burns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate3d(-1.5%, -1.5%, 0);
+  }
+}
+
+@keyframes fade-slide {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 8s ease-out both;
+}
+
+.animate-fade-slide {
+  animation: fade-slide 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+/* Tech light-flare sweep that repeatedly glides across the banner */
+@keyframes tech-flare {
+  0% {
+    transform: translateX(-60%) skewX(-18deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  80%,
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+/* Drifting + flickering lens-flare orb */
+@keyframes flare-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(-24px, 16px, 0) scale(1.18);
+    opacity: 1;
+  }
+}
+
+/* Thin scanning tech line */
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10%,
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(600%);
+    opacity: 0;
+  }
+}
+
+.banner-flare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+.banner-flare::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 0;
+  height: 140%;
+  width: 22%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(120, 190, 255, 0.35) 45%,
+    rgba(210, 235, 255, 0.75) 50%,
+    rgba(120, 190, 255, 0.35) 55%,
+    transparent
+  );
+  filter: blur(6px);
+  animation: tech-flare 5.5s ease-in-out infinite;
+}
+.banner-flare::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(120, 190, 255, 0.8), transparent);
+  animation: scan-line 6s linear infinite;
+}
+
+.animate-flare-drift {
+  animation: flare-drift 7s ease-in-out infinite;
+}
+
+/* Enhanced product-card hover */
+.card-tech {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-tech:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 18px 40px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(43, 127, 255, 0.4),
+    0 0 45px rgba(43, 127, 255, 0.15);
+}
+.dark .card-tech:hover {
+  box-shadow:
+    0 18px 40px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(43, 127, 255, 0.35),
+    0 0 45px rgba(43, 127, 255, 0.28);
+}
+.card-tech .card-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(43, 127, 255, 0.15), transparent 60%);
+  transition: opacity 0.4s ease;
+}
+.dark .card-tech .card-glow {
+  background: radial-gradient(120% 90% at 50% 0%, rgba(43, 127, 255, 0.28), transparent 60%);
+}
+.card-tech:hover .card-glow {
+  opacity: 1;
+}
+
+/* ── Light-mode overrides ──────────────────────────────────────────────────── */
+
+/* Light rays: invisible on light backgrounds — switch to multiply */
+.light-ray {
+  mix-blend-mode: multiply;
+  opacity: 0;
+}
+.dark .light-ray {
+  mix-blend-mode: screen;
+}
+
+/* Aurora: switch blend mode for light */
+.aurora {
+  mix-blend-mode: multiply;
+  opacity: 0.25;
+}
+.dark .aurora {
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+/* Banner flare + scan line: switch blend mode for light */
+.banner-flare {
+  mix-blend-mode: multiply;
+}
+.dark .banner-flare {
+  mix-blend-mode: screen;
+}
+
+/* Drifting orb: reduce intensity on light */
+.animate-pulse-ring {
+  background: rgba(43, 127, 255, 0.1);
+}
+.dark .animate-pulse-ring {
+  background: rgba(43, 127, 255, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns,
+  .animate-marquee,
+  .shine-auto::after,
+  .animate-float-slow,
+  .animate-pulse-ring,
+  .animate-flare-drift,
+  .banner-flare::before,
+  .banner-flare::after,
+  .light-ray,
+  .aurora {
+    animation: none !important;
+  }
+  .card-tech:hover {
+    transform: none;
+  }
+}

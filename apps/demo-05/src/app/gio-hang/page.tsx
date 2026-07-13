@@ -24,7 +24,7 @@ export default function CartPage() {
         </div>
         <h1 className="text-xl font-bold text-foreground mb-2">Giỏ hàng trống</h1>
         <p className="text-sm text-muted-foreground mb-6">Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm.</p>
-        <Link href="/san-pham" className="inline-flex items-center gap-2 h-11 px-6 rounded-lg text-sm font-bold text-white hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}>
+        <Link href="/san-pham" className="inline-flex items-center gap-2 h-11 px-6 rounded-lg text-sm font-bold text-white hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}>
           Khám phá sản phẩm <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
@@ -95,7 +95,7 @@ export default function CartPage() {
                 </div>
                 <button
                   onClick={() => { if (promoCode.toUpperCase() === 'GIAM5') setPromoApplied(true); }}
-                  className="h-10 px-4 rounded-md text-xs font-bold text-primary-foreground hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}
+                  className="h-10 px-4 rounded-md text-xs font-bold text-primary-foreground hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}
                 >
                   Áp dụng
                 </button>
@@ -113,7 +113,7 @@ export default function CartPage() {
               </div>
             </div>
 
-            <Link href="/thanh-toan" className="w-full h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity" style={{ background: '#FF6B35' }}>
+            <Link href="/thanh-toan" className="w-full h-12 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity" style={{ background: '#2563eb' }}>
               Tiến hành thanh toán <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

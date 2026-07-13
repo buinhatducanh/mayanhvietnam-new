@@ -1,0 +1,10 @@
+{
+  "description": "Discover a premium e-commerce platform for photography enthusiasts, offering a seamless shopping experience with intuitive navigation, detailed product insights, and responsive design.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

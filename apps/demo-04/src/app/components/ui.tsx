@@ -1,10 +1,8 @@
-'use client';
-
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router";
 import { Star, Heart } from "lucide-react";
-import { ACCENT, vnd, type Product } from "@/app/data";
-import { useTheme } from "@/app/context";
+import { ACCENT, vnd, type Product } from "../data";
+import { useTheme } from "../context";
 
 export const BADGE_BG: Record<string, string> = { HOT: "#ef4444", NEW: "#3b82f6", SALE: "#22c55e" };
 
@@ -48,12 +46,12 @@ export function SectionHeader({ eyebrow, title, link, onLink }: { eyebrow: strin
 export function ProductCard({ p }: { p: Product }) {
   const [hov, setHov] = useState(false);
   const { dark } = useTheme();
-  const router = useRouter();
+  const navigate = useNavigate();
   const disc = p.originalPrice ? Math.round((1 - p.price / p.originalPrice) * 100) : null;
 
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      onClick={() => router.push(`/san-pham/${p.id}`)}
+      onClick={() => navigate(`/san-pham/${p.slug}`)}
       className="rounded-2xl overflow-hidden border border-border bg-card cursor-pointer transition-all duration-300 flex flex-col"
       style={hov ? {
         borderColor: "rgba(255,107,53,0.5)",

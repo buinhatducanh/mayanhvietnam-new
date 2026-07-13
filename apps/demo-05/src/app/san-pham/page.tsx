@@ -4,12 +4,37 @@ import { useMemo, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Filter, ChevronDown, X, Star } from 'lucide-react';
-import { allProducts, categories } from '@/lib/mock-data';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { cn, formatVND } from '@/lib/utils';
+import { REAL_PRODUCTS, REAL_CATEGORIES, REAL_BRANDS, type RealProduct } from '@/lib/real-products';
 import type { ProductSummary } from '@mayanhvietnam/mock-data';
 
 type SortKey = 'newest' | 'price-asc' | 'price-desc' | 'selling' | 'rating';
+
+// Adapter: RealProduct → ProductSummary (theo schema của monorepo)
+function toProductSummary(p: RealProduct): ProductSummary {
+  return {
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    thumbnail: p.image,
+    images: [{ url: p.image, alt: p.name, isPrimary: true }],
+    price: p.price,
+    originalPrice: p.originalPrice,
+    badges: p.originalPrice
+      ? [{ type: 'sale', label: `-${Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100)}%` }]
+      : [],
+    rating: { average: 4.5 + (parseInt(p.id) % 5) * 0.1, count: 50 + (parseInt(p.id) * 7) },
+    isUsed: false,
+    brand: p.brand,
+    mount: undefined,
+    availability: 'in_stock',
+    category: p.category,
+    shortSpecs: p.shortSpecs,
+  };
+}
+
+const ALL_SUMMARIES: ProductSummary[] = REAL_PRODUCTS.map(toProductSummary);
 
 function ProductListingContent() {
   const searchParams = useSearchParams();
@@ -17,12 +42,12 @@ function ProductListingContent() {
   const initialBrand = searchParams.get('brand') || null;
   const [category, setCategory] = useState<string | null>(initialCategory);
   const [brand, setBrand] = useState<string | null>(initialBrand);
-  const [maxPrice, setMaxPrice] = useState(100000000);
+  const [maxPrice, setMaxPrice] = useState(80000000);
   const [sort, setSort] = useState<SortKey>('newest');
   const [filterOpen, setFilterOpen] = useState(false);
 
   const filtered = useMemo(() => {
-    let list = allProducts.slice();
+    let list = ALL_SUMMARIES.slice();
     if (category) list = list.filter((p) => p.category === category);
     if (brand) list = list.filter((p) => p.brand.toLowerCase() === brand.toLowerCase());
     list = list.filter((p) => p.price <= maxPrice);
@@ -36,7 +61,7 @@ function ProductListingContent() {
     return list;
   }, [category, brand, maxPrice, sort]);
 
-  const brands = [...new Set(allProducts.map((p) => p.brand))];
+  const brands = [...new Set(ALL_SUMMARIES.map((p) => p.brand))];
 
   return (
     <div className="mx-auto max-w-[1280px] px-4 sm:px-6 py-6">
@@ -73,7 +98,7 @@ function ProductListingContent() {
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-bold text-foreground">Bộ lọc</h3>
               <div className="flex items-center gap-2">
-                <button onClick={() => { setCategory(null); setBrand(null); setMaxPrice(100000000); }} className="text-[11px] text-primary font-semibold hover:underline">Đặt lại</button>
+                <button onClick={() => { setCategory(null); setBrand(null); setMaxPrice(80000000); }} className="text-[11px] text-primary font-semibold hover:underline">Đặt lại</button>
                 {filterOpen && <button onClick={() => setFilterOpen(false)} className="lg:hidden text-muted-foreground"><X className="w-4 h-4" /></button>}
               </div>
             </div>
@@ -86,10 +111,10 @@ function ProductListingContent() {
                   <input type="radio" checked={!category} onChange={() => setCategory(null)} className="accent-primary" />
                   <span className="text-xs text-foreground">Tất cả</span>
                 </label>
-                {categories.map((c) => (
+                {REAL_CATEGORIES.filter((c) => !c.slug.startsWith('san-pham-')).map((c) => (
                   <label key={c.slug} className="flex items-center gap-2 cursor-pointer">
                     <input type="radio" checked={category === c.slug} onChange={() => setCategory(c.slug)} className="accent-primary" />
-                    <span className="text-xs text-muted-foreground">{c.icon} {c.name}</span>
+                    <span className="text-xs text-muted-foreground">{c.name}</span>
                   </label>
                 ))}
               </div>
@@ -115,7 +140,7 @@ function ProductListingContent() {
             {/* Price */}
             <div>
               <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-3">Giá tối đa</p>
-              <input type="range" min={1000000} max={100000000} step={1000000} value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} className="w-full accent-primary" />
+              <input type="range" min={1000000} max={80000000} step={1000000} value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} className="w-full accent-primary" />
               <div className="flex items-center justify-between text-[11px] text-muted-foreground mt-1 font-mono">
                 <span>1.000.000₫</span>
                 <span className="text-primary font-bold">{formatVND(maxPrice)}</span>
@@ -130,7 +155,7 @@ function ProductListingContent() {
             <div className="flex items-center gap-1.5 flex-wrap">
               {category && (
                 <button onClick={() => setCategory(null)} className="flex items-center gap-1 h-7 px-2.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-[11px] font-semibold">
-                  {categories.find((c) => c.slug === category)?.name}
+                  {REAL_CATEGORIES.find((c) => c.slug === category)?.name}
                   <X className="w-3 h-3" />
                 </button>
               )}

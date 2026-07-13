@@ -9,11 +9,30 @@ export default function GraphicNavigation() {
           {graphicNav.map((cat, idx) => (
             <a
               key={idx}
-              href={`/${cat.slug}`}
+              href={cat.link}
               className="flex-shrink-0 flex flex-col items-center gap-2 group"
             >
               <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden flex items-center justify-center transition-all duration-200 group-hover:border-orange-500 group-hover:bg-zinc-800 group-hover:-translate-y-0.5 group-hover:shadow-lg group-hover:shadow-orange-500/20">
-                <span className="text-2xl">{cat.emoji || "📦"}</span>
+                {cat.iconUrl ? (
+                  <img
+                    src={cat.iconUrl}
+                    alt={cat.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                      const parent = (e.target as HTMLImageElement).parentElement;
+                      if (parent) {
+                        const span = document.createElement("span");
+                        span.className = "text-2xl";
+                        span.textContent = "📦";
+                        parent.appendChild(span);
+                      }
+                    }}
+                  />
+                ) : (
+                  <span className="text-2xl">📦</span>
+                )}
               </div>
               <span className="text-xs text-zinc-300 group-hover:text-orange-400 font-medium text-center w-16 leading-tight transition-colors">
                 {cat.name}

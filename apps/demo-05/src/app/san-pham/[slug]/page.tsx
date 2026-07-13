@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation';
-import { allProducts, getProductBySlug, getRelatedProducts } from '@/lib/mock-data';
+import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import { findProductBySlug, REAL_PRODUCTS, productsByCategory } from '@/lib/real-products';
+import { toProductSummary } from '@/lib/adapter';
 import { ProductDetailClient } from './ProductDetailClient';
 
 export function generateStaticParams() {
-  return allProducts.map((p) => ({ slug: p.slug }));
+  return REAL_PRODUCTS.map((p) => ({ slug: p.slug }));
 }
 
 export default async function ProductPage({
@@ -12,9 +14,12 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) notFound();
+  const real = findProductBySlug(slug);
+  if (!real) notFound();
 
-  const related = getRelatedProducts(product, 4);
-  return <ProductDetailClient product={product} related={related} />;
+  const product = toProductSummary(real);
+  const relatedRaw = productsByCategory(real.category).filter((p) => p.slug !== real.slug).slice(0, 4);
+  const related: ProductSummary[] = relatedRaw.map(toProductSummary);
+
+  return <ProductDetailClient product={product} related={related} realSlug={real.slug} />;
 }

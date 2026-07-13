@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   Camera, Search, ShoppingCart, Heart, User, Phone, CreditCard, Shield,
@@ -21,7 +21,6 @@ const UTIL_LINKS = [
 
 export default function Root({ children }: { children?: React.ReactNode }) {
   const router = useRouter();
-  const pathname = usePathname();
   const [query, setQuery] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const { cartCount } = useCart();
@@ -35,98 +34,90 @@ export default function Root({ children }: { children?: React.ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f8f8]">
+    <div className="min-h-screen flex flex-col bg-[#f8f8f8] overflow-x-hidden">
 
-      {/* ── TOP UTILITY BAR ─────────────────────────────────── */}
-      <div className="bg-white border-b border-black/[0.06] sticky top-0 z-50">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center gap-4 sm:gap-6">
+      {/* ── TOP UTILITY BAR — orange #ff6a00, matches real mayanhvietnam.com ── */}
+      <div className="bg-[#ff6a00] sticky top-0 z-50">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-6 h-[52px] sm:h-[56px] flex items-center gap-3 sm:gap-4">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-8 h-8 bg-[#ff6b00] rounded-lg flex items-center justify-center">
-              <Camera size={18} className="text-white" strokeWidth={2.5} />
-            </div>
-            <span className="font-black text-[18px] tracking-tight text-[#0a0a0a] hidden sm:block">
-              LENS<span className="text-[#ff6b00]">PRO</span>
-            </span>
+          {/* Logo — white PNG */}
+          <Link href="/" className="shrink-0">
+            <img
+              src="https://mayanhvietnam.com/asset/imgs/icon/Logo_white01.png"
+              alt="Máy Ảnh Việt Nam"
+              className="h-7 sm:h-9 w-auto"
+            />
           </Link>
 
-          {/* Search */}
-          <form onSubmit={handleSearch} className="flex-1 max-w-[520px] mx-auto">
+          {/* Search bar — white bg, centered */}
+          <form onSubmit={handleSearch} className="hidden sm:block flex-1 max-w-[520px]">
             <div className="relative">
-              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Tìm Canon, Sony, DJI…"
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-[#f4f4f5] rounded-xl border border-transparent focus:border-[#ff6b00] focus:bg-white focus:outline-none transition-all placeholder:text-zinc-400"
+                placeholder="Tìm kiếm sản phẩm…"
+                className="w-full pl-4 pr-10 py-[9px] text-sm text-zinc-700 bg-white rounded-lg border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-200 transition"
               />
+              <button type="submit" className="absolute right-0 top-0 h-full px-3 bg-[#ef4036] hover:bg-[#d93830] text-white rounded-r-lg transition-colors">
+                <Search size={16} />
+              </button>
             </div>
           </form>
 
-          {/* Utilities (desktop) */}
-          <div className="hidden lg:flex items-center gap-1 text-xs text-zinc-500">
-            <Link href="tel:0937148222" className="flex items-center gap-1.5 hover:text-[#ff6b00] px-2 py-1.5 rounded-lg hover:bg-orange-50 transition-colors">
-              <Phone size={14} className="text-[#ff6b00]" />
-              <span className="font-medium text-zinc-700">0937 148 222</span>
-            </Link>
-            <div className="w-px h-4 bg-zinc-200" />
-            <Link href="#" className="flex items-center gap-1.5 hover:text-[#ff6b00] px-2 py-1.5 rounded-lg hover:bg-orange-50 transition-colors">
-              <CreditCard size={14} className="text-[#ff6b00]" />
-              <span>Trả góp 0%</span>
-            </Link>
-            <div className="w-px h-4 bg-zinc-200" />
-            <Link href="/chinh-sach-bao-hanh" className="flex items-center gap-1.5 hover:text-[#ff6b00] px-2 py-1.5 rounded-lg hover:bg-orange-50 transition-colors">
-              <Shield size={14} className="text-[#ff6b00]" />
-              <span>Bảo hành</span>
-            </Link>
+          {/* Spacer on mobile */}
+          <div className="flex-1 sm:hidden" />
+
+          {/* Hotline + utilities (desktop) */}
+          <div className="hidden md:flex items-center gap-2 text-xs shrink-0">
+            <a href="tel:0937148222" className="text-white hover:text-orange-100 transition-colors flex items-center gap-1">
+              <Phone size={14} className="text-white" />
+              <span className="font-semibold">0937.148.222</span>
+            </a>
+            <div className="w-px h-4 bg-white/30" />
+            <span className="text-white/80">Mua hàng – Trả góp – Bảo hành</span>
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-1">
-            <Link href="/tim-kiem" className="relative p-2.5 rounded-xl hover:bg-zinc-100 transition-colors text-zinc-600 hover:text-[#ff6b00] sm:hidden">
-              <Search size={20} strokeWidth={1.75} />
+          {/* Action icons */}
+          <div className="flex items-center gap-1 shrink-0">
+            <Link href="/tim-kiem" className="p-2 text-white hover:text-orange-100 transition-colors sm:hidden">
+              <Search size={20} />
             </Link>
-            <Link href="/" className="relative p-2.5 rounded-xl hover:bg-zinc-100 transition-colors text-zinc-600 hover:text-[#ff6b00] hidden sm:block">
-              <Heart size={20} strokeWidth={1.75} />
-            </Link>
-            <Link href="/" className="relative p-2.5 rounded-xl hover:bg-zinc-100 transition-colors text-zinc-600 hover:text-zinc-900 hidden sm:block">
+            <Link href="/" className="p-2 text-white hover:text-orange-100 transition-colors hidden sm:block" title="Tài khoản">
               <User size={20} strokeWidth={1.75} />
             </Link>
-            <Link href="/cart" className="relative p-2.5 rounded-xl hover:bg-zinc-100 transition-colors text-zinc-600 hover:text-zinc-900">
+            <Link href="/cart" className="relative p-2 text-white hover:text-orange-100 transition-colors" title="Giỏ hàng">
               <ShoppingCart size={20} strokeWidth={1.75} />
               {cartCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#ff6b00] text-white rounded-full text-[10px] font-bold flex items-center justify-center leading-none">
+                <span className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-[#ef3006] text-white rounded-full text-[10px] font-bold flex items-center justify-center leading-none border-2 border-[#ff6a00]">
                   {cartCount > 99 ? "99+" : cartCount}
                 </span>
               )}
             </Link>
-            {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="relative p-2.5 rounded-xl hover:bg-zinc-100 transition-colors text-zinc-600 hover:text-zinc-900 sm:hidden"
+              className="p-2 text-white hover:text-orange-100 transition-colors sm:hidden"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* ── ORANGE CATEGORY NAV (desktop) ──────────────────── */}
-      <div className="bg-[#ff6b00] sticky top-14 sm:top-16 z-40 hidden sm:block">
-        <div className="max-w-[1440px] mx-auto px-8">
-          <div className="flex items-center overflow-x-auto">
+      {/* ── CATEGORY NAV (desktop) — white bar, real site style ── */}
+      <div className="bg-white border-b border-black/[0.06] sticky top-[52px] sm:top-[56px] z-40 hidden md:block">
+        <div className="max-w-[1200px] mx-auto px-3 sm:px-6">
+          <nav className="flex items-center justify-center gap-0">
             {categories.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/danh-muc/${cat.slug}`}
-                className="flex items-center gap-2 px-4 py-3 text-white/80 hover:text-white text-sm font-medium whitespace-nowrap hover:bg-white/10 transition-colors border-b-2 border-transparent hover:border-white/60"
+                className="flex items-center gap-1.5 px-3 py-3 text-zinc-700 hover:text-[#ff6a00] text-[13px] font-medium whitespace-nowrap hover:bg-orange-50/40 transition-colors border-b-2 border-transparent hover:border-[#ff6a00] shrink-0"
               >
-                <span>{cat.icon}</span>
-                {cat.name}
+                <span className="text-sm">{cat.icon}</span>
+                <span>{cat.name}</span>
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
       </div>
 
@@ -135,13 +126,12 @@ export default function Root({ children }: { children?: React.ReactNode }) {
         <div className="fixed inset-0 z-[60] sm:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
           <div className="absolute inset-y-0 left-0 w-[280px] bg-white shadow-xl overflow-y-auto animate-in slide-in-from-left duration-200">
-            <div className="p-4 border-b border-zinc-100">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-[#ff6b00] rounded-lg flex items-center justify-center">
-                  <Camera size={18} className="text-white" strokeWidth={2.5} />
-                </div>
-                <span className="font-black text-[18px] tracking-tight">LENS<span className="text-[#ff6b00]">PRO</span></span>
-              </div>
+            <div className="p-4 border-b border-zinc-100 bg-[#ff6a00]">
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/icon/Logo_white01.png"
+                alt="Máy Ảnh Việt Nam"
+                className="h-8 w-auto"
+              />
             </div>
             <nav className="p-2">
               <p className="px-3 py-2 text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Danh mục</p>
@@ -203,12 +193,14 @@ export default function Root({ children }: { children?: React.ReactNode }) {
 
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-12 grid grid-cols-2 sm:grid-cols-5 gap-8">
           <div className="col-span-2 sm:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 bg-[#ff6b00] rounded-md flex items-center justify-center">
-                <Camera size={15} className="text-white" />
-              </div>
-              <span className="font-black text-white tracking-tight">LENS<span className="text-[#ff6b00]">PRO</span></span>
-            </div>
+            {/* Logo — real mayanhvietnam.com logo (dark bg = use orange logo) */}
+            <Link href="/" className="inline-block mb-4">
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/icon/Logo_white01.png"
+                alt="Máy Ảnh Việt Nam"
+                className="h-10 w-auto"
+              />
+            </Link>
             <p className="text-xs leading-relaxed text-zinc-500 mb-5">
               Hệ thống cửa hàng máy ảnh chuyên nghiệp. Phân phối chính hãng, bảo hành đầy đủ, hỗ trợ kỹ thuật tận tâm.
             </p>
