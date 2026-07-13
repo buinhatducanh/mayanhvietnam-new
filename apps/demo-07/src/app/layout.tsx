@@ -1,44 +1,34 @@
 import type { Metadata } from 'next';
-import { Be_Vietnam_Pro, Plus_Jakarta_Sans, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 
-const beVietnamPro = Be_Vietnam_Pro({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-body',
-  display: 'swap',
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-mono-brand',
-  display: 'swap',
-});
-
 export const metadata: Metadata = {
-  title: 'Demo 07 — mayanhvietnam.com',
-  description: 'Demo 07 for mayanhvietnam.com',
+  title: 'CameraVietNam – Máy Ảnh Kỹ Thuật Số Chính Hãng',
+  description: 'Chuyên cung cấp máy ảnh kỹ thuật số, ống kính, và phụ kiện nhiếp ảnh chính hãng. Canon, Nikon, Sony, Fujifilm – bảo hành chính hãng, giao hàng toàn quốc.',
+  keywords: 'máy ảnh, camera, ống kính, Sony, Canon, Nikon, Fujifilm, máy ảnh kỹ thuật số, mirrorless, DSLR',
+  openGraph: {
+    title: 'CameraVietNam – Máy Ảnh Kỹ Thuật Số Chính Hãng',
+    description: 'Chuyên cung cấp máy ảnh kỹ thuật số, ống kính, và phụ kiện nhiếp ảnh chính hãng.',
+    locale: 'vi_VN',
+    type: 'website',
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html
-      lang="vi"
-      className="dark"
-      suppressHydrationWarning
-    >
-      <body
-        className={`antialiased ${beVietnamPro.variable} ${plusJakartaSans.variable} ${ibmPlexMono.variable}`}
-      >
+    <html lang="vi" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"
+        />
+      </head>
+      <body className="antialiased">
         {children}
       </body>
     </html>
