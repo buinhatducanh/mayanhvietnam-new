@@ -1,5 +1,5 @@
 {
-  "name": "demo-09",
+  "name": "@figma/my-make-file",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -62,8 +62,7 @@
     "sonner": "2.0.3",
     "tailwind-merge": "3.2.0",
     "tw-animate-css": "1.3.8",
-    "vaul": "1.1.2",
-    "@mayanhvietnam/mock-data": "workspace:*"
+    "vaul": "1.1.2"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
