@@ -1,0 +1,101 @@
+.timer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.timer_label {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.75);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blocks {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.block_group {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.block {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.25);
+  border: 1px solid #f97316;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  padding: 6px 4px;
+}
+
+.value {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.block_label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  margin-top: 2px;
+}
+
+.sep {
+  font-weight: 800;
+  color: #ea580c;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* Sizes */
+.timer--sm .block { min-width: 36px; padding: 4px; }
+.timer--sm .value { font-size: var(--text-base); }
+.timer--sm .block_label { font-size: 8px; }
+
+.timer--md .block { min-width: 44px; padding: 6px 4px; }
+.timer--md .value { font-size: var(--text-xl); }
+.timer--md .block_label { font-size: 9px; }
+
+.timer--lg .block { min-width: 56px; padding: 8px 6px; }
+.timer--lg .value { font-size: var(--text-2xl); }
+.timer--lg .block_label { font-size: 10px; }
+
+/* Urgent */
+.urgent .value { color: #fde68a; }
+.block_pulse { animation: blockPulse 0.5s infinite; }
+
+@keyframes blockPulse {
+  0%, 100% { background: rgba(255, 255, 255, 0.15); }
+  50% { background: rgba(239, 68, 68, 0.3); }
+}
+
+/* Minimal */
+.minimal {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-secondary);
+}
+
+.minimal.urgent {
+  color: var(--color-error);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}

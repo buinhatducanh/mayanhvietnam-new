@@ -4,7 +4,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@mayanhvietnam/shared-utils": ["../../packages/shared-utils/src"],
       "@mayanhvietnam/mock-data": ["../../packages/mock-data/src"]
     }
   },

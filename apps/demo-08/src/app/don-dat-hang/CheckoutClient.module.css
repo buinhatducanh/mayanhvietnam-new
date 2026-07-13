@@ -1,0 +1,217 @@
+.wrap {
+  padding: var(--space-8) 0 var(--space-16);
+}
+
+.title {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: var(--font-extrabold);
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr 400px;
+  }
+}
+
+/* Form Sections */
+.form_section {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.section_title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.grid_2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .grid_2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.input,
+.textarea,
+.select {
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  transition: all var(--transition-fast);
+  background: white;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  outline: none;
+}
+
+/* Delivery options & Payment methods */
+.radio_grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.radio_item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.radio_item:hover {
+  border-color: var(--color-primary-300);
+  background: var(--color-bg-soft);
+}
+
+.radio_active {
+  border-color: var(--color-primary-500) !important;
+  background: var(--color-primary-50) !important;
+}
+
+.radio_input {
+  margin-top: 3px;
+  accent-color: var(--color-primary-600);
+}
+
+.radio_label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.radio_title {
+  font-weight: var(--font-bold);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.radio_desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Summary Box */
+.summary_box {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 120px;
+}
+
+.order_items {
+  max-height: 280px;
+  overflow-y: auto;
+  margin-bottom: var(--space-4);
+  padding-right: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.order_item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.order_img {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  object-fit: contain;
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-border-light);
+  padding: 2px;
+}
+
+.order_info {
+  flex: 1;
+}
+
+.order_name {
+  font-weight: var(--font-semibold);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.order_qty {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.order_price {
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+}
+
+.submit_btn {
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--gradient-primary);
+  color: white;
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-primary);
+  transition: all var(--transition-base);
+  margin-top: var(--space-4);
+}
+
+.submit_btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg);
+}
