@@ -202,7 +202,7 @@ export default function InspirationGallery() {
         style={{ 
           position: 'sticky', 
           top: 0, 
-          height: '100vh', 
+          height: '100dvh',
           width: '100%', 
           overflow: 'hidden',
           display: 'flex',

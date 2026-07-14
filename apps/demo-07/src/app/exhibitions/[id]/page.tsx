@@ -106,7 +106,7 @@ export default function ExhibitionDetailPage({ params }: { params: Promise<{ id:
       </div>
 
       <main style={{ 
-        paddingTop: 100, 
+        paddingTop: 'var(--demo07-header-offset)',
         minHeight: '100vh',
         background: '#F4F6FA',
       }}>

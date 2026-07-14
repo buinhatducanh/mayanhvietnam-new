@@ -34,7 +34,7 @@ export default function ActionCameraShowcasePage() {
   const seg2 = useRef<HTMLDivElement>(null);
   const seg3 = useRef<HTMLDivElement>(null);
 
-  const [pose, setPose] = useState<any>({
+  const poseRef = useRef({
     x: 0,
     y: -1.4,
     rotY: 0.5,
@@ -55,8 +55,12 @@ export default function ActionCameraShowcasePage() {
     }
 
     const fallbackTimer = setTimeout(() => {
-      setFbFlag(true);
-    }, 14000);
+      const stageEl = document.querySelector('glb-stage') as any;
+      if (!stageEl || !stageEl.ready) {
+        console.warn('[action-camera] 3D model failed to load, showing fallback');
+        setFbFlag(true);
+      }
+    }, 8000);
 
     return () => clearTimeout(fallbackTimer);
   }, []);
@@ -202,7 +206,7 @@ export default function ActionCameraShowcasePage() {
       ];
       const activePose = poses[Math.max(0, seg + 1)];
 
-      setPose({
+      const newPose = {
         x: 0,
         y: lerp(-1.4, 0.05, entry) - finPose * 0.08,
         rotY: lerp(activePose.rotY, 0.5 + Math.PI * 4.6, finPose),
@@ -210,7 +214,10 @@ export default function ActionCameraShowcasePage() {
         scale: lerp(0.7, 1.06, entry) * lerp(activePose.s, 0.94, finPose),
         opacity: Math.min(entry * 1.4, 1),
         idle: seg >= 0 ? lerp(0.35, 1, finPose) : 1,
-      });
+      };
+      poseRef.current = newPose;
+      const stageEl = document.querySelector('glb-stage') as any;
+      if (stageEl?.ready) stageEl.setPose(newPose);
 
       // Sticky buy bar show/hide
       const bar = buyBarRef.current;
@@ -222,7 +229,7 @@ export default function ActionCameraShowcasePage() {
 
     tick();
     return () => cancelAnimationFrame(rafId);
-  }, [fbFlag]);
+  }, []);
 
   const onReady = () => setMode("3d");
   const onError = () => { setFbFlag(true); setMode("fb"); };
@@ -242,9 +249,9 @@ export default function ActionCameraShowcasePage() {
         <div className="sticky top-0 h-screen overflow-hidden bg-[#0b0a09]">
           
           {/* Layer 0: background video scrub */}
-          <video 
-            ref={videoRef} 
-            src="assets/video/race.mp4" 
+          <video
+            ref={videoRef}
+            src="/assets/video/race.mp4" 
             muted 
             playsInline 
             preload="auto" 
@@ -277,12 +284,12 @@ export default function ActionCameraShowcasePage() {
             </div>
             {mode !== "fb" && (
               <ThreeDStage
-                src="assets/models/action-cam.glb"
+                src="/assets/models/action-cam.glb"
                 colorParts="body,paint,frame"
                 fit="2.6"
                 exposure="1.15"
                 color="#1c1c1c"
-                pose={pose}
+                pose={poseRef.current}
                 onReady={onReady}
                 onError={onError}
                 style={{ width: "100%", height: "100%" }}
@@ -354,10 +361,10 @@ export default function ActionCameraShowcasePage() {
               </div>
 
               <div ref={seg3} className="absolute left-8 top-1/2 -translate-y-1/2 max-w-[460px] opacity-0 will-change-transform">
-                <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">04 · Tự sướng</p>
-                <h2 className="mt-3.5 mb-0 text-[76px] leading-[0.98] font-bold text-[#ff6a00]">Gậy tàng hình</h2>
+                <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">04 · Bền bỉ</p>
+                <h2 className="mt-3.5 mb-0 text-[76px] leading-[0.98] font-bold text-white">IPX<span className="text-[#ff6a00]">8</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
-                  Tự động xóa gậy selfie khỏi khung hình, tạo góc quay drone góc rộng cực kỳ ảo diệu.
+                  Chống nước IPX8 — tự tin quay dưới mưa, dưới biển mà không cần vỏ bảo vệ.
                 </p>
               </div>
             </div>

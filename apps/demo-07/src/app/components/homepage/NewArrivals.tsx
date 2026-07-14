@@ -1,84 +1,26 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowRight, ChevronLeft, ChevronRight, Heart, Star } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Heart } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { getNewProducts } from '@mayanhvietnam/mock-data'
+import type { ProductSummary } from '@mayanhvietnam/mock-data'
 
-const NEW_PRODUCTS = [
-  {
-    id: 'na-1',
-    brand: 'DJI',
-    model: 'Osmo Action 4',
-    spec: '4K120fps · HDR · IPX8',
-    price: '6.990.000',
-    img: 'https://images.unsplash.com/photo-1571190144364-1da84d9ca448?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: true,
-  },
-  {
-    id: 'na-2',
-    brand: 'Sony',
-    model: 'Alpha A6700',
-    spec: 'APS-C · 26MP · AI AF',
-    price: '29.990.000',
-    img: 'https://images.unsplash.com/photo-1525288953762-38996f06cf0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: true,
-  },
-  {
-    id: 'na-3',
-    brand: 'Canon',
-    model: 'RF 50mm f/1.2L USM',
-    spec: 'Prime · L-Series · IS',
-    price: '39.990.000',
-    img: 'https://images.unsplash.com/photo-1617468264204-92588bd6485a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: false,
-  },
-  {
-    id: 'na-4',
-    brand: 'DJI',
-    model: 'Mini 4 Pro',
-    spec: '4K HDR · 34min · 20km',
-    price: '14.990.000',
-    img: 'https://images.unsplash.com/photo-1568436144045-2be8984cac17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: true,
-  },
-  {
-    id: 'na-5',
-    brand: 'Godox',
-    model: 'AD200Pro',
-    spec: '200W · TTL · HSS',
-    price: '8.990.000',
-    img: 'https://images.unsplash.com/photo-1648740678671-c37d78567ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: false,
-  },
-  {
-    id: 'na-6',
-    brand: 'Sony',
-    model: 'FE 24mm f/1.4 GM',
-    spec: 'G Master · Ultra-wide',
-    price: '25.990.000',
-    img: 'https://images.unsplash.com/photo-1533746228171-962520811097?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: false,
-  },
-  {
-    id: 'na-7',
-    brand: 'Peak Design',
-    model: 'Capture V3',
-    spec: 'Arca-Swiss · Titanium',
-    price: '2.990.000',
-    img: 'https://images.unsplash.com/photo-1582994254571-52c62d96ebab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: false,
-  },
-  {
-    id: 'na-8',
-    brand: 'Sony',
-    model: 'ZV-E10 II',
-    spec: 'APS-C · 26MP · Vlog',
-    price: '14.990.000',
-    img: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=400',
-    isNew: true,
-  },
-]
+const RAW = getNewProducts(8)
+
+interface DisplayProduct extends ProductSummary {
+  spec: string
+  isNew: boolean
+}
+
+const NEW_PRODUCTS: DisplayProduct[] = RAW.map((p) => ({
+  ...p,
+  spec: (p.shortSpecs || []).slice(0, 3).join(' · '),
+  isNew: p.badges?.some((b) => b.type === 'new') ?? true,
+}))
 
 export function NewArrivals() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
   const [visible, setVisible] = useState(false)
   const [wishlisted, setWishlisted] = useState<string[]>([])
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -108,7 +50,7 @@ export function NewArrivals() {
   }
 
   const toggleWishlist = (id: string) => {
-    setWishlisted(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id])
+    setWishlisted((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]))
   }
 
   return (
@@ -117,14 +59,12 @@ export function NewArrivals() {
       className="bg-white"
       style={{ paddingTop: '80px', paddingBottom: '80px' }}
     >
-      {/* Inner — container for header + arrows */}
       <div className="mx-auto px-12 mb-8" style={{ maxWidth: '1320px' }}>
         <div
           className={`flex items-end justify-between transition-all duration-600 ${
             visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          {/* Left header */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-[3px] bg-[#E8611E]" />
@@ -135,7 +75,6 @@ export function NewArrivals() {
                 >
                   Hàng mới về
                 </p>
-                {/* Live dot */}
                 <div className="w-2 h-2 bg-[#E8611E] rounded-full animate-pulse" />
               </div>
             </div>
@@ -152,7 +91,6 @@ export function NewArrivals() {
             </h2>
           </div>
 
-          {/* Arrows + see all */}
           <div className="flex items-center gap-4">
             <div className="flex gap-2">
               <button
@@ -179,6 +117,7 @@ export function NewArrivals() {
               </button>
             </div>
             <button
+              onClick={() => router.push('/category')}
               className="flex items-center gap-1.5 text-[#3A3A3A] text-sm font-medium group"
               style={{ fontFamily: 'var(--font-body)' }}
             >
@@ -191,7 +130,6 @@ export function NewArrivals() {
         </div>
       </div>
 
-      {/* Scrollable track — full bleed with padding */}
       <div
         ref={trackRef}
         onScroll={checkScroll}
@@ -199,7 +137,7 @@ export function NewArrivals() {
           visible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          paddingLeft: '80px', // aligns with container px-12 on 1320 max
+          paddingLeft: '80px',
           paddingRight: '80px',
           scrollSnapType: 'x mandatory',
           transitionDelay: '80ms',
@@ -207,18 +145,17 @@ export function NewArrivals() {
       >
         {NEW_PRODUCTS.map((product) => (
           <div
-            key={product.id}
-            className="flex-shrink-0 group"
+            key={product.slug}
+            onClick={() => router.push(`/products/${product.slug}`)}
+            className="flex-shrink-0 group cursor-pointer"
             style={{ width: '220px', scrollSnapAlign: 'start' }}
           >
-            {/* Image */}
             <div className="relative overflow-hidden bg-[#F5F4F1] mb-4" style={{ height: '220px' }}>
               <img
-                src={product.img}
-                alt={`${product.brand} ${product.model}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                src={product.thumbnail}
+                alt={`${product.brand} ${product.name}`}
+                className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.05]"
               />
-              {/* New badge */}
               {product.isNew && (
                 <div className="absolute top-3 left-3">
                   <span
@@ -229,19 +166,17 @@ export function NewArrivals() {
                   </span>
                 </div>
               )}
-              {/* Wishlist */}
               <button
-                onClick={() => toggleWishlist(product.id)}
+                onClick={(e) => { e.stopPropagation(); toggleWishlist(product.slug) }}
                 className="absolute top-3 right-3 w-8 h-8 bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               >
                 <Heart
                   size={14}
-                  className={wishlisted.includes(product.id) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#3A3A3A]'}
+                  className={wishlisted.includes(product.slug) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#3A3A3A]'}
                 />
               </button>
             </div>
 
-            {/* Info */}
             <div className="flex flex-col gap-1">
               <p
                 className="text-[#8C8C8C] text-[10px] tracking-widest uppercase"
@@ -257,7 +192,7 @@ export function NewArrivals() {
                   fontWeight: 700,
                 }}
               >
-                {product.model}
+                {product.name}
               </h4>
               <p
                 className="text-[#8C8C8C] text-[11px]"
@@ -272,13 +207,12 @@ export function NewArrivals() {
                   fontSize: '17px',
                 }}
               >
-                {product.price}₫
+                {product.price.toLocaleString('vi-VN')}₫
               </p>
             </div>
           </div>
         ))}
 
-        {/* Right breathing room */}
         <div className="flex-shrink-0 w-10" />
       </div>
     </section>

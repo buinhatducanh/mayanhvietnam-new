@@ -1,56 +1,35 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { ArrowRight, Heart, ShoppingBag, Star, Zap } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { getFeaturedProducts } from '@mayanhvietnam/mock-data'
+import type { ProductSummary } from '@mayanhvietnam/mock-data'
 
-const PRODUCTS = [
-  {
-    id: 'sony-a7iv',
-    brand: 'Sony',
-    model: 'Alpha A7 IV',
-    subtitle: 'Full-frame · 33MP · 4K60p',
-    positioning: 'Lý tưởng cho creator nội dung chuyên nghiệp',
-    price: '33.990.000',
-    priceInstall: '2.830.000',
-    img: 'https://images.unsplash.com/photo-1525288953762-38996f06cf0e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=800',
-    badge: 'Bestseller',
-    badgeType: 'hot',
-    rating: 4.9,
-    reviews: 127,
-    size: 'dominant',
-  },
-  {
-    id: 'nikon-z6iii',
-    brand: 'Nikon',
-    model: 'Z6 III',
-    subtitle: 'Full-frame · 24.5MP · 6K RAW',
-    positioning: 'Hybrid hoàn hảo cho ảnh và video',
-    price: '52.990.000',
-    priceInstall: '4.410.000',
-    img: 'https://images.unsplash.com/photo-1617468264204-92588bd6485a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=600',
-    badge: 'Mới về',
-    badgeType: 'new',
-    rating: 4.8,
-    reviews: 43,
-    size: 'stacked',
-  },
-  {
-    id: 'sony-fe-35mm',
-    brand: 'Sony',
-    model: 'FE 35mm f/1.4 GM',
-    subtitle: 'Prime Lens · G Master',
-    positioning: 'Chuẩn mực vàng cho ảnh đường phố & chân dung',
-    price: '23.990.000',
-    priceInstall: '1.999.000',
-    img: 'https://images.unsplash.com/photo-1552315551-4084e78d722c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=600',
-    badge: null,
-    badgeType: null,
-    rating: 4.9,
-    reviews: 89,
-    size: 'stacked',
-  },
-]
+const RAW = getFeaturedProducts(4)
 
-function formatVND(price: string) {
-  return `${price}₫`
+interface DisplayProduct extends ProductSummary {
+  size: 'dominant' | 'stacked'
+  subtitle: string
+  positioning: string
+  priceInstall: string
+  badge: string | null
+  badgeType: 'hot' | 'new' | null
+}
+
+const PRODUCTS: DisplayProduct[] = RAW.map((p, i) => ({
+  ...p,
+  size: i === 0 ? 'dominant' : 'stacked',
+  subtitle: (p.shortSpecs || []).slice(0, 3).join(' · '),
+  positioning: p.description || '',
+  priceInstall: Math.round(p.price / 12).toLocaleString('vi-VN'),
+  badge: p.badges?.[0]?.label ?? null,
+  badgeType: (p.badges?.[0]?.type === 'new' || p.badges?.[0]?.type === 'hot')
+    ? (p.badges![0].type as 'new' | 'hot')
+    : null,
+}))
+
+function formatVND(price: number | string) {
+  const n = typeof price === 'string' ? parseInt(price.replace(/\./g, ''), 10) : price
+  return `${n.toLocaleString('vi-VN')}₫`
 }
 
 function BeforeAfterSlider({ src, alt }: { src: string; alt: string }) {
@@ -165,6 +144,7 @@ export function FeaturedProducts() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [wishlisted, setWishlisted] = useState<string[]>([])
+  const router = useRouter()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -239,8 +219,8 @@ export function FeaturedProducts() {
             {/* Image container — Before/After RAW draggable divider */}
             <div className="relative bg-[#F5F4F1]">
               <BeforeAfterSlider
-                src={dominant.img}
-                alt={`${dominant.brand} ${dominant.model}`}
+                src={dominant.thumbnail}
+                alt={`${dominant.brand} ${dominant.name}`}
               />
 
               {dominant.badge && (
@@ -255,12 +235,12 @@ export function FeaturedProducts() {
               )}
 
               <button
-                onClick={() => toggleWishlist(dominant.id)}
+                onClick={() => toggleWishlist(dominant.slug)}
                 className="absolute top-4 right-4 z-10 w-9 h-9 bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#FEF0E8]"
               >
                 <Heart
                   size={16}
-                  className={wishlisted.includes(dominant.id) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#3A3A3A]'}
+                  className={wishlisted.includes(dominant.slug) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#3A3A3A]'}
                 />
               </button>
 
@@ -297,7 +277,7 @@ export function FeaturedProducts() {
                       letterSpacing: '-0.02em',
                     }}
                   >
-                    {dominant.model}
+                    {dominant.name}
                   </h3>
                 </div>
                 {/* Rating */}
@@ -306,14 +286,14 @@ export function FeaturedProducts() {
                     <Star
                       key={i}
                       size={13}
-                      className={i < Math.floor(dominant.rating) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#D4D4D4]'}
+                      className={i < Math.floor(dominant.rating?.average ?? 0) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#D4D4D4]'}
                     />
                   ))}
                   <span
                     className="text-xs text-[#6B6B6B] ml-1"
                     style={{ fontFamily: 'var(--font-body)' }}
                   >
-                    ({dominant.reviews})
+                    ({dominant.rating?.count ?? 0})
                   </span>
                 </div>
               </div>
@@ -361,6 +341,7 @@ export function FeaturedProducts() {
                 </div>
                 <div className="flex items-center gap-2 flex-1">
                   <button
+                    onClick={() => router.push(`/products/${dominant.slug}`)}
                     className="flex-1 h-11 bg-[#E8611E] text-white text-sm font-semibold hover:bg-[#C44E14] transition-colors duration-200 flex items-center justify-center gap-2"
                     style={{ fontFamily: 'var(--font-body)' }}
                   >
@@ -368,6 +349,7 @@ export function FeaturedProducts() {
                     Thêm vào giỏ
                   </button>
                   <button
+                    onClick={() => router.push(`/products/${dominant.slug}`)}
                     className="h-11 px-5 border-2 border-[#141414] text-[#141414] text-sm font-semibold hover:bg-[#141414] hover:text-white transition-colors duration-200"
                     style={{ fontFamily: 'var(--font-body)' }}
                   >
@@ -382,8 +364,9 @@ export function FeaturedProducts() {
           <div className="flex flex-col gap-6" style={{ flex: '5' }}>
             {stacked.map((product, idx) => (
               <div
-                key={product.id}
-                className={`group flex gap-5 p-5 border border-transparent hover:border-[#E8611E]/25 hover:bg-[#FEF0E8]/30 transition-all duration-300 ${
+                key={product.slug}
+                onClick={() => router.push(`/products/${product.slug}`)}
+                className={`group flex gap-5 p-5 border border-transparent hover:border-[#E8611E]/25 hover:bg-[#FEF0E8]/30 transition-all duration-300 cursor-pointer ${
                   visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{ transitionDelay: `${120 + idx * 80}ms` }}
@@ -391,9 +374,9 @@ export function FeaturedProducts() {
                 {/* Image */}
                 <div className="relative overflow-hidden bg-[#F5F4F1] flex-shrink-0" style={{ width: '156px', height: '156px' }}>
                   <img
-                    src={product.img}
-                    alt={`${product.brand} ${product.model}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                    src={product.thumbnail}
+                    alt={`${product.brand} ${product.name}`}
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.06]"
                   />
                   {product.badge && (
                     <div className="absolute top-2 left-2">
@@ -408,12 +391,12 @@ export function FeaturedProducts() {
                     </div>
                   )}
                   <button
-                    onClick={() => toggleWishlist(product.id)}
+                    onClick={(e) => { e.stopPropagation(); toggleWishlist(product.slug) }}
                     className="absolute bottom-2 right-2 w-7 h-7 bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     <Heart
                       size={13}
-                      className={wishlisted.includes(product.id) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#3A3A3A]'}
+                      className={wishlisted.includes(product.slug) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#3A3A3A]'}
                     />
                   </button>
                 </div>
@@ -434,7 +417,7 @@ export function FeaturedProducts() {
                       fontWeight: 700,
                     }}
                   >
-                    {product.model}
+                    {product.name}
                   </h4>
                   <p
                     className="text-[#6B6B6B] text-[11px]"
@@ -447,11 +430,11 @@ export function FeaturedProducts() {
                       <Star
                         key={i}
                         size={10}
-                        className={i < Math.floor(product.rating) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#D4D4D4]'}
+                        className={i < Math.floor(product.rating?.average || 5) ? 'fill-[#E8611E] text-[#E8611E]' : 'text-[#D4D4D4]'}
                       />
                     ))}
                     <span className="text-[10px] text-[#8C8C8C] ml-1" style={{ fontFamily: 'var(--font-body)' }}>
-                      ({product.reviews})
+                      ({product.rating?.count || 0})
                     </span>
                   </div>
 
@@ -468,6 +451,7 @@ export function FeaturedProducts() {
                   </div>
 
                   <button
+                    onClick={(e) => { e.stopPropagation(); router.push(`/products/${product.slug}`) }}
                     className="mt-3 w-full h-9 bg-[#141414] text-white text-xs font-semibold hover:bg-[#E8611E] transition-colors duration-200 flex items-center justify-center gap-1.5"
                     style={{ fontFamily: 'var(--font-body)' }}
                   >

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight, Camera, ShoppingBag } from 'lucide-react'
+import { getAllBrands } from '@mayanhvietnam/mock-data'
 
 const HERO_IMG =
   'https://images.unsplash.com/photo-1488724485310-bd445f3faff6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1920'
 
-const BRAND_PARTNERS = ['Sony', 'Canon', 'Nikon', 'DJI', 'Fujifilm']
+const BRAND_PARTNERS = getAllBrands().filter((b) =>
+  ['Sony', 'Canon', 'Nikon', 'DJI', 'GoPro', 'Insta360'].includes(b)
+)
 
 const SHOT_ON_THIS = {
   camera: 'Sony Alpha A7 IV',

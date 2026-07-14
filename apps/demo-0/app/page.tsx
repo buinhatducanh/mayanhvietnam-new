@@ -1,31 +1,29 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { 
-  products, 
-  categories, 
-  experiences, 
-  flashSaleProducts, 
-  getByCategory, 
-  getProductUrl, 
-  formatVND, 
-  discountOf,
+import BannerCarousel from "@/components/BannerCarousel";
+import CategoryBannerSlides, { type CategoryBanner } from "@/components/CategoryBannerSlides";
+import ReviewVideos from "@/components/ReviewVideos";
+import {
+  products,
+  categories,
+  experiences,
+  flashSaleProducts,
+  getByCategory,
+  getProductUrl,
+  formatVND,
+  categoryBanners,
   Product
 } from "@/lib/products";
 
 export default function HomePage() {
-  const [slide, setSlide] = useState(0);
-  const [dir, setDir] = useState(1);
   const [now, setNow] = useState(Date.now());
   const [statsDone, setStatsDone] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  const heroSecRef = useRef<HTMLDivElement>(null);
   const statsSecRef = useRef<HTMLDivElement>(null);
-  const heroImgRef = useRef<HTMLImageElement>(null);
 
   const statRefs = [
     useRef<HTMLSpanElement>(null),
@@ -35,8 +33,6 @@ export default function HomePage() {
   ];
 
   const _end = useRef(Date.now() + 22 * 3600 * 1000);
-  const _tilt = useRef({ tx: 0, ty: 0, txT: 0, tyT: 0 });
-  const _autoTimer = useRef<NodeJS.Timeout | null>(null);
 
   // Setup count down timer
   useEffect(() => {
@@ -44,39 +40,9 @@ export default function HomePage() {
     return () => clearInterval(timer);
   }, []);
 
-  // Setup auto-slide banner
-  const resetAuto = () => {
-    if (_autoTimer.current) clearInterval(_autoTimer.current);
-    _autoTimer.current = setInterval(() => {
-      setSlide((s) => (s + 1) % 3);
-      setDir(1);
-    }, 6000);
-  };
-
+  // Parallax loop for section background orbs
   useEffect(() => {
-    resetAuto();
-    return () => {
-      if (_autoTimer.current) clearInterval(_autoTimer.current);
-    };
-  }, []);
-
-  // Tilt and Parallax loops
-  useEffect(() => {
-    let tiltRaf: number;
     let plxRaf: number;
-
-    const tiltLoop = () => {
-      tiltRaf = requestAnimationFrame(tiltLoop);
-      const t = _tilt.current;
-      t.tx += (t.txT - t.tx) * 0.07;
-      t.ty += (t.tyT - t.ty) * 0.07;
-      const el = heroSecRef.current;
-      if (el) {
-        el.style.setProperty("--heroTilt", `rotateX(${t.ty.toFixed(3)}deg) rotateY(${t.tx.toFixed(3)}deg)`);
-        el.style.setProperty("--heroPan", `translate(${(t.tx * 2.4).toFixed(2)}px, ${(-t.ty * 2.4).toFixed(2)}px)`);
-      }
-    };
-    tiltLoop();
 
     let lastSy = -1;
     const plxLoop = () => {
@@ -92,7 +58,6 @@ export default function HomePage() {
     plxLoop();
 
     return () => {
-      cancelAnimationFrame(tiltRaf);
       cancelAnimationFrame(plxRaf);
     };
   }, []);
@@ -145,70 +110,6 @@ export default function HomePage() {
     };
   }, []);
 
-  // Slide content data
-  const CDN = "https://mayanhvietnam.com";
-  const slides = [
-    {
-      kicker: "Mirrorless APS-C · Giảm 12% hôm nay", 
-      titleA: "Canon EOS", 
-      titleB: "R50",
-      tagline: "Nhỏ gọn. Mạnh mẽ. Sáng tạo không giới hạn — thân máy chỉ 375g với cảm biến 24.2MP và 4K không crop.",
-      price: formatVND(17500000), 
-      orig: formatVND(19900000), 
-      discount: "-12%",
-      buyHref: "/may-anh-canon-r50",
-      expHref: "/may-anh-canon-r50", 
-      expLabel: "Trải nghiệm 3D",
-      image: `${CDN}/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg`,
-      alt: "Canon EOS R50",
-      chips: [
-        { label: "Cảm biến", value: "APS-C 24.2MP", left: "2%", top: "12%", delay: "0s" },
-        { label: "Video", value: "4K 30p không crop", left: "68%", top: "6%", delay: "0.8s" },
-        { label: "Trọng lượng", value: "Chỉ 375g", left: "72%", top: "74%", delay: "1.6s" },
-      ],
-    },
-    {
-      kicker: "Flycam · 4K 60fps · OcuSync 10km", 
-      titleA: "DJI Mavic", 
-      titleB: "Air 2",
-      tagline: "Bầu trời trong tầm tay — cảm biến 1/2 inch 48MP, bay 34 phút và truyền hình ảnh xa 10km.",
-      price: formatVND(17900000), 
-      orig: formatVND(19900000), 
-      discount: "-10%",
-      buyHref: "/flycam-dji",
-      expHref: "/flycam-dji", 
-      expLabel: "Trải nghiệm 3D",
-      image: `${CDN}/image-data/san-pham/23-02/23-02-12/230212121212567/avatar/01_flycam-dji-mavic-air-2-chinh-hang.jpg`,
-      alt: "DJI Mavic Air 2",
-      chips: [
-        { label: "Cảm biến", value: "1/2\" CMOS 48MP", left: "2%", top: "14%", delay: "0s" },
-        { label: "Thời gian bay", value: "34 phút", left: "70%", top: "8%", delay: "0.8s" },
-        { label: "Truyền sóng", value: "OcuSync 2.0 · 10km", left: "64%", top: "76%", delay: "1.6s" },
-      ],
-    },
-    {
-      kicker: "Full-frame 33MP · BIONZ XR", 
-      titleA: "Sony Alpha", 
-      titleB: "A7 IV",
-      tagline: "Chuyên nghiệp. Đỉnh cao. Toàn diện — Eye AF thời gian thực và video 4K 60p 10-bit.",
-      price: formatVND(47500000), 
-      orig: "", 
-      discount: "Chính hãng",
-      buyHref: "/san-pham#may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang",
-      expHref: "/danh-muc#may-anh", 
-      expLabel: "Xem dòng máy ảnh",
-      image: `${CDN}/image-data/san-pham/23-02/23-02-10/230210223540859/avatar/01_may-anh-sony-alpha-a7-mark-iv-body-only-chinh-hang.jpg`,
-      alt: "Sony Alpha A7 IV",
-      chips: [
-        { label: "Cảm biến", value: "Full-frame 33MP", left: "2%", top: "12%", delay: "0s" },
-        { label: "Lấy nét", value: "759 điểm AF", left: "70%", top: "8%", delay: "0.8s" },
-        { label: "Video", value: "4K 60p 10-bit", left: "68%", top: "76%", delay: "1.6s" },
-      ],
-    },
-  ];
-
-  const s = slides[slide];
-
   // Count down calculation
   const diff = Math.max(0, _end.current - now);
   const pad = (n: number) => String(n).padStart(2, "0");
@@ -254,35 +155,10 @@ export default function HomePage() {
   }));
 
   const staticSections = [
-    { subtitle: "Máy ảnh", title: "Top Máy Ảnh", href: "/danh-muc#may-anh", items: getByCategory("may-anh").slice(0, 4).map(getProductCard) },
-    { 
-      subtitle: "Ống kính", 
-      title: "Ống Kính Nổi Bật", 
-      href: "/danh-muc#ong-kinh", 
-      items: [
-        ...getByCategory("ong-kinh").slice(0, 3).map(getProductCard), 
-        getTile({ kicker: "243+ ống kính", title: "Đủ mọi hệ ngàm — RF, E, Z, X", sub: "Từ nifty-fifty đến tele flagship, chính hãng bảo hành 12 tháng.", cta: "Xem tất cả", href: "/danh-muc#ong-kinh" }) 
-      ] 
-    },
-    { 
-      subtitle: "Flycam", 
-      title: "Flycam & Drone", 
-      href: "/danh-muc#flycam", 
-      items: [
-        ...getByCategory("flycam").slice(0, 3).map(getProductCard), 
-        getTile({ kicker: "Trải nghiệm 3D", title: "Bay thử DJI Mavic Air 2 ngay trên màn hình", sub: "Cuộn để xoay mô hình 3D và khám phá thông số bay.", cta: "Khám phá", href: "/flycam-dji" }) 
-      ] 
-    },
-    { 
-      subtitle: "Camera hành động", 
-      title: "Action Camera", 
-      href: "/danh-muc#action-camera", 
-      items: [
-        ...getByCategory("action-camera").slice(0, 2).map(getProductCard), 
-        getTile({ kicker: "Mới · Insta360", title: "ONE RS 1-Inch 360 — cảm biến kép Leica", sub: "Video đua xe kịch tính + mô hình 3D xoay theo từng cú lăn chuột.", cta: "Trải nghiệm ngay", href: "/action-camera-insta360" }), 
-        getTile({ kicker: "67+ sản phẩm", title: "GoPro · DJI Osmo · Insta360", sub: "Đủ phụ kiện gậy, mount, pin cho mọi chuyến đi.", cta: "Xem tất cả", href: "/danh-muc#action-camera" }) 
-      ] 
-    },
+    { subtitle: "Máy ảnh", title: "Top Máy Ảnh", slug: "may-anh", href: "/danh-muc#may-anh", items: getByCategory("may-anh").slice(0, 4).map(getProductCard) },
+    { subtitle: "Ống kính", title: "Ống Kính Nổi Bật", slug: "ong-kinh", href: "/danh-muc#ong-kinh", items: getByCategory("ong-kinh").slice(0, 4).map(getProductCard) },
+    { subtitle: "Flycam", title: "Flycam & Drone", slug: "flycam", href: "/danh-muc#flycam", items: getByCategory("flycam").slice(0, 4).map(getProductCard) },
+    { subtitle: "Camera hành động", title: "Action Camera", slug: "action-camera", href: "/danh-muc#action-camera", items: getByCategory("action-camera").slice(0, 3).map(getProductCard) },
   ];
 
   const sections = staticSections.map((sec, si) => ({
@@ -321,208 +197,12 @@ export default function HomePage() {
     borderLeft: i ? "1px solid #f1eee9" : "none" 
   }));
 
-  const heroMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = heroSecRef.current;
-    if (!el) return;
-    const rct = el.getBoundingClientRect();
-    const nx = ((e.clientX - rct.left) / rct.width - 0.5) * 2;
-    const ny = ((e.clientY - rct.top) / rct.height - 0.5) * 2;
-    _tilt.current.txT = nx * 7;
-    _tilt.current.tyT = -ny * 5;
-  };
-
-  const heroMouseOut = () => {
-    _tilt.current.txT = 0;
-    _tilt.current.tyT = 0;
-  };
-
-  const heroPrev = () => {
-    resetAuto();
-    setSlide((st) => (st + 2) % 3);
-    setDir(-1);
-  };
-
-  const heroNext = () => {
-    resetAuto();
-    setSlide((st) => (st + 1) % 3);
-    setDir(1);
-  };
-
-  const heroDots = slides.map((_, i) => ({
-    label: `Banner ${i + 1}`,
-    isActive: i === slide,
-    width: i === slide ? "34px" : "10px",
-    bg: i === slide ? "#eee9e2" : "#dcd8d2",
-    go: () => {
-      resetAuto();
-      setSlide(i);
-      setDir(i >= slide ? 1 : -1);
-    },
-  }));
-
-  const heroAnimName = dir < 0 ? "heroInL" : "heroInR";
-  const visAnimName = dir < 0 ? "visInL" : "visInR";
-
   return (
     <div className="font-sans bg-[#fafaf8] text-[#16130f]">
       <SiteHeader active="home" />
 
-      {/* ═══════════ HERO ═══════════ */}
-      <section 
-        ref={heroSecRef} 
-        onMouseMove={heroMouse}
-        onMouseLeave={heroMouseOut}
-        style={{
-          perspective: "1200px",
-          background: "linear-gradient(180deg, #ffffff 0%, #faf8f5 100%)",
-          borderBottom: "1px solid #e9e6e1"
-        }}
-        className="relative overflow-hidden"
-      >
-        <div aria-hidden="true" className="absolute bottom-[-220px] left-[-140px] w-[520px] h-[520px] rounded-full bg-[radial-gradient(closest-side,rgba(255,180,122,0.13),transparent_70%)] blur-[8px]" />
-
-        <div className="relative max-w-[1280px] mx-auto px-8 py-[60px] pb-14 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center min-h-[520px]">
-          {/* Left copy */}
-          <div 
-            key={`hero-${slide}`} 
-            style={{ animation: `${heroAnimName} 0.75s cubic-bezier(0.22,1,0.36,1) both` }}
-          >
-            <div className="inline-flex items-center gap-2 border border-[rgba(255,106,0,0.35)] bg-[rgba(255,106,0,0.07)] rounded-full px-[15px] py-[7px] animate-[heroUp_0.6s_cubic-bezier(0.22,1,0.36,1)_0.02s_both]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] shadow-[0_0_10px_2px_rgba(255,106,0,0.55)]" />
-              <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#c85200]">{s.kicker}</span>
-            </div>
-            
-            <h1 className="mt-[22px] mb-0 text-[48px] md:text-[68px] leading-[0.95] font-light tracking-[-0.035em] text-[#16130f] text-wrap">
-              {s.titleA} <span className="font-bold text-[#ff6a00] italic animate-[pulse_3s_ease-in-out_infinite]">{s.titleB}</span>
-            </h1>
-            
-            <p className="mt-[18px] max-w-[500px] text-[15.5px] font-normal leading-[1.6] text-[#7a746c] tracking-[-0.005em]">
-              {s.tagline}
-            </p>
-
-            <div className="mt-8 flex items-baseline gap-[14px]">
-              <span className="text-[34px] font-extrabold text-[#ff6a00] tracking-[-0.02em]">{s.price}</span>
-              {s.orig && (
-                <>
-                  <span className="text-[16px] text-[#a39d94] line-through font-medium">{s.orig}</span>
-                  <span className="text-[12px] font-bold text-white bg-[#e2483d] px-[7px] py-[3px] rounded-[6px] tracking-[0.04em] shadow-[0_4px_10px_-2px_rgba(226,72,61,0.3)]">{s.discount}</span>
-                </>
-              )}
-            </div>
-
-            <div className="mt-8 flex items-center gap-4 flex-wrap">
-              <Link href={s.buyHref} className="h-[52px] px-8 rounded-2xl bg-[#16130f] text-white no-underline font-bold text-[14.5px] flex items-center justify-center transition-all hover:bg-[#ff6a00] hover:-translate-y-[2px] hover:shadow-[0_16px_32px_-12px_rgba(255,106,0,0.5)]">
-                Mua ngay
-              </Link>
-              <Link href={s.expHref} className="h-[52px] px-7 rounded-2xl border border-[#dcd8d2] bg-white text-[#16130f] no-underline font-bold text-[14.5px] flex items-center justify-center transition-all hover:border-[#ff6a00] hover:text-[#ff6a00] hover:-translate-y-[1px] hover:shadow-[0_12px_24px_-12px_rgba(255,106,0,0.3)]">
-                {s.expLabel}
-              </Link>
-            </div>
-
-            <div className="mt-10 border-t border-[#f1eee9] pt-[18px] flex items-center gap-[22px]">
-              <span className="text-[12.5px] text-[#7a746c] flex items-center gap-[6px]"><span className="text-[#1a9e5c] font-bold">✓</span> Bảo hành 12 tháng</span>
-              <span className="text-[12.5px] text-[#7a746c] flex items-center gap-[6px]"><span className="text-[#1a9e5c] font-bold">✓</span> Trả góp 0% qua thẻ</span>
-              <span className="text-[12.5px] text-[#7a746c] flex items-center gap-[6px]"><span className="text-[#1a9e5c] font-bold">✓</span> Giao hỏa tốc toàn quốc</span>
-            </div>
-          </div>
-
-          {/* Right visual */}
-          <div 
-            key={`vis-${slide}`}
-            style={{ animation: `${visAnimName} 0.8s cubic-bezier(0.22,1,0.36,1) both`, perspective: "1200px" }}
-            className="relative h-[460px]"
-          >
-            <div 
-              style={{ transform: "var(--heroTilt, none)", transformStyle: "preserve-3d" }}
-              className="absolute inset-0 will-change-transform transition-transform duration-200"
-            >
-              <div aria-hidden="true" className="absolute left-[50%] top-[50%] w-[420px] h-[420px] translate-x-[-50%] translate-y-[-50%] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,0,0.14),transparent_72%)] animate-[glowPulse_5s_ease-in-out_infinite]" />
-              <div aria-hidden="true" className="absolute left-[50%] top-[50%] w-[400px] h-[400px] translate-x-[-50%] translate-y-[-50%] rounded-full border border-dashed border-[rgba(255,106,0,0.35)] animate-[ringSpin_40s_linear_infinite]" />
-              <div aria-hidden="true" className="absolute left-[50%] top-[50%] w-[330px] h-[330px] translate-x-[-50%] translate-y-[-50%] rounded-full border border-[#eee9e2]" />
-              
-              <div 
-                style={{ transform: "translateZ(34px)", transformStyle: "preserve-3d" }}
-                className="absolute left-[50%] top-[50%] w-[340px] h-[340px] ml-[-170px] mt-[-170px]"
-              >
-                <div className="w-full h-full animate-[heroFloat_5.5s_ease-in-out_infinite]">
-                  <img 
-                    ref={heroImgRef} 
-                    src={s.image} 
-                    alt={s.alt} 
-                    className="w-full h-full object-contain rounded-3xl mix-blend-multiply filter drop-shadow-[0_30px_40px_rgba(22,19,15,0.22)]" 
-                  />
-                </div>
-              </div>
-              
-              <div aria-hidden="true" className="absolute left-[50%] bottom-4 w-[240px] h-[26px] translate-x-[-50%] rounded-full bg-[radial-gradient(closest-side,rgba(22,19,15,0.18),transparent_75%)] blur-[4px]" />
-              
-              {s.chips.map((chip, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    position: "absolute",
-                    left: chip.left,
-                    top: chip.top,
-                    transform: "translateZ(58px) var(--heroPan, translate(0px, 0px))",
-                    transformStyle: "preserve-3d"
-                  }}
-                  className="transition-transform duration-200"
-                >
-                  <div
-                    style={{ animationDelay: chip.delay }}
-                    className="bg-[rgba(255,255,255,0.92)] backdrop-blur-[8px] border border-[#e9e6e1] rounded-xl p-[9px_14px] shadow-[0_14px_30px_-14px_rgba(22,19,15,0.25)] animate-[chipFloat_4.5s_ease-in-out_infinite] transition-all hover:border-[rgba(255,106,0,0.5)] hover:scale-[1.06] hover:shadow-[0_18px_38px_-14px_rgba(255,106,0,0.4)]"
-                  >
-                    <p className="m-0 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-[#ff6a00]">{chip.label}</p>
-                    <p className="m-2-0-0 text-[13.5px] font-bold text-[#16130f]">{chip.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Hero controls */}
-        <div className="relative max-w-[1280px] mx-auto px-8 pb-[26px] flex items-center gap-[14px]">
-          <button 
-            type="button" 
-            aria-label="Banner trước" 
-            onClick={heroPrev}
-            className="w-[42px] h-[42px] rounded-full border border-[#dcd8d2] bg-white text-[#7a746c] cursor-pointer flex items-center justify-center transition-all hover:border-[#ff6a00] hover:bg-[#ff6a00] hover:text-white hover:scale-[1.1] hover:shadow-[0_12px_26px_-8px_rgba(255,106,0,0.55)] active:scale-[0.94]"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
-          </button>
-          <button 
-            type="button" 
-            aria-label="Banner sau" 
-            onClick={heroNext}
-            className="w-[42px] h-[42px] rounded-full border border-[#dcd8d2] bg-white text-[#7a746c] cursor-pointer flex items-center justify-center transition-all hover:border-[#ff6a00] hover:bg-[#ff6a00] hover:text-white hover:scale-[1.1] hover:shadow-[0_12px_26px_-8px_rgba(255,106,0,0.55)] active:scale-[0.94]"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
-          </button>
-          <div className="flex items-center gap-2 ml-1.5">
-            {heroDots.map((dot, idx) => (
-              <button
-                key={idx}
-                type="button"
-                aria-label={dot.label}
-                onClick={dot.go}
-                style={{ width: dot.width, background: dot.bg }}
-                className="relative h-1.5 rounded-full border-none cursor-pointer p-0 transition-all duration-350"
-              >
-                {dot.isActive && (
-                  <span 
-                    key={`bar-${slide}`} 
-                    className="absolute inset-0 rounded-full bg-[#ff6a00] animate-[barGrow_6s_linear_both]" 
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-          <p className="m-0 ml-auto font-mono text-[10.5px] uppercase tracking-[0.16em] text-[#a39d94]">
-            {`0${slide + 1} / 03`}
-          </p>
-        </div>
-      </section>
+      {/* ═══════════ HERO BANNER (panoramic 3:1) ═══════════ */}
+      <BannerCarousel />
 
       {/* ═══════════ LOGO MARQUEE ═══════════ */}
       <div className="border-b border-[#e9e6e1] bg-white py-[22px] overflow-hidden">
@@ -674,6 +354,13 @@ export default function HomePage() {
           </Link>
         </div>
 
+        {/* Flash sale banner */}
+        {categoryBanners['flash-sale'] && (
+          <div className="mt-6">
+            <CategoryBannerSlides banners={categoryBanners['flash-sale']} />
+          </div>
+        )}
+
         <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {flashItems.map((p) => (
             <div 
@@ -735,6 +422,13 @@ export default function HomePage() {
             </Link>
           </div>
 
+          {/* Category banner slides — like demo-05 */}
+          {categoryBanners[sec.slug as keyof typeof categoryBanners] && (
+            <div className="mt-7">
+              <CategoryBannerSlides banners={categoryBanners[sec.slug as keyof typeof categoryBanners]} />
+            </div>
+          )}
+
           <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
             {sec.items.map((p: any, idx) => (
               <div 
@@ -794,6 +488,11 @@ export default function HomePage() {
           </div>
         </section>
       ))}
+
+      <div className="h-[96px]" />
+
+      {/* Review Videos */}
+      <ReviewVideos />
 
       <div className="h-[96px]" />
       <SiteFooter />

@@ -182,7 +182,7 @@ export default function WhyUs() {
               <div className="hud-circle-inner" style={{
                 position: 'absolute', width: '82%', height: '82%',
                 borderRadius: '50%', border: '1px solid rgba(0, 94, 184, 0.15)',
-                borderDasharray: '8 16'
+                strokeDasharray: '8 16'
               }} />
 
               {/* Solid inner border containing active color glow */}

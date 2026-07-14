@@ -20,7 +20,7 @@ export default function BlogPage() {
     <>
       <Header />
       <main style={{ 
-        paddingTop: 100, 
+        paddingTop: 'var(--demo07-header-offset)',
         minHeight: '100vh',
         background: '#FAFCFF',
       }}>

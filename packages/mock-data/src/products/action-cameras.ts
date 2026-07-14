@@ -321,4 +321,138 @@ export const actionCameras: ProductSummary[] = [
     sourceUrl: 'https://mayanhvietnam.com/san-pham/dji-osmo-nano-standard-combo-64gb-chinh-hang_action-camera-250912092924846',
     scrapedAt: '2026-07-10',
   },
+
+  // ── 5. Insta360 ONE RS 1-Inch 360 Edition ─────────────────────────────────
+  {
+    id: 'p3',
+    slug: 'insta360-one-rs-1-inch-360-edition',
+    name: 'Insta360 ONE RS 1-Inch 360 Edition',
+    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/avatar/01_insta360-one-rs-1-inch-360-edition.jpg`,
+    images: imgs(
+      `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/avatar/01_insta360-one-rs-1-inch-360-edition.jpg`,
+      [
+        `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/hinh-preview/02_insta360-one-rs-1-inch-360-edition.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/hinh-preview/04_insta360-one-rs-1-inch-360-edition.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/hinh-preview/06_insta360-one-rs-1-inch-360-edition.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/hinh-preview/08_insta360-one-rs-1-inch-360-edition.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/hinh-preview/10_insta360-one-rs-1-inch-360-edition.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/hinh-preview/12_insta360-one-rs-1-inch-360-edition.jpg`,
+        `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/hinh-preview/14_insta360-one-rs-1-inch-360-edition.jpg`,
+      ],
+      'Insta360 ONE RS 1-Inch 360 Edition',
+    ),
+    price: 20550000,
+    originalPrice: 20550000,
+    badges: [{ type: 'new', label: '360° Edition' }, { type: 'hot', label: 'Sensor 1 inch' }],
+    rating: { average: 4.5, count: 32 },
+    isUsed: false,
+    brand: 'Insta360',
+    availability: 'in_stock',
+    category: 'action-camera',
+    shortSpecs: [
+      'Cảm biến kép 1-inch CMOS',
+      'Video 6K 30fps / 4K 30fps',
+      'Ảnh 21MP',
+      'FlowState 6-Axis Stabilization',
+      'Chống nước IPX3',
+      'Màn hình LCD cảm ứng',
+    ],
+    description:
+      'Insta360 ONE RS 1-Inch 360 Edition — camera hành động 360° cao cấp nhất, trang bị cảm biến kép 1-inch CMOS, quay video 6K 30fps toàn cảnh, ảnh 21MP, ổn định FlowState 6 trục. Kết hợp module ONE RS Core + 1-Inch 360 Lens + Vertical Battery Base cho trải nghiệm quay toàn cảnh sắc nét nhất phân khúc.',
+    highlights: [
+      'Cảm biến kép 1-inch CMOS — lớn nhất phân khúc camera 360°',
+      'Video 6K 30fps (5888×2944) — chi tiết vượt trội',
+      'Ảnh tĩnh 21MP, khẩu độ f/2.2',
+      'FlowState Stabilization 6-Axis — ổn định video cực mượt',
+      'Chống nước IPX3, nhiệt độ -20°C đến 40°C',
+      'Màn hình LCD cảm ứng + WiFi tích hợp',
+      'Quay siêu chậm Slow-motion hỗ trợ',
+      'Nhiều chế độ: HDR, Time-lapse, Starlapse, Burst, PureShot',
+    ],
+    specs: [
+      {
+        group: 'Cảm biến & Ống kính',
+        items: [
+          { label: 'Cảm biến', value: 'Cảm biến kép 1-inch' },
+          { label: 'Khẩu độ', value: 'f/2.2' },
+          { label: 'Góc nhìn', value: '360 độ' },
+          { label: 'Tỷ lệ ảnh', value: '2:1' },
+        ],
+      },
+      {
+        group: 'Video',
+        items: [
+          { label: '6K', value: '5888×2944 @30fps' },
+          { label: '6K', value: '6144×3072 @25/24fps' },
+          { label: '4K', value: '3840×1920 @30/25/24fps' },
+          { label: '2.7K', value: '3040×1520 @50fps' },
+          { label: 'Bitrate tối đa', value: '120 Mbps' },
+          { label: 'Slow-motion', value: 'Hỗ trợ' },
+        ],
+      },
+      {
+        group: 'Ảnh tĩnh',
+        items: [
+          { label: 'Độ phân giải', value: '21MP' },
+          { label: 'ISO ảnh', value: '100 – 6400' },
+          { label: 'Tốc độ màn trập ảnh', value: '1/8000 – 120 giây' },
+          { label: 'Chế độ chụp', value: 'Tiêu chuẩn, HDR, Tua nhanh thời gian, Chụp ban đêm, Starlapse, Burst, PureShot' },
+        ],
+      },
+      {
+        group: 'Ổn định & Chế độ',
+        items: [
+          { label: 'Chống rung', value: 'FlowState 6-Axis' },
+          { label: 'Time-lapse', value: 'Có' },
+          { label: 'HDR', value: 'Có — video & ảnh' },
+        ],
+      },
+      {
+        group: 'Hiển thị & Kết nối',
+        items: [
+          { label: 'Màn hình', value: 'LCD cảm ứng' },
+          { label: 'WiFi', value: 'Có' },
+          { label: 'USB', value: 'Type-C' },
+          { label: 'Micro tích hợp', value: 'Không' },
+          { label: 'Audio', value: 'AAC 48.0 kHz' },
+        ],
+      },
+      {
+        group: 'Vật lý',
+        items: [
+          { label: 'Pin', value: '1350mAh' },
+          { label: 'Thời gian sạc', value: '90 phút (tắt nguồn)' },
+          { label: 'Chống nước', value: 'IPX3' },
+          { label: 'Nhiệt độ hoạt động', value: '-20°C đến 40°C' },
+          { label: 'Kích thước', value: '53.2 × 49.5 × 129.3mm' },
+          { label: 'Trọng lượng', value: '239g' },
+        ],
+      },
+    ],
+    packageIncludes: [
+      '1× Insta360 ONE RS 1-Inch 360 Edition Camera',
+      '1× 1-Inch RS 360 Lens',
+      '1× ONE RS Core Module',
+      '1× Vertical Battery Base',
+      '1× Mounting Bracket',
+      '1× Lens Cap',
+    ],
+    article: buildArticle({
+      title: 'Đánh giá Insta360 ONE RS 1-Inch 360 Edition — Camera 360° cảm biến 1 inch',
+      readTime: 7,
+      sections: [
+        { heading: 'Tổng quan', content: 'Insta360 ONE RS 1-Inch 360 Edition là camera hành động 360° cao cấp với cảm biến kép 1-inch, video 6K 30fps toàn cảnh, ảnh 21MP, FlowState 6-Axis stabilization. Phù hợp cho filmmaker, vlogger và nhiếp ảnh gia 360°.' },
+        { heading: 'Cảm biến kép 1-inch', content: 'Cảm biến kép 1-inch — lớn nhất trong các camera 360° hiện có. Khẩu độ f/2.2 cho chất lượng ảnh thiếu sáng tốt. Ảnh 21MP chi tiết cao, ISO 100 – 6400.' },
+        { heading: 'Video 6K 30fps Toàn cảnh', content: 'Độ phân giải 5888×2944 pixel ở 30fps — cao nhất phân khúc camera 360°. Bitrate tối đa 120 Mbps. 4K 30fps và 2.7K 50fps cho các tùy chọn linh hoạt hơn.' },
+        { heading: 'FlowState 6-Axis Stabilization', content: 'Ổn định hình ảnh 6 trục FlowState — loại bỏ rung lắc triệt để ngay cả khi di chuyển mạnh. Chế độ Time-lapse, Starlapse, HDR mở rộng khả năng sáng tạo.' },
+        { heading: 'Ưu và nhược điểm', content: '**Ưu điểm:** Cảm biến 1-inch lớn nhất phân khúc 360°. Video 6K 30fps chi tiết. FlowState 6-Axis cực mượt. Nhiều chế độ sáng tạo. Hỗ trợ tripod.\n\n**Nhược điểm:** Giá cao (~20.5 triệu). Trọng lượng 239g nặng hơn action camera thông thường. Không tích hợp micro — cần mic ngoài.' },
+      ],
+    }),
+    variants: [
+      { id: 'insta360-one-rs-1inch-360', name: '1-Inch 360 Edition', price: 20550000 },
+    ],
+    hotline: COMMON_HOTLINE,
+    sourceUrl: 'https://mayanhvietnam.com/san-pham/insta360-one-rs-1inch-360-edition_action-camera-230211001818256',
+    scrapedAt: '2026-07-13',
+  },
 ];

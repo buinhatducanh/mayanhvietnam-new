@@ -1,17 +1,31 @@
 'use client';
 
 import { useState } from 'react';
+import { getAllBrands } from '@mayanhvietnam/mock-data';
 
-const brands = [
-  { name: 'Sony', color: '#005EB8', tagline: 'α Series', logo: 'SONY' },
-  { name: 'Canon', color: '#CC0000', tagline: 'EOS R Series', logo: 'Canon' },
-  { name: 'Nikon', color: '#E5A900', tagline: 'Z Series', logo: 'Nikon' },
-  { name: 'Fujifilm', color: '#00aa80', tagline: 'X Series', logo: 'FUJIFILM' },
-  { name: 'Panasonic', color: '#0032A0', tagline: 'Lumix S', logo: 'Panasonic' },
-  { name: 'Sigma', color: '#0f172a', tagline: 'Art Series', logo: 'SIGMA' },
-  { name: 'DJI', color: '#00d2ff', tagline: 'Drone & Gimbal', logo: 'dji' },
-  { name: 'Tamron', color: '#005EB8', tagline: 'SP Lens', logo: 'TAMRON' },
-];
+const BRAND_META: Record<string, { color: string; tagline: string; logo: string }> = {
+  Sony:       { color: '#005EB8', tagline: 'α Series',           logo: 'SONY' },
+  Canon:      { color: '#CC0000', tagline: 'EOS R Series',       logo: 'Canon' },
+  Nikon:      { color: '#E5A900', tagline: 'Z Series',           logo: 'Nikon' },
+  DJI:        { color: '#00d2ff', tagline: 'Drone & Gimbal',     logo: 'dji' },
+  GoPro:      { color: '#E60000', tagline: 'Hero Series',        logo: 'GoPro' },
+  Insta360:   { color: '#FF6A00', tagline: '360° & Action',      logo: 'Insta360' },
+  Godox:      { color: '#1E293B', tagline: 'Lighting',           logo: 'Godox' },
+  Blackmagic: { color: '#420072', tagline: 'Cinema',             logo: 'Blackmagic' },
+  Aputure:    { color: '#FF4400', tagline: 'LED Lighting',       logo: 'Aputure' },
+  Nanlite:    { color: '#0055AA', tagline: 'LED Studio',         logo: 'Nanlite' },
+  Kase:       { color: '#222222', tagline: 'Filters & Lenses',   logo: 'Kase' },
+  'Peak Design': { color: '#2D3748', tagline: 'Bags & Straps',   logo: 'PD' },
+  Lowepro:    { color: '#005F2B', tagline: 'Camera Bags',        logo: 'Lowepro' },
+};
+
+const DEFAULT_META = { color: '#64748B', tagline: '', logo: '' };
+
+const brands = getAllBrands().map((name) => ({
+  name,
+  ...(BRAND_META[name] ?? DEFAULT_META),
+  logo: BRAND_META[name]?.logo ?? name,
+}));
 
 export default function BrandSection() {
   const [hoveredBrand, setHoveredBrand] = useState<string | null>(null);

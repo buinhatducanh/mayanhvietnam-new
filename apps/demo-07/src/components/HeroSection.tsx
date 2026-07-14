@@ -39,19 +39,6 @@ export default function HeroSection() {
       let progress = (startY - offsetTop) / totalScrollable;
       progress = Math.max(0, Math.min(1, progress));
       setScrollProgress(progress);
-
-      // Dynamically control main Header opacity based on scroll
-      const header = document.querySelector('header');
-      if (header) {
-        if (progress < 0.05) {
-          header.style.opacity = '0';
-          header.style.pointerEvents = 'none';
-          header.style.transition = 'opacity 0.4s ease';
-        } else {
-          header.style.opacity = '1';
-          header.style.pointerEvents = 'auto';
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -176,7 +163,7 @@ export default function HeroSection() {
         position: 'sticky',
         top: 0,
         width: '100%',
-        height: '100vh',
+        height: '100dvh',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',

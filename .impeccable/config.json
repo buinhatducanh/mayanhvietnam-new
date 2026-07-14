@@ -35,6 +35,165 @@
         "value": "rgba(43, 127, 255, 0.28)",
         "reason": "User confirmed rgba(43, 127, 255, 0.28) is intentional",
         "createdAt": "2026-07-10T06:34:15.326Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#003087",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:40.880Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#005eb8",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:44.934Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#6b7a99",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:44.990Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#d2d8e8",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:45.060Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#e8f1fb",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:45.121Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#374161",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:45.182Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#1a2444",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:45.243Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#d32f2f",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:45.304Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f8faff",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:45.364Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f4f6fa",
+        "reason": "CameraVietNam brand color from mayanhvietnam.com",
+        "createdAt": "2026-07-13T08:15:45.429Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#16130f",
+        "files": [
+          "apps/demo-0/app/globals.css"
+        ],
+        "reason": "Project brand ink-black token used across all demo-0 components",
+        "createdAt": "2026-07-13T08:19:48.256Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#ff6a00",
+        "files": [
+          "apps/demo-0/app/globals.css"
+        ],
+        "reason": "Project brand orange token used across all demo-0 components",
+        "createdAt": "2026-07-13T08:19:51.906Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(255, 106, 0, 0.22)",
+        "files": [
+          "apps/demo-0/app/globals.css"
+        ],
+        "reason": "Brand orange opacity variant for glow/shadow effects",
+        "createdAt": "2026-07-13T08:19:56.091Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#e65100",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:11.750Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#6a1b9a",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:11.839Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#1b5e20",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:11.924Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#006064",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:12.005Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#283593",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:12.084Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#b71c1c",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:12.212Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#4e342e",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:12.299Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f57f17",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:12.378Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#e0f7fa",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:12.464Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#efebe9",
+        "reason": "CameraVietNam brand per-category accent color",
+        "createdAt": "2026-07-13T08:26:12.534Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#001040",
+        "reason": "CameraVietNam footer dark navy",
+        "createdAt": "2026-07-13T08:30:33.163Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#93c5fd",
+        "reason": "CameraVietNam brand link color on dark",
+        "createdAt": "2026-07-13T08:30:33.219Z"
       }
     ]
   }

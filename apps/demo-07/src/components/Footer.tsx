@@ -1,31 +1,12 @@
 'use client';
 
-const footerLinks = {
-  'Sản Phẩm': [
-    'Máy Ảnh Mirrorless', 'Máy Ảnh DSLR', 'Máy Ảnh Compact',
-    'Ống Kính', 'Flycam / Drone', 'Phụ Kiện Nhiếp Ảnh',
-  ],
-  'Dịch Vụ': [
-    'Bảo Hành Sửa Chữa', 'Thu Cũ Đổi Mới', 'Cho Thuê Thiết Bị',
-    'Trả Góp 0%', 'Giao Hàng Tận Nơi', 'Tư Vấn Chọn Máy',
-  ],
-  'Hỗ Trợ': [
-    'Hướng Dẫn Mua Hàng', 'Chính Sách Đổi Trả', 'Tra Cứu Bảo Hành',
-    'FAQ – Câu Hỏi Thường Gặp', 'Liên Hệ Chúng Tôi', 'Khiếu Nại',
-  ],
-  'Công Ty': [
-    'Về CameraVietNam', 'Hệ Thống Cửa Hàng', 'Tuyển Dụng',
-    'Blog Nhiếp Ảnh', 'Tin Tức & Sự Kiện', 'Đối Tác',
-  ],
-};
-
-const stores = [
-  { city: 'Hồ Chí Minh', addr: '123 Nguyễn Trãi, Q.1, TP.HCM', tel: '028 3825 xxxx' },
-  { city: 'Hà Nội', addr: '456 Cầu Giấy, Q. Cầu Giấy, HN', tel: '024 3826 xxxx' },
-  { city: 'Đà Nẵng', addr: '789 Nguyễn Văn Linh, Q. Thanh Khê', tel: '0236 382 xxxx' },
-];
+import { siteContent, stores } from '@mayanhvietnam/mock-data';
+import { REAL_ASSETS, REAL_CATEGORIES } from '@/lib/real-products';
 
 export default function Footer() {
+  const { hotline, hotlineFull, companyName, companyAddress, taxId,
+    footerPolicies, socialLinks } = siteContent;
+
   return (
     <footer style={{ background: '#001040', color: '#fff' }}>
       {/* CTA Banner */}
@@ -39,7 +20,7 @@ export default function Footer() {
               Nhận thông báo flash sale, sản phẩm mới và tips nhiếp ảnh hàng tuần.
             </p>
           </div>
-          <div style={{ display: 'flex', gap: 0, minWidth: 380, flexShrink: 0 }}>
+          <div style={{ display: 'flex', minWidth: 380, flexShrink: 0 }}>
             <input
               type="email"
               placeholder="Nhập email của bạn..."
@@ -53,7 +34,6 @@ export default function Footer() {
                 outline: 'none',
                 background: 'rgba(255,255,255,0.15)',
                 color: '#fff',
-                backdropFilter: 'blur(8px)',
               }}
             />
             <button style={{
@@ -68,10 +48,7 @@ export default function Footer() {
               cursor: 'pointer',
               transition: 'background 0.2s',
               whiteSpace: 'nowrap',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.background = '#E8F1FB')}
-            onMouseLeave={e => (e.currentTarget.style.background = '#fff')}
-            >
+            }}>
               Đăng Ký
             </button>
           </div>
@@ -81,89 +58,129 @@ export default function Footer() {
       {/* Main Footer */}
       <div style={{ padding: '60px 0 40px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="container-xl">
-          <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 60 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 60 }}>
             {/* Brand Column */}
             <div>
               {/* Logo */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
-                <div style={{
-                  width: 40, height: 40,
-                  background: 'linear-gradient(135deg, #003087, #005EB8)',
+              <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 20, textDecoration: 'none' }}>
+                <img src={REAL_ASSETS.logoFull} alt="Máy Ảnh Việt Nam" style={{ height: 40, width: 'auto', objectFit: 'contain' }} />
+              </a>
+
+              {/* Hotline CTA */}
+              <a
+                href={`tel:+84${hotlineFull.replace(/-/g, '')}`}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(255,255,255,0.15)',
                   borderRadius: 8,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="2" y="6" width="20" height="14" rx="3" stroke="white" strokeWidth="1.8"/>
-                    <circle cx="12" cy="13" r="3.5" stroke="white" strokeWidth="1.8"/>
-                    <path d="M7 6V5a2 2 0 012-2h2" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
-                  </svg>
-                </div>
+                  padding: '10px 14px',
+                  marginBottom: 16,
+                  textDecoration: 'none',
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#93C5FD" strokeWidth="2">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .91h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006.18 6.18l1.45-1.45a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                </svg>
                 <div>
-                  <div style={{ fontSize: '1.125rem', fontWeight: 900, color: '#fff', lineHeight: 1 }}>Camera</div>
-                  <div style={{ fontSize: '0.625rem', fontWeight: 700, color: '#93C5FD', letterSpacing: '0.12em' }}>VIỆT NAM</div>
+                  <div style={{ fontSize: '0.6875rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1 }}>Hotline 24/7</div>
+                  <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#fff', lineHeight: 1.4 }}>{hotlineFull}</div>
                 </div>
-              </div>
-              <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, marginBottom: 24 }}>
-                Hệ thống phân phối thiết bị nhiếp ảnh chính hãng hàng đầu Việt Nam. Uy tín – Chất lượng – Tận tâm.
+              </a>
+
+              {/* Company info */}
+              <p style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 8 }}>
+                {companyName}
               </p>
+              <p style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 24 }}>
+                {companyAddress}
+              </p>
+
               {/* Socials */}
-              <div style={{ display: 'flex', gap: 12 }}>
-                {['f', 'in', 'yt', 'ig'].map(s => (
-                  <a key={s} href="#" style={{
-                    width: 36, height: 36,
-                    borderRadius: 8,
-                    background: 'rgba(255,255,255,0.1)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.75rem', fontWeight: 800, color: '#fff',
-                    textDecoration: 'none',
-                    transition: 'background 0.2s',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.2)')}
-                  onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.1)')}
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 10 }}>Kết nối</div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                {socialLinks.map((s) => (
+                  <a key={s.platform} href={s.url} target="_blank" rel="noopener noreferrer"
+                    aria-label={s.platform}
+                    style={{
+                      width: 34, height: 34,
+                      borderRadius: 6,
+                      background: 'rgba(255,255,255,0.1)',
+                      border: '1px solid rgba(255,255,255,0.12)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      textDecoration: 'none',
+                      transition: 'background 0.2s',
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.2)')}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.1)')}
                   >
-                    {s.toUpperCase()}
+                    <SocialIcon platform={s.platform} />
                   </a>
                 ))}
               </div>
 
               {/* Stores */}
               <div style={{ marginTop: 28 }}>
-                <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 14 }}>Cửa Hàng</div>
-                {stores.map(s => (
-                  <div key={s.city} style={{ marginBottom: 12 }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 12 }}>Hệ Thống Cửa Hàng</div>
+                {stores.slice(0, 3).map((s) => (
+                  <div key={s.id} style={{ marginBottom: 12 }}>
                     <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#93C5FD' }}>{s.city}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>{s.addr}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>{s.tel}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>{s.address}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.55)' }}>{s.phone}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Links Columns */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
-              {Object.entries(footerLinks).map(([heading, links]) => (
-                <div key={heading}>
-                  <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>
-                    {heading}
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    {links.map(link => (
-                      <a key={link} href="#" style={{
-                        fontSize: '0.875rem',
-                        color: 'rgba(255,255,255,0.65)',
-                        textDecoration: 'none',
-                        transition: 'color 0.2s',
-                      }}
-                      onMouseEnter={e => (e.currentTarget.style.color = '#93C5FD')}
-                      onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.65)')}
-                      >
-                        {link}
-                      </a>
-                    ))}
-                  </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+              {/* Sản phẩm */}
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>Sản Phẩm</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {REAL_CATEGORIES.filter(c => !c.slug.startsWith('san-pham-')).map((cat) => (
+                    <a key={cat.slug} href={`/danh-muc/${cat.slug}`} style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.65)', textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#93C5FD')}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.65)')}
+                    >
+                      {cat.name}
+                    </a>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Hỗ trợ */}
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>Hỗ Trợ</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {footerPolicies.map((p) => (
+                    <a key={p.link} href={p.link} style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.65)', textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#93C5FD')}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.65)')}
+                    >
+                      {p.name}
+                    </a>
+                  ))}
+                  <a href={`tel:+84${hotline.replace(/\./g, '')}`} style={{ fontSize: '0.875rem', color: '#93C5FD', textDecoration: 'none', fontWeight: 600, marginTop: 4 }}>
+                    📞 {hotline}
+                  </a>
+                </div>
+              </div>
+
+              {/* Về chúng tôi */}
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>Về Chúng Tôi</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {['Về CameraVietNam', 'Hệ Thống Cửa Hàng', 'Tuyển Dụng', 'Blog Nhiếp Ảnh', 'Tin Tức & Sự Kiện', 'Chương Trình Đại Lý'].map(item => (
+                    <a key={item} href="#" style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.65)', textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#93C5FD')}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.65)')}
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -172,36 +189,44 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div style={{ padding: '20px 0' }}>
         <div className="container-xl" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-          <div style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.45)' }}>
-            © 2026 CameraVietNam. GPKD số 0123456789 – Sở KHĐT TP.HCM.
+          <div style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.4)' }}>
+            © 2026 {companyName}. GPKD số {taxId}
           </div>
           <div style={{ display: 'flex', gap: 20 }}>
             {['Điều Khoản', 'Bảo Mật', 'Cookie'].map(item => (
-              <a key={item} href="#" style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#93C5FD')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+              <a key={item} href="#" style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#93C5FD')}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.4)')}
               >
                 {item}
               </a>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: 10 }}>
-            {['VISA', 'MC', 'JCB', 'MoMo', 'VNPay'].map(pay => (
-              <span key={pay} style={{
-                background: 'rgba(255,255,255,0.1)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: 4,
-                padding: '3px 8px',
-                fontSize: '0.625rem',
-                fontWeight: 700,
-                color: 'rgba(255,255,255,0.6)',
-              }}>
-                {pay}
-              </span>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {REAL_ASSETS.paymentIcons.map((p) => (
+              <img key={p.name} src={p.url} alt={p.name} title={p.name}
+                style={{ height: 22, width: 'auto', objectFit: 'contain', opacity: 0.7 }} />
             ))}
           </div>
         </div>
       </div>
     </footer>
   );
+}
+
+function SocialIcon({ platform }: { platform: string }) {
+  const color = '#fff';
+  if (platform === 'Facebook') return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill={color}><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+  );
+  if (platform === 'YouTube') return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill={color}><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.5C5.12 20 12 20 12 20s6.88 0 8.59-.5a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#001040"/></svg>
+  );
+  if (platform === 'TikTok') return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill={color}><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.02a8.16 8.16 0 004.77 1.52V7.02a4.85 4.85 0 01-1-.33z"/></svg>
+  );
+  if (platform === 'Zalo') return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill={color}><circle cx="12" cy="12" r="10" fill="none" stroke={color} strokeWidth="2"/><text x="12" y="16" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#001040">Z</text></svg>
+  );
+  return null;
 }

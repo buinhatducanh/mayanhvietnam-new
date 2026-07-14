@@ -56,7 +56,7 @@ export default function CartPage() {
     <>
       <Header />
       <main style={{ 
-        paddingTop: 100, 
+        paddingTop: 'var(--demo07-header-offset)',
         minHeight: '100vh',
         background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%), url("https://images.unsplash.com/photo-1553095066-5014ce727e93?q=80&w=2560")',
         backgroundSize: 'cover',

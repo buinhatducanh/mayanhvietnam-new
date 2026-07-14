@@ -55,7 +55,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     return (
       <>
         <Header />
-        <main style={{ paddingTop: 100, minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <main style={{ paddingTop: 'var(--demo07-header-offset)', minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <h2>Đang tải sản phẩm...</h2>
         </main>
         <Footer />
@@ -67,7 +67,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     <>
       <Header />
       <main style={{ 
-        paddingTop: 100, 
+        paddingTop: 'var(--demo07-header-offset)', 
         minHeight: '100vh',
         background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%), url("https://images.unsplash.com/photo-1553095066-5014ce727e93?q=80&w=2560")',
         backgroundSize: 'cover',

@@ -1,23 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-// Khai báo kiểu TypeScript cho custom web component <glb-stage>
 declare global {
-  namespace React {
-    namespace JSX {
-      interface IntrinsicElements {
-        'glb-stage': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-          src?: string;
-          'spin-parts'?: string;
-          'color-parts'?: string;
-          exposure?: string;
-          fit?: string;
-          ref?: React.RefObject<any>;
-        }, HTMLElement>;
-      }
-    }
-  }
   namespace JSX {
     interface IntrinsicElements {
       'glb-stage': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
@@ -70,16 +55,55 @@ export default function ThreeDStage({
   style
 }: ThreeDStageProps) {
   const stageRef = useRef<any>(null);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    // Chỉ load Web Component glb-stage.js ở phía Client qua thẻ script để tránh Turbopack bundle URL externals
-    const existing = document.querySelector('script[src="/glb-stage.js"]');
-    if (!existing) {
-      const script = document.createElement("script");
+    if (typeof window === "undefined") return;
+
+    // Nếu custom element đã được đăng ký sẵn → script đã load
+    if (customElements.get("glb-stage")) {
+      setScriptLoaded(true);
+      return;
+    }
+
+    let script = document.querySelector('script[data-glb-stage]') as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
       script.src = "/glb-stage.js";
       script.type = "module";
+      script.setAttribute("data-glb-stage", "true");
       document.head.appendChild(script);
     }
+
+    const onLoaded = () => setScriptLoaded(true);
+    const onErrored = () => setLoadError(true);
+    script.addEventListener("load", onLoaded);
+    script.addEventListener("error", onErrored);
+
+    // Nếu script đã được execute (custom element đã đăng ký)
+    const checkInterval = setInterval(() => {
+      if (customElements.get("glb-stage")) {
+        setScriptLoaded(true);
+        clearInterval(checkInterval);
+      }
+    }, 200);
+
+    // Timeout 10s — nếu CDN blocked hoặc script lỗi
+    const timeout = setTimeout(() => {
+      if (!customElements.get("glb-stage")) {
+        console.warn("[ThreeDStage] glb-stage.js did not register custom element in 10s");
+        setLoadError(true);
+      }
+      clearInterval(checkInterval);
+    }, 10000);
+
+    return () => {
+      script?.removeEventListener("load", onLoaded);
+      script?.removeEventListener("error", onErrored);
+      clearInterval(checkInterval);
+      clearTimeout(timeout);
+    };
   }, []);
 
   useEffect(() => {
@@ -99,7 +123,6 @@ export default function ThreeDStage({
     el.addEventListener("glb-ready", handleReady);
     el.addEventListener("glb-error", handleError);
 
-    // Nếu element đã sẵn sàng từ trước
     if (el.ready) {
       if (color) el.setColor(color);
       if (pose) el.setPose(pose);
@@ -111,7 +134,6 @@ export default function ThreeDStage({
     };
   }, [onReady, onError]);
 
-  // Cập nhật pose khi props pose thay đổi
   useEffect(() => {
     const el = stageRef.current;
     if (el && el.ready && pose) {
@@ -119,13 +141,57 @@ export default function ThreeDStage({
     }
   }, [pose]);
 
-  // Cập nhật color khi props color thay đổi
   useEffect(() => {
     const el = stageRef.current;
     if (el && el.ready && color) {
       el.setColor(color);
     }
   }, [color]);
+
+  // Fallback UI nếu script load lỗi
+  if (loadError) {
+    return (
+      <div
+        className={className}
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "rgba(255,255,255,0.5)",
+          fontSize: "12px",
+          fontFamily: "monospace",
+          textAlign: "center",
+          ...style,
+        }}
+      >
+        <span>3D Viewer không khả dụng<br />{src}</span>
+      </div>
+    );
+  }
+
+  // Đợi script load xong mới render custom element
+  if (!scriptLoaded) {
+    return (
+      <div
+        className={className}
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "rgba(255,255,255,0.3)",
+          fontSize: "11px",
+          fontFamily: "monospace",
+          ...style,
+        }}
+      >
+        Đang tải 3D...
+      </div>
+    );
+  }
 
   return (
     <glb-stage

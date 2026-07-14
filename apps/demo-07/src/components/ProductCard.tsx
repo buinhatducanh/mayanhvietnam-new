@@ -108,7 +108,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </svg>
       </button>
 
-      <a href={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+      <a href={`/products/${(product as any).slug ?? product.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
         {/* Image area */}
         <div style={{
           background: '#fff',

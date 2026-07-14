@@ -1,63 +1,24 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { REAL_CATEGORIES } from '@/lib/real-products';
 
-const categories = [
-  {
-    id: 'mirrorless',
-    imageUrl: 'https://mayanhvietnam.com/asset/imgs/img/danhMuc_MayAnh.webp',
-    label: 'Máy Ảnh Mirrorless',
-    count: '1,240 sản phẩm',
-    desc: 'Công nghệ tiên tiến, nhỏ gọn',
-    bg: '#EBF4FF',
-    color: '#003087',
-  },
-  {
-    id: 'dslr',
-    imageUrl: 'https://mayanhvietnam.com/asset/imgs/img/danhMuc_MayAnh.webp',
-    label: 'Máy Ảnh DSLR',
-    count: '860 sản phẩm',
-    desc: 'Bền bỉ, chất lượng quang học vượt trội',
-    bg: '#E8F5E9',
-    color: '#1B5E20',
-  },
-  {
-    id: 'lens',
-    imageUrl: 'https://mayanhvietnam.com/asset/imgs/img/danhMuc_ongkinh.webp',
-    label: 'Ống Kính',
-    count: '2,100 sản phẩm',
-    desc: 'Tiêu chuẩn, góc rộng, tele, macro',
-    bg: '#FFF3E0',
-    color: '#E65100',
-  },
-  {
-    id: 'drone',
-    imageUrl: 'https://mayanhvietnam.com/asset/imgs/img/danhMuc_flycam.webp',
-    label: 'Flycam / Drone',
-    count: '320 sản phẩm',
-    desc: 'DJI, Autel, PowerVision',
-    bg: '#F3E5F5',
-    color: '#6A1B9A',
-  },
-  {
-    id: 'accessories',
-    imageUrl: 'https://mayanhvietnam.com/asset/imgs/img/danhMuc_phuKien.webp',
-    label: 'Phụ Kiện',
-    count: '5,400 sản phẩm',
-    desc: 'Túi, tripod, pin, thẻ nhớ...',
-    bg: '#FCE4EC',
-    color: '#B71C1C',
-  },
-  {
-    id: 'studio',
-    imageUrl: 'https://mayanhvietnam.com/asset/imgs/img/danhMuc_thietBiStudio.webp',
-    label: 'Thiết Bị Studio',
-    count: '780 sản phẩm',
-    desc: 'Đèn flash, softbox, backdrop',
-    bg: '#E8EAF6',
-    color: '#283593',
-  },
-];
+const categories = REAL_CATEGORIES.map((c) => {
+  const meta: Record<string, { count: string; desc: string; bg: string; color: string }> = {
+    'may-anh':           { count: '1,240 sản phẩm', desc: 'Mirrorless, DSLR, rangefinder',        bg: '#EBF4FF', color: '#003087' },
+    'ong-kinh':          { count: '2,100 sản phẩm', desc: 'Fix, zoom, tele, macro, wide',        bg: '#FFF3E0', color: '#E65100' },
+    'may-quay-phim':    { count: '320 sản phẩm',  desc: 'Máy quay 4K, vlog, cinema',           bg: '#F3E5F5', color: '#6A1B9A' },
+    'action-camera':     { count: '280 sản phẩm',  desc: 'GoPro, DJI, Insta360',                bg: '#E8F5E9', color: '#1B5E20' },
+    'flycam':            { count: '320 sản phẩm',  desc: 'DJI, Autel, drone 4K',                bg: '#E0F7FA', color: '#006064' },
+    'thiet-bi-studio':   { count: '780 sản phẩm',  desc: 'Đèn flash, softbox, backdrop',        bg: '#E8EAF6', color: '#283593' },
+    'phu-kien':         { count: '5,400 sản phẩm', desc: 'Túi, tripod, pin, thẻ nhớ',          bg: '#FCE4EC', color: '#B71C1C' },
+    'lap-phong-studio':  { count: '180 sản phẩm',  desc: 'Lắp phòng studio trọn gói',          bg: '#EFEBE9', color: '#4E342E' },
+    'san-pham-flash-sale': { count: 'Flash Sale',  desc: 'Giảm đến 50% hôm nay',                bg: '#FFF9C4', color: '#F57F17' },
+    'san-pham-khuyen-mai': { count: 'Khuyến mãi',  desc: 'Quà tặng, ưu đãi đặc biệt',          bg: '#F3E5F5', color: '#6A1B9A' },
+  };
+  const m = meta[c.slug] ?? { count: '', desc: '', bg: '#F8FAFF', color: '#003087' };
+  return { id: c.slug, imageUrl: c.image, label: c.name, ...m };
+});
 
 export default function CategorySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
