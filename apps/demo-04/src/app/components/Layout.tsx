@@ -106,27 +106,16 @@ export default function Layout() {
             {/* Logo */}
             <button
               onClick={() => navigate("/")}
-              className="flex items-center gap-3 flex-shrink-0 group"
-              aria-label="Trang chủ"
+              className="flex items-center flex-shrink-0 group"
+              aria-label="Trang chủ Máy Ảnh Việt Nam"
             >
-              <div
-                className="w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform duration-200 group-hover:scale-105"
-                style={{
-                  background: "rgba(255,255,255,0.16)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22), 0 2px 8px rgba(0,0,0,0.22)",
-                  border: "1.5px solid rgba(255,255,255,0.25)",
-                }}
-              >
-                <Camera size={20} className="text-white drop-shadow" />
-              </div>
-              <div className="hidden sm:block leading-none select-none">
-                <div className="text-[15px] font-black tracking-[0.08em] text-white drop-shadow-sm">
-                  CAMERA STORE VN
-                </div>
-                <div className="text-[10px] font-medium tracking-[0.18em] text-white/65 mt-0.5">
-                  Vì lợi ích khách hàng
-                </div>
-              </div>
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                alt="Máy Ảnh Việt Nam"
+                width={170}
+                height={34}
+                className="h-[34px] w-[170px] object-contain object-left drop-shadow transition-transform duration-200 group-hover:scale-[1.03]"
+              />
             </button>
 
             {/* Search */}
@@ -399,13 +388,15 @@ export default function Layout() {
           {/* Links grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
             <div className="col-span-2 sm:col-span-1">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: ACCENT }}>
-                  <Camera size={16} className="text-white" />
-                </div>
-                <div>
-                  <div className="text-[12px] font-black tracking-[0.14em]">CAMERA STORE VN</div>
-                  <div className="text-[9px] tracking-[0.24em] text-muted-foreground mt-0.5">Vì lợi ích khách hàng</div>
+              <div className="flex items-center mb-4">
+                <div className="rounded-xl px-3 py-2" style={{ background: ACCENT }}>
+                  <img
+                    src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                    alt="Máy Ảnh Việt Nam"
+                    width={140}
+                    height={28}
+                    className="h-[28px] w-[140px] object-contain object-left block"
+                  />
                 </div>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed mb-5">

@@ -29,7 +29,7 @@ export function ProductCard({ product }: Props) {
             -{discount}%
           </span>
         )}
-        {product.badges.length > 0 && (
+        {product.badges && product.badges.length > 0 && (
           <span className="absolute right-2 top-2 rounded-md bg-primary/90 px-2 py-0.5 text-[10px] font-bold text-primary-foreground">
             {product.badges[0].label}
           </span>

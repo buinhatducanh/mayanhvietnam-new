@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { categories, searchProducts, getProductUrl, Product } from "@/lib/products";
+import { useCart } from "@/lib/cart-context";
 
 const HOTLINE = '0937.148.222';
 
@@ -13,34 +14,14 @@ interface SiteHeaderProps {
 
 export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [searchVal, setSearchVal] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const blurTimer = useRef<NodeJS.Timeout | null>(null);
+  const { itemCount, toggleDrawer } = useCart();
 
   useEffect(() => {
-    let rafId: number | null = null;
-    let lastState: boolean | null = null;
-
-    const handleScroll = () => {
-      if (rafId) return; // already scheduled — skip
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const y = window.scrollY;
-        // Hysteresis: collapse at 60px, expand at 25px — gap prevents toggle flicker
-        const isScrolled = y > 60 ? true : y < 25 ? false : lastState ?? false;
-        if (isScrolled !== lastState) {
-          lastState = isScrolled;
-          setScrolled(isScrolled);
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (rafId) cancelAnimationFrame(rafId);
       if (blurTimer.current) clearTimeout(blurTimer.current);
     };
   }, []);
@@ -64,45 +45,55 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
     }, 180);
   };
 
-  // Row heights and styles
-  const row1Style = scrolled
-    ? { height: "0px", paddingTop: "0px", paddingBottom: "0px", borderBottomWidth: "0px", overflow: "hidden", transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)" }
-    : { height: "auto", paddingTop: "7px", paddingBottom: "7px", background: "linear-gradient(90deg, #e86a2d 0%, #c85200 100%)", overflow: "hidden", transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)" };
+  // Row 1 (utility strip) nằm ngoài phần sticky — cuộn đi tự nhiên, không animate chiều cao
+  // để tránh CLS (layout shift) khi cuộn trang.
+  const row1Style = { paddingTop: "8px", paddingBottom: "8px", background: "#c85200" };
 
-  const row3Style = scrolled
-    ? { height: "0px", paddingTop: "0px", paddingBottom: "0px", overflow: "hidden", transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)" }
-    : { height: "auto", paddingTop: "6px", paddingBottom: "6px", maxWidth: "1280px", margin: "0 auto", overflow: "hidden", transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)" };
+  const row3Style = { paddingTop: "6px", paddingBottom: "6px", maxWidth: "1280px", margin: "0 auto" };
 
   const filteredCats = categories.filter((c) => !["san-pham-cu", "lap-phong-studio"].includes(c.slug));
   const HOTLINE = "0937.148.222";
 
   return (
-    <div className="font-sans bg-[rgba(255,255,255,0.88)] backdrop-blur-[16px] border-b border-[#e9e6e1] sticky top-0 z-50">
-      {/* Row 1: utility strip */}
-      <div style={row1Style}>
-        <div className="max-w-[1280px] mx-auto px-8 flex items-center justify-between">
+    <>
+      {/* Row 1: utility strip — ngoài sticky, chiều cao cố định */}
+      <div className="font-sans" style={row1Style}>
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 relative flex items-center justify-between gap-4">
           <div className="flex items-center gap-[12px]">
             <a href="tel:0937148222" className="flex items-center gap-[6px] text-white hover:text-white no-underline text-[12px] font-bold tracking-[0.01em]">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               <span>{HOTLINE}</span>
             </a>
-            <span className="w-px h-[12px] bg-white/30"></span>
-            <span className="text-white/90 text-[11.5px] font-medium">Freeship đơn từ 5.000.000đ · Hỗ trợ 9:00 – 19:00</span>
+            <span className="hidden xl:block w-px h-[12px] bg-white/25"></span>
+            <span className="hidden xl:inline text-white/95 text-[11.5px] font-medium">Hỗ trợ 9:00 – 19:00</span>
           </div>
-          <div className="flex items-center gap-[6px]">
-            <Link href="/danh-muc" className="text-white/90 hover:text-white hover:bg-white/15 no-underline text-[11.5px] font-medium px-[10px] py-[3px] rounded-full transition-all duration-200">Xem tất cả sản phẩm</Link>
-            <Link href="/#flash-sale" className="text-white/90 hover:text-white hover:bg-white/15 no-underline text-[11.5px] font-medium px-[10px] py-[3px] rounded-full transition-all duration-200">⚡ Flash Sale</Link>
-            <Link href="/danh-muc" className="text-white/90 hover:text-white hover:bg-white/15 no-underline text-[11.5px] font-medium px-[10px] py-[3px] rounded-full transition-all duration-200">🎁 Khuyến mãi</Link>
-            <Link href="/danh-muc#san-pham-cu" className="text-white/90 hover:text-white hover:bg-white/15 no-underline text-[11.5px] font-medium px-[10px] py-[3px] rounded-full transition-all duration-200">♻️ Sản phẩm cũ</Link>
+
+          {/* Center: thông điệp vận chuyển */}
+          <p className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-2 m-0 text-[11.5px] font-semibold text-white tracking-[0.02em] whitespace-nowrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+            Freeship toàn quốc — đơn từ 5.000.000đ
+          </p>
+          <div className="hidden lg:flex items-center gap-[16px]">
+            <Link href="/#flash-sale" className="flex items-center gap-1.5 bg-white text-[#c85200] no-underline rounded-full px-3 py-[4px] text-[11px] font-extrabold uppercase tracking-[0.06em] shadow-[0_2px_8px_rgba(0,0,0,0.18)] transition-transform duration-200 hover:-translate-y-[1px]">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+              Flash Sale
+            </Link>
+            <Link href="/danh-muc" className="text-white no-underline text-[11.5px] font-medium tracking-[0.01em] py-[3px] hover:underline decoration-white/60 underline-offset-4 transition-colors duration-200">Khuyến mãi</Link>
+            <span aria-hidden="true" className="text-white/35 text-[10px]">·</span>
+            <Link href="/danh-muc#san-pham-cu" className="text-white no-underline text-[11.5px] font-medium tracking-[0.01em] py-[3px] hover:underline decoration-white/60 underline-offset-4 transition-colors duration-200">Sản phẩm cũ</Link>
           </div>
         </div>
       </div>
 
+      {/* Rows 2+3: sticky, chiều cao cố định — không gây layout shift */}
+      <div className="font-sans bg-[rgba(255,255,255,0.88)] backdrop-blur-[16px] border-b border-[#e9e6e1] sticky top-0 z-50">
       {/* Row 2: logo · search · actions */}
       <div className="border-b border-[#f1eee9]">
-        <div className="max-w-[1280px] mx-auto px-8 py-[11px] flex items-center gap-[22px]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 py-[11px] flex items-center gap-3 sm:gap-[22px]">
           <Link href="/" title="Máy Ảnh Việt Nam" className="shrink-0 flex items-center no-underline transition-all hover:-translate-y-[1px]">
-            <img src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png" alt="Máy Ảnh Việt Nam" className="h-[28px] w-auto object-contain block" />
+            <div className="bg-[#ff6a00] rounded-[12px] px-[14px] py-[7px] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)]">
+              <img src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png" alt="Máy Ảnh Việt Nam" width={180} height={36} className="h-[36px] w-[180px] object-contain object-left block" />
+            </div>
           </Link>
 
           {/* Search */}
@@ -159,11 +150,21 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
             <button type="button" aria-label="Tài khoản" title="Tài khoản" className="group flex items-center justify-center w-[40px] h-[40px] rounded-full border border-[#e2ddd6] bg-white text-[#5f5a53] cursor-pointer transition-all duration-200 hover:border-[#ff6a00] hover:text-[#ff6a00] hover:bg-[#fff8f0] hover:shadow-[0_2px_10px_rgba(255,106,0,0.15)] active:scale-95">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </button>
-            <button type="button" aria-label="Giỏ hàng" title="Giỏ hàng" className="group relative flex items-center justify-center w-[40px] h-[40px] rounded-full border border-[#e2ddd6] bg-white text-[#5f5a53] cursor-pointer transition-all duration-200 hover:border-[#ff6a00] hover:text-[#ff6a00] hover:bg-[#fff8f0] hover:shadow-[0_2px_10px_rgba(255,106,0,0.15)] active:scale-95">
+            <button
+              type="button"
+              aria-label="Giỏ hàng"
+              title="Giỏ hàng"
+              onClick={() => toggleDrawer()}
+              className="group relative flex items-center justify-center w-[40px] h-[40px] rounded-full border border-[#e2ddd6] bg-white text-[#5f5a53] cursor-pointer transition-all duration-200 hover:border-[#ff6a00] hover:text-[#ff6a00] hover:bg-[#fff8f0] hover:shadow-[0_2px_10px_rgba(255,106,0,0.15)] active:scale-95"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
-              <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full bg-[#ff6a00] text-white text-[10px] font-bold flex items-center justify-center px-1 shadow-[0_2px_6px_rgba(255,106,0,0.5)] ring-2 ring-white">0</span>
+              {itemCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full bg-[#ff6a00] text-white text-[10px] font-bold flex items-center justify-center px-1 shadow-[0_2px_6px_rgba(255,106,0,0.5)] ring-2 ring-white">
+                  {itemCount > 99 ? "99+" : itemCount}
+                </span>
+              )}
             </button>
-            <a href="tel:0937148222" className="flex items-center gap-2 h-[40px] px-[18px] rounded-full bg-[#ff6a00] text-white no-underline text-[13px] font-semibold tracking-[0.01em] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:bg-[#ea5e00] hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)] hover:-translate-y-[1px] active:scale-[0.97]">
+            <a href="tel:0937148222" className="hidden sm:flex items-center gap-2 h-[40px] px-[18px] rounded-full bg-[#ff6a00] text-white no-underline text-[13px] font-semibold tracking-[0.01em] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:bg-[#ea5e00] hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)] hover:-translate-y-[1px] active:scale-[0.97]">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               Đặt hàng
             </a>
@@ -192,6 +193,7 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
           })}
         </div>
       </nav>
-    </div>
+      </div>
+    </>
   );
 }

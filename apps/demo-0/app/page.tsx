@@ -198,7 +198,7 @@ export default function HomePage() {
   }));
 
   return (
-    <div className="font-sans bg-[#fafaf8] text-[#16130f]">
+    <div className="font-sans bg-[#fafaf8] text-[#16130f] overflow-x-clip">
       <SiteHeader active="home" />
 
       {/* ═══════════ HERO BANNER (panoramic 3:1) ═══════════ */}
@@ -231,7 +231,7 @@ export default function HomePage() {
         <div className="border border-[#e9e6e1] bg-white rounded-3xl py-9 px-5 grid grid-cols-2 md:grid-cols-4 shadow-[0_30px_60px_-44px_rgba(22,19,15,0.18)] animate-fadeUp">
           {stats.map((st, idx) => (
             <div key={idx} style={{ borderLeft: st.borderLeft }} className="text-center px-3 py-1">
-              <p className="m-0 text-[46px] font-light tracking-[-0.02em] text-[#16130f]">
+              <p className="m-0 text-[34px] sm:text-[46px] font-light tracking-[-0.02em] text-[#16130f]">
                 <span ref={st.ref}>{st.value}</span>
                 <span className="text-[#ff6a00] font-normal">{st.plus}</span>
               </p>
@@ -246,14 +246,14 @@ export default function HomePage() {
         <div 
           aria-hidden="true"
           style={{ transform: "translate3d(0, var(--plxA, 0px), 0)" }}
-          className="absolute right-[-20px] top-[-30px] text-[148px] font-extrabold tracking-[-0.04em] leading-[1] text-transparent select-none pointer-events-none z-[-1] whitespace-nowrap font-serif [webkit-text-stroke:1.5px_#efe9e0] transition-transform duration-100"
+          className="hidden lg:block absolute right-[-20px] top-[-30px] text-[148px] font-extrabold tracking-[-0.04em] leading-[1] text-transparent select-none pointer-events-none z-[-1] whitespace-nowrap font-serif [webkit-text-stroke:1.5px_#efe9e0] transition-transform duration-100"
         >
           MÁY ẢNH
         </div>
         
         <div className="text-center animate-fadeUp">
           <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Danh mục sản phẩm</p>
-          <h2 className="mt-2.5 mb-0 text-[38px] font-light tracking-[-0.02em] text-[#16130f] text-balance">Khám phá thế giới nhiếp ảnh</h2>
+          <h2 className="mt-2.5 mb-0 text-[28px] sm:text-[38px] font-light tracking-[-0.02em] text-[#16130f] text-balance">Khám phá thế giới nhiếp ảnh</h2>
         </div>
         
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5">
@@ -279,13 +279,13 @@ export default function HomePage() {
 
       {/* ═══════════ TRẢI NGHIỆM 3D ═══════════ */}
       <section id="trai-nghiem-3d" data-screen-label="Trải nghiệm 3D" className="max-w-[1280px] mx-auto mt-[88px] px-8">
-        <div className="relative overflow-hidden bg-[#16130f] rounded-[28px] px-14 py-14 pb-[60px]">
+        <div className="relative overflow-hidden bg-[#16130f] rounded-[28px] px-6 py-10 sm:px-14 sm:py-14 sm:pb-[60px]">
           <div aria-hidden="true" className="absolute top-[-160px] left-[30%] w-[480px] h-[480px] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,0,0.28),transparent_70%)] blur-[20px] animate-[glowPulse_7s_ease-in-out_infinite]" />
           
           <div className="relative flex items-end justify-between gap-6 flex-wrap animate-fadeUp">
             <div>
               <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">Trải nghiệm 3D tương tác</p>
-              <h2 className="mt-3 mb-0 text-[40px] font-light tracking-[-0.02em] text-[#f7f4ef] text-balance">
+              <h2 className="mt-3 mb-0 text-[30px] sm:text-[40px] font-light tracking-[-0.02em] text-[#f7f4ef] text-balance">
                 Xem sản phẩm 360° <span className="font-semibold text-[#ff6a00]">trước khi mua</span>
               </h2>
               <p className="mt-3 mb-0 max-w-[520px] text-[15px] font-light leading-[1.6] text-[#a39d94]">

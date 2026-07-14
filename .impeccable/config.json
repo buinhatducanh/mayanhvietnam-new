@@ -108,11 +108,20 @@
       {
         "rule": "design-system-color",
         "value": "#ff6a00",
-        "files": [
-          "apps/demo-0/app/globals.css"
-        ],
-        "reason": "Project brand orange token used across all demo-0 components",
+        "reason": "User confirmed: demo-0 brand orange, used across all demo-0 components",
         "createdAt": "2026-07-13T08:19:51.906Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#fafaf8",
+        "reason": "User confirmed: demo-0 light page background",
+        "createdAt": "2026-07-14T09:00:00.000Z"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#e9e6e1",
+        "reason": "User confirmed: demo-0 border color",
+        "createdAt": "2026-07-14T09:00:00.000Z"
       },
       {
         "rule": "design-system-color",

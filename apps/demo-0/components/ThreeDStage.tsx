@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-declare global {
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       'glb-stage': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {

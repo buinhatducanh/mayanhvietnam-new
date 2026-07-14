@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { HeroSection } from '@/components/home/hero-section'
@@ -8,8 +8,10 @@ import { PromotionalBannersSection } from '@/components/home/promotional-banners
 import { TabbedProductSection } from '@/components/home/tabbed-product-section'
 import { ReviewsSection } from '@/components/home/reviews-section'
 import { NewsletterSection } from '@/components/home/newsletter-section'
+import { CategoryBannerCarousel } from '@/components/home/category-banner-carousel'
 import BrandSection from '@/components/brand-section'
 import { categories } from '@/lib/products'
+import { categoryBanners } from '@mayanhvietnam/mock-data'
 
 export default function HomePage() {
   return (
@@ -55,17 +57,37 @@ export default function HomePage() {
         {/* Promotional banner row — 4 banners (FLASH SALE / NỔI BẬT / KM / CŨ KM) */}
         <PromotionalBannersSection />
 
-        {/* TOP MÁY ẢNH */}
-        <TabbedProductSection heading="TOP MÁY ẢNH" categorySlug="may-anh" variant="cameras" />
+        {/* TOP MÁY ẢNH — banner carousel + product grid */}
+        <section className="mx-auto w-full max-w-7xl px-4 lg:px-8 space-y-5">
+          {categoryBanners['may-anh'] && categoryBanners['may-anh'].length > 0 && (
+            <CategoryBannerCarousel banners={categoryBanners['may-anh']} />
+          )}
+          <TabbedProductSection heading="TOP MÁY ẢNH" categorySlug="may-anh" variant="cameras" />
+        </section>
 
-        {/* TOP ỐNG KÍNH */}
-        <TabbedProductSection heading="TOP ỐNG KÍNH" categorySlug="ong-kinh" variant="lenses" />
+        {/* TOP ỐNG KÍNH — banner carousel + product grid */}
+        <section className="mx-auto w-full max-w-7xl px-4 lg:px-8 space-y-5">
+          {categoryBanners['ong-kinh'] && categoryBanners['ong-kinh'].length > 0 && (
+            <CategoryBannerCarousel banners={categoryBanners['ong-kinh']} />
+          )}
+          <TabbedProductSection heading="TOP ỐNG KÍNH" categorySlug="ong-kinh" variant="lenses" />
+        </section>
 
-        {/* TOP FLYCAM */}
-        <TabbedProductSection heading="TOP FLYCAM" categorySlug="flycam" variant="flycam" />
+        {/* TOP FLYCAM — banner carousel + product grid */}
+        <section className="mx-auto w-full max-w-7xl px-4 lg:px-8 space-y-5">
+          {categoryBanners['flycam'] && categoryBanners['flycam'].length > 0 && (
+            <CategoryBannerCarousel banners={categoryBanners['flycam']} />
+          )}
+          <TabbedProductSection heading="TOP FLYCAM" categorySlug="flycam" variant="flycam" />
+        </section>
 
-        {/* TOP ACTION CAMERA */}
-        <TabbedProductSection heading="TOP ACTION CAMERA" categorySlug="action-camera" variant="action" />
+        {/* TOP ACTION CAMERA — banner carousel + product grid */}
+        <section className="mx-auto w-full max-w-7xl px-4 lg:px-8 space-y-5">
+          {categoryBanners['action-camera'] && categoryBanners['action-camera'].length > 0 && (
+            <CategoryBannerCarousel banners={categoryBanners['action-camera']} />
+          )}
+          <TabbedProductSection heading="TOP ACTION CAMERA" categorySlug="action-camera" variant="action" />
+        </section>
 
         {/* Reviews section */}
         <ReviewsSection />

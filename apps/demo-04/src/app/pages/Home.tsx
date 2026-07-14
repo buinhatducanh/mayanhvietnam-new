@@ -4,7 +4,7 @@
  * Sections: Hero · Featured · Categories · Top Cameras · Top Lenses · YouTube · Newsletter
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router";
 import {
   ChevronRight, ChevronLeft, ArrowRight,
@@ -16,8 +16,11 @@ import {
   TOP_CAMERAS, TOP_LENSES,
   FEATURED_PRODUCT,
   REVIEWS_SECTION,
+  CATEGORY_BANNERS,
+  CATEGORY_SECTION_SLUGS,
   categories,
   PRODUCT_BY_SLUG,
+  type CategoryBanner,
 } from "../data";
 import { CAT_ICON_MAP } from "../components/BrandLogos";
 import { SectionHeader, ProductCard } from "../components/ui";
@@ -200,6 +203,252 @@ function CategoryGrid() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ── Category Banner Section — mỗi category có banner carousel riêng ──── */
+function CategoryBannerSection({ catSlug }: { catSlug: string }) {
+  const cat = categories.find((c: any) => c.slug === catSlug);
+  const banners = CATEGORY_BANNERS[catSlug] ?? [];
+  if (!cat) return null;
+
+  // Lấy sản phẩm thuộc category này từ PRODUCTS
+  const catProducts = Object.values(PRODUCT_BY_SLUG)
+    .filter((p) => {
+      const catLower = (p as any).category?.toLowerCase() ?? '';
+      return catLower === catSlug || catSlug.split('-').some((w) => catLower.includes(w));
+    })
+    .slice(0, 4);
+
+  const hasBanners = banners.length > 0;
+
+  return (
+    <section className="relative border-b border-border/30 bg-background">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,107,53,0.15)] to-transparent" />
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
+
+        {/* Section header */}
+        <div className="flex items-center justify-between pt-8 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-6 rounded-full" style={{ background: ACCENT }} />
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground">{cat.name}</h2>
+          </div>
+          <button
+            onClick={() => window.location.href = `/san-pham?cat=${catSlug}`}
+            className="flex items-center gap-1 text-xs font-semibold hover:underline"
+            style={{ color: ACCENT }}
+          >
+            Xem tất cả ›
+          </button>
+        </div>
+
+        {/* Banner Carousel */}
+        {hasBanners && <CategoryBannerCarousel banners={banners} />}
+
+        {/* Product Grid */}
+        {catProducts.length > 0 && (
+          <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 ${hasBanners ? 'mt-4' : ''}`}>
+            {catProducts.map((p) => (
+              <ProductMiniCard key={p.slug} product={p as any} />
+            ))}
+          </div>
+        )}
+
+        {/* Small Banner Carousel */}
+        {hasBanners && banners.length > 1 && (
+          <div className="mt-5">
+            <SmallBannerCarousel banners={banners} />
+          </div>
+        )}
+
+        {catProducts.length === 0 && !hasBanners && (
+          <div className="py-8 text-center">
+            <p className="text-sm text-muted-foreground">Sắp có hàng</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/* ── Category banner carousel lớn ──────────────────────────────── */
+function CategoryBannerCarousel({ banners }: { banners: CategoryBanner[] }) {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const next = useCallback(() => setActive((i) => (i + 1) % banners.length), [banners.length]);
+  const prev = useCallback(() => setActive((i) => (i - 1 + banners.length) % banners.length), [banners.length]);
+
+  useEffect(() => {
+    if (paused || banners.length <= 1) return;
+    const t = setInterval(next, 4500);
+    return () => clearInterval(t);
+  }, [paused, next, banners.length]);
+
+  if (banners.length === 0) return null;
+
+  return (
+    <div
+      className="relative rounded-xl overflow-hidden bg-black border border-border/40 shadow-lg shadow-black/20"
+      style={{ aspectRatio: '3/1' }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {banners.map((banner, i) => (
+        <a
+          key={banner.title}
+          href={banner.href}
+          className={`absolute inset-0 transition-opacity duration-500 ${i === active ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
+        >
+          <img
+            src={banner.image}
+            alt={banner.title}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-contain"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+          <div className="absolute bottom-4 left-5 sm:bottom-5 sm:left-6 right-4">
+            <p className="text-sm sm:text-base lg:text-lg font-bold text-white leading-tight">{banner.title}</p>
+            {banner.subtitle && (
+              <p className="text-[11px] sm:text-xs text-white/70 mt-1 line-clamp-1">{banner.subtitle}</p>
+            )}
+          </div>
+        </a>
+      ))}
+
+      {banners.length > 1 && (
+        <>
+          <button onClick={(e) => { e.preventDefault(); prev(); }}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-colors">
+            <ChevronLeft size={14} />
+          </button>
+          <button onClick={(e) => { e.preventDefault(); next(); }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white transition-colors">
+            <ChevronRight size={14} />
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ── Small banner carousel (bannerSileSmall-2 pattern) ──────────── */
+function SmallBannerCarousel({ banners }: { banners: CategoryBanner[] }) {
+  const [page, setPage] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const totalPages = Math.ceil(banners.length / 3);
+  const next = useCallback(() => setPage((p) => (p + 1) % totalPages), [totalPages]);
+  const prev = useCallback(() => setPage((p) => (p - 1 + totalPages) % totalPages), [totalPages]);
+
+  useEffect(() => {
+    if (paused || totalPages <= 1) return;
+    const t = setInterval(next, 4000);
+    return () => clearInterval(t);
+  }, [paused, next, totalPages]);
+
+  if (banners.length === 0) return null;
+
+  const translateX = `-${page * (100 / 3)}%`;
+
+  return (
+    <div
+      className="relative group/banner overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        className="flex transition-transform duration-300 ease-out"
+        style={{ transform: `translateX(${translateX})`, willChange: 'transform' }}
+      >
+        {banners.map((banner) => (
+          <div key={banner.title} className="shrink-0 w-full sm:w-1/3 px-1.5">
+            <a href={banner.href} className="block overflow-hidden rounded-xl bg-black">
+              <img
+                src={banner.image}
+                alt={banner.title}
+                loading="lazy"
+                className="w-full h-auto object-contain hover:opacity-90 transition-opacity"
+                style={{ aspectRatio: '1305 / 435' }}
+              />
+            </a>
+          </div>
+        ))}
+      </div>
+
+      {banners.length > 3 && (
+        <>
+          <button onClick={prev}
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white opacity-0 group-hover/banner:opacity-100 transition-opacity">
+            <ChevronLeft size={14} />
+          </button>
+          <button onClick={next}
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white opacity-0 group-hover/banner:opacity-100 transition-opacity">
+            <ChevronRight size={14} />
+          </button>
+        </>
+      )}
+
+      {totalPages > 1 && (
+        <div className="flex justify-center gap-1.5 mt-3">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i)}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === page ? 20 : 6, height: 6,
+                background: i === page ? ACCENT : 'hsl(var(--muted-foreground) / 0.3)',
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Product mini card (cho category section) ──────────────────── */
+function ProductMiniCard({ product }: { product: any }) {
+  const discount = product.originalPrice
+    ? Math.round((1 - product.price / product.originalPrice) * 100)
+    : 0;
+
+  return (
+    <div
+      onClick={() => window.location.href = `/san-pham/${product.slug}`}
+      className="group flex flex-col rounded-xl border border-border/50 bg-card overflow-hidden hover:border-[rgba(255,107,53,0.25)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 cursor-pointer"
+    >
+      <div className="relative aspect-square overflow-hidden bg-muted">
+        <img
+          src={product.img || product.image || ''}
+          alt={product.name}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+        />
+        {discount > 0 && (
+          <span
+            className="absolute left-2 top-2 rounded-md px-2 py-0.5 text-[10px] font-mono font-bold bg-primary text-primary-foreground"
+          >
+            -{discount}%
+          </span>
+        )}
+      </div>
+      <div className="p-3 flex flex-col flex-1">
+        <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-muted-foreground/60 mb-1">
+          {product.brand}
+        </p>
+        <p className="text-xs font-medium text-foreground line-clamp-2 leading-snug min-h-[2rem] group-hover:text-[var(--accent,#FF6B35)] transition-colors">
+          {product.name}
+        </p>
+        <div className="mt-auto pt-2 flex items-baseline gap-1.5">
+          <span className="font-mono font-bold text-sm" style={{ color: ACCENT }}>{vnd(product.price)}</span>
+          {discount > 0 && product.originalPrice && (
+            <span className="text-[10px] font-mono text-muted-foreground line-through">{vnd(product.originalPrice)}</span>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -438,6 +687,10 @@ export default function Home() {
       <HeroCarousel />
       <FeaturedSection />
       <CategoryGrid />
+      {/* ── CATEGORY BANNER SECTIONS — mỗi category có banner carousel riêng ── */}
+      {CATEGORY_SECTION_SLUGS.map((slug) => (
+        <CategoryBannerSection key={slug} catSlug={slug} />
+      ))}
       <ProductRow
         title="Máy ảnh nổi bật"
         eyebrow="TOP CAMERAS"

@@ -37,15 +37,16 @@ export function Navbar() {
           <div className="flex items-center h-[72px] gap-8">
 
             {/* Logo */}
-            <a
-              href="#"
-              className="flex-shrink-0 text-[#141414]"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              <span className="text-sm font-bold tracking-[0.25em] uppercase">MÁY ẢNH</span>
-              <span className={`ml-2 text-sm font-light tracking-[0.25em] uppercase transition-colors duration-500 ${
-                scrolled ? 'text-[#E8611E]' : 'text-[#E8611E]'
-              }`}>VIỆT NAM</span>
+            <a href="#" className="flex-shrink-0 flex items-center" aria-label="Máy Ảnh Việt Nam">
+              <span className="inline-flex items-center rounded-md px-2.5 py-1.5 bg-[#E8611E]">
+                <img
+                  src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                  alt="Máy Ảnh Việt Nam"
+                  width={140}
+                  height={28}
+                  className="h-[28px] w-[140px] object-contain object-left"
+                />
+              </span>
             </a>
 
             {/* Center nav — only in scrolled mode */}

@@ -102,3 +102,13 @@ export {
   type BrandMeta,
   type BrandBanner,
 } from './brand-banners';
+
+// ─── Brand logos ─────────────────────────────────────────────────────────────
+export {
+  BRAND_LOGOS,
+  getBrandLogo,
+  getBrandLogoUrl,
+  getAllBrandNames,
+  type BrandName,
+  type BrandLogoEntry,
+} from './brand-logos';

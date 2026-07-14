@@ -125,25 +125,14 @@ export default function AuthModal({ open, initialMode = "login", onClose }: Auth
 
           {/* Logo + heading */}
           <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-8">
-              <div
-                className="w-11 h-11 rounded-2xl flex items-center justify-center"
-                style={{
-                  background: "rgba(255,255,255,0.18)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22), 0 4px 14px rgba(0,0,0,0.18)",
-                  border: "1.5px solid rgba(255,255,255,0.28)",
-                }}
-              >
-                <Camera size={22} className="text-white drop-shadow" />
-              </div>
-              <div className="leading-tight">
-                <div className="text-[15px] font-black tracking-[0.08em] text-white drop-shadow">
-                  MÁY ẢNH VIỆT NAM
-                </div>
-                <div className="text-[10px] font-medium tracking-[0.18em] text-white/70 mt-0.5">
-                  Vì lợi ích khách hàng
-                </div>
-              </div>
+            <div className="flex items-center mb-8">
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                alt="Máy Ảnh Việt Nam"
+                width={180}
+                height={36}
+                className="h-[36px] w-[180px] object-contain object-left drop-shadow"
+              />
             </div>
 
             <h1 className="text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight mb-3 drop-shadow-lg">
@@ -214,11 +203,16 @@ export default function AuthModal({ open, initialMode = "login", onClose }: Auth
           </button>
 
           {/* Mobile logo (chỉ hiện mobile) */}
-          <div className="md:hidden flex items-center gap-2.5 mb-6">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: ACCENT }}>
-              <Camera size={18} className="text-white" />
+          <div className="md:hidden flex items-center mb-6">
+            <div className="rounded-xl px-3 py-2" style={{ background: ACCENT }}>
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                alt="Máy Ảnh Việt Nam"
+                width={130}
+                height={26}
+                className="h-[26px] w-[130px] object-contain object-left block"
+              />
             </div>
-            <div className="text-sm font-black tracking-tight">Máy Ảnh Việt Nam</div>
           </div>
 
           {/* Tabs */}

@@ -10,16 +10,37 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: #16130f;
-}
+/* Đặt trong @layer base để utility class (text-white, text-primary...) có thể ghi đè —
+   rule ngoài layer sẽ thắng mọi utility của Tailwind v4 và làm link trắng hóa đen */
+@layer base {
+  a {
+    color: #16130f;
+  }
 
-a:hover {
-  color: #ff6a00;
+  a:hover {
+    color: #ff6a00;
+  }
 }
 
 ::selection {
   background: rgba(255, 106, 0, 0.22);
+}
+
+/* Focus ring hiển thị rõ cho điều hướng bàn phím (WCAG 2.2 AA) */
+:focus-visible {
+  outline: 2px solid #ff6a00;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Ẩn scrollbar cho các dải cuộn ngang (nav danh mục, carousel) */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes heroFloat {
@@ -197,4 +218,53 @@ a:hover {
 
 .animate-ringSpin {
   animation: ringSpin 40s linear infinite;
+}
+
+/* Lưới sản phẩm trang danh mục: hiện dần khi đổi bộ lọc, stagger nhẹ theo thứ tự */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise-in > * {
+  animation: riseIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-rise-in > *:nth-child(2) { animation-delay: 45ms; }
+.animate-rise-in > *:nth-child(3) { animation-delay: 90ms; }
+.animate-rise-in > *:nth-child(4) { animation-delay: 135ms; }
+.animate-rise-in > *:nth-child(5) { animation-delay: 180ms; }
+.animate-rise-in > *:nth-child(6) { animation-delay: 225ms; }
+.animate-rise-in > *:nth-child(n + 7) { animation-delay: 270ms; }
+
+/* Cart drawer animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Tôn trọng cài đặt giảm chuyển động của người dùng (WCAG 2.2) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -1,6 +1,7 @@
 import { CartPage } from './components/cart/CartPage'
 import { useState } from 'react'
 import { SharedNavbar }   from './components/homepage/SharedNavbar'
+import { StoryRail }      from './components/homepage/StoryRail'
 import { CinematicScene } from './components/homepage/CinematicScene'
 import { Scene2 }         from './components/homepage/Scene2'
 import { Scene3 }         from './components/homepage/Scene3'
@@ -104,6 +105,12 @@ export default function App() {
           Persists identically across every scene.
       ─────────────────────────────────────────────────── */}
       <SharedNavbar onNavigate={handleNavigate} cartCount={cartCount} />
+
+      {/* ── STORY PROGRESS RAIL ────────────────────────────
+          Fixed film-strip counter on the right edge:
+          7 frame ticks + 01·07 readout, click to jump.
+      ─────────────────────────────────────────────────── */}
+      <StoryRail />
 
       {/* ── SCENES ─────────────────────────────────────────
           Scroll-snap mandatory — one scene per viewport.

@@ -73,13 +73,15 @@ export function SiteHeader() {
             {mobileOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
 
-          <Link href="/" className="flex shrink-0 items-center gap-3">
-            <span className="brand-glow flex size-10 items-center justify-center rounded-xl bg-primary">
-              <Camera className="size-5 text-primary-foreground" aria-hidden="true" />
-            </span>
-            <span className="hidden flex-col sm:flex">
-              <span className="font-serif text-lg font-bold tracking-wide">MÁY ẢNH VIỆT NAM</span>
-              <span className="text-[11px] italic text-primary">Vì lợi ích khách hàng</span>
+          <Link href="/" className="flex shrink-0 items-center">
+            <span className="brand-glow flex items-center rounded-xl bg-primary px-3 py-2">
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                alt="Máy Ảnh Việt Nam"
+                width={145}
+                height={29}
+                className="h-[29px] w-[145px] object-contain object-left"
+              />
             </span>
           </Link>
 

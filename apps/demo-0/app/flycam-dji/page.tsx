@@ -341,20 +341,20 @@ export default function FlycamDjiShowcasePage() {
 
           {/* Layer 3: Hero overlay copy */}
           <div ref={heroRef} className="absolute inset-0 z-20 flex items-center will-change-transform">
-            <div className="w-full max-w-[1280px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="w-full max-w-[1280px] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="pointer-events-auto">
                 <div className="inline-flex items-center gap-2 border border-[rgba(255,106,0,0.35)] bg-[rgba(255,106,0,0.07)] backdrop-blur-[6px] rounded-full px-[15px] py-[7px]">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" strokeWidth="2.2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg>
                   <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#c85200]">Giảm 10% hôm nay · OcuSync 2.0 10km</span>
                 </div>
-                <h1 className="mt-6 mb-0 text-[76px] leading-[1.02] font-extralight tracking-[-0.025em] text-[#16130f]">
+                <h1 className="mt-6 mb-0 text-[44px] sm:text-[60px] lg:text-[76px] leading-[1.05] font-extralight tracking-[-0.025em] text-[#16130f]">
                   DJI Mavic <span className="font-bold text-[#ff6a00]">Air 2</span>
                 </h1>
                 <p className="mt-5 max-w-[420px] text-[18px] font-light leading-[1.6] text-[#7a746c]">
                   Bầu trời trong tầm tay — camera 48MP sắc nét, thời gian bay 34 phút ấn tượng và truyền sóng 10km.
                 </p>
                 <div className="flex items-baseline gap-3.5 mt-7">
-                  <span className="text-[32px] font-medium tracking-[-0.01em]">17.900.000đ</span>
+                  <span className="text-[26px] sm:text-[32px] font-medium tracking-[-0.01em]">17.900.000đ</span>
                   <span className="text-[17px] text-[#a39d94] line-through">19.900.000đ</span>
                 </div>
                 <p className="flex items-center gap-2 mt-[30px] text-[14px] text-[#7a746c]">
@@ -379,32 +379,32 @@ export default function FlycamDjiShowcasePage() {
           {/* Layer 3b: specs phase title */}
           <div ref={specsTitleRef} className="absolute left-0 right-0 top-24 z-20 text-center pointer-events-none opacity-0">
             <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Thông số kỹ thuật</p>
-            <h2 className="mt-2.5 mb-0 text-[40px] font-extralight tracking-[-0.02em] text-[#16130f]">Phô diễn mọi góc cạnh</h2>
+            <h2 className="mt-2.5 mb-0 text-[28px] sm:text-[40px] font-extralight tracking-[-0.02em] text-[#16130f]">Phô diễn mọi góc cạnh</h2>
           </div>
 
           {/* Spec callouts */}
-          <div className="absolute inset-0 z-20 flex items-center justify-between px-16 pointer-events-none">
+          <div className="absolute inset-0 z-20 flex items-center justify-between px-4 sm:px-10 lg:px-16 pointer-events-none">
             <div className="flex flex-col gap-20">
               <div ref={co0} className="flex items-center opacity-0 will-change-transform">
-                <div className="max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
+                <div className="max-w-[150px] sm:max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
                   <p className="m-0 font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-[#ff6a00]">Camera</p>
                   <p className="mt-1 mb-0 text-[14.5px] font-bold text-[#16130f]">Cảm biến 1/2"</p>
                   <p className="mt-[2px] mb-0 text-[12.5px] text-[#7a746c]">Chụp ảnh 48MP, 4K 60fps</p>
                 </div>
                 <div className="flex items-center">
-                  <div className="h-[1px] w-[110px] bg-gradient-to-r from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
+                  <div className="hidden lg:block h-[1px] w-[110px] bg-gradient-to-r from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
                   <span className="w-1.8 h-1.8 rounded-full bg-[#ff6a00] shadow-[0_0_10px_3px_rgba(255,106,0,0.45)]" />
                 </div>
               </div>
 
               <div ref={co2} className="flex items-center opacity-0 will-change-transform">
-                <div className="max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
+                <div className="max-w-[150px] sm:max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
                   <p className="m-0 font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-[#ff6a00]">Safety</p>
                   <p className="mt-1 mb-0 text-[14.5px] font-bold text-[#16130f]">Tránh vật cản</p>
                   <p className="mt-[2px] mb-0 text-[12.5px] text-[#7a746c]">Cảm biến APAS 3.0</p>
                 </div>
                 <div className="flex items-center">
-                  <div className="h-[1px] w-[130px] bg-gradient-to-r from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
+                  <div className="hidden lg:block h-[1px] w-[130px] bg-gradient-to-r from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
                   <span className="w-1.8 h-1.8 rounded-full bg-[#ff6a00] shadow-[0_0_10px_3px_rgba(255,106,0,0.45)]" />
                 </div>
               </div>
@@ -412,25 +412,25 @@ export default function FlycamDjiShowcasePage() {
 
             <div className="flex flex-col gap-20">
               <div ref={co1} className="flex items-center flex-row-reverse opacity-0 will-change-transform">
-                <div className="max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
+                <div className="max-w-[150px] sm:max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
                   <p className="m-0 font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-[#ff6a00]">Battery</p>
                   <p className="mt-1 mb-0 text-[14.5px] font-bold text-[#16130f]">Thời gian bay</p>
                   <p className="mt-[2px] mb-0 text-[12.5px] text-[#7a746c]">Tối đa 34 phút liên tục</p>
                 </div>
                 <div className="flex items-center flex-row-reverse">
-                  <div className="h-[1px] w-[120px] bg-gradient-to-l from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
+                  <div className="hidden lg:block h-[1px] w-[120px] bg-gradient-to-l from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
                   <span className="w-1.8 h-1.8 rounded-full bg-[#ff6a00] shadow-[0_0_10px_3px_rgba(255,106,0,0.45)]" />
                 </div>
               </div>
 
               <div ref={co3} className="flex items-center flex-row-reverse opacity-0 will-change-transform">
-                <div className="max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
+                <div className="max-w-[150px] sm:max-w-[210px] border border-[#e9e6e1] bg-white/88 backdrop-blur-[8px] rounded-xl p-[13px_17px] shadow-[0_18px_40px_-18px_rgba(22,19,15,0.2)]">
                   <p className="m-0 font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-[#ff6a00]">Transmission</p>
                   <p className="mt-1 mb-0 text-[14.5px] font-bold text-[#16130f]">Truyền sóng xa</p>
                   <p className="mt-[2px] mb-0 text-[12.5px] text-[#7a746c]">OcuSync 2.0 lên tới 10km</p>
                 </div>
                 <div className="flex items-center flex-row-reverse">
-                  <div className="h-[1px] w-[140px] bg-gradient-to-l from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
+                  <div className="hidden lg:block h-[1px] w-[140px] bg-gradient-to-l from-[rgba(255,106,0,0.7)] to-[rgba(255,106,0,0.15)]" />
                   <span className="w-1.8 h-1.8 rounded-full bg-[#ff6a00] shadow-[0_0_10px_3px_rgba(255,106,0,0.45)]" />
                 </div>
               </div>
@@ -519,14 +519,14 @@ export default function FlycamDjiShowcasePage() {
       <SiteFooter />
 
       {/* Sticky buy bar */}
-      <div ref={buyBarRef} className="fixed left-0 right-0 bottom-0 z-50 translate-y-[110%] transition-transform duration-400 cubic-bezier(0.22,1,0.36,1)">
-        <div className="max-w-[1080px] mx-auto mb-[18px] px-6 py-3.5 border border-[#e9e6e1] bg-[rgba(255,255,255,0.92)] backdrop-blur-[14px] rounded-2xl shadow-[0_24px_60px_-20px_rgba(22,19,15,0.3)] flex items-center gap-[18px]">
-          <span className="w-2.2 height-2.2 rounded-full bg-[#1a9e5c] shadow-[0_0_8px_2px_rgba(26,158,92,0.4)] shrink-0" />
+      <div ref={buyBarRef} style={{ transform: "translateY(110%)" }} className="fixed left-0 right-0 bottom-0 z-50 transition-transform duration-400 cubic-bezier(0.22,1,0.36,1)">
+        <div className="max-w-[1080px] mx-4 xl:mx-auto mb-[18px] px-4 sm:px-6 py-3.5 border border-[#e9e6e1] bg-[rgba(255,255,255,0.92)] backdrop-blur-[14px] rounded-2xl shadow-[0_24px_60px_-20px_rgba(22,19,15,0.3)] flex items-center gap-3 sm:gap-[18px]">
+          <span className="w-2 h-2 rounded-full bg-[#1a9e5c] shadow-[0_0_8px_2px_rgba(26,158,92,0.4)] shrink-0" />
           <div className="min-w-0 flex-1">
             <p className="m-0 text-[14.5px] font-bold text-[#16130f] truncate">DJI Mavic Air 2 — Chính hãng</p>
             <p className="mt-[1px] mb-0 font-mono text-[10px] uppercase tracking-[0.12em] text-[#a39d94]">Còn hàng · Bảo hành 12 tháng</p>
           </div>
-          <div className="flex items-baseline gap-2.5">
+          <div className="hidden sm:flex items-baseline gap-2.5">
             <span className="text-[19px] font-bold text-[#ff6a00]">17.900.000đ</span>
             <span className="text-[13px] text-[#a39d94] line-through">19.900.000đ</span>
           </div>

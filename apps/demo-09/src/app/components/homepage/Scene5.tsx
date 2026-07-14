@@ -64,8 +64,9 @@ export function Scene5() {
     }
   }, [entered])
 
-  // Mouse Move listener
+  // Mouse Move listener (skipped for reduced motion)
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window
       const x = (e.clientX / innerWidth) - 0.5
@@ -78,6 +79,7 @@ export function Scene5() {
 
   // Lerp parallax values
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let frameId: number
     const update = () => {
       setMouse(prev => ({
@@ -92,42 +94,7 @@ export function Scene5() {
 
   const live = entered && imgReady
 
-  // Add styles for keyframes dynamically if not present
-  useEffect(() => {
-    if (!document.getElementById('scene5-photo-styles')) {
-      const style = document.createElement('style')
-      style.id = 'scene5-photo-styles'
-      style.innerHTML = `
-        @keyframes fog-move {
-          0% { transform: translateX(-5%) translateY(0) scale(1); opacity: 0.18; }
-          50% { transform: translateX(5%) translateY(-5px) scale(1.05); opacity: 0.35; }
-          100% { transform: translateX(-5%) translateY(0) scale(1); opacity: 0.18; }
-        }
-        @keyframes lake-ripple {
-          0% { transform: scaleY(1) translateY(0); opacity: 0.25; }
-          50% { transform: scaleY(1.03) translateY(2px); opacity: 0.45; }
-          100% { transform: scaleY(1) translateY(0); opacity: 0.25; }
-        }
-        @keyframes cloud-drift-slow {
-          0% { transform: translateX(-2%) scale(1); }
-          100% { transform: translateX(2%) scale(1.02); }
-        }
-        @keyframes bird-fly-path {
-          0% { transform: translateX(-50px) translateY(20px) scale(0.6); opacity: 0; }
-          10% { opacity: 0.4; }
-          90% { opacity: 0.4; }
-          100% { transform: translateX(350px) translateY(-30px) scale(0.8); opacity: 0; }
-        }
-        @keyframes focus-ping {
-          0% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
-          20% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-          80% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-          100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0; }
-        }
-      `
-      document.head.appendChild(style)
-    }
-  }, [])
+  // Scene keyframes live in styles/story.css
 
   // Handle focusing points logic
   const triggerFocus = (id: number) => {
@@ -181,6 +148,7 @@ export function Scene5() {
           src={BG}
           alt="Breathtaking mountain landscape with mist and water reflection"
           onLoad={() => setImgReady(true)}
+          onError={() => setImgReady(true)}
           style={{
             width: '100%',
             height: '100%',
@@ -401,26 +369,27 @@ export function Scene5() {
           zIndex: 20,
         }}
       >
-        {/* Label */}
+        {/* Film-slate marker */}
         <span
           style={{
             color: 'rgba(255, 255, 255, 0.65)',
-            fontSize: '11px',
-            fontWeight: 600,
+            fontFamily: 'var(--font-mono-brand)',
+            fontSize: '10px',
+            fontWeight: 400,
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
             display: 'block',
             marginBottom: '16px',
             opacity: entered ? 1 : 0,
             transform: entered ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            transition: 'opacity 1.2s var(--ease-standard), transform 1.2s var(--ease-standard)',
             transitionDelay: '400ms',
           }}
         >
-          TÁC PHẨM
+          05 — Tác phẩm
         </span>
 
-        {/* Headline */}
+        {/* Headline — the image develops: blurred negative → sharp print */}
         <h2
           style={{
             fontFamily: 'var(--font-display)',
@@ -431,8 +400,9 @@ export function Scene5() {
             letterSpacing: '0.01em',
             margin: '0 auto 20px auto',
             opacity: entered ? 1 : 0,
-            transform: entered ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            filter: entered ? 'blur(0)' : 'blur(11px)',
+            transform: entered ? 'translateY(0)' : 'translateY(14px)',
+            transition: 'opacity 1.5s var(--ease-standard), filter 1.9s var(--ease-standard), transform 1.5s var(--ease-standard)',
             transitionDelay: '600ms',
             textShadow: '0 2px 15px rgba(0,0,0,0.4)',
           }}

@@ -1,0 +1,293 @@
+/* ═══════════════════════════════════════════════════════════════
+   STORY — keyframes for the 7-scene cinematic homepage.
+   Single source of truth: scenes reference these by name from
+   inline `animation` values. Names are shared across scenes only
+   when the motion is genuinely identical.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Scene 1 · The frame ─────────────────────────────────────── */
+
+/* Both the base image and the clipped vivid window share this so
+   they stay pixel-aligned while the photo slowly "breathes". */
+@keyframes scene-breathe {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* A leaf detaches near the tree, sways as it falls the full
+   viewport, and fades before touching the ground. */
+@keyframes s1-leaf-fall {
+  0%   { transform: translate3d(0, -4vh, 0) rotate(0deg); opacity: 0; }
+  6%   { opacity: 0.9; }
+  25%  { transform: translate3d(-22px, 24vh, 0) rotate(70deg); }
+  50%  { transform: translate3d(14px, 52vh, 0) rotate(160deg); }
+  75%  { transform: translate3d(-18px, 80vh, 0) rotate(240deg); }
+  92%  { opacity: 0.85; }
+  100% { transform: translate3d(8px, 104vh, 0) rotate(320deg); opacity: 0; }
+}
+
+/* Scroll hint: a bright segment sweeps down a hairline track. */
+@keyframes s1-hint-sweep {
+  0%   { transform: translateY(-100%); }
+  55%  { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* ── Scene 2 · Dawn ──────────────────────────────────────────── */
+
+@keyframes scene2-ken-burns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.055) translateY(-6px); }
+}
+
+/* ── Scene 3 · The desk (cinemagraph) ────────────────────────── */
+
+@keyframes push-in {
+  0%   { transform: scale(1.01); }
+  100% { transform: scale(1.03); }
+}
+@keyframes exposure-breathe {
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(1.02) contrast(1.01); }
+  100% { filter: brightness(1); }
+}
+@keyframes dust-float {
+  0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-120px) translateX(30px) rotate(360deg); opacity: 0; }
+}
+@keyframes volumetric-drift {
+  0%   { opacity: 0.15; transform: skewX(-5deg) translateX(-10px); }
+  50%  { opacity: 0.22; transform: skewX(-2deg) translateX(10px); }
+  100% { opacity: 0.15; transform: skewX(-5deg) translateX(-10px); }
+}
+@keyframes lens-flare-glow {
+  0%   { opacity: 0.2; transform: scale(1); }
+  50%  { opacity: 0.35; transform: scale(1.05); }
+  100% { opacity: 0.2; transform: scale(1); }
+}
+@keyframes steam-rise-slow {
+  0%   { transform: translateY(10px) scale(0.9); opacity: 0; }
+  15%  { opacity: 0.18; }
+  50%  { transform: translateY(-30px) scale(1.1); opacity: 0.12; }
+  80%  { opacity: 0.05; }
+  100% { transform: translateY(-60px) scale(1.3); opacity: 0; }
+}
+@keyframes steam-rise-strong {
+  0%   { transform: translateY(10px) scale(0.9); opacity: 0; }
+  15%  { opacity: 0.35; }
+  50%  { transform: translateY(-40px) scale(1.3); opacity: 0.25; }
+  80%  { opacity: 0.1; }
+  100% { transform: translateY(-80px) scale(1.6); opacity: 0; }
+}
+@keyframes reflection-sweep {
+  0%   { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
+}
+@keyframes shadow-sway {
+  0%   { transform: translateY(0) translateX(0) scaleY(1); }
+  50%  { transform: translateY(5px) translateX(2px) scaleY(1.02); }
+  100% { transform: translateY(0) translateX(0) scaleY(1); }
+}
+
+/* ── Scene 4 · The lens (also reused by Scene 6 panels) ──────── */
+
+@keyframes lens-zoom {
+  0%   { transform: scale(1.02); }
+  100% { transform: scale(1.04); }
+}
+@keyframes coating-light-sweep {
+  0%   { transform: translate(-30%, -30%) rotate(0deg); opacity: 0.2; }
+  50%  { transform: translate(10%, 10%) rotate(180deg); opacity: 0.5; }
+  100% { transform: translate(-30%, -30%) rotate(360deg); opacity: 0.2; }
+}
+@keyframes aperture-blade-breathe {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(8deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+@keyframes soft-breathe {
+  0%   { filter: brightness(0.97) contrast(0.99); }
+  50%  { filter: brightness(1.02) contrast(1.01); }
+  100% { filter: brightness(0.97) contrast(0.99); }
+}
+@keyframes dust-drift-fast {
+  0%   { transform: translateY(50px) translateX(-20px); opacity: 0; }
+  20%  { opacity: 0.35; }
+  80%  { opacity: 0.35; }
+  100% { transform: translateY(-70px) translateX(20px); opacity: 0; }
+}
+@keyframes bokeh-glow-1 {
+  0%   { opacity: 0.1; transform: scale(0.9); }
+  50%  { opacity: 0.35; transform: scale(1.1); }
+  100% { opacity: 0.1; transform: scale(0.9); }
+}
+@keyframes bokeh-glow-2 {
+  0%   { opacity: 0.15; transform: scale(1.1); }
+  50%  { opacity: 0.28; transform: scale(0.95); }
+  100% { opacity: 0.15; transform: scale(1.1); }
+}
+
+/* ── Scene 5 · The photograph ────────────────────────────────── */
+
+@keyframes fog-move {
+  0%   { transform: translateX(-5%) translateY(0) scale(1); opacity: 0.18; }
+  50%  { transform: translateX(5%) translateY(-5px) scale(1.05); opacity: 0.35; }
+  100% { transform: translateX(-5%) translateY(0) scale(1); opacity: 0.18; }
+}
+@keyframes lake-ripple {
+  0%   { transform: scaleY(1) translateY(0); opacity: 0.25; }
+  50%  { transform: scaleY(1.03) translateY(2px); opacity: 0.45; }
+  100% { transform: scaleY(1) translateY(0); opacity: 0.25; }
+}
+@keyframes cloud-drift-slow {
+  0%   { transform: translateX(-2%) scale(1); }
+  100% { transform: translateX(2%) scale(1.02); }
+}
+@keyframes bird-fly-path {
+  0%   { transform: translateX(-50px) translateY(20px) scale(0.6); opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateX(350px) translateY(-30px) scale(0.8); opacity: 0; }
+}
+@keyframes focus-ping {
+  0%   { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+  20%  { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  80%  { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0; }
+}
+
+/* ── Scene 6 · Six worlds ────────────────────────────────────── */
+
+@keyframes rain-fall {
+  0%   { background-position: 0px 0px; }
+  100% { background-position: 400px 800px; }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+@keyframes shooting-star {
+  0%   { transform: translateX(0) translateY(0) rotate(-45deg); width: 0; opacity: 0; }
+  10%  { opacity: 1; width: 40px; }
+  30%  { transform: translateX(200px) translateY(200px) rotate(-45deg); width: 0; opacity: 0; }
+  100% { transform: translateX(200px) translateY(200px) rotate(-45deg); width: 0; opacity: 0; }
+}
+/* Contact-sheet reveal: each panel develops top-to-bottom as the
+   scene enters, staggered left→right. */
+@keyframes s6-panel-reveal {
+  from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(16px); }
+  to   { opacity: 1; clip-path: inset(0 0 0 0);    transform: translateY(0); }
+}
+
+/* Renamed from the old injected `leaf-sway`, which collided with
+   Scene 1's falling leaves. */
+@keyframes forest-sway {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(1deg) scale(1.02); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes water-sway {
+  0%   { transform: scaleY(1); }
+  50%  { transform: scaleY(1.03) translateY(2px); }
+  100% { transform: scaleY(1); }
+}
+@keyframes portrait-hair {
+  0%, 100% { transform: rotate(0deg) skewX(0deg); }
+  50%      { transform: rotate(0.8deg) skewX(1deg); }
+}
+
+/* ── Scene 7 · The closing ───────────────────────────────────── */
+
+@keyframes sf-ken {
+  0%   { transform: scale(1.00); }
+  100% { transform: scale(1.04); }
+}
+@keyframes sf-breathe {
+  0%, 100% { filter: brightness(0.88) saturate(1.08); }
+  50%      { filter: brightness(0.95) saturate(1.14); }
+}
+@keyframes sf-expose-up {
+  from { filter: brightness(0.88) saturate(1.08); }
+  to   { filter: brightness(1.06) saturate(1.2); }
+}
+@keyframes sf-cloud {
+  0%   { transform: translateX(-4%) scale(1.03); opacity: 0.20; }
+  50%  { transform: translateX(3%)  scale(1.06); opacity: 0.32; }
+  100% { transform: translateX(-4%) scale(1.03); opacity: 0.20; }
+}
+@keyframes sf-ripple {
+  0%, 100% { opacity: 0.08; transform: scaleY(1); }
+  50%      { opacity: 0.22; transform: scaleY(1.04); }
+}
+@keyframes sf-grass {
+  0%, 100% { transform: skewX(0deg)   scaleY(1);    opacity: 0.10; }
+  50%      { transform: skewX(0.6deg) scaleY(1.02); opacity: 0.20; }
+}
+@keyframes sf-sun-flicker {
+  0%, 100% { opacity: 0.06; }
+  33%      { opacity: 0.14; }
+  66%      { opacity: 0.08; }
+}
+@keyframes sf-bird-fly {
+  0%   { transform: translateX(-130px); opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 130px)); opacity: 0; }
+}
+@keyframes sf-bird-bob {
+  0%   { top: 31%; }
+  30%  { top: 29%; }
+  65%  { top: 31.5%; }
+  100% { top: 30%; }
+}
+@keyframes sf-wing-left {
+  0%   { transform: rotate(-38deg); }
+  50%  { transform: rotate(18deg); }
+  100% { transform: rotate(-38deg); }
+}
+@keyframes sf-wing-right {
+  0%   { transform: rotate(38deg); }
+  50%  { transform: rotate(-18deg); }
+  100% { transform: rotate(38deg); }
+}
+@keyframes sf-focus {
+  0%   { filter: blur(10px); opacity: 0; transform: translateY(12px); }
+  60%  { filter: blur(1.5px); opacity: 0.85; }
+  100% { filter: blur(0);    opacity: 1;    transform: translateY(0); }
+}
+@keyframes sf-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sf-cta-appear {
+  0%   { filter: blur(8px);  opacity: 0;   transform: scale(0.96); box-shadow: none; }
+  55%  { filter: blur(1px);  opacity: 0.9; transform: scale(1.01); }
+  80%  { filter: blur(0);    opacity: 1;   transform: scale(1);    box-shadow: 0 0 30px rgba(232,97,30,0.5); }
+  100% { filter: blur(0);    opacity: 1;   transform: scale(1);    box-shadow: 0 4px 20px rgba(232,97,30,0.3); }
+}
+@keyframes sf-cta-sweep {
+  from { left: -70%; }
+  to   { left: 160%; }
+}
+@keyframes sf-dust {
+  0%   { transform: translateY(18px) translateX(-10px); opacity: 0; }
+  20%  { opacity: 0.4; }
+  80%  { opacity: 0.4; }
+  100% { transform: translateY(-50px) translateX(10px); opacity: 0; }
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────
+   Every reveal in the story is gated on IntersectionObserver state,
+   so collapsing durations makes content appear instantly in place —
+   a crossfade-free but complete experience. Cinemagraph loops
+   (dust, fog, steam, birds) simply stop. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

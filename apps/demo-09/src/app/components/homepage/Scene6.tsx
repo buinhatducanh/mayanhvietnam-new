@@ -3,18 +3,19 @@ import { useEffect, useRef, useState } from 'react'
 interface WorldPanel {
   id: number
   name: string
+  viName: string
   bg: string
   camera: string
   desc: string
 }
 
 const WORLDS: WorldPanel[] = [
-  { id: 0, name: 'Mountains', bg: '/landscape_reflection.png', camera: 'Sony A7R V', desc: 'Bình minh vàng. Mây trôi chậm. Sương mù trôi. Cỏ chuyển động.' },
-  { id: 1, name: 'Ocean', bg: '/ocean.png', camera: 'Canon EOS R5 II', desc: 'Hoàng hôn cam. Sóng êm đềm. Chim bay. Phản chiếu ấm áp.' },
-  { id: 2, name: 'Forest', bg: '/forest.png', camera: 'Sony A7R V', desc: 'Ánh sáng qua kẽ lá. Bụi mịn bay. Gió thoảng.' },
-  { id: 3, name: 'City', bg: '/city.png', camera: 'Canon EOS R5 II', desc: 'Mưa rơi. Ánh đèn chuyển động. Đèn giao thông. Phản chiếu neon.' },
-  { id: 4, name: 'Night Sky', bg: '/nightsky.png', camera: 'Sony A7R V', desc: 'Ngôi sao lấp lánh. Dải Ngân Hà. Mây trôi nhẹ. Sao băng.' },
-  { id: 5, name: 'Portrait', bg: '/portrait.png', camera: 'Fujifilm X100VI', desc: 'Bóng đen huyền bí. Tóc bay nhẹ trong gió. Không thấy mặt.' },
+  { id: 0, name: 'Mountains', viName: 'Núi rừng',  bg: '/landscape_reflection.png', camera: 'Sony A7R V',      desc: 'Bình minh vàng. Mây trôi chậm. Sương mù trôi. Cỏ chuyển động.' },
+  { id: 1, name: 'Ocean',     viName: 'Đại dương', bg: '/ocean.png',                camera: 'Canon EOS R5 II', desc: 'Hoàng hôn cam. Sóng êm đềm. Chim bay. Phản chiếu ấm áp.' },
+  { id: 2, name: 'Forest',    viName: 'Rừng sâu',  bg: '/forest.png',               camera: 'Sony A7R V',      desc: 'Ánh sáng qua kẽ lá. Bụi mịn bay. Gió thoảng.' },
+  { id: 3, name: 'City',      viName: 'Phố thị',   bg: '/city.png',                 camera: 'Canon EOS R5 II', desc: 'Mưa rơi. Ánh đèn chuyển động. Đèn giao thông. Phản chiếu neon.' },
+  { id: 4, name: 'Night Sky', viName: 'Bầu trời đêm', bg: '/nightsky.png',          camera: 'Sony A7R V',      desc: 'Ngôi sao lấp lánh. Dải Ngân Hà. Mây trôi nhẹ. Sao băng.' },
+  { id: 5, name: 'Portrait',  viName: 'Chân dung', bg: '/portrait.png',             camera: 'Fujifilm X100VI', desc: 'Bóng đen huyền bí. Tóc bay nhẹ trong gió. Không thấy mặt.' },
 ]
 
 export function Scene6() {
@@ -40,8 +41,9 @@ export function Scene6() {
     return () => observer.disconnect()
   }, [])
 
-  // Mouse Move listener (Parallax)
+  // Mouse Move listener (Parallax) — skipped for reduced motion
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window
       const x = (e.clientX / innerWidth) - 0.5
@@ -70,44 +72,7 @@ export function Scene6() {
     }
   }
 
-  // Keyframes injection for cinemagraph details
-  useEffect(() => {
-    if (!document.getElementById('scene6-worlds-styles')) {
-      const style = document.createElement('style')
-      style.id = 'scene6-worlds-styles'
-      style.innerHTML = `
-        @keyframes rain-fall {
-          0% { background-position: 0px 0px; }
-          100% { background-position: 400px 800px; }
-        }
-        @keyframes star-twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-        @keyframes shooting-star {
-          0% { transform: translateX(0) translateY(0) rotate(-45deg); width: 0; opacity: 0; }
-          10% { opacity: 1; width: 40px; }
-          30% { transform: translateX(200px) translateY(200px) rotate(-45deg); width: 0; opacity: 0; }
-          100% { transform: translateX(200px) translateY(200px) rotate(-45deg); width: 0; opacity: 0; }
-        }
-        @keyframes leaf-sway {
-          0% { transform: rotate(0deg); }
-          50% { transform: rotate(1deg) scale(1.02); }
-          100% { transform: rotate(0deg); }
-        }
-        @keyframes water-sway {
-          0% { transform: scaleY(1); }
-          50% { transform: scaleY(1.03) translateY(2px); }
-          100% { transform: scaleY(1); }
-        }
-        @keyframes portrait-hair {
-          0%, 100% { transform: rotate(0deg) skewX(0deg); }
-          50% { transform: rotate(0.8deg) skewX(1deg); }
-        }
-      `
-      document.head.appendChild(style)
-    }
-  }, [])
+  // Scene keyframes live in styles/story.css
 
   return (
     <div
@@ -144,9 +109,14 @@ export function Scene6() {
               height: '100%',
               position: 'relative',
               overflow: 'hidden',
+              // `flex` transition drives hover expansion; the entrance is a
+              // separate CSS animation so the two never fight.
               transition: 'flex 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
               cursor: 'pointer',
               borderRight: idx < 5 ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+              opacity: entered ? 1 : 0,
+              animation: entered ? 's6-panel-reveal 0.85s var(--ease-standard) both' : 'none',
+              animationDelay: entered ? `${idx * 90}ms` : '0ms',
             }}
           >
             {/* ── CINEMATIC PUSH-IN / PARALLAX CONTAINER ── */}
@@ -232,7 +202,7 @@ export function Scene6() {
                   inset: 0,
                   background: 'radial-gradient(circle at top right, rgba(255, 240, 200, 0.1) 0%, transparent 60%)',
                   mixBlendMode: 'color-dodge',
-                  animation: 'leaf-sway 14s ease-in-out infinite',
+                  animation: 'forest-sway 14s ease-in-out infinite',
                   pointerEvents: 'none',
                 }}
               />
@@ -296,6 +266,59 @@ export function Scene6() {
                 }}
               />
             )}
+
+            {/* ── ALWAYS-VISIBLE WORLD LABEL ──
+                The name of each world, on the panel. Gives way to the
+                recommendation card once the visitor lingers. */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '7%',
+                left: 0,
+                right: 0,
+                textAlign: 'center',
+                padding: '0 8px',
+                pointerEvents: 'none',
+                zIndex: 18,
+                opacity: entered ? (isRecShown ? 0 : (isAnyHovered && !isHovered ? 0.55 : 1)) : 0,
+                transform: entered ? 'translateY(0)' : 'translateY(10px)',
+                transition: 'opacity 0.5s var(--ease-standard), transform 0.8s var(--ease-standard)',
+                transitionDelay: entered ? `${idx * 90 + 350}ms` : '0ms',
+              }}
+            >
+              <span style={{
+                display: 'inline-block',
+                transformOrigin: 'bottom center',
+                transform: isHovered ? 'scale(1.32)' : 'scale(1)',
+                transition: 'transform 0.55s var(--ease-standard)',
+              }}>
+                <span style={{
+                  display: 'block',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(15px, 1.5vw, 22px)',
+                  fontWeight: 500,
+                  color: '#FFFFFF',
+                  letterSpacing: '0.01em',
+                  whiteSpace: 'nowrap',
+                  textShadow: '0 2px 14px rgba(0,0,0,0.6)',
+                }}>
+                  {world.viName}
+                </span>
+                <span style={{
+                  display: 'block',
+                  marginTop: '5px',
+                  fontFamily: 'var(--font-mono-brand)',
+                  fontSize: '8.5px',
+                  fontWeight: 400,
+                  letterSpacing: '0.28em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.62)',
+                  textShadow: '0 1px 6px rgba(0,0,0,0.55)',
+                }}>
+                  {world.name}
+                </span>
+              </span>
+            </div>
 
             {/* ── RECOMMENDED COMPANION CARD (Triggered after 2s hover) ── */}
             <div
@@ -368,24 +391,25 @@ export function Scene6() {
           zIndex: 25,
         }}
       >
-        {/* Label */}
+        {/* Film-slate marker */}
         <span
           style={{
             color: 'rgba(255, 255, 255, 0.85)',
-            fontSize: '11px',
-            fontWeight: 600,
+            fontFamily: 'var(--font-mono-brand)',
+            fontSize: '10px',
+            fontWeight: 400,
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
             display: 'block',
             marginBottom: '16px',
             opacity: entered ? 1 : 0,
             transform: entered ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            transition: 'opacity 1.2s var(--ease-standard), transform 1.2s var(--ease-standard)',
             transitionDelay: '300ms',
             textShadow: '0 1px 6px rgba(0,0,0,0.15)',
           }}
         >
-          CHỌN THẾ GIỚI CỦA BẠN
+          06 — Chọn thế giới của bạn
         </span>
 
         {/* Headline */}

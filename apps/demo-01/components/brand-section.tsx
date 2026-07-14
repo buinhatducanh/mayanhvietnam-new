@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import {
   getBrandBanners,
   formatBrandPrice,
@@ -10,77 +9,61 @@ import {
 
 /**
  * Brand section — renders a grid of brand banner cards.
- * Each card shows: gradient bg, logo SVG, product count, starting price, CTA.
+ * Each card is a clean brand tile: gradient bg, centered logo, product count.
+ * No product thumbnails inside — the card is a brand gateway, not a product list.
  *
  * Data sourced entirely from `@mayanhvietnam/mock-data` brand-banners.ts
  */
 
 function BrandCard({ banner }: { banner: BrandBanner }) {
-  const { meta, productCount, startingPrice, featured, ctaHref } = banner
+  const { meta, productCount, startingPrice, ctaHref } = banner
 
   return (
     <Link
       href={ctaHref}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.06] p-5 sm:p-6 transition-all duration-300 hover:border-white/[0.12] hover:shadow-lg hover:shadow-black/20"
+      aria-label={`Khám phá sản phẩm ${meta.name}`}
+      className="group relative flex aspect-[4/3] flex-col overflow-hidden rounded-2xl border border-white/[0.06] p-5 sm:p-6 transition-all duration-300 hover:border-white/[0.14] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30"
       style={{ background: meta.gradient }}
     >
-      {/* Subtle accent glow top-right */}
+      {/* Accent glow, revealed on hover */}
       <div
-        className="absolute -top-20 -right-20 h-40 w-40 rounded-full opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-500"
+        className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full opacity-15 blur-3xl transition-opacity duration-500 group-hover:opacity-35"
         style={{ backgroundColor: meta.accent }}
       />
 
-      {/* Content */}
-      <div className="relative z-10">
-        {/* Logo SVG */}
+      {/* Logo — the hero of the card, centered in the free space */}
+      <div className="relative z-10 flex flex-1 items-center">
         <div
-          className="mb-3 h-12 sm:h-14 w-full max-w-[180px] sm:max-w-[220px] text-white/90 group-hover:text-white transition-colors"
+          className="h-11 sm:h-12 w-full max-w-[170px] sm:max-w-[200px] text-white/85 transition-colors duration-300 group-hover:text-white"
           dangerouslySetInnerHTML={{ __html: meta.logo }}
         />
-
-        {/* Tagline */}
-        <p className="text-xs sm:text-sm text-white/50 font-light tracking-wide mb-1">
-          {meta.tagline}
-        </p>
-
-        {/* Product count */}
-        <p className="text-[11px] sm:text-xs text-white/30">
-          {productCount} sản phẩm · Từ {formatBrandPrice(startingPrice)}
-        </p>
       </div>
 
-      {/* Featured product thumbnails — small, bottom right */}
-      {featured.length > 0 && (
-        <div className="relative z-10 mt-4 flex items-end gap-2">
-          {featured.slice(0, 3).map((p, i) => (
-            <div
-              key={p.id}
-              className="relative h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.04] group-hover:border-white/[0.15] transition-colors"
-            >
-              <Image
-                src={p.thumbnail}
-                alt={p.name}
-                fill
-                className="object-cover object-center"
-                sizes="64px"
-              />
-            </div>
-          ))}
+      {/* Footer row: count/price left, CTA arrow right */}
+      <div className="relative z-10 flex items-end justify-between gap-2">
+        <div>
+          <p className="text-[11px] sm:text-xs font-medium text-white/70">
+            {productCount} sản phẩm
+          </p>
+          <p className="text-[10px] sm:text-[11px] text-white/40">
+            Từ {formatBrandPrice(startingPrice)}
+          </p>
         </div>
-      )}
 
-      {/* CTA */}
-      <div className="relative z-10 mt-4 flex items-center gap-1 text-xs font-medium text-white/60 group-hover:text-white/90 transition-colors">
-        Khám phá {meta.name}
-        <svg
-          className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
+        <span
+          className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-white/60 transition-all duration-300 group-hover:bg-white/[0.16] group-hover:text-white"
+          aria-hidden="true"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
+          <svg
+            className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
       </div>
     </Link>
   )

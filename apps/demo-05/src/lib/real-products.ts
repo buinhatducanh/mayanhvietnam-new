@@ -108,6 +108,7 @@ export interface RealProduct {
   image: string;
   description: string;
   shortSpecs: string[];
+  specs?: { group: string; items: { label: string; value: string }[] }[];
 }
 
 export const REAL_PRODUCTS: RealProduct[] = [

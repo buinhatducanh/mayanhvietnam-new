@@ -140,6 +140,57 @@ export const FOOTER: FooterData = {
   ],
 };
 
+/* ── Category banners (scraped từ banner_header_sider/ — mayanhvietnam.com) ── */
+export interface CategoryBanner {
+  title: string;
+  subtitle?: string;
+  image: string;
+  href: string;
+}
+
+export const CATEGORY_BANNERS: Record<string, CategoryBanner[]> = {
+  'may-anh': [
+    { title: 'Sony A6700', image: `${CDN}/asset/imgs/img/banner/sonet-some_sony-a6700.png`, href: '/san-pham?cat=may-anh' },
+    { title: 'Sony A7C II', image: `${CDN}/asset/imgs/img/banner/sonet-some_a7cii.png`, href: '/san-pham?cat=may-anh' },
+    { title: 'Sony ZV-E10 II & ZV-1 II', image: `${CDN}/asset/imgs/img/banner/Sonet-some-zv-e10ii_zv-1ii.png`, href: '/san-pham?cat=may-anh' },
+    { title: 'Sony A7 V', image: `${CDN}/asset/imgs/img/banner/uuDai-sonya7v-DCHS.webp`, href: '/san-pham?cat=may-anh' },
+    { title: 'Sony A7R VI', image: `${CDN}/asset/imgs/img/banner/sony-a7r-vi-1.webp`, href: '/san-pham?cat=may-anh' },
+    { title: 'Canon EOS R50', image: `${CDN}/asset/imgs/img/banner/canon_r50_trang_den.webp`, href: '/san-pham?cat=may-anh' },
+    { title: 'Canon EOS R6 Mark III', image: `${CDN}/asset/imgs/img/banner/canon-r6-mark-III.webp`, href: '/san-pham?cat=may-anh' },
+  ],
+  'ong-kinh': [
+    { title: 'Sony Ưu đãi sáng tạo', image: `${CDN}/asset/imgs/img/banner/tetSieuChuansangtaoSony.webp`, href: '/san-pham?cat=ong-kinh' },
+    { title: 'Nhận ngay hộp quà Sony', image: `${CDN}/asset/imgs/img/banner/nhan-ngay-hop-qua-sony.webp`, href: '/san-pham?cat=ong-kinh' },
+    { title: 'Canon RF 50mm F1.4L VCM', image: `${CDN}/asset/imgs/img/banner/CANON-RF-50mm-F1.4L-VCM.webp`, href: '/san-pham?cat=ong-kinh' },
+    { title: 'Khuyến mãi ống kính', image: `${CDN}/asset/imgs/img/banner/Km-lens.webp`, href: '/san-pham?cat=ong-kinh' },
+    { title: 'Canon RF 45mm F1.2 STM', image: `${CDN}/asset/imgs/img/banner/RF-45mm-F1.2-STM.webp`, href: '/san-pham?cat=ong-kinh' },
+    { title: 'Nikkor Z DX 35mm f/1.7', image: `${CDN}/asset/imgs/img/banner/NIKKOR-Z-DX-MC-35mm-f_1.7.png`, href: '/san-pham?cat=ong-kinh' },
+    { title: 'Kase AF 85mm F1.4 Nikon Z', image: `${CDN}/asset/imgs/img/banner/LENS-KASE-AF-85mm-F1.4-FOR-NIKON-Z.webp`, href: '/san-pham?cat=ong-kinh' },
+  ],
+  'action-camera': [
+    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: '/san-pham?cat=action-camera' },
+    { title: 'DJI Osmo Action 6', image: `${CDN}/asset/imgs/img/banner/action-6.webp`, href: '/san-pham?cat=action-camera' },
+    { title: 'DJI Osmo Pocket 3 Combo', image: `${CDN}/asset/imgs/img/banner/DJI-Osmo-Pocket-3.webp`, href: '/san-pham?cat=action-camera' },
+    { title: 'Insta360 Go Ultra Standard', image: `${CDN}/asset/imgs/img/banner/Go-ultra-standard-bundle.webp`, href: '/san-pham?cat=action-camera' },
+    { title: 'DJI Osmo Nano', image: `${CDN}/asset/imgs/img/banner/DJI-OSMO-NANO-01.webp`, href: '/san-pham?cat=action-camera' },
+    { title: 'DJI Osmo Action 5 Pro', image: `${CDN}/asset/imgs/img/banner/action5pro.webp`, href: '/san-pham?cat=action-camera' },
+  ],
+  'flycam': [
+    { title: 'DJI Mini 5 Pro', image: `${CDN}/asset/imgs/img/banner/dji-mini-5-pro.webp`, href: '/san-pham?cat=flycam' },
+    { title: 'DJI Mavic 4 Pro', image: `${CDN}/asset/imgs/img/banner/Mavic-4-Pro.webp`, href: '/san-pham?cat=flycam' },
+    { title: 'DJI Mini 4K Fly More', image: `${CDN}/asset/imgs/img/banner/FLYCAM-DJI-MINI-4K-FLY-MORE-COMBO.webp`, href: '/san-pham?cat=flycam' },
+    { title: 'DJI Avata 2 Fly More', image: `${CDN}/asset/imgs/img/banner/dji-avata-2.webp`, href: '/san-pham?cat=flycam' },
+    { title: 'DJI Neo', image: `${CDN}/asset/imgs/img/banner/1200x400DJI_Neo.webp`, href: '/san-pham?cat=flycam' },
+    { title: 'DJI Mini 4 Pro Fly More', image: `${CDN}/asset/imgs/img/banner/1200X400_Flycam_DJI_Mini_4-Pro_Fly_More.webp`, href: '/san-pham?cat=flycam' },
+  ],
+  'may-quay-phim': [
+    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: '/san-pham?cat=may-quay-phim' },
+  ],
+  'thiet-bi-studio': [],
+};
+
+export const CATEGORY_SECTION_SLUGS = ['may-anh', 'ong-kinh', 'flycam', 'action-camera', 'may-quay-phim', 'thiet-bi-studio'] as const;
+
 /* ── Header real data ──────────────────────────────────────── */
 export const SITE_HOTLINE = { short: '0907-215-252', full: '0907-215-252' };
 

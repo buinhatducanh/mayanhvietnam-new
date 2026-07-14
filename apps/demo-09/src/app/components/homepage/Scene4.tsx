@@ -26,8 +26,9 @@ export function Scene4() {
     return () => observer.disconnect()
   }, [])
 
-  // Mouse move handler
+  // Mouse move handler (skipped for reduced motion)
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window
       const x = (e.clientX / innerWidth) - 0.5
@@ -40,6 +41,7 @@ export function Scene4() {
 
   // Smooth lerp animation for mouse parallax
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let frameId: number
     const update = () => {
       setMouse(prev => ({
@@ -54,51 +56,7 @@ export function Scene4() {
 
   const live = entered && imgReady
 
-  // Add styles for keyframes dynamically if not present
-  useEffect(() => {
-    if (!document.getElementById('scene4-lens-styles')) {
-      const style = document.createElement('style')
-      style.id = 'scene4-lens-styles'
-      style.innerHTML = `
-        @keyframes lens-zoom {
-          0% { transform: scale(1.02); }
-          100% { transform: scale(1.04); }
-        }
-        @keyframes coating-light-sweep {
-          0% { transform: translate(-30%, -30%) rotate(0deg); opacity: 0.2; }
-          50% { transform: translate(10%, 10%) rotate(180deg); opacity: 0.5; }
-          100% { transform: translate(-30%, -30%) rotate(360deg); opacity: 0.2; }
-        }
-        @keyframes aperture-blade-breathe {
-          0% { transform: rotate(0deg) scale(1); }
-          50% { transform: rotate(8deg) scale(1.05); }
-          100% { transform: rotate(0deg) scale(1); }
-        }
-        @keyframes soft-breathe {
-          0% { filter: brightness(0.97) contrast(0.99); }
-          50% { filter: brightness(1.02) contrast(1.01); }
-          100% { filter: brightness(0.97) contrast(0.99); }
-        }
-        @keyframes dust-drift-fast {
-          0% { transform: translateY(50px) translateX(-20px); opacity: 0; }
-          20% { opacity: 0.35; }
-          80% { opacity: 0.35; }
-          100% { transform: translateY(-70px) translateX(20px); opacity: 0; }
-        }
-        @keyframes bokeh-glow-1 {
-          0% { opacity: 0.1; transform: scale(0.9); }
-          50% { opacity: 0.35; transform: scale(1.1); }
-          100% { opacity: 0.1; transform: scale(0.9); }
-        }
-        @keyframes bokeh-glow-2 {
-          0% { opacity: 0.15; transform: scale(1.1); }
-          50% { opacity: 0.28; transform: scale(0.95); }
-          100% { opacity: 0.15; transform: scale(1.1); }
-        }
-      `
-      document.head.appendChild(style)
-    }
-  }, [])
+  // Scene keyframes live in styles/story.css
 
   // Floating dust particles inside the light
   const lensDust = Array.from({ length: 12 }).map((_, i) => {
@@ -160,6 +118,7 @@ export function Scene4() {
           src={BG}
           alt="Macro lens coating and metallic rings details close-up"
           onLoad={() => setImgReady(true)}
+          onError={() => setImgReady(true)}
           style={{
             width: '100%',
             height: '100%',
@@ -343,26 +302,27 @@ export function Scene4() {
           zIndex: 15,
         }}
       >
-        {/* Small Label */}
+        {/* Film-slate marker */}
         <span
           style={{
             color: 'rgba(255, 255, 255, 0.65)',
-            fontSize: '11px',
-            fontWeight: 600,
+            fontFamily: 'var(--font-mono-brand)',
+            fontSize: '10px',
+            fontWeight: 400,
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
             display: 'block',
             marginBottom: '16px',
             opacity: entered ? 1 : 0,
             transform: entered ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            transition: 'opacity 1.2s var(--ease-standard), transform 1.2s var(--ease-standard)',
             transitionDelay: '300ms',
           }}
         >
-          ÁNH SÁNG
+          04 — Ánh sáng
         </span>
 
-        {/* Large Headline */}
+        {/* Large Headline — exposure develops: blur+dim → sharp+bright */}
         <h2
           style={{
             fontFamily: 'var(--font-display)',
@@ -373,8 +333,9 @@ export function Scene4() {
             letterSpacing: '0.02em',
             margin: '0 auto 20px auto',
             opacity: entered ? 1 : 0,
-            transform: entered ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            filter: entered ? 'blur(0) brightness(1)' : 'blur(9px) brightness(0.5)',
+            transform: entered ? 'translateY(0)' : 'translateY(14px)',
+            transition: 'opacity 1.6s var(--ease-standard), filter 1.8s var(--ease-standard), transform 1.6s var(--ease-standard)',
             transitionDelay: '500ms',
             textShadow: '0 2px 12px rgba(0,0,0,0.3)',
           }}

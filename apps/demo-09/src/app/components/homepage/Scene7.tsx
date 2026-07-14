@@ -30,25 +30,32 @@ export function Scene7({ onEnterCamera }: { onEnterCamera?: () => void }) {
   useEffect(() => {
     if (!entered || !imgReady) return
 
+    // Reduced motion: skip the bird beat, resolve to the message + CTA at once.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setBirdState('gone'); setShowText(true); setShowCTA(true)
+      return
+    }
+
     let t1: ReturnType<typeof setTimeout>
     let t2: ReturnType<typeof setTimeout>
     let t3: ReturnType<typeof setTimeout>
     let t4: ReturnType<typeof setTimeout>
 
-    // 2s pause → bird flies
-    t1 = setTimeout(() => setBirdState('flying'), 2000)
+    // 0.8s pause → bird flies
+    t1 = setTimeout(() => setBirdState('flying'), 800)
     // Bird crosses in ~2600ms → gone
-    t2 = setTimeout(() => setBirdState('gone'),   4600)
-    // 700ms after bird gone → headline fades in
-    t3 = setTimeout(() => setShowText(true),      5400)
-    // 1400ms after text → CTA appears
-    t4 = setTimeout(() => setShowCTA(true),       6800)
+    t2 = setTimeout(() => setBirdState('gone'),   3400)
+    // As the bird clears → headline focuses in
+    t3 = setTimeout(() => setShowText(true),      2600)
+    // Shortly after the message lands → CTA appears
+    t4 = setTimeout(() => setShowCTA(true),       3900)
 
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4) }
   }, [entered, imgReady])
 
-  // ── Subtle mouse parallax ────────────────────────────────────────────
+  // ── Subtle mouse parallax (skipped for reduced motion) ───────────────
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const onMove = (e: MouseEvent) => {
       const { innerWidth: w, innerHeight: h } = window
       setTargetMouse({ x: (e.clientX / w) - 0.5, y: (e.clientY / h) - 0.5 })
@@ -58,6 +65,7 @@ export function Scene7({ onEnterCamera }: { onEnterCamera?: () => void }) {
   }, [])
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let id: number
     const lerp = () => {
       setMouse(p => ({
@@ -70,106 +78,7 @@ export function Scene7({ onEnterCamera }: { onEnterCamera?: () => void }) {
     return () => cancelAnimationFrame(id)
   }, [targetMouse])
 
-  // ── CSS keyframes (injected once) ────────────────────────────────────
-  useEffect(() => {
-    if (document.getElementById('s7-final-styles')) return
-    const s = document.createElement('style')
-    s.id = 's7-final-styles'
-    s.innerHTML = `
-      /* ─ Background ─ */
-      @keyframes sf-ken {
-        0%   { transform: scale(1.00); }
-        100% { transform: scale(1.04); }
-      }
-      @keyframes sf-breathe {
-        0%,100% { filter: brightness(0.88) saturate(1.08); }
-        50%      { filter: brightness(0.95) saturate(1.14); }
-      }
-      @keyframes sf-expose-up {
-        from { filter: brightness(0.88) saturate(1.08); }
-        to   { filter: brightness(1.06) saturate(1.2);  }
-      }
-
-      /* ─ Cinemagraph overlays ─ */
-      @keyframes sf-cloud {
-        0%   { transform: translateX(-4%) scale(1.03); opacity: 0.20; }
-        50%  { transform: translateX(3%)  scale(1.06); opacity: 0.32; }
-        100% { transform: translateX(-4%) scale(1.03); opacity: 0.20; }
-      }
-      @keyframes sf-ripple {
-        0%,100% { opacity: 0.08; transform: scaleY(1);     }
-        50%      { opacity: 0.22; transform: scaleY(1.04); }
-      }
-      @keyframes sf-grass {
-        0%,100% { transform: skewX(0deg)   scaleY(1);    opacity: 0.10; }
-        50%      { transform: skewX(0.6deg) scaleY(1.02); opacity: 0.20; }
-      }
-      @keyframes sf-sun-flicker {
-        0%,100% { opacity: 0.06; }
-        33%      { opacity: 0.14; }
-        66%      { opacity: 0.08; }
-      }
-
-      /* ─ Bird: horizontal flight across screen ─ */
-      @keyframes sf-bird-fly {
-        0%   { transform: translateX(-130px); opacity: 0; }
-        5%   { opacity: 1; }
-        95%  { opacity: 1; }
-        100% { transform: translateX(calc(100vw + 130px)); opacity: 0; }
-      }
-      /* Bird: subtle vertical bob (rises then falls naturally during flap) */
-      @keyframes sf-bird-bob {
-        0%   { top: 31%; }
-        30%  { top: 29%; }
-        65%  { top: 31.5%; }
-        100% { top: 30%; }
-      }
-      /* Left wing: rotates around shoulder — up-stroke to down-stroke */
-      @keyframes sf-wing-left {
-        0%   { transform: rotate(-38deg); }
-        50%  { transform: rotate(18deg); }
-        100% { transform: rotate(-38deg); }
-      }
-      /* Right wing: mirror of left */
-      @keyframes sf-wing-right {
-        0%   { transform: rotate(38deg); }
-        50%  { transform: rotate(-18deg); }
-        100% { transform: rotate(38deg); }
-      }
-
-      /* ─ Typography ─ */
-      @keyframes sf-focus {
-        0%   { filter: blur(10px); opacity: 0; transform: translateY(12px); }
-        60%  { filter: blur(1.5px); opacity: 0.85; }
-        100% { filter: blur(0);    opacity: 1;    transform: translateY(0); }
-      }
-      @keyframes sf-fade-up {
-        from { opacity: 0; transform: translateY(14px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
-
-      /* ─ CTA: blur → sharp → glow ─ */
-      @keyframes sf-cta-appear {
-        0%   { filter: blur(8px);  opacity: 0;   transform: scale(0.96); box-shadow: none; }
-        55%  { filter: blur(1px);  opacity: 0.9; transform: scale(1.01); }
-        80%  { filter: blur(0);    opacity: 1;   transform: scale(1);    box-shadow: 0 0 30px rgba(232,97,30,0.5); }
-        100% { filter: blur(0);    opacity: 1;   transform: scale(1);    box-shadow: 0 4px 20px rgba(232,97,30,0.3); }
-      }
-      @keyframes sf-cta-sweep {
-        from { left: -70%; }
-        to   { left: 160%; }
-      }
-
-      /* ─ Dust motes ─ */
-      @keyframes sf-dust {
-        0%   { transform: translateY(18px) translateX(-10px); opacity: 0; }
-        20%  { opacity: 0.4; }
-        80%  { opacity: 0.4; }
-        100% { transform: translateY(-50px) translateX(10px); opacity: 0; }
-      }
-    `
-    document.head.appendChild(s)
-  }, [])
+  // Scene keyframes (sf-*) live in styles/story.css
 
   const live = entered && imgReady
 

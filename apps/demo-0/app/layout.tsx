@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/lib/cart-context";
+import CartDrawer from "@/components/CartDrawer";
 
-const outfit = Outfit({ 
-  subsets: ["latin"], 
-  variable: "--font-outfit" 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit"
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -25,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${outfit.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased text-[#16130f]">
-        {children}
+        <CartProvider>
+          {children}
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

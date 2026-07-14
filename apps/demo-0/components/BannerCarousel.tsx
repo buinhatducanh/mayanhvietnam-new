@@ -17,7 +17,7 @@ export const HERO_BANNERS: Banner[] = [
     title: "Canon EOS R6 Mark III — Chính hãng",
     subtitle: "Máy ảnh hybrid đỉnh cao · Phù hợp mọi nhiếp ảnh gia",
     image: `${CDN}/asset/imgs/img/banner/canon-r6-mark-III.webp`,
-    href: "/san-pham#may-anh-canon-eos-r6-mark-iii-body",
+    href: "/san-pham/may-anh-canon-eos-r6-mark-iii-body",
   },
   {
     title: "Ra mắt Sony A7R VI",

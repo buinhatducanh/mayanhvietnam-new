@@ -32,7 +32,7 @@ const IMG_ANIM: React.CSSProperties = {
   height: '100%',
   objectFit: 'cover',
   objectPosition: 'center 38%',
-  animation: 'scene-breathe 60s ease-in-out infinite alternate',
+  animation: 'scene-breathe 26s ease-in-out infinite alternate',
   transformOrigin: 'center center',
 }
 
@@ -45,7 +45,7 @@ function LeafParticle({ x, delay, dur, size }: { x: number; delay: number; dur: 
         position: 'absolute',
         left: `${x}%`,
         top: '-2%',
-        animation: `leaf-sway ${dur}s ${delay}s ease-in-out infinite`,
+        animation: `s1-leaf-fall ${dur}s ${delay}s linear infinite`,
         pointerEvents: 'none',
       }}
     >
@@ -134,13 +134,21 @@ function BottomLeftCorner({ visible }: { visible: boolean }) {
 export function CinematicScene({ onNavigate }: { onNavigate?: (label: string, id?: string) => void }) {
   const [frameFocused, setFrameFocused] = useState(false)
   const [textIn,       setTextIn]       = useState(false)
+  const [hintIn,       setHintIn]       = useState(false)
 
   useEffect(() => {
-    // t = 2.2s — frame corners fade in, vivid window blooms
-    const t1 = setTimeout(() => setFrameFocused(true), 2200)
-    // t = 4.8s — one sentence breathes in
-    const t2 = setTimeout(() => setTextIn(true),       4800)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
+    // Reduced motion: everything is simply there.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setFrameFocused(true); setTextIn(true); setHintIn(true)
+      return
+    }
+    // t = 1.2s — frame corners fade in, vivid window blooms
+    const t1 = setTimeout(() => setFrameFocused(true), 1200)
+    // t = 2.6s — one sentence rises out of the mist
+    const t2 = setTimeout(() => setTextIn(true),       2600)
+    // t = 4.2s — quiet invitation to scroll
+    const t3 = setTimeout(() => setHintIn(true),       4200)
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3) }
   }, [])
 
   return (
@@ -204,29 +212,71 @@ export function CinematicScene({ onNavigate }: { onNavigate?: (label: string, id
         ))}
       </div>
 
-      {/* ── THE ONLY SENTENCE ───────────────────────────────────── */}
+      {/* ── THE ONLY SENTENCE — rises out of a mask, like a title card ── */}
       <div
         style={{
           position: 'absolute',
           left: 0, right: 0,
-          bottom: '7%',
+          bottom: '12%',
           textAlign: 'center',
           pointerEvents: 'none',
-          opacity:   textIn ? 1 : 0,
-          transform: textIn ? 'translateY(0)' : 'translateY(10px)',
-          transition: 'opacity 3.2s ease-out, transform 3.2s ease-out',
+          overflow: 'hidden',
         }}
       >
         <p style={{
           margin: 0,
-          color: 'rgba(255,255,255,0.78)',
+          color: 'rgba(255,255,255,0.82)',
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(13px, 1.35vw, 19px)',
           fontWeight: 300,
           letterSpacing: '0.16em',
+          opacity:   textIn ? 1 : 0,
+          transform: textIn ? 'translateY(0)' : 'translateY(115%)',
+          transition: 'opacity 1.6s var(--ease-standard), transform 1.6s var(--ease-standard)',
         }}>
           Mọi bức ảnh đều bắt đầu từ một ánh nhìn.
         </p>
+      </div>
+
+      {/* ── SCROLL INVITATION — a hairline of light falling ─────── */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '50%',
+          bottom: '3.5%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '10px',
+          pointerEvents: 'none',
+          opacity: hintIn ? 1 : 0,
+          transition: 'opacity 1.4s var(--ease-standard)',
+        }}
+      >
+        <span style={{
+          color: 'rgba(255,255,255,0.45)',
+          fontFamily: 'var(--font-mono-brand)',
+          fontSize: '9px',
+          fontWeight: 400,
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+        }}>
+          Cuộn để bắt đầu
+        </span>
+        <div aria-hidden style={{
+          width: '1px',
+          height: '42px',
+          background: 'rgba(255,255,255,0.16)',
+          overflow: 'hidden',
+        }}>
+          <div style={{
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.85), transparent)',
+            animation: hintIn ? 's1-hint-sweep 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite' : 'none',
+          }} />
+        </div>
       </div>
 
       {/* ── SKIP BUTTON ─────────────────────────────────────────── */}

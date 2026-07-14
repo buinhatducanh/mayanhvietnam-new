@@ -220,15 +220,6 @@ export const products: Product[] = [
     description: 'Thiết kế hoài cổ núm xoay cơ học, cảm biến X-Trans CMOS 5 HR lên tới 40.2MP.',
   }),
   P({
-    id: 'p6', slug: 'flycam-dji-mavic-air-2-chinh-hang', name: 'Flycam DJI Mavic Air 2 — Chính hãng', brand: 'DJI', category: 'flycam',
-    thumbnail: `${CDN}/image-data/san-pham/23-02/23-02-12/230212121212567/avatar/01_flycam-dji-mavic-air-2-chinh-hang.jpg`,
-    price: 17900000, originalPrice: 19900000,
-    badges: [{ type: 'hot', label: 'Bán chạy' }, { type: 'sale', label: '-10%' }],
-    rating: { average: 4.8, count: 156 }, soldPercent: 90,
-    shortSpecs: ['Cảm biến 1/2" 48MP', '4K 60fps video', '34 phút bay', 'OcuSync 2.0 10km', 'Gimbal 3 trục'],
-    description: 'Flycam tầm trung quốc dân với camera 48MP sắc nét, thời gian bay 34 phút ấn tượng và truyền sóng 10km.',
-  }),
-  P({
     id: 'p26', slug: 'dji-mavic-4-pro-512gb-creator-combo', name: 'Flycam DJI Mavic 4 Pro 512GB Creator Combo', brand: 'DJI', category: 'flycam',
     thumbnail: `${CDN}/image-data/san-pham/25-05/25-05-15/250515085035248/avatar/638828964891489787_dji-mavic-4-pro-512gb-creator-combo.jpg`,
     price: 85000000, originalPrice: 85000000,
@@ -435,11 +426,11 @@ export const categoryBanners: Record<string, { title: string; image: string; hre
   'may-anh': [
     { title: 'Sony A6700', image: `${CDN}/asset/imgs/img/banner/sonet-some_sony-a6700.png`, href: 'danh-muc#may-anh' },
     { title: 'Sony A7C II', image: `${CDN}/asset/imgs/img/banner/sonet-some_a7cii.png`, href: 'danh-muc#may-anh' },
-    { title: 'Sony ZV-E10 II & ZV-1 II', image: `${CDN}/asset/imgs/img/banner/Sonet-some-zv-e10ii_zv-1ii.png`, href: 'san-pham#may-anh-sony-zve10-ii-black-body-only-chinh-hang' },
+    { title: 'Sony ZV-E10 II & ZV-1 II', image: `${CDN}/asset/imgs/img/banner/Sonet-some-zv-e10ii_zv-1ii.png`, href: 'san-pham/may-anh-sony-zve10-ii-black-body-only-chinh-hang' },
     { title: 'Sony A7 V — Ưu đãi đặt trước', image: `${CDN}/asset/imgs/img/banner/uuDai-sonya7v-DCHS.webp`, href: 'danh-muc#may-anh' },
     { title: 'Sony A7R VI', image: `${CDN}/asset/imgs/img/banner/sony-a7r-vi-1.webp`, href: 'danh-muc#may-anh' },
     { title: 'Canon EOS R50 Trắng / Đen', image: `${CDN}/asset/imgs/img/banner/canon_r50_trang_den.webp`, href: 'may-anh-canon-r50' },
-    { title: 'Canon EOS R6 Mark III', image: `${CDN}/asset/imgs/img/banner/canon-r6-mark-III.webp`, href: 'san-pham#may-anh-canon-eos-r6-mark-iii-body' },
+    { title: 'Canon EOS R6 Mark III', image: `${CDN}/asset/imgs/img/banner/canon-r6-mark-III.webp`, href: 'san-pham/may-anh-canon-eos-r6-mark-iii-body' },
   ],
   'ong-kinh': [
     { title: 'Sony — Tết siêu chuẩn sáng tạo', image: `${CDN}/asset/imgs/img/banner/tetSieuChuansangtaoSony.webp`, href: 'danh-muc#ong-kinh' },
@@ -451,7 +442,7 @@ export const categoryBanners: Record<string, { title: string; image: string; hre
     { title: 'Kase AF 85mm F1.4 Nikon Z', image: `${CDN}/asset/imgs/img/banner/LENS-KASE-AF-85mm-F1.4-FOR-NIKON-Z.webp`, href: 'danh-muc#ong-kinh' },
   ],
   'action-camera': [
-    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: 'san-pham#may-quay-dji-osmo-pocket-4-creator-combo' },
+    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: 'san-pham/may-quay-dji-osmo-pocket-4-creator-combo' },
     { title: 'DJI Osmo Action 6', image: `${CDN}/asset/imgs/img/banner/action-6.webp`, href: 'danh-muc#action-camera' },
     { title: 'DJI Osmo Pocket 3 Combo', image: `${CDN}/asset/imgs/img/banner/DJI-Osmo-Pocket-3.webp`, href: 'danh-muc#action-camera' },
     { title: 'Insta360 ONE RS 1-Inch 360', image: `${CDN}/image-data/san-pham/23-02/23-02-11/230211001818256/avatar/01_insta360-one-rs-1-inch-360-edition.jpg`, href: 'action-camera-insta360' },
@@ -459,15 +450,15 @@ export const categoryBanners: Record<string, { title: string; image: string; hre
     { title: 'DJI Osmo Action 5 Pro', image: `${CDN}/asset/imgs/img/banner/action5pro.webp`, href: 'danh-muc#action-camera' },
   ],
   'flycam': [
-    { title: 'DJI Mini 5 Pro', image: `${CDN}/asset/imgs/img/banner/dji-mini-5-pro.webp`, href: 'san-pham#dji-mini-5-pro-base-chinh-hang' },
-    { title: 'DJI Mavic 4 Pro', image: `${CDN}/asset/imgs/img/banner/Mavic-4-Pro.webp`, href: 'san-pham#dji-mavic-4-pro-512gb-creator-combo' },
+    { title: 'DJI Mini 5 Pro', image: `${CDN}/asset/imgs/img/banner/dji-mini-5-pro.webp`, href: 'san-pham/dji-mini-5-pro-base-chinh-hang' },
+    { title: 'DJI Mavic 4 Pro', image: `${CDN}/asset/imgs/img/banner/Mavic-4-Pro.webp`, href: 'san-pham/dji-mavic-4-pro-512gb-creator-combo' },
     { title: 'DJI Mini 4K Fly More Combo', image: `${CDN}/asset/imgs/img/banner/FLYCAM-DJI-MINI-4K-FLY-MORE-COMBO.webp`, href: 'flycam-dji' },
     { title: 'DJI Avata 2 Fly More', image: `${CDN}/asset/imgs/img/banner/dji-avata-2.webp`, href: 'danh-muc#flycam' },
     { title: 'DJI Neo', image: `${CDN}/asset/imgs/img/banner/1200x400DJI_Neo.webp`, href: 'danh-muc#flycam' },
     { title: 'DJI Mini 4 Pro Fly More', image: `${CDN}/asset/imgs/img/banner/1200X400_Flycam_DJI_Mini_4-Pro_Fly_More.webp`, href: 'danh-muc#flycam' },
   ],
   'may-quay-phim': [
-    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: 'san-pham#may-quay-dji-osmo-pocket-4-creator-combo' },
+    { title: 'DJI Osmo Pocket 4 Creator Combo', image: `${CDN}/asset/imgs/img/banner/Dji_osm_pocket_4.webp`, href: 'san-pham/may-quay-dji-osmo-pocket-4-creator-combo' },
     { title: 'DJI Osmo Pocket 3 Combo', image: `${CDN}/asset/imgs/img/banner/DJI-Osmo-Pocket-3.webp`, href: 'danh-muc#may-quay-phim' },
     { title: 'Sony Cinema Line', image: `${CDN}/asset/imgs/img/banner/sony-uu-dai-thang-1.webp`, href: 'danh-muc#may-quay-phim' },
   ],
@@ -538,5 +529,5 @@ export const getProductUrl = (slug: string) => {
   if (slug === 'insta360-one-rs-1-inch-360-edition') {
     return 'action-camera-insta360';
   }
-  return `san-pham#${slug}`;
+  return `san-pham/${slug}`;
 };

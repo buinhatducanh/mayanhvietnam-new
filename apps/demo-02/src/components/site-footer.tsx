@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Camera, Clock, Mail, MapPin, Phone } from 'lucide-react'
+import { Clock, Mail, MapPin, Phone } from 'lucide-react'
 import { categories, storeLocations, HOTLINE } from '@/lib/products'
 
 const policies = [
@@ -23,13 +23,15 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {/* Col 1: Brand + store locations */}
         <div>
-          <Link href="/" className="flex items-center gap-3">
-            <span className="brand-glow flex size-10 items-center justify-center rounded-xl bg-primary">
-              <Camera className="size-5 text-primary-foreground" aria-hidden="true" />
-            </span>
-            <span className="flex flex-col">
-              <span className="font-serif text-lg font-bold tracking-wide">MÁY ẢNH VIỆT NAM</span>
-              <span className="text-[11px] italic text-primary">Vì lợi ích khách hàng</span>
+          <Link href="/" className="inline-flex items-center">
+            <span className="brand-glow flex items-center rounded-xl bg-primary px-3 py-2">
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                alt="Máy Ảnh Việt Nam"
+                width={145}
+                height={29}
+                className="h-[29px] w-[145px] object-contain object-left"
+              />
             </span>
           </Link>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

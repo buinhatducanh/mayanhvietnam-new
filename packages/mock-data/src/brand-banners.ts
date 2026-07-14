@@ -10,6 +10,7 @@
 
 import type { ProductSummary } from './types';
 import { allProducts } from './products';
+import { getBrandLogo } from './brand-logos';
 
 // ─── Brand metadata ──────────────────────────────────────────────────────────
 
@@ -26,9 +27,19 @@ export interface BrandMeta {
   accent: string;
   /** Background gradient (CSS gradient string) */
   gradient: string;
-  /** Inline SVG logo (lightweight, no external deps) */
+  /** Inline SVG logo (lightweight, no external deps) — kept as fallback */
   logo: string;
-  /** Optional font weight for logo */
+  /** Real brand logo image URL (Wikimedia / Brandfetch / press kit) — optional, resolve via brand-logos registry when absent */
+  logoUrl?: string;
+  /** White / mono logo URL for dark backgrounds */
+  logoUrlLight?: string;
+  /** Font family stack chuẩn của logo (text fallback) */
+  fontFamily?: string;
+  /** Font weight (text fallback) */
+  fontWeight?: number;
+  /** Letter spacing (text fallback) */
+  letterSpacing?: string;
+  /** Optional font style for logo */
   logoStyle?: 'serif' | 'sans' | 'mono';
 }
 

@@ -30,8 +30,9 @@ export function Scene3() {
     return () => observer.disconnect()
   }, [])
 
-  // Mouse move handler for parallax
+  // Mouse move handler for parallax (skipped for reduced motion)
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window
       // Normalize mouse positions to -0.5 to 0.5
@@ -45,6 +46,7 @@ export function Scene3() {
 
   // Smooth lerp for mouse coordinates
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let animationFrameId: number
     const updateParallax = () => {
       setMouse(prev => ({
@@ -59,64 +61,7 @@ export function Scene3() {
 
   const live = entered && imgReady
 
-  // Add styles for keyframes dynamically if not present
-  useEffect(() => {
-    if (!document.getElementById('scene3-cinematic-styles')) {
-      const style = document.createElement('style')
-      style.id = 'scene3-cinematic-styles'
-      style.innerHTML = `
-        @keyframes push-in {
-          0% { transform: scale(1.01); }
-          100% { transform: scale(1.03); }
-        }
-        @keyframes exposure-breathe {
-          0% { filter: brightness(1); }
-          50% { filter: brightness(1.02) contrast(1.01); }
-          100% { filter: brightness(1); }
-        }
-        @keyframes dust-float {
-          0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-          10% { opacity: 0.4; }
-          90% { opacity: 0.4; }
-          100% { transform: translateY(-120px) translateX(30px) rotate(360deg); opacity: 0; }
-        }
-        @keyframes volumetric-drift {
-          0% { opacity: 0.15; transform: skewX(-5deg) translateX(-10px); }
-          50% { opacity: 0.22; transform: skewX(-2deg) translateX(10px); }
-          100% { opacity: 0.15; transform: skewX(-5deg) translateX(-10px); }
-        }
-        @keyframes lens-flare-glow {
-          0% { opacity: 0.2; transform: scale(1); }
-          50% { opacity: 0.35; transform: scale(1.05); }
-          100% { opacity: 0.2; transform: scale(1); }
-        }
-        @keyframes steam-rise-slow {
-          0% { transform: translateY(10px) scale(0.9); opacity: 0; }
-          15% { opacity: 0.18; }
-          50% { transform: translateY(-30px) scale(1.1); opacity: 0.12; }
-          80% { opacity: 0.05; }
-          100% { transform: translateY(-60px) scale(1.3); opacity: 0; }
-        }
-        @keyframes steam-rise-strong {
-          0% { transform: translateY(10px) scale(0.9); opacity: 0; }
-          15% { opacity: 0.35; }
-          50% { transform: translateY(-40px) scale(1.3); opacity: 0.25; }
-          80% { opacity: 0.1; }
-          100% { transform: translateY(-80px) scale(1.6); opacity: 0; }
-        }
-        @keyframes reflection-sweep {
-          0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-          100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
-        }
-        @keyframes shadow-sway {
-          0% { transform: translateY(0) translateX(0) scaleY(1); }
-          50% { transform: translateY(5px) translateX(2px) scaleY(1.02); }
-          100% { transform: translateY(0) translateX(0) scaleY(1); }
-        }
-      `
-      document.head.appendChild(style)
-    }
-  }, [])
+  // Scene keyframes live in styles/story.css
 
   // Render floating dust particles
   const dustParticles = Array.from({ length: 15 }).map((_, i) => {
@@ -183,6 +128,7 @@ export function Scene3() {
           src={BG}
           alt="Photographer's warm golden hour studio desk"
           onLoad={() => setImgReady(true)}
+          onError={() => setImgReady(true)}
           style={{
             width: '100%',
             height: '100%',
@@ -465,26 +411,28 @@ export function Scene3() {
           zIndex: 15,
         }}
       >
-        {/* Label */}
+        {/* Film-slate marker */}
         <span
           style={{
             color: 'rgba(255, 255, 255, 0.65)',
-            fontSize: '11px',
-            fontWeight: 600,
+            fontFamily: 'var(--font-mono-brand)',
+            fontSize: '10px',
+            fontWeight: 400,
             letterSpacing: '0.3em',
             textTransform: 'uppercase',
             display: 'block',
             marginBottom: '16px',
             opacity: entered ? 1 : 0,
             transform: entered ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 1.2s ease, transform 1.2s ease',
+            transition: 'opacity 1.2s var(--ease-standard), transform 1.2s var(--ease-standard)',
             transitionDelay: '300ms',
+            textShadow: '0 1px 5px rgba(0,0,0,0.2)',
           }}
         >
-          PHÍA SAU MỖI BỨC ẢNH
+          03 — Phía sau mỗi bức ảnh
         </span>
 
-        {/* Headline */}
+        {/* Headline — lines rise from their masks, patient like the scene */}
         <h2
           style={{
             fontFamily: 'var(--font-display)',
@@ -494,16 +442,21 @@ export function Scene3() {
             color: '#FFFFFF',
             letterSpacing: '0.01em',
             margin: '0 auto 20px auto',
-            opacity: entered ? 1 : 0,
-            transform: entered ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 1.4s ease, transform 1.4s ease',
-            transitionDelay: '500ms',
             textShadow: '0 2px 10px rgba(0,0,0,0.15)',
           }}
         >
-          Mỗi bức ảnh<br />
-          đều bắt đầu từ rất lâu<br />
-          trước khi bấm máy.
+          {['Mỗi bức ảnh', 'đều bắt đầu từ rất lâu', 'trước khi bấm máy.'].map((line, i) => (
+            <span key={i} style={{ display: 'block', overflow: 'hidden', padding: '0.06em 0' }}>
+              <span style={{
+                display: 'block',
+                transform: entered ? 'translateY(0)' : 'translateY(115%)',
+                transition: 'transform 1.2s var(--ease-heavy)',
+                transitionDelay: `${500 + i * 160}ms`,
+              }}>
+                {line}
+              </span>
+            </span>
+          ))}
         </h2>
 
         {/* Small Paragraph */}
@@ -518,8 +471,8 @@ export function Scene3() {
             margin: '0 auto',
             opacity: entered ? 1 : 0,
             transform: entered ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 1.6s ease, transform 1.6s ease',
-            transitionDelay: '800ms',
+            transition: 'opacity 1.4s var(--ease-standard), transform 1.4s var(--ease-standard)',
+            transitionDelay: '950ms',
             textShadow: '0 1px 5px rgba(0,0,0,0.12)',
           }}
         >

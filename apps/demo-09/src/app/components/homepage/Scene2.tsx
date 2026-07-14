@@ -52,6 +52,7 @@ export function Scene2() {
         src={BG}
         alt="Misty Vietnamese hills bathed in golden sunrise — silence and wonder"
         onLoad={() => setImgReady(true)}
+        onError={() => setImgReady(true)}
         style={{
           position: 'absolute',
           inset: 0,
@@ -61,9 +62,9 @@ export function Scene2() {
           objectPosition: 'center 42%',
           opacity:   entered && imgReady ? 1 : 0,
           transform: entered && imgReady ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'opacity 1.4s ease-out, transform 1.4s ease-out',
+          transition: 'opacity 1.4s var(--ease-standard), transform 1.4s var(--ease-standard)',
           animation:  entered && imgReady
-            ? 'scene2-ken-burns 12s linear infinite alternate'
+            ? 'scene2-ken-burns 24s ease-in-out infinite alternate'
             : 'none',
           transformOrigin: 'center center',
         }}
@@ -95,60 +96,63 @@ export function Scene2() {
           pointerEvents: 'none',
         }}
       >
-        {/* Eyebrow — orange accent rule */}
+        {/* Film-slate marker — the story is a numbered sequence */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: '12px',
           marginBottom: '28px',
           opacity:   entered ? 1 : 0,
-          transition: 'opacity 1.0s ease',
+          transition: 'opacity 1.0s var(--ease-standard)',
           transitionDelay: '400ms',
         }}>
-          <div style={{ width: '32px', height: '2px', background: '#E8611E' }} />
+          <div style={{
+            width: '32px',
+            height: '2px',
+            background: 'var(--brand-orange)',
+            transformOrigin: 'left center',
+            transform: entered ? 'scaleX(1)' : 'scaleX(0)',
+            transition: 'transform 0.9s var(--ease-standard)',
+            transitionDelay: '500ms',
+          }} />
           <span style={{
             color: 'rgba(255,255,255,0.60)',
             fontSize: '10px',
             letterSpacing: '0.26em',
             textTransform: 'uppercase',
-            fontFamily: 'var(--font-body)',
-            fontWeight: 600,
+            fontFamily: 'var(--font-mono-brand)',
+            fontWeight: 400,
           }}>
-            Về nhiếp ảnh
+            02 — Về nhiếp ảnh
           </span>
         </div>
 
-        {/* Headline — 2 lines, each delayed */}
+        {/* Headline — each line rises out of its own mask */}
         <div style={{ marginBottom: '32px' }}>
           {H1.map((line, i) => (
-            <div
-              key={i}
-              style={{
-                display: 'block',
-                color: i === 1 ? '#FFFFFF' : 'rgba(255,255,255,0.88)',
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(28px, 3.8vw, 58px)',
-                fontWeight: 800,
-                letterSpacing: '-0.02em',
-                lineHeight: 1.14,
-                opacity:   entered ? 1 : 0,
-                transform: entered ? 'translateY(0)' : 'translateY(22px)',
-                transition: 'opacity 1.1s ease, transform 1.1s ease',
-                transitionDelay: `${600 + i * 220}ms`,
-              }}
-            >
-              {line}
+            <div key={i} style={{ overflow: 'hidden', padding: '0.08em 0' }}>
+              <div
+                style={{
+                  display: 'block',
+                  color: i === 1 ? '#FFFFFF' : 'rgba(255,255,255,0.88)',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(28px, 3.8vw, 58px)',
+                  fontWeight: 800,
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.14,
+                  transform: entered ? 'translateY(0)' : 'translateY(115%)',
+                  transition: 'transform 1.1s var(--ease-heavy)',
+                  transitionDelay: `${600 + i * 180}ms`,
+                }}
+              >
+                {line}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Editorial paragraph */}
-        <div style={{
-          opacity:   entered ? 1 : 0,
-          transform: entered ? 'translateY(0)' : 'translateY(16px)',
-          transition: 'opacity 1.0s ease, transform 1.0s ease',
-          transitionDelay: '1100ms',
-        }}>
+        {/* Editorial paragraph — lines settle one after another */}
+        <div>
           {PARA.map((line, i) => (
             <div
               key={i}
@@ -160,6 +164,10 @@ export function Scene2() {
                 fontWeight: 300,
                 lineHeight: 2.0,
                 letterSpacing: '0.04em',
+                opacity:   entered ? 1 : 0,
+                transform: entered ? 'translateY(0)' : 'translateY(14px)',
+                transition: 'opacity 0.9s var(--ease-standard), transform 0.9s var(--ease-standard)',
+                transitionDelay: `${1150 + i * 110}ms`,
               }}
             >
               {line}

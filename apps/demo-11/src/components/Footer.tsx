@@ -12,16 +12,14 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <button onClick={() => onNavigate('home')} className="flex items-center gap-2 mb-4 group">
-              <div className="w-9 h-9 bg-orange rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-base font-bold">Máy Ảnh Việt Nam</div>
-                <div className="text-xs text-orange font-semibold tracking-widest uppercase">Vì lợi ích khách hàng</div>
-              </div>
+            <button onClick={() => onNavigate('home')} className="flex items-center mb-4 group">
+              <img
+                src="/logo-white.png"
+                alt="Máy Ảnh Việt Nam"
+                width={160}
+                height={32}
+                className="h-[32px] w-[160px] object-contain object-left"
+              />
             </button>
             <p className="text-sm text-white/60 leading-relaxed mb-4">
               Hệ thống bán lẻ máy ảnh, ống kính, flycam và thiết bị studio chính hãng hàng đầu Việt Nam từ năm 2010.

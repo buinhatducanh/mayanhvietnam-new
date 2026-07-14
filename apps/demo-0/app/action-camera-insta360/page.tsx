@@ -276,11 +276,11 @@ export default function ActionCameraShowcasePage() {
           <div ref={flareRef} aria-hidden="true" className="absolute left-[-10%] right-[-10%] top-[50%] h-[2px] z-26 bg-gradient-to-r from-transparent via-[rgba(255,138,61,0.85)] to-transparent opacity-0 pointer-events-none will-change-transform shadow-[0_0_26px_5px_rgba(255,106,0,0.45)]" />
 
           {/* Layer 1: 3D Stage on the right */}
-          <div className="absolute top-0 bottom-0 right-0 w-[46%] z-12 pointer-events-none">
-            <div ref={glowRef} aria-hidden="true" className="absolute left-[50%] top-[50%] w-[500px] h-[500px] translate-x-[-50%] translate-y-[-50%] opacity-0 will-change-transform">
+          <div className="absolute top-0 bottom-0 right-0 w-full md:w-[46%] z-12 pointer-events-none">
+            <div ref={glowRef} aria-hidden="true" style={{ transform: "translate(-50%, -50%)" }} className="absolute left-[50%] top-[50%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] opacity-0 will-change-transform">
               <div className="absolute inset-0 rounded-full bg-[radial-gradient(closest-side,rgba(255,106,0,0.34),rgba(255,106,0,0.08)_55%,transparent_72%)] filter blur-[6px] animate-[glowPulse_5s_ease-in-out_infinite]" />
-              <div className="absolute inset-[42px] rounded-full border border-dashed border-[rgba(255,164,96,0.5)] animate-[ringSpin_32s_linear_infinite]" />
-              <div className="absolute inset-[92px] rounded-full border border-white/16" />
+              <div className="absolute inset-[26px] md:inset-[42px] rounded-full border border-dashed border-[rgba(255,164,96,0.5)] animate-[ringSpin_32s_linear_infinite]" />
+              <div className="absolute inset-[56px] md:inset-[92px] rounded-full border border-white/16" />
             </div>
             {mode !== "fb" && (
               <ThreeDStage
@@ -306,21 +306,21 @@ export default function ActionCameraShowcasePage() {
 
           {/* Layer 2: Hero intro Overlay copy */}
           <div ref={heroRef} className="absolute inset-0 z-20 flex items-center will-change-transform">
-            <div className="w-full max-w-[1280px] mx-auto px-8">
+            <div className="w-full max-w-[1280px] mx-auto px-5 sm:px-8">
               <div className="max-w-[560px]">
                 <div className="inline-flex items-center gap-2 border border-[rgba(255,138,61,0.5)] bg-[#110a09]/55 backdrop-blur-[8px] rounded-full px-4 py-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] shadow-[0_0_10px_2px_rgba(255,106,0,0.7)] animate-[recBlink_1.4s_ease-in-out_infinite]" />
                   <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#ff8a3d]">Cuộn chuột = tua video đua xe</span>
                 </div>
-                <h1 className="mt-6 mb-0 text-[74px] leading-[1.0] font-extralight tracking-[-0.02em] text-white">
+                <h1 className="mt-6 mb-0 text-[42px] sm:text-[58px] lg:text-[74px] leading-[1.05] font-extralight tracking-[-0.02em] text-white">
                   Insta360 <span className="font-bold text-[#ff6a00]">ONE RS</span><br />
-                  <span className="text-[44px] font-light text-white/92">1-Inch 360 Edition</span>
+                  <span className="text-[26px] sm:text-[34px] lg:text-[44px] font-light text-white/92">1-Inch 360 Edition</span>
                 </h1>
                 <p className="mt-5 max-w-[440px] text-[17.5px] font-light leading-[1.6] text-white/75">
                   Cảm biến kép 1-inch đồng phát triển cùng Leica. Quay 6K 360° — bắt trọn mọi khoảnh khắc tốc độ.
                 </p>
                 <div className="flex items-baseline gap-3.5 mt-7">
-                  <span className="text-[32px] font-medium text-white">18.990.000đ</span>
+                  <span className="text-[26px] sm:text-[32px] font-medium text-white">18.990.000đ</span>
                   <span className="text-[17px] text-white/45 line-through">20.990.000đ</span>
                   <span className="text-[12px] font-extrabold text-white bg-[#ff6a00] rounded-full px-2.5 py-1 shadow-[0_6px_18px_-4px_rgba(255,106,0,0.7)]">-10%</span>
                 </div>
@@ -336,33 +336,33 @@ export default function ActionCameraShowcasePage() {
           <div className="absolute inset-0 z-20 flex items-center pointer-events-none">
             <div className="w-full max-w-[1280px] mx-auto px-8 relative h-full">
               
-              <div ref={seg0} className="absolute left-8 top-1/2 -translate-y-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg0} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">01 · Cảm biến</p>
-                <h2 className="mt-3.5 mb-0 text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">1-inch <span className="font-bold text-[#ff6a00]">×2</span></h2>
+                <h2 className="mt-3.5 mb-0 text-[48px] sm:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">1-inch <span className="font-bold text-[#ff6a00]">×2</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
                   Đồng phát triển cùng Leica. Dải nhạy sáng vượt trội bắt trọn chi tiết trong đêm tối.
                 </p>
               </div>
 
-              <div ref={seg1} className="absolute left-8 top-1/2 -translate-y-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg1} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">02 · Quay phim</p>
-                <h2 className="mt-3.5 mb-0 text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">6K <span className="font-bold text-[#ff6a00]">360°</span></h2>
+                <h2 className="mt-3.5 mb-0 text-[48px] sm:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">6K <span className="font-bold text-[#ff6a00]">360°</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
                   Tự do tái khung hình (reframe) sau khi quay mà không lo suy giảm độ phân giải.
                 </p>
               </div>
 
-              <div ref={seg2} className="absolute left-8 top-1/2 -translate-y-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg2} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">03 · Chống rung</p>
-                <h2 className="mt-3.5 mb-0 text-[76px] leading-[0.98] font-bold text-white">Flow<span className="text-[#ff6a00]">State</span></h2>
+                <h2 className="mt-3.5 mb-0 text-[44px] sm:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">Flow<span className="text-[#ff6a00]">State</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
                   Thuật toán ổn định hình ảnh 6 trục và khóa chân trời 360° giúp thước phim mượt mà tuyệt đối.
                 </p>
               </div>
 
-              <div ref={seg3} className="absolute left-8 top-1/2 -translate-y-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg3} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">04 · Bền bỉ</p>
-                <h2 className="mt-3.5 mb-0 text-[76px] leading-[0.98] font-bold text-white">IPX<span className="text-[#ff6a00]">8</span></h2>
+                <h2 className="mt-3.5 mb-0 text-[44px] sm:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">IPX<span className="text-[#ff6a00]">8</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
                   Chống nước IPX8 — tự tin quay dưới mưa, dưới biển mà không cần vỏ bảo vệ.
                 </p>
@@ -372,9 +372,9 @@ export default function ActionCameraShowcasePage() {
 
           {/* Layer 4: Final Screen */}
           <div ref={finalRef} className="absolute inset-0 z-20 flex items-center justify-center text-center opacity-0 pointer-events-none">
-            <div className="max-w-[560px]">
+            <div className="max-w-[560px] px-6">
               <p className="m-0 font-mono text-[12px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Trải nghiệm đỉnh cao</p>
-              <h2 className="mt-3 mb-0 text-[48px] font-extralight tracking-[-0.025em] text-white">Sáng tạo không giới hạn</h2>
+              <h2 className="mt-3 mb-0 text-[32px] sm:text-[48px] font-extralight tracking-[-0.025em] text-white">Sáng tạo không giới hạn</h2>
               <p className="mt-4 mb-0 text-[16px] font-light leading-[1.65] text-white/75">
                 Cảm biến kép Leica 1-inch mang lại chất lượng hình ảnh vượt bậc mà các camera hành động khác không thể sánh kịp.
               </p>
@@ -394,12 +394,12 @@ export default function ActionCameraShowcasePage() {
           </div>
 
           {/* Video progress indicator at bottom */}
-          <div className="absolute left-8 right-8 bottom-8 z-20 flex items-center justify-between font-mono text-white text-[10px] uppercase tracking-[0.12em]">
+          <div className="absolute left-5 right-5 bottom-5 sm:left-8 sm:right-8 sm:bottom-8 z-20 flex items-center justify-between font-mono text-white text-[10px] uppercase tracking-[0.12em]">
             <span>REC · <span ref={tcRef}>00:00:00</span></span>
-            <div className="flex-1 mx-6 relative h-[2px] rounded-full bg-white/20 overflow-hidden">
+            <div className="flex-1 mx-4 sm:mx-6 relative h-[2px] rounded-full bg-white/20 overflow-hidden">
               <div ref={tlRef} className="h-full rounded-full bg-[#ff6a00] w-0" />
             </div>
-            <span>TUA NHANH VIDEO</span>
+            <span className="hidden sm:inline">TUA NHANH VIDEO</span>
           </div>
         </div>
       </div>
@@ -446,14 +446,14 @@ export default function ActionCameraShowcasePage() {
       <SiteFooter />
 
       {/* Sticky buy bar */}
-      <div ref={buyBarRef} className="fixed left-0 right-0 bottom-0 z-50 translate-y-[110%] transition-transform duration-400 cubic-bezier(0.22,1,0.36,1)">
-        <div className="max-w-[1080px] mx-auto mb-[18px] px-6 py-3.5 border border-[#e9e6e1] bg-[rgba(255,255,255,0.92)] backdrop-blur-[14px] rounded-2xl shadow-[0_24px_60px_-20px_rgba(22,19,15,0.3)] flex items-center gap-[18px]">
-          <span className="w-2.2 height-2.2 rounded-full bg-[#1a9e5c] shadow-[0_0_8px_2px_rgba(26,158,92,0.4)] shrink-0" />
+      <div ref={buyBarRef} style={{ transform: "translateY(110%)" }} className="fixed left-0 right-0 bottom-0 z-50 transition-transform duration-400 cubic-bezier(0.22,1,0.36,1)">
+        <div className="max-w-[1080px] mx-4 xl:mx-auto mb-[18px] px-4 sm:px-6 py-3.5 border border-[#e9e6e1] bg-[rgba(255,255,255,0.92)] backdrop-blur-[14px] rounded-2xl shadow-[0_24px_60px_-20px_rgba(22,19,15,0.3)] flex items-center gap-3 sm:gap-[18px]">
+          <span className="w-2 h-2 rounded-full bg-[#1a9e5c] shadow-[0_0_8px_2px_rgba(26,158,92,0.4)] shrink-0" />
           <div className="min-w-0 flex-1">
             <p className="m-0 text-[14.5px] font-bold text-[#16130f] truncate">Insta360 ONE RS 1-Inch 360 Edition — Chính hãng</p>
             <p className="mt-[1px] mb-0 font-mono text-[10px] uppercase tracking-[0.12em] text-[#a39d94]">Còn hàng · Bảo hành 12 tháng</p>
           </div>
-          <div className="flex items-baseline gap-2.5">
+          <div className="hidden sm:flex items-baseline gap-2.5">
             <span className="text-[19px] font-bold text-[#ff6a00]">18.990.000đ</span>
             <span className="text-[13px] text-[#a39d94] line-through">20.990.000đ</span>
           </div>
