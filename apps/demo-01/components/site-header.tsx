@@ -114,7 +114,7 @@ export function SiteHeader() {
               alt="Máy Ảnh Việt Nam"
               width={180}
               height={45}
-              className="h-10 w-auto object-contain"
+              className="h-7 w-auto object-contain sm:h-8 lg:h-10"
             />
           </Link>
 
@@ -160,11 +160,11 @@ export function SiteHeader() {
           </div>
 
           {/* Right actions */}
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <button
               type="button"
               aria-label="Tài khoản"
-              className="flex size-10 items-center justify-center rounded-full border border-[#2a2a38] text-[#8888a0] transition-colors hover:border-[#00d4aa] hover:text-[#00d4aa]"
+              className="flex size-8 items-center justify-center rounded-full border border-[#2a2a38] text-[#8888a0] transition-colors hover:border-[#00d4aa] hover:text-[#00d4aa] sm:size-10"
             >
               <User className="size-4" aria-hidden="true" />
             </button>
@@ -172,11 +172,11 @@ export function SiteHeader() {
               type="button"
               onClick={openCart}
               aria-label={`Giỏ hàng, ${totalCount} sản phẩm`}
-              className="relative flex size-10 items-center justify-center rounded-full border border-[#2a2a38] text-[#8888a0] transition-colors hover:border-[#00d4aa] hover:text-[#00d4aa]"
+              className="relative flex size-8 items-center justify-center rounded-full border border-[#2a2a38] text-[#8888a0] transition-colors hover:border-[#00d4aa] hover:text-[#00d4aa] sm:size-10"
             >
               <ShoppingCart className="size-4" aria-hidden="true" />
               {totalCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-[#00d4aa] font-[JetBrains_Mono,Fira_Code,ui-monospace] text-[10px] font-bold text-[#0a0a0f]">
+                <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-[#00d4aa] font-[JetBrains_Mono,Fira_Code,ui-monospace] text-[9px] font-bold text-[#0a0a0f] sm:size-5 sm:text-[10px]">
                   {totalCount}
                 </span>
               )}
@@ -306,11 +306,20 @@ export function SiteHeader() {
                 <Link
                   href="/setup-studio"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-3 py-3 text-sm font-semibold text-[#00d4aa]"
+                  className="flex items-center gap-3 border-b border-[#1e1e2a] py-3 text-sm font-semibold text-[#00d4aa]"
                 >
                   <Headphones className="size-4" aria-hidden="true" />
                   Setup phòng Studio
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={`tel:${HOTLINE_FULL.replace(/-/g, '')}`}
+                  className="flex items-center gap-3 py-3 text-sm font-semibold text-[#00d4aa]"
+                >
+                  <Phone className="size-4" aria-hidden="true" />
+                  Gọi hotline: {HOTLINE_FULL}
+                </a>
               </li>
             </ul>
           </nav>

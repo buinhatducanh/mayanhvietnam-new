@@ -285,14 +285,15 @@ export default function InspirationGallery() {
           </div>
 
           {/* Asymmetrical Magazine Spread Layout */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div className="ig-magazine-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 48, alignItems: 'start' }}>
             
             {/* Left Column: Featured cover exhibition */}
             {featured && (
               <div>
                 {/* Photo cover slot */}
-                <div 
+                <div
                   ref={heroPhotoRef}
+                  className="ig-hero-photo"
                   style={{
                     height: 350,
                     borderRadius: 16,
@@ -371,7 +372,7 @@ export default function InspirationGallery() {
             )}
 
             {/* Right Column: Art Journal & Workshop list stack */}
-            <div style={{ borderLeft: '1px solid #f1f5f9', paddingLeft: 36 }}>
+            <div className="ig-right-column" style={{ borderLeft: '1px solid #f1f5f9', paddingLeft: 36 }}>
               <h4 style={{
                 fontSize: '0.72rem',
                 fontWeight: 800,
@@ -387,8 +388,8 @@ export default function InspirationGallery() {
                 {listArticles.map(art => (
                   <a key={art.id} href={art.articleUrl} className="journal-item">
                     {/* Thumbnail image */}
-                    <div 
-                      className="journal-thumb"
+                    <div
+                      className="ig-journal-thumb journal-thumb"
                       style={{
                         width: 120,
                         height: 80,

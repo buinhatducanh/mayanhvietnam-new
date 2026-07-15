@@ -25,7 +25,7 @@ function Countdown() {
     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
       {[pad(time.h), pad(time.m), pad(time.s)].map((val, i) => (
         <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
+          <div className="promo-countdown-cell" style={{
             background: 'rgba(0, 94, 184, 0.04)',
             border: '1px solid rgba(0, 94, 184, 0.12)',
             color: '#0f172a',
@@ -181,7 +181,7 @@ export default function PromoSection() {
       <div className="container-xl" style={{ position: 'relative', zIndex: 2 }}>
         
         {/* Main interactive area */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 2fr', gap: 40, alignItems: 'center', marginBottom: 40 }}>
+        <div className="promo-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1.1fr 2fr', gap: 40, alignItems: 'center', marginBottom: 40 }}>
           
           {/* Left: Interactive Header / Countdown */}
           <div>
@@ -223,7 +223,7 @@ export default function PromoSection() {
           </div>
 
           {/* Right: Grid of High-Tech Glass Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div className="promo-deals-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
             {flashDeals.map((deal, i) => {
               const disc = Math.round(((deal.original - deal.sale) / deal.original) * 100);
               return (
@@ -250,12 +250,12 @@ export default function PromoSection() {
                   </span>
 
                   {/* Image container */}
-                  <div style={{ 
-                    height: 120, 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'center', 
-                    marginBottom: 20, 
+                  <div className="promo-img-wrap" style={{
+                    height: 120,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginBottom: 20,
                     background: '#f8faff',
                     borderRadius: 12,
                     overflow: 'hidden',
@@ -308,7 +308,7 @@ export default function PromoSection() {
         </div>
 
         {/* 2-col Services Row */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        <div className="promo-services-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
           
           {/* Free Shipping */}
           <div className="promo-service-card">

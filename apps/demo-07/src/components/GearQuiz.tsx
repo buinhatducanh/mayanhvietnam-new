@@ -255,7 +255,7 @@ export default function GearQuiz() {
                 Q1: Nhu cầu chụp ảnh/quay phim chính của bạn là gì?
               </h3>
               
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="quiz-purpose-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 {[
                   { id: 'portrait', title: 'Chân Dung & Đường Phố', icon: '📸' },
                   { id: 'landscape', title: 'Phong Cảnh & Du Lịch', icon: '🌄' },
@@ -310,7 +310,7 @@ export default function GearQuiz() {
                 Q3: Hạn mức ngân sách tối đa của bạn?
               </h3>
               
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+              <div className="quiz-budget-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
                 {[
                   { id: 'low', title: 'Dưới 25 Triệu', desc: 'Bộ Máy Nhập Môn', icon: '💸' },
                   { id: 'mid', title: '25 - 60 Triệu', desc: 'Thiết Bị Tầm Trung', icon: '💳' },
@@ -355,10 +355,10 @@ export default function GearQuiz() {
               <div className="result-box-blueprint">
                 
                 {/* Photo frame */}
-                <div style={{ 
-                  background: '#f8faff', 
+                <div className="result-photo" style={{
+                  background: '#f8faff',
                   border: '1px solid rgba(0, 94, 184, 0.05)',
-                  borderRadius: 12, 
+                  borderRadius: 12,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   padding: 14, height: 180,
                 }}>
@@ -382,7 +382,7 @@ export default function GearQuiz() {
                   </p>
 
                   {/* Highlights checklist */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px', marginTop: 16 }}>
+                  <div className="result-specs-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px', marginTop: 16 }}>
                     {result.specs.map((sp, idx) => (
                       <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.75rem', color: 'rgba(15,23,42,0.5)' }}>
                         <span style={{ color: '#005EB8', fontWeight: 900 }}>◆</span>
@@ -395,7 +395,7 @@ export default function GearQuiz() {
               </div>
 
               {/* Action pricing row */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
+              <div className="quiz-actions-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
                 <div>
                   <span style={{ fontSize: '0.75rem', color: 'rgba(15,23,42,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Giá trọn bộ đề xuất:</span>
                   <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#d32f2f', fontFamily: 'ui-monospace, monospace' }}>

@@ -45,7 +45,7 @@ export function TabbedProductSection({ heading, categorySlug, variant }: Props) 
       </div>
 
       {/* Sub-tabs: Xem tất cả / Sản phẩm mới / Sản phẩm cũ */}
-      <div className="mb-5 flex items-center gap-1 border-b border-border">
+      <div className="mb-5 flex items-center gap-1 overflow-x-auto border-b border-border" style={{ scrollbarWidth: 'none' }}>
         {(
           [
             { value: 'all', label: 'Xem tất cả' },
@@ -58,7 +58,7 @@ export function TabbedProductSection({ heading, categorySlug, variant }: Props) 
             type="button"
             onClick={() => setTab(t.value)}
             aria-pressed={tab === t.value}
-            className={`relative -mb-px border-b-2 px-4 py-2.5 text-sm font-medium transition-colors ${
+            className={`relative -mb-px shrink-0 border-b-2 px-3 py-2.5 text-sm font-medium transition-colors sm:px-4 ${
               tab === t.value
                 ? 'border-primary text-primary'
                 : 'border-transparent text-muted-foreground hover:text-foreground'

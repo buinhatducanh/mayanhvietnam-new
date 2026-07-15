@@ -9,7 +9,7 @@ import { promotionalBanners } from '@/lib/products'
 export function PromotionalBannersSection() {
   return (
     <section aria-label="Banner khuyến mãi" className="mx-auto w-full max-w-7xl px-4 lg:px-8">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {promotionalBanners.map((banner) => (
           <Link
             key={banner.label}

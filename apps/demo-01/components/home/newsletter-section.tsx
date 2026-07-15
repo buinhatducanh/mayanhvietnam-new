@@ -21,8 +21,8 @@ export function NewsletterSection() {
           aria-hidden="true"
           className="pointer-events-none absolute -left-20 -top-20 size-80 rounded-full bg-primary/10 blur-[100px]"
         />
-        <div className="relative grid gap-10 p-8 lg:grid-cols-2 lg:p-12">
-          <div className="relative overflow-hidden rounded-2xl">
+        <div className="relative grid gap-8 p-6 sm:gap-10 sm:p-8 lg:grid-cols-2 lg:p-12">
+          <div className="relative min-h-[260px] overflow-hidden rounded-2xl sm:min-h-[320px]">
             <img
               src="/images/about-photographer.png"
               alt="Nhiếp ảnh gia với máy ảnh trên chân máy lúc hoàng hôn"
@@ -32,7 +32,7 @@ export function NewsletterSection() {
               aria-hidden="true"
               className="absolute inset-0 bg-gradient-to-r from-card via-card/70 to-transparent"
             />
-            <div className="relative p-6 lg:p-8">
+            <div className="relative p-5 sm:p-6 lg:p-8">
             <span className="text-xs font-semibold uppercase tracking-widest text-primary">
               Về Mayanhvietnam
             </span>

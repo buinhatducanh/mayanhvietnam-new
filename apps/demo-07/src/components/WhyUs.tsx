@@ -164,13 +164,13 @@ export default function WhyUs() {
         </div>
 
         {/* Dashboard Split Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 60, alignItems: 'center' }}>
-          
+        <div className="why-us-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 60, alignItems: 'center' }}>
+
           {/* Left Side: Dynamic HUD circular dashboard console */}
-          <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', height: 420 }}>
-            
+          <div className="why-us-hud" style={{ display: 'flex', justifyContent: 'center', position: 'relative', height: 420 }}>
+
             {/* HUD Central ring structure */}
-            <div style={{ position: 'relative', width: 340, height: 340, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="why-us-hud-ring" style={{ position: 'relative', width: 340, height: 340, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               
               {/* Outer orbit */}
               <div className="hud-circle-outer" style={{
@@ -211,7 +211,7 @@ export default function WhyUs() {
                   {activeFeature.hudLabel}
                 </div>
 
-                <div style={{
+                <div className="why-us-hud-metric" style={{
                   fontSize: '2.5rem',
                   fontWeight: 900,
                   color: '#0f172a',

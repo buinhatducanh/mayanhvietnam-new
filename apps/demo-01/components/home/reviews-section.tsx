@@ -90,7 +90,7 @@ export function ReviewsSection() {
           type="button"
           onClick={() => scroll(-1)}
           aria-label="Video trước"
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 flex size-9 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm text-white transition-colors hover:bg-black/80 sm:left-0 sm:w-10 sm:h-10"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -124,7 +124,7 @@ export function ReviewsSection() {
           type="button"
           onClick={() => scroll(1)}
           aria-label="Video tiếp"
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 flex size-9 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm text-white transition-colors hover:bg-black/80 sm:right-0 sm:w-10 sm:h-10"
         >
           <ChevronRight className="w-5 h-5" />
         </button>

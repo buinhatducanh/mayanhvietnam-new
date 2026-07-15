@@ -99,6 +99,8 @@ export default function BrandSection() {
           cursor: pointer;
           user-select: none;
         }
+        /* Brand glass card already has className "brand-glass-card"
+           via inline style — responsive overrides live in globals.css */
 
         .brand-glass-card:hover {
           background: #ffffff;

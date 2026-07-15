@@ -118,7 +118,7 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 40, alignItems: 'start' }}>
+        <div className="testi-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 40, alignItems: 'start' }}>
           
           {/* Sidebar */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -181,13 +181,13 @@ export default function Testimonials() {
             </svg>
 
             {/* Review text */}
-            <p style={{ 
-              fontSize: '1.05rem', 
-              color: '#1e293b', 
-              lineHeight: 1.7, 
-              marginBottom: 32, 
+            <p className="testi-review-text" style={{
+              fontSize: '1.05rem',
+              color: '#1e293b',
+              lineHeight: 1.7,
+              marginBottom: 32,
               fontStyle: 'italic',
-              fontWeight: 500 
+              fontWeight: 500
             }}>
               &ldquo;{t.text}&rdquo;
             </p>

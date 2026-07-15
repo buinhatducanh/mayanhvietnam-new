@@ -18,7 +18,7 @@ interface Props {
  * Auto-play, pause on hover, có arrows + dots.
  * Banner ảnh thật 1305x435 từ mayanhvietnam.com.
  */
-export function CategoryBannerCarousel({ banners, aspectRatio = '3/1' }: Props) {
+export function CategoryBannerCarousel({ banners, aspectRatio }: Props) {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
 
@@ -41,8 +41,7 @@ export function CategoryBannerCarousel({ banners, aspectRatio = '3/1' }: Props) 
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl border border-border bg-black"
-      style={{ aspectRatio: aspectRatio }}
+      className="group relative overflow-hidden rounded-2xl border border-border bg-black aspect-[2/1] sm:aspect-[3/1] lg:aspect-[3/1]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
