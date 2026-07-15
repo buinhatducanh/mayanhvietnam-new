@@ -1,1 +1,1 @@
-{"buildCommand":"pnpm --filter demo-08 build"}
+{"buildCommand":"pnpm --filter demo-08 build","build":{"env":{"ENABLE_EXPERIMENTAL_COREPACK":"1"}}}
