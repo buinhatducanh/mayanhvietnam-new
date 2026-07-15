@@ -1,1 +1,1 @@
-{"installCommand":"corepack enable && corepack prepare pnpm@10.34.5 --activate && pnpm install --no-frozen-lockfile --registry https://registry.npmjs.org/","buildCommand":"pnpm --filter demo-04 build"}
+{"installCommand":"npm install --legacy-peer-deps","buildCommand":"npx --yes pnpm@10.34.5 --filter demo-04 build"}
