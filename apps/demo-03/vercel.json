@@ -1,1 +1,1 @@
-{"installCommand":"npm install -g pnpm@9.15.9 && pnpm install --no-frozen-lockfile","buildCommand":"pnpm --filter demo-03 build"}
+{"installCommand":"corepack enable && corepack prepare pnpm@10.34.5 --activate && pnpm install --no-frozen-lockfile --registry https://registry.npmjs.org/","buildCommand":"pnpm --filter demo-03 build"}
