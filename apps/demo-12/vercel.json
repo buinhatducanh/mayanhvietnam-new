@@ -1,6 +1,4 @@
 {
   "buildCommand": "corepack enable && pnpm --filter demo-12 build",
-  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
-  "framework": "vite",
-  "outputDirectory": "dist"
+  "installCommand": "corepack enable && pnpm install --frozen-lockfile"
 }
