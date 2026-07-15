@@ -1,4 +1,4 @@
 {
-  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
-  "buildCommand": "corepack enable && pnpm --filter demo-0 build"
+  "installCommand": "npm install -g pnpm@9.15.4 && pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm --filter demo-0 build"
 }
