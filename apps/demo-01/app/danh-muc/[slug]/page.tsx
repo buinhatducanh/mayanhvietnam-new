@@ -30,8 +30,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto w-full max-w-7xl px-4 pb-20 pt-8 lg:px-8">
-        <nav aria-label="Breadcrumb" className="mb-6">
+      <main className="mx-auto w-full max-w-7xl px-4 pb-16 pt-6 sm:pb-20 sm:pt-8 lg:px-8">
+        <nav aria-label="Breadcrumb" className="mb-4 sm:mb-6">
           <ol className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <li>
               <Link href="/" className="transition-colors hover:text-primary">

@@ -82,7 +82,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-card">
       {/* Services strip */}
       <div className="border-b border-border">
-        <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 lg:grid-cols-4 lg:px-8">
+        <ul className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-6 sm:gap-6 sm:py-8 lg:grid-cols-4 lg:px-8">
           {services.map((service) => (
             <li key={service.title} className="flex items-center gap-3">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
@@ -97,7 +97,7 @@ export function SiteFooter() {
         </ul>
       </div>
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:gap-10 sm:py-14 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
           <Link href="/" className="flex items-center">
             <Image

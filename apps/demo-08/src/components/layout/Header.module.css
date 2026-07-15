@@ -744,7 +744,7 @@
   .topbar_right a:not(.topbar_phone) { display: none; }
   .action_label { display: none; }
   .hamburger { display: flex; }
-  .spacer { height: 114px; }
+  .spacer { height: 178px; }
   .bottom_bar {
     display: flex;
     align-items: stretch;

@@ -188,14 +188,20 @@ export default function GearQuiz() {
         /* Result container blueprint styling in Light Theme */
         .result-box-blueprint {
           display: grid;
-          grid-template-columns: 220px 1fr;
-          gap: 32px;
+          grid-template-columns: 1fr;
+          gap: 24px;
           background: rgba(255, 255, 255, 0.85);
           border: 1px solid rgba(0, 94, 184, 0.12);
           border-radius: 16px;
           padding: 24px;
           margin-bottom: 24px;
           position: relative;
+        }
+        @media (min-width: 640px) {
+          .result-box-blueprint {
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
+          }
         }
 
         .result-box-blueprint::before {

@@ -35,7 +35,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto w-full max-w-7xl px-4 pb-20 pt-8 lg:px-8">
+      <main className="mx-auto w-full max-w-7xl px-4 pb-24 pt-6 sm:pt-8 lg:px-8">
         <nav aria-label="Breadcrumb" className="mb-8">
           <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
             <li>

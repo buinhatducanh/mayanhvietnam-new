@@ -25,7 +25,7 @@ export default function HeroBanner() {
   if (banners.length === 0) return null;
 
   return (
-    <section className="relative w-full overflow-hidden bg-black" style={{ height: "clamp(300px, 45vw, 560px)" }}>
+    <section className="relative w-full overflow-hidden bg-black" style={{ height: "clamp(280px, 50vw, 560px)" }}>
       {banners.map((banner, idx) => (
         <Link
           key={banner.name}

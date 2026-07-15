@@ -20,21 +20,11 @@ export default function Footer() {
               Nhận thông báo flash sale, sản phẩm mới và tips nhiếp ảnh hàng tuần.
             </p>
           </div>
-          <div style={{ display: 'flex', minWidth: 380, flexShrink: 0 }}>
+          <div className="flex w-full sm:min-w-[380px] sm:flex-shrink-0">
             <input
               type="email"
               placeholder="Nhập email của bạn..."
-              style={{
-                flex: 1,
-                padding: '14px 18px',
-                border: 'none',
-                borderRadius: '8px 0 0 8px',
-                fontSize: '0.9375rem',
-                fontFamily: 'inherit',
-                outline: 'none',
-                background: 'rgba(255,255,255,0.15)',
-                color: '#fff',
-              }}
+              className="flex-1 px-4 py-3.5 border-none rounded-l-lg text-[0.9375rem] font-[inherit] outline-none bg-white/15 text-white"
             />
             <button style={{
               background: '#fff',
@@ -58,7 +48,7 @@ export default function Footer() {
       {/* Main Footer */}
       <div style={{ padding: '60px 0 40px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="container-xl">
-          <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 60 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-[260px_1fr] gap-10 sm:gap-[60px]">
             {/* Brand Column */}
             <div>
               {/* Logo */}
@@ -133,7 +123,7 @@ export default function Footer() {
             </div>
 
             {/* Links Columns */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {/* Sản phẩm */}
               <div>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 16 }}>Sản Phẩm</div>

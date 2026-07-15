@@ -119,43 +119,43 @@ export default function App() {
       <div
         id="scroll-container"
         style={{
-          height: '100vh',
+          height: '100dvh',
           overflowY: 'scroll',
           scrollSnapType: 'y mandatory',
         }}
       >
         {/* 1 — The foggy lone tree. The frame reveals what the eye chooses. */}
-        <section style={{ height: '100vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section style={{ minHeight: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <CinematicScene onNavigate={handleNavigate} />
         </section>
 
         {/* 2 — Vietnamese misty hills at dawn. Time and silence. */}
-        <section style={{ height: '100vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section style={{ minHeight: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Scene2 />
         </section>
 
         {/* 3 — Mountain at last light. Ánh sáng không chờ ai. */}
-        <section style={{ height: '100vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section style={{ minHeight: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Scene3 />
         </section>
 
         {/* 4 — Warm orange sunset mountain valley */}
-        <section style={{ height: '100vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section style={{ minHeight: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Scene4 />
         </section>
 
         {/* 5 — Breathtaking golden hour mountain reflection lake */}
-        <section style={{ height: '100vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section style={{ minHeight: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Scene5 />
         </section>
 
         {/* 6 — Choose Your World: Six cinematic photography worlds */}
-        <section style={{ height: '100vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section style={{ minHeight: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Scene6 />
         </section>
 
         {/* 7 — The Closing Scene: Manifesto & CTA */}
-        <section style={{ height: '100vh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section style={{ minHeight: '100dvh', scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Scene7 onEnterCamera={() => setCurrentPage('store')} />
         </section>
       </div>

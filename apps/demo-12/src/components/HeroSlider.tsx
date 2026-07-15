@@ -83,7 +83,7 @@ export default function HeroSlider() {
             style={{
                 position: 'relative',
                 height: 'calc(100vh - 160px)',
-                minHeight: '520px',
+                minHeight: 'calc(100dvh - 80px)',
                 maxHeight: '800px',
                 overflow: 'hidden',
                 background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #404040 100%)',
@@ -177,7 +177,7 @@ export default function HeroSlider() {
                     zIndex: 2,
                     maxWidth: '1200px',
                     margin: '0 auto',
-                    padding: '0 48px',
+                    padding: '0 clamp(16px, 4vw, 48px)',
                     height: '100%',
                     display: 'flex',
                     alignItems: 'center',
@@ -237,7 +237,7 @@ export default function HeroSlider() {
                             transition={{ delay: 0.3 }}
                             style={{
                                 fontFamily: 'Plus Jakarta Sans, sans-serif',
-                                fontSize: '48px',
+                                fontSize: 'clamp(28px, 7vw, 48px)',
                                 fontWeight: 800,
                                 color: '#FFFFFF',
                                 lineHeight: 1.1,

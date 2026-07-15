@@ -29,8 +29,7 @@ export function HeroCarousel() {
     >
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 py-4">
         {/* ── MAIN CAROUSEL — panoramic 3:1 to match mayanhvietnam.com ── */}
-        <div className="relative rounded-2xl overflow-hidden bg-black border border-border shadow-2xl shadow-black/30"
-             style={{ aspectRatio: '3/1' }}>
+        <div className="relative rounded-2xl overflow-hidden bg-black border border-border shadow-2xl shadow-black/30 aspect-[3/1] max-h-[350px] sm:max-h-none">
           {/* Slides */}
           {REAL_BANNERS.map((banner, i) => (
             <div

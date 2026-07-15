@@ -41,7 +41,7 @@ export function Hero() {
   return (
     <section
       className="relative w-full overflow-hidden bg-white"
-      style={{ height: '100vh', minHeight: '700px' }}
+      style={{ height: '100dvh', minHeight: '700px' }}
     >
       {/* Orange top accent bar — draws left-to-right on load */}
       <div

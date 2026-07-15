@@ -94,7 +94,7 @@ export function Scene4() {
       style={{
         position: 'relative',
         width: '100vw',
-        height: '100vh',
+        height: '100dvh',
         overflow: 'hidden',
         background: '#0D0805', // Deep luxurious warm black
         display: 'flex',

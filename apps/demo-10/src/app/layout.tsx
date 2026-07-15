@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Outfit, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: 'Máy Ảnh Việt Nam — Máy ảnh, ống kính, flycam chính hãng',
   description:
     'Máy Ảnh Việt Nam — Phân phối máy ảnh, ống kính, flycam, action camera chính hãng giá tốt. Hệ thống 4 chi nhánh.',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({

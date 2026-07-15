@@ -33,8 +33,7 @@ export default function HeroBanner() {
       <div className="max-w-[1440px] mx-auto px-6 py-4">
         {/* ── MAIN CAROUSEL — panoramic 3:1 giống mayanhvietnam.com ── */}
         <div
-          className="relative rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl shadow-black/40"
-          style={{ aspectRatio: "3 / 1" }}
+          className="relative rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl shadow-black/40 aspect-[3/1] max-h-[350px] sm:max-h-none"
         >
           {/* Slides */}
           {banners.map((banner, idx) => (

@@ -289,8 +289,7 @@ function CategoryBannerCarousel({ banners }: { banners: CategoryBanner[] }) {
 
   return (
     <div
-      className="relative rounded-xl overflow-hidden bg-black border border-border/40 shadow-lg shadow-black/20"
-      style={{ aspectRatio: '3/1' }}
+      className="relative rounded-xl overflow-hidden bg-black border border-border/40 shadow-lg shadow-black/20 aspect-[2/1] sm:aspect-[3/1]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

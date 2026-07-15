@@ -2,3 +2,8 @@
 @import './tailwind.css';
 @import './theme.css';
 @import './story.css';
+
+html,
+body {
+  overflow-x: hidden;
+}

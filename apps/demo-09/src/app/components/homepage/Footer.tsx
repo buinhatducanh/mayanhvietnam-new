@@ -116,7 +116,7 @@ const S = {
 
   grid: {
     display: 'grid',
-    gridTemplateColumns: '280px 180px 240px 1fr',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
     gap: '40px',
   } as React.CSSProperties,
 

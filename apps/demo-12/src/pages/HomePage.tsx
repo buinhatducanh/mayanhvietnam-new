@@ -243,7 +243,7 @@ export default function HomePage() {
           </h2>
           <p style={{ color: '#666666', fontSize: 16 }}>Khám phá hàng ngàn sản phẩm chính hãng</p>
         </div>
-        <div className="category-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+        <div className="category-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
           {categories.map(cat => (
             <Link key={cat.slug} to={`/danh-muc/${cat.slug}`} style={{ textDecoration: 'none' }}>
               <motion.div
@@ -321,7 +321,7 @@ export default function HomePage() {
             Xem tất cả →
           </Link>
         </div>
-        <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+        <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
           {products.slice(0, 8).map(p => (
             <ProductCard key={p.id} {...p} />
           ))}
@@ -541,7 +541,7 @@ export default function HomePage() {
             Xem tất cả →
           </Link>
         </div>
-        <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+        <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
           {flycamAndAction.length > 0 ? (
             flycamAndAction.map(p => (
               <ProductCard key={p.id} {...p} />

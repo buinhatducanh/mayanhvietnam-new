@@ -80,7 +80,7 @@ export function Scene6() {
       style={{
         position: 'relative',
         width: '100vw',
-        height: '100vh',
+        height: '100dvh',
         background: '#FAF8F5',
         overflow: 'hidden',
         display: 'flex',

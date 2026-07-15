@@ -98,7 +98,7 @@ export default function StoreHeader() {
                 onFocus={() => setSearchFocus(true)}
                 onBlur={() => setSearchFocus(false)}
                 placeholder="Tìm Canon, Nikon, Sony, DJI..."
-                className={`w-full h-10 pl-11 pr-24 bg-zinc-900 border rounded-full text-sm text-white outline-none transition-all placeholder:text-zinc-500 ${
+                className={`w-full h-10 pl-11 pr-14 sm:pr-24 bg-zinc-900 border rounded-full text-sm text-white outline-none transition-all placeholder:text-zinc-500 ${
                   searchFocus ? "border-orange-500 ring-2 ring-orange-500/20" : "border-zinc-800"
                 }`}
               />

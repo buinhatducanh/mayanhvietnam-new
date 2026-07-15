@@ -17,17 +17,17 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main className="flex flex-col gap-12 pb-16 lg:gap-16">
+      <main className="flex flex-col gap-8 pb-12 sm:gap-12 sm:pb-16 lg:gap-16">
         <HeroSection />
 
         {/* Brand banners — "Mua theo hãng" (vị trí 2, ngay sau Hero) */}
-        <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl">
           <BrandSection />
         </div>
 
         {/* Category grid — 9 items from homepage.json */}
         <section aria-label="Danh mục nổi bật" className="mx-auto w-full max-w-7xl px-4 lg:px-8">
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-9">
+          <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-5 sm:gap-3 lg:grid-cols-9">
             {categories.map((cat) => (
               <Link
                 key={cat.slug}

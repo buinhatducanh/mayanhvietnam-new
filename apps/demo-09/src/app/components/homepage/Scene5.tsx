@@ -124,7 +124,7 @@ export function Scene5() {
       style={{
         position: 'relative',
         width: '100vw',
-        height: '100vh',
+        height: '100dvh',
         overflow: 'hidden',
         background: '#0B0806',
         display: 'flex',

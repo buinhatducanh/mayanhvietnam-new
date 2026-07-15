@@ -156,7 +156,7 @@ export function CinematicScene({ onNavigate }: { onNavigate?: (label: string, id
       style={{
         position: 'relative',
         width: '100vw',
-        height: '100vh',
+        height: '100dvh',
         overflow: 'hidden',
         background: '#080808',
         fontFamily: 'var(--font-body)',
@@ -284,7 +284,7 @@ export function CinematicScene({ onNavigate }: { onNavigate?: (label: string, id
         onClick={() => onNavigate?.('Cửa hàng')}
         style={{
           position: 'absolute',
-          top: '100px',
+          top: '80px',
           right: '4vw',
           background: 'transparent',
           border: '1px solid rgba(255,255,255,0.3)',

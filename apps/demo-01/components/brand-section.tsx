@@ -22,7 +22,7 @@ function BrandCard({ banner }: { banner: BrandBanner }) {
     <Link
       href={ctaHref}
       aria-label={`Khám phá sản phẩm ${meta.name}`}
-      className="group relative flex aspect-[4/3] flex-col overflow-hidden rounded-2xl border border-white/[0.06] p-5 sm:p-6 transition-all duration-300 hover:border-white/[0.14] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30"
+      className="group relative flex aspect-[4/3] flex-col overflow-hidden rounded-2xl border border-white/[0.06] p-4 transition-all duration-300 hover:border-white/[0.14] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30 sm:p-5 lg:p-6"
       style={{ background: meta.gradient }}
     >
       {/* Accent glow, revealed on hover */}
@@ -34,7 +34,7 @@ function BrandCard({ banner }: { banner: BrandBanner }) {
       {/* Logo — the hero of the card, centered in the free space */}
       <div className="relative z-10 flex flex-1 items-center">
         <div
-          className="h-11 sm:h-12 w-full max-w-[170px] sm:max-w-[200px] text-white/85 transition-colors duration-300 group-hover:text-white"
+          className="h-9 w-full max-w-[140px] text-white/85 transition-colors duration-300 group-hover:text-white sm:h-11 sm:max-w-[170px] lg:h-12 lg:max-w-[200px]"
           dangerouslySetInnerHTML={{ __html: meta.logo }}
         />
       </div>
@@ -75,9 +75,9 @@ export default function BrandSection() {
   if (banners.length === 0) return null
 
   return (
-    <section className="py-10 sm:py-14">
+    <section className="px-4 py-6 sm:px-6 sm:py-10 lg:py-14">
       {/* Section header */}
-      <div className="mb-6 sm:mb-8 px-4 sm:px-6">
+      <div className="mb-4 sm:mb-6 lg:mb-8">
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           Mua theo hãng
         </h2>
@@ -87,7 +87,7 @@ export default function BrandSection() {
       </div>
 
       {/* Brand grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 px-4 sm:px-6">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5">
         {banners.map((banner) => (
           <BrandCard key={banner.meta.slug} banner={banner} />
         ))}

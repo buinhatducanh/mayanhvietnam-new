@@ -91,8 +91,8 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
       <div className="border-b border-[#f1eee9]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 py-[11px] flex items-center gap-3 sm:gap-[22px]">
           <Link href="/" title="Máy Ảnh Việt Nam" className="shrink-0 flex items-center no-underline transition-all hover:-translate-y-[1px]">
-            <div className="bg-[#ff6a00] rounded-[12px] px-[14px] py-[7px] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)]">
-              <img src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png" alt="Máy Ảnh Việt Nam" width={180} height={36} className="h-[36px] w-[180px] object-contain object-left block" />
+            <div className="bg-[#ff6a00] rounded-[12px] px-[10px] py-[5px] sm:px-[14px] sm:py-[7px] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)]">
+              <img src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png" alt="Máy Ảnh Việt Nam" width={180} height={36} className="h-[28px] w-auto sm:h-[36px] sm:w-[180px] object-contain object-left block" />
             </div>
           </Link>
 

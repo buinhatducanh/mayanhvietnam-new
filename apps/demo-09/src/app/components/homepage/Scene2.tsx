@@ -36,7 +36,7 @@ export function Scene2() {
       style={{
         position: 'relative',
         width: '100vw',
-        height: '100vh',
+        height: '100dvh',
         overflow: 'hidden',
         background: '#1A1208',
         fontFamily: 'var(--font-body)',
