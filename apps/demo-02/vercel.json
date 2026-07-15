@@ -1,1 +1,1 @@
-{"installCommand":"npm install --legacy-peer-deps","buildCommand":"cd apps/demo-02 && npx --yes next build"}
+{"installCommand":"npm install --legacy-peer-deps","buildCommand":"npx --yes next build"}
