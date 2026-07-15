@@ -1,1 +1,1 @@
-{"installCommand":"corepack enable && corepack prepare pnpm@10.34.5 --activate && NODE_OPTIONS='--no-experimental-fetch' pnpm install --no-frozen-lockfile","buildCommand":"pnpm --filter demo-05 build"}
+{"installCommand":"corepack enable && corepack prepare pnpm@10.34.5 --activate && pnpm install --no-frozen-lockfile --registry https://registry.npmjs.org/","buildCommand":"pnpm --filter demo-05 build"}
