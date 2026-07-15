@@ -87,6 +87,7 @@ export function Scene2() {
           White — near-white — the light already in the scene.
       ══════════════════════════════════════════════════════ */}
       <div
+        className="scene2-text"
         style={{
           position: 'absolute',
           left: '72px',
@@ -123,6 +124,7 @@ export function Scene2() {
           {H1.map((line, i) => (
             <div
               key={i}
+              className="scene2-headline"
               style={{
                 display: 'block',
                 color: i === 1 ? '#FFFFFF' : 'rgba(255,255,255,0.88)',
@@ -143,7 +145,7 @@ export function Scene2() {
         </div>
 
         {/* Editorial paragraph */}
-        <div style={{
+        <div className="scene2-para" style={{
           opacity:   entered ? 1 : 0,
           transform: entered ? 'translateY(0)' : 'translateY(16px)',
           transition: 'opacity 1.0s ease, transform 1.0s ease',

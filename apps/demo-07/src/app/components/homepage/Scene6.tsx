@@ -112,6 +112,7 @@ export function Scene6() {
   return (
     <div
       ref={sceneRef}
+      className="scene6-panels"
       style={{
         position: 'relative',
         width: '100vw',
