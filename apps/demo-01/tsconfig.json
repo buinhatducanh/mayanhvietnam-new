@@ -27,7 +27,7 @@
         "./*"
       ],
       "@mayanhvietnam/mock-data": [
-        "../../packages/mock-data/src"
+        "./lib/mock-data"
       ]
     }
   },

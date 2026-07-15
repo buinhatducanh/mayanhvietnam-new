@@ -1,11 +1,11 @@
 {
-  "extends": "../../packages/tsconfig/nextjs.json",
+  "extends": "./packages/tsconfig/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@mayanhvietnam/shared-utils": ["../../packages/shared-utils/src"],
-      "@mayanhvietnam/mock-data": ["../../packages/mock-data/src"]
+      "@mayanhvietnam/shared-utils": ["./lib/shared-utils"],
+      "@mayanhvietnam/mock-data": ["./lib/mock-data"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
