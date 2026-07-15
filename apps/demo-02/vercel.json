@@ -1,1 +1,1 @@
-{"installCommand":"corepack enable && pnpm install --no-frozen-lockfile","buildCommand":"pnpm --filter demo-02 build"}
+{"installCommand":"npm install --legacy-peer-deps","buildCommand":"cd apps/demo-02 && npx --yes next build"}
