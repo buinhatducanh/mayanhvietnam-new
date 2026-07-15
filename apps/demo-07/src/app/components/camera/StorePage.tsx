@@ -79,9 +79,9 @@ function HeroSlider({ onNavigate }: { onNavigate?: (label: string, id?: string) 
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)' }} />
 
       {/* Content */}
-      <div style={{ position: 'absolute', top: '50%', left: '48px', transform: 'translateY(-50%)', zIndex: 10, maxWidth: '420px' }}>
-        <h2 style={{ color: '#FFF', fontSize: '32px', fontFamily: 'var(--font-display)', fontWeight: 400, marginBottom: '16px', lineHeight: 1.2 }}>{s.title}</h2>
-        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '15px', lineHeight: 1.6, marginBottom: '28px', whiteSpace: 'pre-line' }}>{s.subtitle}</p>
+      <div className="store-hero-content" style={{ position: 'absolute', top: '50%', left: '48px', transform: 'translateY(-50%)', zIndex: 10, maxWidth: '420px' }}>
+        <h2 className="store-hero-title" style={{ color: '#FFF', fontSize: '32px', fontFamily: 'var(--font-display)', fontWeight: 400, marginBottom: '16px', lineHeight: 1.2 }}>{s.title}</h2>
+        <p className="store-hero-subtitle" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '15px', lineHeight: 1.6, marginBottom: '28px', whiteSpace: 'pre-line' }}>{s.subtitle}</p>
         <button
           onClick={() => onNavigate?.('Máy ảnh')}
           style={{ background: '#E86A24', color: '#FFF', padding: '12px 32px', borderRadius: '28px', border: 'none', fontSize: '14px', fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 20px rgba(232,106,36,0.3)', transition: 'all 0.3s ease' }}
@@ -226,7 +226,7 @@ export function StorePage({
           return (
             <section key={cat.id} style={{ marginBottom: '80px' }}>
               {/* Section header */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+              <div className="store-category-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                   <span style={{ fontSize: '28px' }}>{cat.icon}</span>
                   <div>
@@ -247,7 +247,7 @@ export function StorePage({
               {hasBanners && <CategoryBannerSlider slug={cat.slug} />}
 
               {/* Products grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: '20px' }}>
+              <div className="store-product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: '20px' }}>
                 {display.map(p => <ProductCard key={p.id} product={p} onNavigate={onNavigate} />)}
               </div>
             </section>
@@ -255,9 +255,9 @@ export function StorePage({
         })}
 
         {/* ── THÔNG TIN CỬA HÀNG ── */}
-        <section style={{ marginBottom: '80px', background: '#E86A24', borderRadius: '24px', padding: '64px 48px', color: '#FFF', position: 'relative', overflow: 'hidden' }}>
+        <section className="store-info-section" style={{ marginBottom: '80px', background: '#E86A24', borderRadius: '24px', padding: '64px 48px', color: '#FFF', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, transparent 60%)' }} />
-          <div style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
+          <div className="store-info-grid" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
             <div>
               <h2 style={{ fontSize: '32px', fontFamily: 'var(--font-display)', fontWeight: 300, marginBottom: '24px' }}>Máy Ảnh Việt Nam</h2>
               <p style={{ fontSize: '16px', lineHeight: 1.7, opacity: 0.9, marginBottom: '32px' }}>
@@ -267,7 +267,7 @@ export function StorePage({
                 Hotline: {HOTLINE}
               </button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+            <div className="store-info-stats" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
               {[
                 { num: '10+', label: 'Năm kinh nghiệm' },
                 { num: '50K+', label: 'Khách hàng tin dùng' },

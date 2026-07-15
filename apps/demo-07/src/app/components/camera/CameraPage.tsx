@@ -123,63 +123,66 @@ export function CameraPage({
               transition: 'opacity 1.4s ease-in-out, transform 8s linear',
               transform: i === currentSlide ? 'scale(1)' : 'scale(1.05)'
             }}>
-               <div style={{ 
-                 flex: '0 0 35%', 
-                 padding: '100px 8vw', 
-                 display: 'flex', 
-                 flexDirection: 'column', 
-                 justifyContent: 'center', 
-                 zIndex: 10,
-                 background: 'linear-gradient(to right, #F6F6F2 80%, transparent)'
-               }}>
-                  <span style={{ 
-                    fontSize: '14px', 
-                    letterSpacing: '0.2em', 
-                    textTransform: 'uppercase', 
-                    color: '#8C8C8C', 
-                    marginBottom: '16px' 
+               <div
+                 className="camera-hero-text"
+                 style={{
+                   flex: '0 0 35%',
+                   padding: '100px 8vw',
+                   display: 'flex',
+                   flexDirection: 'column',
+                   justifyContent: 'center',
+                   zIndex: 10,
+                   background: 'linear-gradient(to right, #F6F6F2 80%, transparent)'
+                 }}
+               >
+                  <span style={{
+                    fontSize: '14px',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: '#8C8C8C',
+                    marginBottom: '16px'
                   }}>
                     {slide.brand}
                   </span>
-                  <h2 style={{ 
-                    fontSize: 'clamp(48px, 5vw, 72px)', 
-                    fontWeight: 300, 
-                    fontFamily: 'var(--font-display)', 
-                    marginBottom: '24px', 
+                  <h2 style={{
+                    fontSize: 'clamp(48px, 5vw, 72px)',
+                    fontWeight: 300,
+                    fontFamily: 'var(--font-display)',
+                    marginBottom: '24px',
                     lineHeight: 1.1,
                     letterSpacing: '-0.02em'
                   }}>
                     {slide.product}
                   </h2>
-                  <p style={{ 
-                    fontSize: '18px', 
-                    color: '#6B6B6B', 
-                    fontWeight: 300, 
-                    marginBottom: '48px', 
+                  <p style={{
+                    fontSize: '18px',
+                    color: '#6B6B6B',
+                    fontWeight: 300,
+                    marginBottom: '48px',
                     lineHeight: 1.6,
                     maxWidth: '400px'
                   }}>
                     {slide.tagline}
                   </p>
-                  <button style={{ 
-                    background: '#E86A24', 
-                    color: '#FFF', 
-                    padding: '16px 48px', 
-                    borderRadius: '8px', 
-                    border: 'none', 
-                    fontSize: '15px', 
-                    fontWeight: 500, 
-                    alignSelf: 'flex-start', 
-                    cursor: 'pointer', 
+                  <button style={{
+                    background: '#E86A24',
+                    color: '#FFF',
+                    padding: '16px 48px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    fontSize: '15px',
+                    fontWeight: 500,
+                    alignSelf: 'flex-start',
+                    cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     boxShadow: '0 4px 20px rgba(232, 106, 36, 0.25)'
-                  }} 
+                  }}
                   className="hover:bg-[#d45d1d] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(232,106,36,0.35)]"
                   >
                     Khám phá ngay
                   </button>
                </div>
-               <div style={{ flex: '1', position: 'relative' }}>
+               <div className="camera-hero-image" style={{ flex: '1', position: 'relative' }}>
                   <img src={slide.img} style={{ 
                     width: '100%', 
                     height: '100%', 
@@ -244,29 +247,28 @@ export function CameraPage({
             flexWrap: 'wrap' 
           }}>
              {BRANDS.map(brand => (
-               <div 
-                 key={brand} 
-                 className="group" 
-                 style={{ 
-                   background: '#FFF', 
-                   padding: '24px 48px', 
-                   borderRadius: '20px', 
-                   border: '1.5px solid transparent', 
-                   cursor: 'pointer', 
-                   transition: 'all 0.4s ease', 
+               <div
+                 key={brand}
+                 className="group camera-brand-card"
+                 style={{
+                   background: '#FFF',
+                   padding: '24px 48px',
+                   borderRadius: '20px',
+                   border: '1.5px solid transparent',
+                   cursor: 'pointer',
+                   transition: 'all 0.4s ease',
                    boxShadow: '0 4px 24px rgba(0,0,0,0.02)'
                  }} 
                  onClick={handleBrandClick}
                >
-                 <span style={{ 
-                   fontSize: '22px', 
-                   fontWeight: 700, 
-                   fontFamily: 'var(--font-display)', 
-                   color: '#8C8C8C', 
+                 <span className="group-hover:text-[#E86A24] camera-brand-text" style={{
+                   fontSize: '22px',
+                   fontWeight: 700,
+                   fontFamily: 'var(--font-display)',
+                   color: '#8C8C8C',
                    transition: 'all 0.4s ease',
                    letterSpacing: '0.05em'
-                 }} 
-                 className="group-hover:text-[#E86A24]"
+                 }}
                  >
                    {brand}
                  </span>
@@ -341,21 +343,21 @@ export function CameraPage({
           transform: animatingProducts ? 'translateY(10px)' : 'translateY(0)',
           transition: 'opacity 0.4s ease, transform 0.4s ease'
         }}>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', 
-            gap: '40px' 
+          <div className="camera-product-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
+            gap: '40px'
           }}>
             {cameras.map(p => (
-               <div key={p.id} className="product-card group" style={{
-                 background: '#FFF', 
-                 borderRadius: '24px', 
-                 padding: '48px 40px', 
-                 display: 'flex', 
-                 flexDirection: 'column', 
-                 position: 'relative', 
-                 cursor: 'pointer', 
-                 transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)', 
+               <div key={p.id} className="product-card group camera-product-card" style={{
+                 background: '#FFF',
+                 borderRadius: '24px',
+                 padding: '48px 40px',
+                 display: 'flex',
+                 flexDirection: 'column',
+                 position: 'relative',
+                 cursor: 'pointer',
+                 transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
                  boxShadow: '0 4px 32px rgba(0,0,0,0.02)'
                }}>
                  {/* Badge */}
@@ -378,13 +380,13 @@ export function CameraPage({
                  )}
                  
                  {/* Image */}
-                 <div style={{ 
-                   flex: '1', 
-                   display: 'flex', 
-                   alignItems: 'center', 
-                   justifyContent: 'center', 
-                   marginBottom: '48px', 
-                   height: '320px' 
+                 <div className="camera-product-img" style={{
+                   flex: '1',
+                   display: 'flex',
+                   alignItems: 'center',
+                   justifyContent: 'center',
+                   marginBottom: '48px',
+                   height: '320px'
                  }}>
                    <img 
                      src={p.thumbnail} 
