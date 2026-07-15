@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../../../lib/mock-data';
 import { findProductBySlug, REAL_PRODUCTS, productsByCategory } from '@/lib/real-products';
 import { toProductSummary } from '@/lib/adapter';
 import { ProductDetailClient } from './ProductDetailClient';

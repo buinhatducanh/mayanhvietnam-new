@@ -1,6 +1,6 @@
 /**
  * Mock Data Layer — mayanhvietnam.com
- * Re-exports từ @mayanhvietnam/mock-data cho demo-05.
+ * Re-exports từ ../../lib/mock-data cho demo-05.
  */
 
 export type {
@@ -12,7 +12,7 @@ export type {
   DealBanner,
   StoreInfo,
   Review,
-} from '@mayanhvietnam/mock-data';
+} from '../../lib/mock-data';
 
 export {
   allProducts,
@@ -20,9 +20,9 @@ export {
   getProductsByCategory,
   getProductBySlug,
   getRelatedProducts,
-} from '@mayanhvietnam/mock-data';
+} from '../../lib/mock-data';
 
-export { categories, getCategoryBySlug } from '@mayanhvietnam/mock-data';
-export { stores } from '@mayanhvietnam/mock-data';
-export { reviews } from '@mayanhvietnam/mock-data';
-export { heroSlides, dealBanners } from '@mayanhvietnam/mock-data';
+export { categories, getCategoryBySlug } from '../../lib/mock-data';
+export { stores } from '../../lib/mock-data';
+export { reviews } from '../../lib/mock-data';
+export { heroSlides, dealBanners } from '../../lib/mock-data';

@@ -5,7 +5,7 @@ import ProductCard, { type Product } from './ProductCard';
 
 const tabs = ['Tất Cả', 'Mirrorless', 'DSLR', 'Ống Kính', 'Flycam'];
 
-import { allProducts } from '@mayanhvietnam/mock-data';
+import { allProducts } from '../../lib/mock-data';
 
 const products: Product[] = allProducts.slice(0, 8).map((p, i) => ({
   id: p.slug,

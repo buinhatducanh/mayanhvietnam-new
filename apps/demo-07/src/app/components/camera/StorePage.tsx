@@ -16,7 +16,7 @@ import {
   accessories,
   used,
   HOTLINE
-} from '@mayanhvietnam/mock-data'
+} from '../../../../lib/mock-data'
 
 // Map category slugs to nav labels for onNavigate
 const SLUG_TO_NAV: Record<string, string> = {

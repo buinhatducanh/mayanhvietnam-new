@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronRight, Truck, CreditCard, Smartphone, Building2, Check } from "lucide-react";
 import { useCart } from "@/app/context/CartContext";
-import { formatVND } from "@mayanhvietnam/shared-utils";
+import { formatVND } from "../../../lib/shared-utils";
 
 type PaymentMethod = "cod" | "bank" | "card" | "momo";
 type DeliveryMethod = "standard" | "express";

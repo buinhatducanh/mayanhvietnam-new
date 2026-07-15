@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { getProductsByCategory, getFeaturedProducts } from '@/data/products';
 import { ProductCard } from '@/components/product/ProductCard';
-import { categoryBanners } from '@mayanhvietnam/mock-data';
+import { categoryBanners } from '../../../lib/mock-data';
 import styles from './ProductSection.module.css';
 
 interface ProductSectionProps {

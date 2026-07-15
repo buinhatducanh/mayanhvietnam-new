@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { MapPin, Phone, Clock, ChevronRight, Navigation } from "lucide-react";
-import { stores } from "@mayanhvietnam/mock-data";
+import { stores } from "../../../lib/mock-data";
 
 export default function StoreLocatorPage() {
   return (

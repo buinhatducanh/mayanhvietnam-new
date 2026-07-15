@@ -1,5 +1,5 @@
 /**
- * Adapter — bridge `@mayanhvietnam/mock-data` (ProductSummary) → demo-01 local Product type
+ * Adapter — bridge `mock-data` (ProductSummary) → demo-01 local Product type
  *
  * Demo-01 PDP uses `Product` type with local-only fields:
  * - `specs: Record<string,string>` (flat) instead of `specs: ProductSpecGroup[]`
@@ -10,7 +10,7 @@
  * This adapter derives those fields from the shared schema so we keep ONE source of truth.
  */
 
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from './mock-data';
 
 // ─── Demo-01 local types (preserved for backward compat) ─────────────────────
 
@@ -177,7 +177,7 @@ import {
   // Lens checker
   cameraBodies,
   lensOptions,
-} from '@mayanhvietnam/mock-data';
+} from './mock-data';
 
 // Re-export all of them for local use
 export {

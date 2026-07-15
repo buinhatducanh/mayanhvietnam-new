@@ -11,8 +11,6 @@
     "crawl": "node scripts/crawl-data.js"
   },
   "dependencies": {
-    "@mayanhvietnam/mock-data": "workspace:*",
-    "@mayanhvietnam/shared-utils": "workspace:*",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
     "next": "16.2.10",

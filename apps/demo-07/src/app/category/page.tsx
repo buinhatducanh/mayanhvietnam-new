@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { allProducts, getAllBrands, searchProducts } from '@mayanhvietnam/mock-data';
+import { allProducts, getAllBrands, searchProducts } from '../../../lib/mock-data';
 
 const brandOptions = ['Tất cả', ...getAllBrands()];
 const priceOptions = ['Tất cả', 'Dưới 30 triệu', '30 - 60 triệu', 'Trên 60 triệu'];

@@ -4,8 +4,8 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ChevronRight, SlidersHorizontal, X } from "lucide-react";
-import { getCategoryBySlug, getProductsByCategory, categories } from "@mayanhvietnam/mock-data";
-import type { ProductSummary } from "@mayanhvietnam/mock-data";
+import { getCategoryBySlug, getProductsByCategory, categories } from "../../../../lib/mock-data";
+import type { ProductSummary } from "../../../../lib/mock-data";
 import ProductCard from "@/app/components/product/ProductCard";
 import NotFound from "@/app/not-found";
 

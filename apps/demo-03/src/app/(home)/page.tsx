@@ -6,8 +6,8 @@ import { ArrowRight, ChevronRight, Truck, Shield, Tag, RotateCcw, Star, Quote } 
 import {
   allProducts, categories, flashSaleData, heroSlides, dealBanners, reviews,
   getProductsByCategory,
-} from "@mayanhvietnam/mock-data";
-import { formatVND, calcDiscountPercent } from "@mayanhvietnam/shared-utils";
+} from "../../../lib/mock-data";
+import { formatVND, calcDiscountPercent } from "../../../lib/shared-utils";
 import ProductCard from "@/app/components/product/ProductCard";
 import CountdownTimer from "@/app/components/home/CountdownTimer";
 import CategorySection from "@/app/components/home/CategorySection";

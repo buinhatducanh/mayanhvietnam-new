@@ -1,11 +1,11 @@
 /**
- * Adapter — bridge `@mayanhvietnam/mock-data` (ProductSummary) → demo-02 local Product type
+ * Adapter — bridge `../../lib/mock-data` (ProductSummary) → demo-02 local Product type
  *
  * Demo-02 PDP uses local Product + ProductArticle shapes with custom fields.
  * This adapter derives those fields from the shared schema.
  */
 
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../lib/mock-data';
 
 // ─── Demo-02 local types ────────────────────────────────────────────────────
 
@@ -84,7 +84,7 @@ import {
   lensOptions,
   stores as _stores,
   HOTLINE_FULL,
-} from '@mayanhvietnam/mock-data';
+} from '../../lib/mock-data';
 
 export { cameraBodies, lensOptions };
 export const HOTLINE = '0907.215.252';
@@ -172,7 +172,7 @@ export function getProductGallery(product: Product): string[] {
 
 // ─── Articles (legacy support) ───────────────────────────────────────────────
 
-import { getProductWithArticle as _getProductWithArticle } from '@mayanhvietnam/mock-data';
+import { getProductWithArticle as _getProductWithArticle } from '../../lib/mock-data';
 
 export const productArticles: Record<string, ProductArticle> = Object.fromEntries(
   _allProducts

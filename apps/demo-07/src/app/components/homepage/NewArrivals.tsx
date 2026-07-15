@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, ChevronLeft, ChevronRight, Heart } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { getNewProducts } from '@mayanhvietnam/mock-data'
-import type { ProductSummary } from '@mayanhvietnam/mock-data'
+import { getNewProducts } from '../../../../lib/mock-data'
+import type { ProductSummary } from '../../../../lib/mock-data'
 
 const RAW = getNewProducts(8)
 

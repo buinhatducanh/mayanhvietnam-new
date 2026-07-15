@@ -8,7 +8,7 @@ import {
   Menu, X, ChevronRight,
 } from "lucide-react";
 import { useCart } from "@/app/context/CartContext";
-import { categories } from "@mayanhvietnam/mock-data";
+import { categories } from "../../../lib/mock-data";
 
 const UTIL_LINKS = [
   { label: "Bảo hành", href: "/chinh-sach-bao-hanh" },

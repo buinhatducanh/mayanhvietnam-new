@@ -1,4 +1,4 @@
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../../lib/mock-data';
 import { ProductCard } from '@/components/product/ProductCard';
 
 export function ProductGrid({ products }: { products: ProductSummary[] }) {

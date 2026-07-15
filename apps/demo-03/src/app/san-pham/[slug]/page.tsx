@@ -9,8 +9,8 @@ import {
   CreditCard, Check, ZoomIn, Maximize2, Eye,
   Package, Camera, Minus, Plus, ArrowRight,
 } from "lucide-react";
-import { getProductBySlug, getRelatedProducts } from "@mayanhvietnam/mock-data";
-import { formatVND, calcDiscountPercent, calcInstallment } from "@mayanhvietnam/shared-utils";
+import { getProductBySlug, getRelatedProducts } from "../../../../lib/mock-data";
+import { formatVND, calcDiscountPercent, calcInstallment } from "../../../../lib/shared-utils";
 import { useCart } from "@/app/context/CartContext";
 import NotFound from "@/app/not-found";
 

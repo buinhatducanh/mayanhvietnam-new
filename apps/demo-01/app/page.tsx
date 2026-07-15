@@ -11,7 +11,7 @@ import { NewsletterSection } from '@/components/home/newsletter-section'
 import { CategoryBannerCarousel } from '@/components/home/category-banner-carousel'
 import BrandSection from '@/components/brand-section'
 import { categories } from '@/lib/products'
-import { categoryBanners } from '@mayanhvietnam/mock-data'
+import { categoryBanners } from '../lib/mock-data'
 
 export default function HomePage() {
   return (

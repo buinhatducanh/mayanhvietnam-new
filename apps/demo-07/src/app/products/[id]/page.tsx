@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import { getProductBySlug, ProductSummary } from '@mayanhvietnam/mock-data';
+import { getProductBySlug, ProductSummary } from '../../../../lib/mock-data';
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { getAllBrands } from '@mayanhvietnam/mock-data';
+import { getAllBrands } from '../../lib/mock-data';
 
 const BRAND_META: Record<string, { color: string; tagline: string; logo: string }> = {
   Sony:       { color: '#005EB8', tagline: 'α Series',           logo: 'SONY' },

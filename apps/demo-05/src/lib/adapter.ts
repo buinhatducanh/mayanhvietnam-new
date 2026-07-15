@@ -1,4 +1,4 @@
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../lib/mock-data';
 import type { RealProduct } from '@/lib/real-products';
 
 /**

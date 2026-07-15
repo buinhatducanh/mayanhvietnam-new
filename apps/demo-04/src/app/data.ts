@@ -16,9 +16,9 @@ import {
   categories,
   stores as _sharedStores,
   reviews,
-} from '@mayanhvietnam/mock-data';
-import { formatVND } from '@mayanhvietnam/shared-utils';
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+} from '../../lib/mock-data';
+import { formatVND } from '../../lib/shared-utils';
+import type { ProductSummary } from '../../lib/mock-data';
 
 /* ── Re-exports từ shared package ──────────────────────────────── */
 export { heroSlides, flashSaleData, categories, reviews };

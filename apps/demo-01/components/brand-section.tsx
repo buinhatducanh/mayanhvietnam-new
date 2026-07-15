@@ -5,14 +5,14 @@ import {
   getBrandBanners,
   formatBrandPrice,
   type BrandBanner,
-} from '@mayanhvietnam/mock-data'
+} from '../lib/mock-data'
 
 /**
  * Brand section — renders a grid of brand banner cards.
  * Each card is a clean brand tile: gradient bg, centered logo, product count.
  * No product thumbnails inside — the card is a brand gateway, not a product list.
  *
- * Data sourced entirely from `@mayanhvietnam/mock-data` brand-banners.ts
+ * Data sourced entirely from `../lib/mock-data` brand-banners.ts
  */
 
 function BrandCard({ banner }: { banner: BrandBanner }) {

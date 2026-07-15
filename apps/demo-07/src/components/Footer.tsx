@@ -1,6 +1,6 @@
 'use client';
 
-import { siteContent, stores } from '@mayanhvietnam/mock-data';
+import { siteContent, stores } from '../../lib/mock-data';
 import { REAL_ASSETS, REAL_CATEGORIES } from '@/lib/real-products';
 
 export default function Footer() {

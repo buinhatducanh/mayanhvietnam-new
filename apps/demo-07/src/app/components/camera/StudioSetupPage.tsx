@@ -3,7 +3,7 @@ import { SharedNavbar } from '../homepage/SharedNavbar'
 import { Footer } from '../homepage/Footer'
 import { useSEO } from '../../hooks/useSEO'
 import { ArrowRight, Video, CheckCircle2 } from 'lucide-react'
-import { studio } from '@mayanhvietnam/mock-data'
+import { studio } from '../../../../lib/mock-data'
 
 export function StudioSetupPage({ 
   onNavigate,

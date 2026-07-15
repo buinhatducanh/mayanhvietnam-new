@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Heart, Star, ShoppingCart } from 'lucide-react';
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../../lib/mock-data';
 import { formatVND, cn, calcDiscountPercent } from '@/lib/utils';
 import { useCart } from '@/lib/cart-context';
 

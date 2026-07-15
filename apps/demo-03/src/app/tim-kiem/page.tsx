@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Search as SearchIcon } from "lucide-react";
-import { allProducts, categories } from "@mayanhvietnam/mock-data";
+import { allProducts, categories } from "../../../lib/mock-data";
 import ProductCard from "@/app/components/product/ProductCard";
 import { Suspense } from "react";
 

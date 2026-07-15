@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Minus, Plus, Trash2, ShoppingBag, ChevronRight, Tag, Truck } from "lucide-react";
 import { useCart } from "@/app/context/CartContext";
-import { formatVND } from "@mayanhvietnam/shared-utils";
+import { formatVND } from "../../../lib/shared-utils";
 
 export default function Cart() {
   const { items, removeItem, updateQty, total } = useCart();

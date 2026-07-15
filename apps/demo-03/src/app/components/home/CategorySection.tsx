@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { categoryBanners, categories, getProductsByCategory } from '@mayanhvietnam/mock-data';
-import type { CategoryBanner, ProductSummary } from '@mayanhvietnam/mock-data';
+import { categoryBanners, categories, getProductsByCategory } from '../../../../lib/mock-data';
+import type { CategoryBanner, ProductSummary } from '../../../../lib/mock-data';
 import ProductCard from '@/app/components/product/ProductCard';
 
 interface CategorySectionProps {

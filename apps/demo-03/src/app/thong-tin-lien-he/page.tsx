@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight, Phone, Mail, MapPin, MessageCircle, Send, Clock } from "lucide-react";
-import { stores } from "@mayanhvietnam/mock-data";
+import { stores } from "../../../lib/mock-data";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });

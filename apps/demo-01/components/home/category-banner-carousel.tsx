@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { CategoryBanner } from '@mayanhvietnam/mock-data'
+import type { CategoryBanner } from '../../lib/mock-data'
 
 interface Props {
   banners: CategoryBanner[]

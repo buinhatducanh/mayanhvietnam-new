@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Star, ShoppingCart } from "lucide-react";
-import type { ProductSummary } from "@mayanhvietnam/mock-data";
-import { formatVND, calcDiscountPercent } from "@mayanhvietnam/shared-utils";
+import type { ProductSummary } from "../../../../lib/mock-data";
+import { formatVND, calcDiscountPercent } from "../../../../lib/shared-utils";
 import { useCart } from "@/app/context/CartContext";
 
 interface ProductCardProps {

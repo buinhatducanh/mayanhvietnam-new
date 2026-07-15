@@ -7,7 +7,7 @@ import { Filter, ChevronDown, X, Star } from 'lucide-react';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { cn, formatVND } from '@/lib/utils';
 import { REAL_PRODUCTS, REAL_CATEGORIES, REAL_BRANDS, type RealProduct } from '@/lib/real-products';
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../../lib/mock-data';
 
 type SortKey = 'newest' | 'price-asc' | 'price-desc' | 'selling' | 'rating';
 

@@ -1,11 +1,11 @@
 /**
- * Adapter — bridge `@mayanhvietnam/mock-data` (ProductSummary) → demo-08 local types
+ * Adapter — bridge `../../lib/mock-data` (ProductSummary) → demo-08 local types
  *
  * Đây là nguồn dữ liệu trung tâm duy nhất của demo-08.
  * Các file `src/data/*.ts` re-export từ đây để backward compat.
  */
 
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../lib/mock-data';
 
 // ─── Demo-08 local types ──────────────────────────────────────────────────────
 
@@ -176,7 +176,7 @@ import {
   socialLinks,
   cameraBodies,
   lensOptions,
-} from '@mayanhvietnam/mock-data';
+} from '../../lib/mock-data';
 
 // Re-export site constants
 export {

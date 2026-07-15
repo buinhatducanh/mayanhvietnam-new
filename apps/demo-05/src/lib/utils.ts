@@ -11,4 +11,4 @@ export {
   calcDiscountPercent,
   calcInstallment,
   slugify,
-} from '@mayanhvietnam/shared-utils';
+} from '../../lib/shared-utils';

@@ -3,7 +3,7 @@ import { SharedNavbar } from '../homepage/SharedNavbar'
 import { Footer } from '../homepage/Footer'
 import { useSEO } from '../../hooks/useSEO'
 import { Star, ShoppingCart, Briefcase, ChevronLeft, ChevronRight } from 'lucide-react'
-import { accessories } from '@mayanhvietnam/mock-data'
+import { accessories } from '../../../../lib/mock-data'
 
 // Data
 const HERO_SLIDES = [

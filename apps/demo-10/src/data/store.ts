@@ -1,6 +1,6 @@
 /**
  * Store landing page data — mayanhvietnam.com adapted from Insta360 design pattern.
- * All product/category data from @mayanhvietnam/mock-data.
+ * All product/category data from ../../lib/mock-data.
  */
 
 import {
@@ -20,7 +20,7 @@ import {
   paymentIcons,
   paymentMethods,
   socialLinks,
-} from '@mayanhvietnam/mock-data';
+} from '../../lib/mock-data';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 

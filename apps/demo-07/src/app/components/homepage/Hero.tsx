@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight, Camera, ShoppingBag } from 'lucide-react'
-import { getAllBrands } from '@mayanhvietnam/mock-data'
+import { getAllBrands } from '../../../../lib/mock-data'
 
 const HERO_IMG =
   'https://images.unsplash.com/photo-1488724485310-bd445f3faff6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1920'

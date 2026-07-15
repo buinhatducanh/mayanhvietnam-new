@@ -10,7 +10,7 @@ import {
   COMPANY_NAME,
   COMPANY_ADDRESS,
   TAX_ID,
-} from '@mayanhvietnam/mock-data'
+} from '../../../../lib/mock-data'
 
 // ─── SVG Icons ───────────────────────────────────────────────────────────────
 

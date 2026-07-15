@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { allProducts } from '@mayanhvietnam/mock-data';
+import { allProducts } from '../../../lib/mock-data';
 
 const initialWishlist = [
   { id: allProducts[2].slug, brand: allProducts[2].brand, name: allProducts[2].name, price: allProducts[2].price, img: allProducts[2].thumbnail, date: '10/07/2026' },

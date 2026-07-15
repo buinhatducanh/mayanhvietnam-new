@@ -3,7 +3,7 @@ import { SharedNavbar } from '../homepage/SharedNavbar'
 import { Footer } from '../homepage/Footer'
 import { useSEO } from '../../hooks/useSEO'
 import { Star, ShoppingCart, ChevronRight, Check, ShieldCheck, Truck, ArrowLeft } from 'lucide-react'
-import { allProducts } from '@mayanhvietnam/mock-data'
+import { allProducts } from '../../../../lib/mock-data'
 
 export function ProductDetailPage({ 
   onNavigate,

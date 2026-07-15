@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { allProducts } from '@mayanhvietnam/mock-data';
+import { allProducts } from '../../../lib/mock-data';
 
 interface CartItem {
   id: string;

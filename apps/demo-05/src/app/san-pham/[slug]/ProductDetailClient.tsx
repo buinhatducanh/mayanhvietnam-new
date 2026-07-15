@@ -17,7 +17,7 @@ import {
   Check,
   Star,
 } from 'lucide-react';
-import type { ProductSummary } from '@mayanhvietnam/mock-data';
+import type { ProductSummary } from '../../../../lib/mock-data';
 import { reviews } from '@/lib/mock-data';
 import { findProductBySlug } from '@/lib/real-products';
 import { useCart } from '@/lib/cart-context';
