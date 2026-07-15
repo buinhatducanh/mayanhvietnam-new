@@ -1,6 +1,4 @@
 {
-  "buildCommand": "corepack enable && pnpm --filter demo-06 build",
-  "installCommand": "corepack enable "installCommand": "corepack enable && pnpm install --frozen-lockfile""installCommand": "corepack enable && pnpm install --frozen-lockfile" pnpm install",
-  "framework": "nextjs",
-  "outputDirectory": ".next"
+  "installCommand": "npm install",
+  "buildCommand": "npx pnpm --filter demo-06 build"
 }
