@@ -1,4 +1,4 @@
 {
-  "installCommand": "npm install",
-  "buildCommand": "npx pnpm --filter demo-12 build"
+  "installCommand": "npm install -g pnpm@10.12.1 && pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm --filter demo-12 build"
 }
