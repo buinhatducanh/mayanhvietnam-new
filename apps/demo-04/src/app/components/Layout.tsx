@@ -91,7 +91,7 @@ export default function Layout() {
   const catBg = dark ? "#0e0d18" : "#1c120a";
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans transition-colors duration-300 overflow-x-hidden pt-[100px] sm:pt-[140px]">
+    <div className="min-h-screen bg-background text-foreground font-sans transition-colors duration-300 overflow-x-hidden">
 
       {/* ══ HEADER ═══════════════════════════════════════════════════════ */}
       <header className="sticky top-0 z-50 shadow-[0_2px_24px_rgba(0,0,0,0.28)]">

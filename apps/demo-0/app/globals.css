@@ -8,11 +8,11 @@ body {
   margin: 0;
   background: #fafaf8;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Đặt trong @layer base để utility class (text-white, text-primary...) có thể ghi đè —

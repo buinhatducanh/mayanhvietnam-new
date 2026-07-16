@@ -257,7 +257,7 @@ export default function ActionCameraShowcasePage() {
 
       {/* ═══════════ SCROLL EXPERIENCE (620vh) ═══════════ */}
       <div ref={containerRef} className="relative h-[620vh] z-10">
-        <div className="sticky top-0 h-screen overflow-hidden bg-[#0b0a09]">
+        <div className="sticky top-0 h-[100dvh] overflow-hidden bg-[#0b0a09]">
           
           {/* Layer 0: background video scrub */}
           <video

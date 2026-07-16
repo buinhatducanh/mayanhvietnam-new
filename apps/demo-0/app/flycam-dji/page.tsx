@@ -253,7 +253,7 @@ export default function FlycamDjiShowcasePage() {
 
       {/* ═══════════ SCROLL EXPERIENCE (520vh) ═══════════ */}
       <div ref={containerRef} className="relative h-[520vh] z-10">
-        <div className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-white to-[#f6f4f0]">
+        <div className="sticky top-0 h-[100dvh] overflow-hidden bg-gradient-to-b from-white to-[#f6f4f0]">
           <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(rgba(22,19,15,0.05)_1px,transparent_1px)] bg-[size:26px_26px]" />
           <div aria-hidden="true" className="absolute top-[-200px] left-[-140px] w-[620px] h-[620px] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,0,0.13),transparent_70%)] blur-[12px] animate-[glowPulse_6s_ease-in-out_infinite]" />
 
