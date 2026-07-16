@@ -2,11 +2,11 @@
   "name": "admin-next",
   "version": "0.1.0",
   "private": true,
-  "description": "Admin dashboard — mayanhvietnam.com CMS (port 8080)",
+  "description": "Admin dashboard \u2014 mayanhvietnam.com CMS (port 8080)",
   "scripts": {
-    "dev": "next dev -p 8080",
-    "build": "next build",
-    "start": "next start -p 8080",
+    "dev": "node init && next dev -p 8080",
+    "build": "node init && next build",
+    "start": "node init && next start -p 8080",
     "lint": "eslint"
   },
   "dependencies": {

@@ -2,11 +2,11 @@
   "name": "demo-0",
   "version": "0.1.0",
   "private": true,
-  "description": "Demo 0 — 3D Showcase (LUMEN Camera 3D, port 8000)",
+  "description": "Demo 0 \u2014 3D Showcase (LUMEN Camera 3D, port 8000)",
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 next dev -p 8000 --webpack",
-    "build": "next build",
-    "start": "next start -p 8000",
+    "dev": "node init && cross-env NODE_OPTIONS=--max-old-space-size=8192 next dev -p 8000 --webpack",
+    "build": "node init && next build",
+    "start": "node init && next start -p 8000",
     "lint": "next lint"
   },
   "dependencies": {

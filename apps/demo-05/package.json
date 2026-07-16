@@ -2,11 +2,11 @@
   "name": "demo-05",
   "version": "0.1.0",
   "private": true,
-  "description": "Demo 05 — E-commerce full-flow (mayanhvietnam.com)",
+  "description": "Demo 05 \u2014 E-commerce full-flow (mayanhvietnam.com)",
   "scripts": {
-    "dev": "next dev -p 8005",
-    "build": "next build",
-    "start": "next start -p 8005",
+    "dev": "node init && next dev -p 8005",
+    "build": "node init && next build",
+    "start": "node init && next start -p 8005",
     "lint": "eslint"
   },
   "dependencies": {

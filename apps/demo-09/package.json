@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "description": "Demo 09 — reserved (Vite, port 8009)",
+  "description": "Demo 09 \u2014 reserved (Vite, port 8009)",
   "scripts": {
-    "dev": "vite --port 8009 --host",
-    "build": "vite build",
+    "dev": "node init && vite --port 8009 --host",
+    "build": "node init && vite build",
     "preview": "vite preview --port 8009"
   },
   "dependencies": {
