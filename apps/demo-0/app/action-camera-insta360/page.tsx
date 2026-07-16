@@ -204,6 +204,8 @@ export default function ActionCameraShowcasePage() {
 
       const entry = sm(r(p, 0.02, 0.14));
       const finPose = sm(r(p, 0.8, 0.9));
+      // Mobile: đẩy model lên 1/3 trên màn hình + thu nhỏ để không đè chữ segment
+      const isMobile = window.innerWidth < 768;
       const poses = [
         { rotY: 0.5, rotX: 0.02, s: 1.0 },
         { rotY: 0.5 + Math.PI * 0.85, rotX: 0.1, s: 1.05 },
@@ -216,10 +218,10 @@ export default function ActionCameraShowcasePage() {
 
       const newPose = {
         x: 0,
-        y: lerp(-1.4, 0.05, entry) - finPose * 0.08,
+        y: lerp(-1.4, isMobile ? 0.9 : 0.05, entry) - finPose * 0.08,
         rotY: lerp(activePose.rotY, 0.5 + Math.PI * 4.6, finPose),
         rotX: lerp(activePose.rotX, 0.05, finPose),
-        scale: lerp(0.7, 1.06, entry) * lerp(activePose.s, 0.94, finPose),
+        scale: lerp(0.7, isMobile ? 0.74 : 1.06, entry) * lerp(activePose.s, 0.94, finPose),
         opacity: Math.min(entry * 1.4, 1),
         idle: seg >= 0 ? lerp(0.35, 1, finPose) : 1,
       };
@@ -287,8 +289,8 @@ export default function ActionCameraShowcasePage() {
           <div ref={flareRef} aria-hidden="true" className="absolute left-[-10%] right-[-10%] top-[50%] h-[2px] z-26 bg-gradient-to-r from-transparent via-[rgba(255,138,61,0.85)] to-transparent opacity-0 pointer-events-none will-change-transform shadow-[0_0_26px_5px_rgba(255,106,0,0.45)]" />
 
           {/* Layer 1: 3D Stage on the right */}
-          <div className="absolute top-0 bottom-0 right-0 w-full md:w-[46%] z-12 pointer-events-none opacity-30 md:opacity-100">
-            <div ref={glowRef} aria-hidden="true" style={{ transform: "translate(-50%, -50%)" }} className="absolute left-[50%] top-[50%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] opacity-0 will-change-transform">
+          <div className="absolute top-0 bottom-0 right-0 w-full md:w-[46%] z-12 pointer-events-none">
+            <div ref={glowRef} aria-hidden="true" style={{ transform: "translate(-50%, -50%)" }} className="absolute left-[50%] top-[30%] md:top-[50%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] opacity-0 will-change-transform">
               <div className="absolute inset-0 rounded-full bg-[radial-gradient(closest-side,rgba(255,106,0,0.34),rgba(255,106,0,0.08)_55%,transparent_72%)] filter blur-[6px] animate-[glowPulse_5s_ease-in-out_infinite]" />
               <div className="absolute inset-[26px] md:inset-[42px] rounded-full border border-dashed border-[rgba(255,164,96,0.5)] animate-[ringSpin_32s_linear_infinite]" />
               <div className="absolute inset-[56px] md:inset-[92px] rounded-full border border-white/16" />
@@ -347,7 +349,7 @@ export default function ActionCameraShowcasePage() {
           <div className="absolute inset-0 z-20 flex items-center pointer-events-none">
             <div className="w-full max-w-[1280px] mx-auto px-8 relative h-full">
               
-              <div ref={seg0} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg0} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-[62%] md:top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">01 · Cảm biến</p>
                 <h2 className="mt-3.5 mb-0 text-[36px] sm:text-[48px] md:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">1-inch <span className="font-bold text-[#ff6a00]">×2</span></h2>
                 <p className="mt-4 mb-0 text-[14px] sm:text-[16px] font-light leading-[1.6] text-white/75">
@@ -355,7 +357,7 @@ export default function ActionCameraShowcasePage() {
                 </p>
               </div>
 
-              <div ref={seg1} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg1} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-[62%] md:top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">02 · Quay phim</p>
                 <h2 className="mt-3.5 mb-0 text-[36px] sm:text-[48px] md:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">6K <span className="font-bold text-[#ff6a00]">360°</span></h2>
                 <p className="mt-4 mb-0 text-[14px] sm:text-[16px] font-light leading-[1.6] text-white/75">
@@ -363,7 +365,7 @@ export default function ActionCameraShowcasePage() {
                 </p>
               </div>
 
-              <div ref={seg2} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg2} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-[62%] md:top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">03 · Chống rung</p>
                 <h2 className="mt-3.5 mb-0 text-[32px] sm:text-[44px] md:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">Flow<span className="text-[#ff6a00]">State</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
@@ -371,7 +373,7 @@ export default function ActionCameraShowcasePage() {
                 </p>
               </div>
 
-              <div ref={seg3} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
+              <div ref={seg3} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-[62%] md:top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">04 · Bền bỉ</p>
                 <h2 className="mt-3.5 mb-0 text-[32px] sm:text-[44px] md:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">IPX<span className="text-[#ff6a00]">8</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">

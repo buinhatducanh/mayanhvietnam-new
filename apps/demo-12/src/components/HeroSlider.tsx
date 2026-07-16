@@ -82,8 +82,8 @@ export default function HeroSlider() {
             onMouseLeave={handleMouseLeave}
             style={{
                 position: 'relative',
-                height: 'calc(100vh - 160px)',
-                minHeight: 'calc(100dvh - 80px)',
+                height: 'calc(100dvh - 160px)',
+                minHeight: '400px',
                 maxHeight: '800px',
                 overflow: 'hidden',
                 background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #404040 100%)',

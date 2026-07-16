@@ -187,18 +187,20 @@ export default function CanonR50ShowcasePage() {
       const fade = 1 - zoomIn;
 
       // Align model position with the frame element on screen
+      const worldH = 4.513; // 2·tan(fov/2)·camDist
+      worldW.current = worldH * (window.innerWidth / window.innerHeight);
       const frame = document.getElementById("hero-frame-cam");
       let fx = 1.7, fy = 0.05, heroScale = 0.72;
-      if (frame) {
-        const fr = frame.getBoundingClientRect();
-        if (fr.width > 1) {
-          const worldH = 4.513; // 2·tan(fov/2)·camDist
-          const wW = worldH * (window.innerWidth / window.innerHeight);
-          fx = (((fr.left + fr.width / 2) - (window.innerWidth / 2)) / window.innerWidth) * wW;
-          fy = -(((fr.top + fr.height / 2) - (window.innerHeight / 2)) / window.innerHeight) * worldH;
-          heroScale = ((fr.height / window.innerHeight) * worldH * 0.5) / 2.4;
-          worldW.current = wW;
-        }
+      const fr = frame ? frame.getBoundingClientRect() : null;
+      if (fr && fr.width > 1) {
+        fx = (((fr.left + fr.width / 2) - (window.innerWidth / 2)) / window.innerWidth) * worldW.current;
+        fy = -(((fr.top + fr.height / 2) - (window.innerHeight / 2)) / window.innerHeight) * worldH;
+        heroScale = ((fr.height / window.innerHeight) * worldH * 0.5) / 2.4;
+      } else if (window.innerWidth < 640) {
+        // Mobile: khung 3D ẩn — máy ảnh lơ lửng nhỏ dưới hero text
+        fx = 0;
+        fy = -1.15;
+        heroScale = 0.42;
       }
 
       // Phóng to như "bay vào" khung ngắm, rồi thu nhỏ lại khi hết cảnh
@@ -324,23 +326,23 @@ export default function CanonR50ShowcasePage() {
             <div aria-hidden="true" className="absolute top-1/3 left-0 right-0 h-px bg-white/15" />
             <div aria-hidden="true" className="absolute top-2/3 left-0 right-0 h-px bg-white/15" />
             {/* HUD trên */}
-            <div className="absolute top-6 left-8 right-8 flex items-center justify-between font-mono text-[12px] text-white/85 tracking-[0.14em]">
-              <div className="flex items-center gap-4">
+            <div className="absolute top-5 left-4 right-4 sm:top-6 sm:left-8 sm:right-8 flex items-center justify-between font-mono text-[11px] sm:text-[12px] text-white/85 tracking-[0.14em]">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <span className="border border-white/70 px-1.5 py-0.5 font-bold">M</span>
-                <span>RAW+JPEG</span>
+                <span className="hidden sm:inline">RAW+JPEG</span>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <span>[ 247 ]</span>
-                <span>▮▮▮ 100%</span>
+                <span className="hidden sm:inline">▮▮▮ 100%</span>
               </div>
             </div>
             {/* HUD dưới: thông số phơi sáng */}
-            <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between font-mono text-[13px] text-white/90 tracking-[0.12em]">
-              <div className="flex items-center gap-5">
+            <div className="absolute bottom-5 left-4 right-4 sm:bottom-6 sm:left-8 sm:right-8 flex items-center justify-between font-mono text-[11.5px] sm:text-[13px] text-white/90 tracking-[0.12em]">
+              <div className="flex items-center gap-3.5 sm:gap-5">
                 <span>1/250</span>
                 <span>F4.5</span>
                 <span>ISO 100</span>
-                <span>AWB</span>
+                <span className="hidden sm:inline">AWB</span>
               </div>
               <span ref={afLockRef} className="opacity-0 font-bold text-[#3ddc84]">● AF</span>
             </div>
@@ -348,7 +350,7 @@ export default function CanonR50ShowcasePage() {
             <div
               ref={afBoxRef}
               style={{ transform: "translate(-50%, -50%)" }}
-              className="absolute left-1/2 top-1/2 w-28 h-28 border-2 border-white/85 will-change-transform"
+              className="absolute left-1/2 top-1/2 w-24 h-24 sm:w-28 sm:h-28 border-2 border-white/85 will-change-transform"
             />
           </div>
 
@@ -390,9 +392,9 @@ export default function CanonR50ShowcasePage() {
           </div>
 
           {/* Layer 3b: specs phase title */}
-          <div ref={specsTitleRef} className="absolute left-0 right-0 top-24 z-20 text-center pointer-events-none opacity-0">
+          <div ref={specsTitleRef} className="absolute left-0 right-0 top-[120px] sm:top-24 z-20 text-center pointer-events-none opacity-0">
             <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Thông số kỹ thuật</p>
-            <h2 className="mt-2.5 mb-0 text-[28px] sm:text-[40px] font-extralight tracking-[-0.02em] text-[#16130f]">Phô diễn mọi góc cạnh</h2>
+            <h2 className="mt-2.5 mb-0 text-[22px] sm:text-[28px] md:text-[40px] font-extralight tracking-[-0.02em] text-[#16130f]">Phô diễn mọi góc cạnh</h2>
           </div>
 
           {/* Spec callouts */}
@@ -451,7 +453,7 @@ export default function CanonR50ShowcasePage() {
           </div>
 
           {/* Color pickers */}
-          <div ref={colorsRef} className="absolute left-8 bottom-10 z-20 pointer-events-auto bg-white/80 backdrop-blur-[10px] border border-[#e9e6e1] rounded-2xl p-4 flex flex-col gap-3 shadow-[0_14px_30px_-12px_rgba(22,19,15,0.15)]">
+          <div ref={colorsRef} className="absolute left-4 bottom-6 sm:left-8 sm:bottom-10 z-20 pointer-events-auto bg-white/80 backdrop-blur-[10px] border border-[#e9e6e1] rounded-2xl p-3 sm:p-4 flex flex-col gap-3 shadow-[0_14px_30px_-12px_rgba(22,19,15,0.15)]">
             <div>
               <p className="m-0 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#ff6a00]">Màu sắc thân máy</p>
               <p className="mt-[2px] mb-0 text-[13.5px] font-semibold text-[#16130f]">{colorName}</p>

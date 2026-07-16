@@ -39,7 +39,7 @@ export default function HomePage({ onNavigate, onAddToCart }: HomePageProps) {
   return (
     <div className="bg-cream">
       {/* Hero Slider */}
-      <section className="relative overflow-hidden bg-navy" style={{ minHeight: 'calc(100dvh - 80px)' }}>
+      <section className="relative overflow-hidden bg-navy" style={{ height: 'calc(100dvh - 150px)', minHeight: '400px', maxHeight: '800px' }}>
         {heroSlides.map((slide, i) => {
           return (
             <div

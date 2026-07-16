@@ -22,7 +22,7 @@ import NotFoundPage from './pages/NotFoundPage'
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen" style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text-strong)' }}>
+      <div className="min-h-screen w-full overflow-x-hidden" style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text-strong)' }}>
         <Header />
         <main>
           <Routes>

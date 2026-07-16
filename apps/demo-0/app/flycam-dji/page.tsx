@@ -190,21 +190,24 @@ export default function FlycamDjiShowcasePage() {
       }
 
       // Align model position with FPV container frames
+      const worldH = 4.513;
+      worldW.current = worldH * (window.innerWidth / window.innerHeight);
+      const isMobile = window.innerWidth < 640;
       const frame = document.getElementById("hero-frame-fly");
       let fx = 1.7, fy = 0.05, heroScale = 0.72;
-      if (frame) {
-        const fr = frame.getBoundingClientRect();
-        if (fr.width > 1) {
-          const worldH = 4.513;
-          const wW = worldH * (window.innerWidth / window.innerHeight);
-          fx = (((fr.left + fr.width / 2) - (window.innerWidth / 2)) / window.innerWidth) * wW;
-          fy = -(((fr.top + fr.height / 2) - (window.innerHeight / 2)) / window.innerHeight) * worldH;
-          heroScale = ((fr.height / window.innerHeight) * worldH * 0.5) / 2.5;
-          worldW.current = wW;
-        }
+      const fr = frame ? frame.getBoundingClientRect() : null;
+      if (fr && fr.width > 1) {
+        fx = (((fr.left + fr.width / 2) - (window.innerWidth / 2)) / window.innerWidth) * worldW.current;
+        fy = -(((fr.top + fr.height / 2) - (window.innerHeight / 2)) / window.innerHeight) * worldH;
+        heroScale = ((fr.height / window.innerHeight) * worldH * 0.5) / 2.5;
+      } else if (isMobile) {
+        // Mobile: khung 3D ẩn — drone lơ lửng nhỏ dưới hero text
+        fx = 0;
+        fy = -1.15;
+        heroScale = 0.45;
       }
 
-      const scale = lerp(heroScale, 1.12, move) * lerp(1, 2.1, dive);
+      const scale = lerp(heroScale, isMobile ? 0.72 : 1.12, move) * lerp(1, 2.1, dive);
       const back = sm(r(p, 0.9, 0.975));
 
       // Set new pose
@@ -213,7 +216,7 @@ export default function FlycamDjiShowcasePage() {
         y: lerp(lerp(fy, 0.15, move) - dive * 0.4, 0.5, back),
         rotY: spin + back * 0.7,
         rotX: dive * 0.5 * (1 - back),
-        scale: lerp(scale, 0.55, back),
+        scale: lerp(scale, isMobile ? 0.4 : 0.55, back),
         opacity: Math.max(fade, back),
         idle: Math.max(idle, back),
         ground: 1 - back,
@@ -276,7 +279,7 @@ export default function FlycamDjiShowcasePage() {
               {/* HUD interface overlays */}
               <div 
                 ref={hudRef} 
-                className="absolute inset-0 z-10 p-8 flex flex-col justify-between font-mono text-white text-xs opacity-0 transition-opacity duration-200"
+                className="absolute inset-0 z-10 p-5 sm:p-8 flex flex-col justify-between font-mono text-white text-xs opacity-0 transition-opacity duration-200"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col gap-2">
@@ -327,7 +330,6 @@ export default function FlycamDjiShowcasePage() {
                 pose={pose}
                 onReady={onReady}
                 onError={onError}
-                className="scale-[0.55] sm:scale-100"
                 style={{ width: "100%", height: "100%" }}
               />
             )}
@@ -439,7 +441,7 @@ export default function FlycamDjiShowcasePage() {
           </div>
 
           {/* Color pickers */}
-          <div ref={colorsRef} className="absolute left-8 bottom-10 z-20 pointer-events-auto bg-white/80 backdrop-blur-[10px] border border-[#e9e6e1] rounded-2xl p-4 flex flex-col gap-3 shadow-[0_14px_30px_-12px_rgba(22,19,15,0.15)]">
+          <div ref={colorsRef} className="absolute left-4 bottom-6 sm:left-8 sm:bottom-10 z-20 pointer-events-auto bg-white/80 backdrop-blur-[10px] border border-[#e9e6e1] rounded-2xl p-3 sm:p-4 flex flex-col gap-3 shadow-[0_14px_30px_-12px_rgba(22,19,15,0.15)]">
             <div>
               <p className="m-0 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#ff6a00]">Màu sắc vỏ máy</p>
               <p className="mt-[2px] mb-0 text-[13.5px] font-semibold text-[#16130f]">{colorName}</p>
@@ -463,10 +465,10 @@ export default function FlycamDjiShowcasePage() {
           </div>
 
           {/* FPV copy overlay */}
-          <div ref={endRef} className="absolute inset-0 pointer-events-none z-20 flex items-center justify-end px-24 opacity-0">
-            <div className="max-w-[360px] text-right pointer-events-auto">
+          <div ref={endRef} className="absolute inset-0 pointer-events-none z-20 flex items-center justify-center sm:justify-end px-6 sm:px-24 opacity-0">
+            <div className="max-w-[360px] text-center sm:text-right pointer-events-auto">
               <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Kết quả ấn tượng</p>
-              <h2 className="mt-3 mb-0 text-[38px] font-light leading-[1.2] text-[#16130f]">Góc nhìn từ trên cao</h2>
+              <h2 className="mt-3 mb-0 text-[30px] sm:text-[38px] font-light leading-[1.2] text-[#16130f]">Góc nhìn từ trên cao</h2>
               <p className="mt-3 mb-0 text-[14.5px] font-light leading-[1.6] text-[#7a746c]">
                 Video 4K HDR mượt mà ở tốc độ 60 khung hình/giây giúp lưu giữ trọn vẹn những chuyến đi đầy kịch tính.
               </p>

@@ -57,7 +57,7 @@ export default function App() {
   const cartCount = cart.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-cream font-sans antialiased">
+    <div className="min-h-screen w-full overflow-x-hidden bg-cream font-sans antialiased">
       <Header
         cartCount={cartCount}
         onNavigate={navigate}
