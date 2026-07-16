@@ -1,1 +1,6 @@
-{"installCommand":"corepack enable && pnpm install --no-frozen-lockfile","buildCommand":"pnpm run build","outputDirectory":"dist","rootDirectory":"apps/demo-04"}
+{
+  "framework": "vite",
+  "installCommand": "corepack enable && pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist"
+}
