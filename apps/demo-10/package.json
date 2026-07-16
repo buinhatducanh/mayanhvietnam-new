@@ -2,11 +2,11 @@
   "name": "demo-10",
   "version": "0.1.0",
   "private": true,
-  "description": "Demo 10 — mayanhvietnam.com Full Site Preview (port 8010)",
+  "description": "Demo 10 \u2014 mayanhvietnam.com Full Site Preview (port 8010)",
   "scripts": {
-    "dev": "next dev -p 8010",
-    "build": "next build",
-    "start": "next start -p 8010",
+    "dev": "node init && next dev -p 8010",
+    "build": "node init && next build",
+    "start": "node init && next start -p 8010",
     "lint": "eslint"
   },
   "dependencies": {

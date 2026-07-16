@@ -3,10 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Demo 12 — Figma Make export B (Vite, port 8012)",
+  "description": "Demo 12 \u2014 Figma Make export B (Vite, port 8012)",
   "scripts": {
-    "dev": "vite --port 8012 --host",
-    "build": "vite build",
+    "dev": "node init && vite --port 8012 --host",
+    "build": "node init && vite build",
     "preview": "vite preview --port 8012"
   },
   "dependencies": {

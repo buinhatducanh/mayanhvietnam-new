@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Demo 04 — mayanhvietnam.com FE demo (Figma Make export, React + Vite)",
+  "description": "Demo 04 \u2014 mayanhvietnam.com FE demo (Figma Make export, React + Vite)",
   "scripts": {
-    "dev": "vite --port 8004 --host",
-    "build": "vite build",
+    "dev": "node init && vite --port 8004 --host",
+    "build": "node init && vite build",
     "preview": "vite preview --port 8004"
   },
   "dependencies": {

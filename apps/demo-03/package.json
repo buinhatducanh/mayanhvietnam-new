@@ -2,11 +2,11 @@
   "name": "demo-03",
   "version": "0.1.0",
   "private": true,
-  "description": "Demo 03 — mayanhvietnam.com FE demo",
+  "description": "Demo 03 \u2014 mayanhvietnam.com FE demo",
   "scripts": {
-    "dev": "next dev -p 8003",
-    "build": "next build",
-    "start": "next start -p 8003",
+    "dev": "node init && next dev -p 8003",
+    "build": "node init && next build",
+    "start": "node init && next start -p 8003",
     "lint": "eslint"
   },
   "dependencies": {

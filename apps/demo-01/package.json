@@ -2,11 +2,11 @@
   "name": "demo-01",
   "version": "0.1.0",
   "private": true,
-  "description": "Demo 01 — E-commerce dark theme (port 8001)",
+  "description": "Demo 01 \u2014 E-commerce dark theme (port 8001)",
   "scripts": {
-    "dev": "next dev -p 8001",
-    "build": "next build",
-    "start": "next start -p 8001",
+    "dev": "node init && next dev -p 8001",
+    "build": "node init && next build",
+    "start": "node init && next start -p 8001",
     "lint": "eslint ."
   },
   "dependencies": {

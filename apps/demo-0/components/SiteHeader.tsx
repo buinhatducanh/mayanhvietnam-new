@@ -88,7 +88,7 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
       {/* Rows 2+3: sticky, chiều cao cố định — không gây layout shift */}
       <div className="font-sans bg-[rgba(255,255,255,0.88)] backdrop-blur-[16px] border-b border-[#e9e6e1] sticky top-0 z-50">
       {/* Row 2: logo · search · actions */}
-      <div className="border-b border-[#f1eee9]">
+      <div className="bg-[#ff6a00] border-b border-[#e86100]">
         <div className="max-w-[1280px] mx-auto px-3 sm:px-8 py-2 sm:py-[11px] flex items-center gap-2 sm:gap-[22px]">
           <Link href="/" title="Máy Ảnh Việt Nam" className="shrink-0 flex items-center no-underline transition-all hover:-translate-y-[1px]">
             <div className="bg-[#ff6a00] rounded-[10px] sm:rounded-[12px] px-[9px] py-[4px] sm:px-[14px] sm:py-[7px] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)]">

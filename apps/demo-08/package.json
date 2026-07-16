@@ -2,11 +2,11 @@
   "name": "demo-08",
   "version": "0.1.0",
   "private": true,
-  "description": "Demo 08 — Blog + e-commerce (port 8008)",
+  "description": "Demo 08 \u2014 Blog + e-commerce (port 8008)",
   "scripts": {
-    "dev": "next dev -p 8008",
-    "build": "next build",
-    "start": "next start -p 8008",
+    "dev": "node init && next dev -p 8008",
+    "build": "node init && next build",
+    "start": "node init && next start -p 8008",
     "lint": "eslint",
     "crawl": "node scripts/crawl-data.js"
   },
