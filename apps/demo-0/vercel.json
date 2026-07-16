@@ -1,1 +1,1 @@
-{"installCommand":"npm install --legacy-peer-deps","buildCommand":"npx --yes next build"}
+{"installCommand":"corepack enable && pnpm install --no-frozen-lockfile","buildCommand":"pnpm run build"}

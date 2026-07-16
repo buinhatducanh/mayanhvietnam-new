@@ -33,6 +33,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className={`${outfit.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        {/* Preload heavy 3D models — avoids scroll-triggered loading lag */}
+        <link rel="preload" as="fetch" href="/assets/models/drone.glb" crossOrigin="anonymous" />
+        <link rel="preload" as="fetch" href="/assets/models/canon-r50.glb" crossOrigin="anonymous" />
+        <link rel="preload" as="fetch" href="/assets/models/action-cam.glb" crossOrigin="anonymous" />
+        {/* Preload key images used in scroll animations */}
+        <link rel="preload" as="image" href="/assets/images/pavel-s-esYrpYZ_5JI-unsplash.jpg" />
+        <link rel="preload" as="image" href="https://mayanhvietnam.com/image-data/san-pham/23-02/23-02-12/230212121212567/avatar/01_flycam-dji-mavic-air-2-chinh-hang.jpg" />
+      </head>
       <body className="font-sans antialiased text-[#16130f]">
         <CartProvider>
           {children}

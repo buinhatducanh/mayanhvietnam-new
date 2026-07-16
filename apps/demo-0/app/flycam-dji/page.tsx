@@ -314,7 +314,7 @@ export default function FlycamDjiShowcasePage() {
             </div>
           </div>
 
-          {/* Layer 2: 3D stage */}
+          {/* Layer 2: 3D stage — smaller on mobile so text callouts stay visible */}
           <div className="absolute inset-0 z-10 pointer-events-none">
             {mode !== "fb" && (
               <ThreeDStage
@@ -327,6 +327,7 @@ export default function FlycamDjiShowcasePage() {
                 pose={pose}
                 onReady={onReady}
                 onError={onError}
+                className="scale-[0.55] sm:scale-100"
                 style={{ width: "100%", height: "100%" }}
               />
             )}
@@ -377,7 +378,7 @@ export default function FlycamDjiShowcasePage() {
           </div>
 
           {/* Layer 3b: specs phase title */}
-          <div ref={specsTitleRef} className="absolute left-0 right-0 top-24 z-20 text-center pointer-events-none opacity-0">
+          <div ref={specsTitleRef} className="absolute left-0 right-0 top-[120px] sm:top-24 z-20 text-center pointer-events-none opacity-0">
             <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Thông số kỹ thuật</p>
             <h2 className="mt-2.5 mb-0 text-[22px] sm:text-[28px] md:text-[40px] font-extralight tracking-[-0.02em] text-[#16130f]">Phô diễn mọi góc cạnh</h2>
           </div>
