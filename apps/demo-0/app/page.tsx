@@ -227,11 +227,11 @@ export default function HomePage() {
       </div>
 
       {/* ═══════════ THỐNG KÊ ═══════════ */}
-      <section ref={statsSecRef} data-screen-label="Thống kê" className="max-w-[1280px] mx-auto px-8 pt-14">
+      <section ref={statsSecRef} data-screen-label="Thống kê" className="max-w-[1280px] mx-auto px-4 sm:px-8 pt-14">
         <div className="border border-[#e9e6e1] bg-white rounded-3xl py-9 px-5 grid grid-cols-2 md:grid-cols-4 shadow-[0_30px_60px_-44px_rgba(22,19,15,0.18)] animate-fadeUp">
           {stats.map((st, idx) => (
             <div key={idx} style={{ borderLeft: st.borderLeft }} className="text-center px-3 py-1">
-              <p className="m-0 text-[34px] sm:text-[46px] font-light tracking-[-0.02em] text-[#16130f]">
+              <p className="m-0 text-[28px] sm:text-[34px] md:text-[46px] font-light tracking-[-0.02em] text-[#16130f]">
                 <span ref={st.ref}>{st.value}</span>
                 <span className="text-[#ff6a00] font-normal">{st.plus}</span>
               </p>
@@ -242,7 +242,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ DANH MỤC ═══════════ */}
-      <section data-screen-label="Danh mục" className="relative max-w-[1280px] mx-auto px-8 pt-[88px]">
+      <section data-screen-label="Danh mục" className="relative max-w-[1280px] mx-auto px-4 sm:px-8 pt-[60px] sm:pt-[88px]">
         <div 
           aria-hidden="true"
           style={{ transform: "translate3d(0, var(--plxA, 0px), 0)" }}
@@ -278,14 +278,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ TRẢI NGHIỆM 3D ═══════════ */}
-      <section id="trai-nghiem-3d" data-screen-label="Trải nghiệm 3D" className="max-w-[1280px] mx-auto mt-[88px] px-8">
-        <div className="relative overflow-hidden bg-[#16130f] rounded-[28px] px-6 py-10 sm:px-14 sm:py-14 sm:pb-[60px]">
+      <section id="trai-nghiem-3d" data-screen-label="Trải nghiệm 3D" className="max-w-[1280px] mx-auto mt-[60px] sm:mt-[88px] px-4 sm:px-8">
+        <div className="relative overflow-hidden bg-[#16130f] rounded-[28px] px-4 py-8 sm:px-6 sm:py-10 md:px-14 md:py-14 md:pb-[60px]">
           <div aria-hidden="true" className="absolute top-[-160px] left-[30%] w-[480px] h-[480px] rounded-full bg-[radial-gradient(closest-side,rgba(255,106,0,0.28),transparent_70%)] blur-[20px] animate-[glowPulse_7s_ease-in-out_infinite]" />
           
           <div className="relative flex items-end justify-between gap-6 flex-wrap animate-fadeUp">
             <div>
               <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">Trải nghiệm 3D tương tác</p>
-              <h2 className="mt-3 mb-0 text-[30px] sm:text-[40px] font-light tracking-[-0.02em] text-[#f7f4ef] text-balance">
+              <h2 className="mt-3 mb-0 text-[22px] sm:text-[30px] md:text-[40px] font-light tracking-[-0.02em] text-[#f7f4ef] text-balance">
                 Xem sản phẩm 360° <span className="font-semibold text-[#ff6a00]">trước khi mua</span>
               </h2>
               <p className="mt-3 mb-0 max-w-[520px] text-[15px] font-light leading-[1.6] text-[#a39d94]">
@@ -329,7 +329,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ FLASH SALE ═══════════ */}
-      <section id="flash-sale" data-screen-label="Flash Sale" className="max-w-[1280px] mx-auto px-8 pt-[88px]">
+      <section id="flash-sale" data-screen-label="Flash Sale" className="max-w-[1280px] mx-auto px-4 sm:px-8 pt-[60px] sm:pt-[88px]">
         <div className="flex items-center justify-between gap-5 flex-wrap animate-fadeUp">
           <div className="flex items-center gap-4">
             <span className="w-[46px] h-[46px] rounded-[14px] bg-[rgba(255,106,0,0.1)] flex items-center justify-center">
@@ -338,7 +338,7 @@ export default function HomePage() {
               </svg>
             </span>
             <div>
-              <h2 className="m-0 text-[27px] font-bold tracking-[-0.01em] text-[#16130f]">Flash Sale — Ưu đãi cực sốc</h2>
+              <h2 className="m-0 text-[20px] sm:text-[27px] font-bold tracking-[-0.01em] text-[#16130f]">Flash Sale — Ưu đãi cực sốc</h2>
               <p className="mt-1 mb-0 font-mono text-[10px] uppercase tracking-[0.16em] text-[#a39d94]">Kết thúc sau</p>
             </div>
             <div className="flex items-center gap-[7px] ml-2">
@@ -401,7 +401,7 @@ export default function HomePage() {
         <section 
           key={si}
           data-screen-label={sec.title} 
-          className="relative max-w-[1280px] mx-auto px-8 pt-[88px]"
+          className="relative max-w-[1280px] mx-auto px-4 sm:px-8 pt-[60px] sm:pt-[88px]"
         >
           <div 
             aria-hidden="true" 
@@ -415,7 +415,7 @@ export default function HomePage() {
           <div className="flex items-end justify-between gap-5 flex-wrap animate-fadeUp">
             <div>
               <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">{sec.subtitle}</p>
-              <h2 className="mt-2.5 mb-0 text-[34px] font-light tracking-[-0.02em] text-[#16130f]">{sec.title}</h2>
+              <h2 className="mt-2.5 mb-0 text-[22px] sm:text-[28px] md:text-[34px] font-light tracking-[-0.02em] text-[#16130f]">{sec.title}</h2>
             </div>
             <Link href={sec.href} className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#7a746c] no-underline p-[8px_4px] transition-colors hover:text-[#ff6a00] hover:gap-3">
               Xem tất cả <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>

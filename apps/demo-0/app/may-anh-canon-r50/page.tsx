@@ -275,7 +275,7 @@ export default function CanonR50ShowcasePage() {
               className="absolute left-0 right-0 bottom-0 z-10 bg-gradient-to-t from-[rgba(10,8,6,0.82)] to-transparent pt-32 px-6 pb-[60px] text-center opacity-0"
             >
               <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">Chụp bằng Canon EOS R50</p>
-              <h2 className="mt-3 mb-0 text-[46px] font-extralight tracking-[-0.02em] text-white">Sắc nét đến từng chi tiết nhỏ nhất</h2>
+              <h2 className="mt-3 mb-0 text-[24px] sm:text-[32px] md:text-[46px] font-extralight tracking-[-0.02em] text-white">Sắc nét đến từng chi tiết nhỏ nhất</h2>
               <p className="mt-3 mb-0 text-[14.5px] font-light leading-[1.65] text-white/70 max-w-[520px] mx-auto">
                 Cảm biến 24.2MP + DIGIC X — minh chứng cho khả năng chụp ảnh sắc nét, màu sắc chân thực vượt trội.
               </p>
@@ -302,7 +302,7 @@ export default function CanonR50ShowcasePage() {
               src="https://mayanhvietnam.com/image-data/san-pham/24-12/24-12-28/241228112737843/avatar/638709822567106100_may-anh-canon-eos-r50-black-kem-lens-rf-s-18-45mm-chinh-hang.jpg"
               alt="Canon EOS R50"
               style={{ display: mode === "fb" ? "block" : "none" }}
-              className="absolute left-[50%] top-[50%] w-[430px] h-[430px] ml-[-215px] mt-[-215px] object-contain mix-blend-multiply filter drop-shadow-[0_34px_44px_rgba(22,19,15,0.24)] will-change-transform"
+              className="absolute left-[50%] top-[50%] w-[80vw] h-[80vw] max-w-[430px] max-h-[430px] sm:w-[430px] sm:h-[430px] ml-[-40vw] mt-[-40vw] sm:ml-[-215px] sm:mt-[-215px] object-contain mix-blend-multiply filter drop-shadow-[0_34px_44px_rgba(22,19,15,0.24)] will-change-transform"
             />
           </div>
 
@@ -354,21 +354,21 @@ export default function CanonR50ShowcasePage() {
 
           {/* Layer 3: hero overlay */}
           <div ref={heroRef} className="absolute inset-0 z-20 flex items-center will-change-transform">
-            <div className="w-full max-w-[1280px] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="pointer-events-auto">
                 <div className="inline-flex items-center gap-2 border border-[rgba(255,106,0,0.35)] bg-[rgba(255,106,0,0.07)] backdrop-blur-[6px] rounded-full px-[15px] py-[7px]">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" strokeWidth="2.2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path></svg>
                   <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#c85200]">Giảm 12% hôm nay · Kèm lens 18-45mm</span>
                 </div>
-                <h1 className="mt-6 mb-0 text-[44px] sm:text-[60px] lg:text-[76px] leading-[1.05] font-extralight tracking-[-0.025em] text-[#16130f]">
+                <h1 className="mt-6 mb-0 text-[30px] sm:text-[44px] md:text-[60px] lg:text-[76px] leading-[1.05] font-extralight tracking-[-0.025em] text-[#16130f]">
                   Canon EOS <span className="font-bold text-[#ff6a00]">R50</span>
                 </h1>
-                <p className="mt-5 max-w-[420px] text-[18px] font-light leading-[1.6] text-[#7a746c]">
+                <p className="mt-5 max-w-[420px] text-[15px] sm:text-[16px] md:text-[18px] font-light leading-[1.6] text-[#7a746c]">
                   Nhỏ gọn. Mạnh mẽ. Sáng tạo không giới hạn — thân máy 375g, cảm biến 24.2MP, quay 4K không crop.
                 </p>
                 <div className="flex items-baseline gap-3.5 mt-7">
-                  <span className="text-[26px] sm:text-[32px] font-medium tracking-[-0.01em]">17.500.000đ</span>
-                  <span className="text-[17px] text-[#a39d94] line-through">19.900.000đ</span>
+                  <span className="text-[22px] sm:text-[26px] md:text-[32px] font-medium tracking-[-0.01em]">17.500.000đ</span>
+                  <span className="text-[15px] sm:text-[17px] text-[#a39d94] line-through">19.900.000đ</span>
                 </div>
                 <p className="flex items-center gap-2 mt-[30px] text-[14px] text-[#7a746c]">
                   <svg className="animate-[bounceDown_1.6s_ease-in-out_infinite]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" strokeWidth="2.4"><path d="m6 9 6 6 6-6"></path></svg>
@@ -376,7 +376,7 @@ export default function CanonR50ShowcasePage() {
                 </p>
               </div>
               
-              <div id="hero-frame-cam" className="relative aspect-square max-h-[62vh] hidden lg:block">
+              <div id="hero-frame-cam" className="relative aspect-square max-h-[50vh] sm:max-h-[62vh] hidden sm:block">
                 <div className="absolute inset-0 rounded-[28px] border border-[#e9e6e1] bg-white/35 backdrop-blur-[2px]" />
                 <div className="absolute left-5 top-5 inline-flex items-center gap-2 border border-[rgba(255,106,0,0.4)] bg-white/75 backdrop-blur-[6px] rounded-full px-3 py-1.8">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] shadow-[0_0_9px_2px_rgba(255,106,0,0.55)]" />
@@ -481,10 +481,10 @@ export default function CanonR50ShowcasePage() {
       </div>
 
       {/* ═══════════ DETAILED INFO & SPECS (Below scroll area) ═══════════ */}
-      <section className="relative z-20 max-w-[1280px] mx-auto px-8 pt-16 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start bg-[#fafaf8]">
+      <section className="relative z-20 max-w-[1280px] mx-auto px-4 sm:px-8 pt-16 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start bg-[#fafaf8]">
         {/* Specs */}
         <div>
-          <h2 className="m-0 text-[32px] font-extralight tracking-[-0.025em]">Thông số kỹ thuật chi tiết</h2>
+          <h2 className="m-0 text-[24px] sm:text-[32px] font-extralight tracking-[-0.025em]">Thông số kỹ thuật chi tiết</h2>
           <div className="mt-8 flex flex-col gap-6">
             {specGroups.map((group, idx) => (
               <div key={idx} className="border border-[#e9e6e1] bg-white rounded-2xl overflow-hidden">
@@ -493,7 +493,7 @@ export default function CanonR50ShowcasePage() {
                 </div>
                 <div className="flex flex-col">
                   {group.items.map((item: any, iIdx: number) => (
-                    <div key={iIdx} className="grid grid-cols-[180px_1fr] gap-4 px-5 py-3 border-t border-[#f1eee9] first:border-none text-[13.5px]">
+                    <div key={iIdx} className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-1 sm:gap-4 px-5 py-3 border-t border-[#f1eee9] first:border-none text-[13.5px]">
                       <span className="font-semibold text-[#7a746c]">{item.label}</span>
                       <span className="text-[#16130f]">{item.value}</span>
                     </div>

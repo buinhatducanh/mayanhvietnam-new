@@ -89,17 +89,17 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
       <div className="font-sans bg-[rgba(255,255,255,0.88)] backdrop-blur-[16px] border-b border-[#e9e6e1] sticky top-0 z-50">
       {/* Row 2: logo · search · actions */}
       <div className="border-b border-[#f1eee9]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 py-[11px] flex items-center gap-3 sm:gap-[22px]">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-8 py-2 sm:py-[11px] flex items-center gap-2 sm:gap-[22px]">
           <Link href="/" title="Máy Ảnh Việt Nam" className="shrink-0 flex items-center no-underline transition-all hover:-translate-y-[1px]">
-            <div className="bg-[#ff6a00] rounded-[12px] px-[10px] py-[5px] sm:px-[14px] sm:py-[7px] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)]">
-              <img src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png" alt="Máy Ảnh Việt Nam" width={180} height={36} className="h-[28px] w-auto sm:h-[36px] sm:w-[180px] object-contain object-left block" />
+            <div className="bg-[#ff6a00] rounded-[10px] sm:rounded-[12px] px-[9px] py-[4px] sm:px-[14px] sm:py-[7px] shadow-[0_4px_14px_rgba(255,106,0,0.35)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(255,106,0,0.5)]">
+              <img src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png" alt="Máy Ảnh Việt Nam" width={180} height={36} className="h-[24px] w-auto sm:h-[36px] sm:w-[180px] object-contain object-left block" />
             </div>
           </Link>
 
           {/* Search */}
           <div className="relative flex-1 max-w-[520px] mx-auto">
             <div className="relative flex items-center">
-              <div className="absolute left-0 flex items-center justify-center w-[40px] h-full pointer-events-none">
+              <div className="absolute left-0 flex items-center justify-center w-[36px] sm:w-[40px] h-full pointer-events-none">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9e9590" strokeWidth="2.2" strokeLinecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
               </div>
               <input
@@ -108,10 +108,10 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
                 onChange={onSearch}
                 onFocus={onSearchFocus}
                 onBlur={onSearchBlur}
-                placeholder="Tìm máy ảnh, ống kính, flycam..."
-                className="w-full h-[42px] pl-[40px] pr-[48px] rounded-full border border-[#e2ddd6] bg-[#faf9f7] text-[13.5px] text-[#1a1815] placeholder:text-[#b0a99f] outline-none transition-all duration-200 hover:border-[#d4cec5] focus:border-[#ff6a00] focus:bg-white focus:shadow-[0_0_0_3px_rgba(255,106,0,0.1)]"
+                placeholder="Tìm sản phẩm..."
+                className="w-full h-[38px] sm:h-[42px] pl-[36px] sm:pl-[40px] pr-[44px] sm:pr-[48px] rounded-full border border-[#e2ddd6] bg-[#faf9f7] text-[12.5px] sm:text-[13.5px] text-[#1a1815] placeholder:text-[#b0a99f] outline-none transition-all duration-200 hover:border-[#d4cec5] focus:border-[#ff6a00] focus:bg-white focus:shadow-[0_0_0_3px_rgba(255,106,0,0.1)]"
               />
-              <button type="submit" className="absolute right-[5px] w-[32px] h-[32px] rounded-full bg-[#ff6a00] flex items-center justify-center border-0 cursor-pointer shadow-[0_2px_8px_rgba(255,106,0,0.3)] transition-all duration-200 hover:bg-[#ea5e00] hover:shadow-[0_4px_14px_rgba(255,106,0,0.45)] hover:scale-105 active:scale-95">
+              <button type="submit" className="absolute right-[4px] sm:right-[5px] w-[30px] sm:w-[32px] h-[30px] sm:h-[32px] rounded-full bg-[#ff6a00] flex items-center justify-center border-0 cursor-pointer shadow-[0_2px_8px_rgba(255,106,0,0.3)] transition-all duration-200 hover:bg-[#ea5e00] hover:shadow-[0_4px_14px_rgba(255,106,0,0.45)] hover:scale-105 active:scale-95">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
               </button>
             </div>
@@ -146,8 +146,8 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-[6px] shrink-0">
-            <button type="button" aria-label="Tài khoản" title="Tài khoản" className="group flex items-center justify-center w-[40px] h-[40px] rounded-full border border-[#e2ddd6] bg-white text-[#5f5a53] cursor-pointer transition-all duration-200 hover:border-[#ff6a00] hover:text-[#ff6a00] hover:bg-[#fff8f0] hover:shadow-[0_2px_10px_rgba(255,106,0,0.15)] active:scale-95">
+          <div className="flex items-center gap-[5px] sm:gap-[6px] shrink-0">
+            <button type="button" aria-label="Tài khoản" title="Tài khoản" className="group hidden sm:flex items-center justify-center w-[40px] h-[40px] rounded-full border border-[#e2ddd6] bg-white text-[#5f5a53] cursor-pointer transition-all duration-200 hover:border-[#ff6a00] hover:text-[#ff6a00] hover:bg-[#fff8f0] hover:shadow-[0_2px_10px_rgba(255,106,0,0.15)] active:scale-95">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </button>
             <button
@@ -155,9 +155,9 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
               aria-label="Giỏ hàng"
               title="Giỏ hàng"
               onClick={() => toggleDrawer()}
-              className="group relative flex items-center justify-center w-[40px] h-[40px] rounded-full border border-[#e2ddd6] bg-white text-[#5f5a53] cursor-pointer transition-all duration-200 hover:border-[#ff6a00] hover:text-[#ff6a00] hover:bg-[#fff8f0] hover:shadow-[0_2px_10px_rgba(255,106,0,0.15)] active:scale-95"
+              className="group relative flex items-center justify-center w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-full border border-[#e2ddd6] bg-white text-[#5f5a53] cursor-pointer transition-all duration-200 hover:border-[#ff6a00] hover:text-[#ff6a00] hover:bg-[#fff8f0] hover:shadow-[0_2px_10px_rgba(255,106,0,0.15)] active:scale-95"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-[18px] sm:h-[18px]"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
               {itemCount > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] rounded-full bg-[#ff6a00] text-white text-[10px] font-bold flex items-center justify-center px-1 shadow-[0_2px_6px_rgba(255,106,0,0.5)] ring-2 ring-white">
                   {itemCount > 99 ? "99+" : itemCount}
@@ -185,7 +185,7 @@ export default function SiteHeader({ active = "home" }: SiteHeaderProps) {
                   color: on ? "#c85200" : "#5f5a53",
                   background: on ? "rgba(255,106,0,0.09)" : "transparent"
                 }}
-                className="shrink-0 px-[13px] py-2 rounded-[9px] text-[13px] font-medium no-underline whitespace-nowrap transition-colors hover:bg-[#f5f2ed] hover:text-[#16130f]"
+                className="shrink-0 px-[10px] sm:px-[13px] py-[5px] sm:py-2 rounded-[7px] sm:rounded-[9px] text-[11.5px] sm:text-[13px] font-medium no-underline whitespace-nowrap transition-colors hover:bg-[#f5f2ed] hover:text-[#16130f]"
               >
                 {c.name}
               </Link>

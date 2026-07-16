@@ -276,8 +276,8 @@ export default function ActionCameraShowcasePage() {
           <div ref={flareRef} aria-hidden="true" className="absolute left-[-10%] right-[-10%] top-[50%] h-[2px] z-26 bg-gradient-to-r from-transparent via-[rgba(255,138,61,0.85)] to-transparent opacity-0 pointer-events-none will-change-transform shadow-[0_0_26px_5px_rgba(255,106,0,0.45)]" />
 
           {/* Layer 1: 3D Stage on the right */}
-          <div className="absolute top-0 bottom-0 right-0 w-full md:w-[46%] z-12 pointer-events-none">
-            <div ref={glowRef} aria-hidden="true" style={{ transform: "translate(-50%, -50%)" }} className="absolute left-[50%] top-[50%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] opacity-0 will-change-transform">
+          <div className="absolute top-0 bottom-0 right-0 w-full md:w-[46%] z-12 pointer-events-none opacity-30 md:opacity-100">
+            <div ref={glowRef} aria-hidden="true" style={{ transform: "translate(-50%, -50%)" }} className="absolute left-[50%] top-[50%] w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[500px] opacity-0 will-change-transform">
               <div className="absolute inset-0 rounded-full bg-[radial-gradient(closest-side,rgba(255,106,0,0.34),rgba(255,106,0,0.08)_55%,transparent_72%)] filter blur-[6px] animate-[glowPulse_5s_ease-in-out_infinite]" />
               <div className="absolute inset-[26px] md:inset-[42px] rounded-full border border-dashed border-[rgba(255,164,96,0.5)] animate-[ringSpin_32s_linear_infinite]" />
               <div className="absolute inset-[56px] md:inset-[92px] rounded-full border border-white/16" />
@@ -306,22 +306,22 @@ export default function ActionCameraShowcasePage() {
 
           {/* Layer 2: Hero intro Overlay copy */}
           <div ref={heroRef} className="absolute inset-0 z-20 flex items-center will-change-transform">
-            <div className="w-full max-w-[1280px] mx-auto px-5 sm:px-8">
+            <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-5 lg:px-8">
               <div className="max-w-[560px]">
                 <div className="inline-flex items-center gap-2 border border-[rgba(255,138,61,0.5)] bg-[#110a09]/55 backdrop-blur-[8px] rounded-full px-4 py-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] shadow-[0_0_10px_2px_rgba(255,106,0,0.7)] animate-[recBlink_1.4s_ease-in-out_infinite]" />
                   <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[#ff8a3d]">Cuộn chuột = tua video đua xe</span>
                 </div>
-                <h1 className="mt-6 mb-0 text-[42px] sm:text-[58px] lg:text-[74px] leading-[1.05] font-extralight tracking-[-0.02em] text-white">
+                <h1 className="mt-6 mb-0 text-[30px] sm:text-[42px] md:text-[58px] lg:text-[74px] leading-[1.05] font-extralight tracking-[-0.02em] text-white">
                   Insta360 <span className="font-bold text-[#ff6a00]">ONE RS</span><br />
-                  <span className="text-[26px] sm:text-[34px] lg:text-[44px] font-light text-white/92">1-Inch 360 Edition</span>
+                  <span className="text-[18px] sm:text-[26px] md:text-[34px] lg:text-[44px] font-light text-white/92">1-Inch 360 Edition</span>
                 </h1>
-                <p className="mt-5 max-w-[440px] text-[17.5px] font-light leading-[1.6] text-white/75">
+                <p className="mt-5 max-w-[440px] text-[14px] sm:text-[15px] md:text-[17.5px] font-light leading-[1.6] text-white/75">
                   Cảm biến kép 1-inch đồng phát triển cùng Leica. Quay 6K 360° — bắt trọn mọi khoảnh khắc tốc độ.
                 </p>
                 <div className="flex items-baseline gap-3.5 mt-7">
-                  <span className="text-[26px] sm:text-[32px] font-medium text-white">18.990.000đ</span>
-                  <span className="text-[17px] text-white/45 line-through">20.990.000đ</span>
+                  <span className="text-[22px] sm:text-[26px] md:text-[32px] font-medium text-white">18.990.000đ</span>
+                  <span className="text-[14px] sm:text-[15px] md:text-[17px] text-white/45 line-through">20.990.000đ</span>
                   <span className="text-[12px] font-extrabold text-white bg-[#ff6a00] rounded-full px-2.5 py-1 shadow-[0_6px_18px_-4px_rgba(255,106,0,0.7)]">-10%</span>
                 </div>
                 <p className="flex items-center gap-2 mt-[32px] text-[14px] text-white/70">

@@ -61,8 +61,8 @@ export default function SiteFooter() {
   return (
     <footer className="font-sans relative bg-[#f6f4f0] text-[#7a746c] border-t border-[#e9e6e1]">
       {/* ── TOP SECTION — 4 columns ── */}
-      <div className="mx-auto max-w-[1280px] px-6 sm:px-8 pt-14 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="mx-auto max-w-[1280px] px-5 sm:px-8 pt-8 sm:pt-14 pb-8 sm:pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* ── COLUMN 1: Logo + Description + Social + Payments ── */}
           <div>
             <Link href="/" className="inline-block mb-4 no-underline">
@@ -136,7 +136,7 @@ export default function SiteFooter() {
               </a>
             </div>
 
-            {/* Payment methods */}
+            {/* Payment methods - borderless, chỉ ảnh */}
             <p className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#7a746c] mb-2">
               Phương thức thanh toán
             </p>
@@ -145,9 +145,9 @@ export default function SiteFooter() {
                 <div
                   key={idx}
                   title={pm.name}
-                  className="relative aspect-[1.6/1] rounded-[9px] bg-white border border-[#e2ded8] overflow-hidden transition-all hover:border-[#ff6a00]/40 hover:-translate-y-[1px] hover:shadow-[0_6px_14px_-8px_rgba(255,106,0,0.35)]"
+                  className="relative aspect-[1.6/1] overflow-hidden transition-all hover:-translate-y-[1px] hover:scale-[1.04]"
                 >
-                  <img src={pm.src} alt={pm.name} className="absolute inset-0 w-full h-full object-contain p-1.5" />
+                  <img src={pm.src} alt={pm.name} className="absolute inset-0 w-full h-full object-contain p-0" />
                 </div>
               ))}
             </div>
@@ -262,7 +262,7 @@ export default function SiteFooter() {
 
       {/* ── COPYRIGHT SECTION ── */}
       <div className="border-t border-[#e2ded8] bg-[#efece7]">
-        <div className="mx-auto max-w-[1280px] px-6 sm:px-8 py-6">
+        <div className="mx-auto max-w-[1280px] px-5 sm:px-8 py-4 sm:py-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:items-center">
             {/* Copyright text */}
             <div className="lg:col-span-2 text-[11.5px] text-[#7a746c] leading-relaxed">
