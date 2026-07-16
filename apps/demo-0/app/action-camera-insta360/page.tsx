@@ -68,6 +68,13 @@ export default function ActionCameraShowcasePage() {
   useEffect(() => {
     let rafId: number;
 
+    // Fallback duration if video never loads (5s race clip)
+    const durationTimeout = setTimeout(() => {
+      if (!durationRef.current) {
+        durationRef.current = 5;
+      }
+    }, 3000);
+
     const tick = () => {
       rafId = requestAnimationFrame(tick);
       const c = containerRef.current;
@@ -75,8 +82,9 @@ export default function ActionCameraShowcasePage() {
 
       const rect = c.getBoundingClientRect();
       const vh = window.innerHeight;
-      const raw = Math.min(1, Math.max(0, -rect.top / (rect.height - vh)));
-      pScroll.current += (raw - pScroll.current) * 0.05;
+      const scrollable = Math.max(1, rect.height - vh);
+      const raw = Math.min(1, Math.max(0, -rect.top / scrollable));
+      pScroll.current += (raw - pScroll.current) * 0.08;
       const p = pScroll.current;
 
       const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -228,7 +236,10 @@ export default function ActionCameraShowcasePage() {
     };
 
     tick();
-    return () => cancelAnimationFrame(rafId);
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(durationTimeout);
+    };
   }, []);
 
   const onReady = () => setMode("3d");
@@ -338,23 +349,23 @@ export default function ActionCameraShowcasePage() {
               
               <div ref={seg0} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">01 · Cảm biến</p>
-                <h2 className="mt-3.5 mb-0 text-[48px] sm:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">1-inch <span className="font-bold text-[#ff6a00]">×2</span></h2>
-                <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
+                <h2 className="mt-3.5 mb-0 text-[36px] sm:text-[48px] md:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">1-inch <span className="font-bold text-[#ff6a00]">×2</span></h2>
+                <p className="mt-4 mb-0 text-[14px] sm:text-[16px] font-light leading-[1.6] text-white/75">
                   Đồng phát triển cùng Leica. Dải nhạy sáng vượt trội bắt trọn chi tiết trong đêm tối.
                 </p>
               </div>
 
               <div ref={seg1} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">02 · Quay phim</p>
-                <h2 className="mt-3.5 mb-0 text-[48px] sm:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">6K <span className="font-bold text-[#ff6a00]">360°</span></h2>
-                <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
+                <h2 className="mt-3.5 mb-0 text-[36px] sm:text-[48px] md:text-[66px] lg:text-[88px] leading-[0.95] font-extralight tracking-[-0.03em] text-white">6K <span className="font-bold text-[#ff6a00]">360°</span></h2>
+                <p className="mt-4 mb-0 text-[14px] sm:text-[16px] font-light leading-[1.6] text-white/75">
                   Tự do tái khung hình (reframe) sau khi quay mà không lo suy giảm độ phân giải.
                 </p>
               </div>
 
               <div ref={seg2} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">03 · Chống rung</p>
-                <h2 className="mt-3.5 mb-0 text-[44px] sm:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">Flow<span className="text-[#ff6a00]">State</span></h2>
+                <h2 className="mt-3.5 mb-0 text-[32px] sm:text-[44px] md:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">Flow<span className="text-[#ff6a00]">State</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
                   Thuật toán ổn định hình ảnh 6 trục và khóa chân trời 360° giúp thước phim mượt mà tuyệt đối.
                 </p>
@@ -362,7 +373,7 @@ export default function ActionCameraShowcasePage() {
 
               <div ref={seg3} style={{ transform: "translateY(-50%)" }} className="absolute left-5 right-5 sm:right-auto sm:left-8 top-1/2 max-w-[460px] opacity-0 will-change-transform">
                 <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-[#ff8a3d]">04 · Bền bỉ</p>
-                <h2 className="mt-3.5 mb-0 text-[44px] sm:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">IPX<span className="text-[#ff6a00]">8</span></h2>
+                <h2 className="mt-3.5 mb-0 text-[32px] sm:text-[44px] md:text-[60px] lg:text-[76px] leading-[0.98] font-bold text-white">IPX<span className="text-[#ff6a00]">8</span></h2>
                 <p className="mt-4 mb-0 text-[16px] font-light leading-[1.6] text-white/75">
                   Chống nước IPX8 — tự tin quay dưới mưa, dưới biển mà không cần vỏ bảo vệ.
                 </p>
@@ -374,7 +385,7 @@ export default function ActionCameraShowcasePage() {
           <div ref={finalRef} className="absolute inset-0 z-20 flex items-center justify-center text-center opacity-0 pointer-events-none">
             <div className="max-w-[560px] px-6">
               <p className="m-0 font-mono text-[12px] font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Trải nghiệm đỉnh cao</p>
-              <h2 className="mt-3 mb-0 text-[32px] sm:text-[48px] font-extralight tracking-[-0.025em] text-white">Sáng tạo không giới hạn</h2>
+              <h2 className="mt-3 mb-0 text-[24px] sm:text-[32px] md:text-[48px] font-extralight tracking-[-0.025em] text-white">Sáng tạo không giới hạn</h2>
               <p className="mt-4 mb-0 text-[16px] font-light leading-[1.65] text-white/75">
                 Cảm biến kép Leica 1-inch mang lại chất lượng hình ảnh vượt bậc mà các camera hành động khác không thể sánh kịp.
               </p>
@@ -405,10 +416,10 @@ export default function ActionCameraShowcasePage() {
       </div>
 
       {/* ═══════════ DETAILED INFO & SPECS (Below scroll area) ═══════════ */}
-      <section className="relative z-20 max-w-[1280px] mx-auto px-8 pt-16 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start bg-[#fafaf8]">
+      <section className="relative z-20 max-w-[1280px] mx-auto px-4 sm:px-8 pt-16 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start bg-[#fafaf8]">
         {/* Specs */}
         <div>
-          <h2 className="m-0 text-[32px] font-extralight tracking-[-0.025em]">Thông số kỹ thuật chi tiết</h2>
+          <h2 className="m-0 text-[24px] sm:text-[32px] font-extralight tracking-[-0.025em]">Thông số kỹ thuật chi tiết</h2>
           <div className="mt-8 flex flex-col gap-6">
             {specGroups.map((group, idx) => (
               <div key={idx} className="border border-[#e9e6e1] bg-white rounded-2xl overflow-hidden">
@@ -417,7 +428,7 @@ export default function ActionCameraShowcasePage() {
                 </div>
                 <div className="flex flex-col">
                   {group.items.map((item: any, iIdx: number) => (
-                    <div key={iIdx} className="grid grid-cols-[180px_1fr] gap-4 px-5 py-3 border-t border-[#f1eee9] first:border-none text-[13.5px]">
+                    <div key={iIdx} className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-1 sm:gap-4 px-5 py-3 border-t border-[#f1eee9] first:border-none text-[13.5px]">
                       <span className="font-semibold text-[#7a746c]">{item.label}</span>
                       <span className="text-[#16130f]">{item.value}</span>
                     </div>
