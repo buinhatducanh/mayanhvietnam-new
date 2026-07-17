@@ -75,8 +75,7 @@ export function ReviewsSection() {
           href="https://www.youtube.com/@mayanhvietnam"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 text-sm font-semibold transition-colors"
-          style={{ color: '#ff6a00' }}
+          className="flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-accent"
         >
           Xem youtube
           <ArrowIcon />
