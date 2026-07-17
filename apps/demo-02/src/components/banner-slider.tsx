@@ -64,11 +64,13 @@ export function BannerSlider({
   return (
     <div
       className={cn(
-        'relative group overflow-hidden rounded-2xl border border-border bg-black shadow-lg shadow-black/20',
-        isHero ? 'min-h-[300px] sm:min-h-[360px] lg:min-h-[420px]' : 'min-h-[180px] sm:min-h-[220px]',
+        'relative group w-full max-w-full overflow-hidden rounded-2xl border border-border bg-black shadow-lg shadow-black/20',
+        // CHỈ dùng min-h — KHÔNG kèm inline aspectRatio để tránh ép min-width gây tràn ngang trên mobile
+        isHero
+          ? 'min-h-[260px] sm:min-h-[340px] lg:min-h-[420px]'
+          : 'min-h-[160px] sm:min-h-[200px] lg:min-h-[220px]',
         className
       )}
-      style={{ aspectRatio: isHero ? '3 / 1' : '16 / 6' }}
       role="region"
       aria-roledescription="carousel"
       aria-label="Banner quảng cáo"

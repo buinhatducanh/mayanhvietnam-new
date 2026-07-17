@@ -31,9 +31,9 @@ export default function HeroBanner() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="max-w-[1440px] mx-auto px-6 py-4">
-        {/* ── MAIN CAROUSEL — panoramic 3:1 giống mayanhvietnam.com ── */}
+        {/* ── MAIN CAROUSEL — panoramic 3:1 desktop, 16:9 mobile ── */}
         <div
-          className="relative rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl shadow-black/40 aspect-[3/1] max-h-[350px] sm:max-h-none"
+          className="relative rounded-2xl overflow-hidden bg-black border border-zinc-800 shadow-2xl shadow-black/40 aspect-[16/10] sm:aspect-[3/1] max-h-[350px] sm:max-h-none"
         >
           {/* Slides */}
           {banners.map((banner, idx) => (
@@ -65,10 +65,10 @@ export default function HeroBanner() {
                     {banner.badge}
                   </p>
                 )}
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight mb-1">
+                <h2 className="text-base sm:text-2xl lg:text-3xl font-bold text-white leading-tight mb-1 line-clamp-2">
                   {banner.title}
                 </h2>
-                <p className="text-xs sm:text-sm text-white/80 leading-snug max-w-xl line-clamp-2">
+                <p className="text-[11px] sm:text-sm text-white/80 leading-snug max-w-xl line-clamp-2">
                   {banner.subtitle}
                 </p>
               </div>

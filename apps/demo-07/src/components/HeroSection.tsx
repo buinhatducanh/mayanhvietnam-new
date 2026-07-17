@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 
 const Camera3D = dynamic(() => import('./Camera3D'), {
@@ -21,32 +21,46 @@ const Camera3D = dynamic(() => import('./Camera3D'), {
   ),
 });
 
+const MOBILE_BREAKPOINT = 768;
+
+function getIsMobile() {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth <= MOBILE_BREAKPOINT;
+}
+
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Responsive breakpoint detection
+  useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+    setIsMobile(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    if (!containerRef.current) return;
+    // Use getBoundingClientRect — reliable even when iOS Safari shuffles the
+    // viewport height on address-bar expand/collapse.
+    const rect = containerRef.current.getBoundingClientRect();
+    const containerTop = rect.top + window.scrollY;
+    const containerHeight = rect.height;
+    const totalScrollable = containerHeight - window.innerHeight;
+
+    let progress = (window.scrollY - containerTop) / totalScrollable;
+    progress = Math.max(0, Math.min(1, progress));
+    setScrollProgress(progress);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const containerHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      
-      const startY = window.scrollY;
-      const offsetTop = containerRef.current.offsetTop;
-      const totalScrollable = containerHeight - windowHeight;
-      
-      let progress = (startY - offsetTop) / totalScrollable;
-      progress = Math.max(0, Math.min(1, progress));
-      setScrollProgress(progress);
-    };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   // Compute sub-sections visibility
   const showIntro = scrollProgress < 0.2;
@@ -54,13 +68,17 @@ export default function HeroSection() {
   const showFeatures = scrollProgress >= 0.45 && scrollProgress < 0.7;
   const showFront = scrollProgress >= 0.7 && scrollProgress < 0.85;
 
+  // On mobile we shrink the scroll track from 450vh to 320vh — still long
+  // enough for the full animation, but far less finger-exhausting to scroll.
+  const scrollTrackHeight = isMobile ? '320vh' : '450vh';
+
   return (
     <div
       ref={containerRef}
       style={{
         position: 'relative',
-        height: '450vh', // long scroll track
-        background: '#020b1e', // deep premium dark blue background
+        height: scrollTrackHeight,
+        background: '#020b1e',
       }}
     >
       <style>{`
@@ -75,6 +93,12 @@ export default function HeroSection() {
           transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
           position: relative;
           overflow: hidden;
+        }
+        @media (max-width: 768px) {
+          .tech-card {
+            padding: 20px;
+            border-radius: 12px;
+          }
         }
         /* Premium tech corners */
         .tech-card::before {
@@ -199,9 +223,7 @@ export default function HeroSection() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: scrollProgress < 0.2 ? 1 : 0,
-          // Scale down as scroll progresses (0->1 shrink to ~0.4)
           transform: `scale(${1 - Math.min(scrollProgress, 0.2) * 3})`,
-          // Keep overlay above 3D canvas but below later content
           zIndex: 3,
           pointerEvents: 'none',
           transition: 'opacity 0.2s ease, transform 0.2s ease',
@@ -227,8 +249,6 @@ export default function HeroSection() {
           transition: 'opacity 0.1s ease-out',
         }} />
 
-
-
         {/* === SECTION 1: Huge 4K Image Shrinking Intro === */}
         <div className={`container-xl ${showIntro ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
           position: 'absolute',
@@ -245,108 +265,179 @@ export default function HeroSection() {
             background: 'rgba(0, 94, 184, 0.2)',
             border: '1px solid rgba(147, 197, 253, 0.4)',
             color: '#93C5FD',
-            fontSize: '0.85rem',
+            fontSize: isMobile ? '0.7rem' : '0.85rem',
             fontWeight: 700,
             borderRadius: 24,
-            padding: '6px 18px',
-            marginBottom: 20,
+            padding: isMobile ? '5px 14px' : '6px 18px',
+            marginBottom: isMobile ? 14 : 20,
             letterSpacing: '0.05em',
             textTransform: 'uppercase',
           }}>
             CameraVietNam • Trình Diễn Nghệ Thuật
           </span>
           <h1 style={{
-            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontSize: isMobile ? 'clamp(1.8rem, 7vw, 2.6rem)' : 'clamp(2.5rem, 5vw, 4rem)',
             fontWeight: 900,
             color: '#fff',
             lineHeight: 1.1,
-            marginBottom: 20,
+            marginBottom: isMobile ? 14 : 20,
             textShadow: '0 4px 20px rgba(0,0,0,0.5)',
           }}>
             Khám Phá Tuyệt Tác<br/>
             Qua Khung Ngắm 3D
           </h1>
           <p style={{
-            fontSize: '1.125rem',
+            fontSize: isMobile ? '0.95rem' : '1.125rem',
             color: 'rgba(255,255,255,0.7)',
             maxWidth: 580,
             lineHeight: 1.6,
           }}>
-            Cuộn chuột xuống dưới để bắt đầu hành trình tương tác, khám phá cấu tạo và thông số chi tiết của chiếc máy ảnh flagship đỉnh cao.
+            {isMobile
+              ? 'Cuộn xuống để khám phá cấu tạo và thông số chiếc máy ảnh flagship.'
+              : 'Cuộn chuột xuống dưới để bắt đầu hành trình tương tác, khám phá cấu tạo và thông số chi tiết của chiếc máy ảnh flagship đỉnh cao.'}
           </p>
         </div>
 
         {/* === SECTION 2: Rotate Left / Show Specs on Right === */}
-        <div className={`container-xl`} style={{
-          position: 'absolute',
-          zIndex: 3,
-          width: '100%',
-          display: 'grid',
-          gridTemplateColumns: '1.1fr 0.9fr',
-          padding: '0 60px',
-          pointerEvents: 'none',
-        }}>
-          <div /> {/* Left space for rotated Camera */}
-          <div className={`tech-card ${showSpecs ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
-            pointerEvents: 'auto',
+        {/* Mobile: single-column, card at bottom */}
+        {isMobile ? (
+          <div style={{
+            position: 'absolute',
+            zIndex: 3,
+            width: '100%',
+            padding: '0 16px',
+            pointerEvents: 'none',
           }}>
-            <div className="tech-card-header">
-              <span className="tech-tag" style={{ color: '#fff', background: 'rgba(0, 94, 184, 0.4)' }}>SPECIFICATION</span>
-              <span className="tech-tag">SYS_ACTIVE // v1.0.4</span>
-            </div>
-            <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: 20, letterSpacing: '-0.02em' }}>
-              Thông Số Siêu Phẩm
-            </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {[
-                { label: 'Cảm biến', val: '61.0 MP Full-Frame Exmor R CMOS' },
-                { label: 'Bộ xử lý', val: 'BIONZ XR + AI Co-processor' },
-                { label: 'Lấy nét', val: '759 điểm AF, Tracking AI Real-time' },
-                { label: 'Video', val: '8K 30p / 4K 120p 10-bit 4:2:2' },
-                { label: 'Chống rung', val: '5 trục tích hợp (8.0 Stops)' },
-              ].map((spec, index) => (
-                <div key={index} className="tech-spec-item">
-                  <div className="tech-spec-label">{spec.label}</div>
-                  <div className="tech-spec-val">{spec.val}</div>
-                </div>
-              ))}
+            <div className={`tech-card ${showSpecs ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
+              pointerEvents: 'auto',
+            }}>
+              <div className="tech-card-header">
+                <span className="tech-tag" style={{ color: '#fff', background: 'rgba(0, 94, 184, 0.4)' }}>SPECIFICATION</span>
+                <span className="tech-tag">v1.0.4</span>
+              </div>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginBottom: 16, letterSpacing: '-0.02em' }}>
+                Thông Số Siêu Phẩm
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {[
+                  { label: 'Cảm biến', val: '61.0 MP Full-Frame Exmor R CMOS' },
+                  { label: 'Bộ xử lý', val: 'BIONZ XR + AI Co-processor' },
+                  { label: 'Lấy nét', val: '759 điểm AF, Tracking AI Real-time' },
+                  { label: 'Video', val: '8K 30p / 4K 120p 10-bit 4:2:2' },
+                  { label: 'Chống rung', val: '5 trục tích hợp (8.0 Stops)' },
+                ].map((spec, index) => (
+                  <div key={index} className="tech-spec-item">
+                    <div className="tech-spec-label">{spec.label}</div>
+                    <div className="tech-spec-val">{spec.val}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className={`container-xl`} style={{
+            position: 'absolute',
+            zIndex: 3,
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: '1.1fr 0.9fr',
+            padding: '0 60px',
+            pointerEvents: 'none',
+          }}>
+            <div />
+            <div className={`tech-card ${showSpecs ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
+              pointerEvents: 'auto',
+            }}>
+              <div className="tech-card-header">
+                <span className="tech-tag" style={{ color: '#fff', background: 'rgba(0, 94, 184, 0.4)' }}>SPECIFICATION</span>
+                <span className="tech-tag">SYS_ACTIVE // v1.0.4</span>
+              </div>
+              <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: 20, letterSpacing: '-0.02em' }}>
+                Thông Số Siêu Phẩm
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {[
+                  { label: 'Cảm biến', val: '61.0 MP Full-Frame Exmor R CMOS' },
+                  { label: 'Bộ xử lý', val: 'BIONZ XR + AI Co-processor' },
+                  { label: 'Lấy nét', val: '759 điểm AF, Tracking AI Real-time' },
+                  { label: 'Video', val: '8K 30p / 4K 120p 10-bit 4:2:2' },
+                  { label: 'Chống rung', val: '5 trục tích hợp (8.0 Stops)' },
+                ].map((spec, index) => (
+                  <div key={index} className="tech-spec-item">
+                    <div className="tech-spec-label">{spec.label}</div>
+                    <div className="tech-spec-val">{spec.val}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* === SECTION 3: Rotate Right / Show Feature on Left === */}
-        <div className={`container-xl`} style={{
-          position: 'absolute',
-          zIndex: 3,
-          width: '100%',
-          display: 'grid',
-          gridTemplateColumns: '0.9fr 1.1fr',
-          padding: '0 60px',
-          pointerEvents: 'none',
-        }}>
-          <div className={`tech-card ${showFeatures ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
-            pointerEvents: 'auto',
+        {isMobile ? (
+          <div style={{
+            position: 'absolute',
+            zIndex: 3,
+            width: '100%',
+            padding: '0 16px',
+            pointerEvents: 'none',
           }}>
-            <div className="tech-card-header">
-              <span className="tech-tag" style={{ color: '#fff', background: 'rgba(0, 94, 184, 0.4)' }}>TECHNOLOGY</span>
-              <span className="tech-tag">OPTICS_CALIBRATED</span>
-            </div>
-            <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: 20, letterSpacing: '-0.02em' }}>
-              Công Nghệ Đột Phá
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 16 }}>
-              Sở hữu dải nhạy sáng (Dynamic Range) vượt trội lên tới <strong style={{ color: '#93c5fd' }}>15+ Stops</strong>, đem lại khả năng tái tạo ánh sáng hoàn hảo trong môi trường phức tạp nhất.
-            </p>
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 24 }}>
-              Tương thích hoàn toàn với hệ sinh thái hơn <strong style={{ color: '#93c5fd' }}>70 dòng ống kính cao cấp</strong>, đồng hành cùng bạn ghi lại trọn vẹn mọi khoảnh khắc chân thực.
-            </p>
-            <div style={{ display: 'flex', gap: 12 }}>
-              <span style={{ background: '#005EB8', color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 12px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>AI Processing</span>
-              <span style={{ background: 'rgba(255,255,255,0.06)', color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 12px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>15+ Stops DR</span>
+            <div className={`tech-card ${showFeatures ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
+              pointerEvents: 'auto',
+            }}>
+              <div className="tech-card-header">
+                <span className="tech-tag" style={{ color: '#fff', background: 'rgba(0, 94, 184, 0.4)' }}>TECHNOLOGY</span>
+                <span className="tech-tag">OPTICS_CALIBRATED</span>
+              </div>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginBottom: 16, letterSpacing: '-0.02em' }}>
+                Công Nghệ Đột Phá
+              </h2>
+              <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: 12 }}>
+                Dải nhạy sáng <strong style={{ color: '#93c5fd' }}>15+ Stops</strong>, tái tạo ánh sáng hoàn hảo trong môi trường phức tạp nhất.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem', lineHeight: 1.7, marginBottom: 18 }}>
+                Tương thích với <strong style={{ color: '#93c5fd' }}>70 dòng ống kính cao cấp</strong>.
+              </p>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <span style={{ background: '#005EB8', color: '#fff', fontSize: '0.7rem', fontWeight: 600, padding: '5px 10px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>AI Processing</span>
+                <span style={{ background: 'rgba(255,255,255,0.06)', color: '#fff', fontSize: '0.7rem', fontWeight: 600, padding: '5px 10px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>15+ Stops DR</span>
+              </div>
             </div>
           </div>
-          <div /> {/* Right space for rotated Camera */}
-        </div>
+        ) : (
+          <div className={`container-xl`} style={{
+            position: 'absolute',
+            zIndex: 3,
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: '0.9fr 1.1fr',
+            padding: '0 60px',
+            pointerEvents: 'none',
+          }}>
+            <div className={`tech-card ${showFeatures ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
+              pointerEvents: 'auto',
+            }}>
+              <div className="tech-card-header">
+                <span className="tech-tag" style={{ color: '#fff', background: 'rgba(0, 94, 184, 0.4)' }}>TECHNOLOGY</span>
+                <span className="tech-tag">OPTICS_CALIBRATED</span>
+              </div>
+              <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: 20, letterSpacing: '-0.02em' }}>
+                Công Nghệ Đột Phá
+              </h2>
+              <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 16 }}>
+                Sở hữu dải nhạy sáng (Dynamic Range) vượt trội lên tới <strong style={{ color: '#93c5fd' }}>15+ Stops</strong>, đem lại khả năng tái tạo ánh sáng hoàn hảo trong môi trường phức tạp nhất.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: 24 }}>
+                Tương thích hoàn toàn với hệ sinh thái hơn <strong style={{ color: '#93c5fd' }}>70 dòng ống kính cao cấp</strong>, đồng hành cùng bạn ghi lại trọn vẹn mọi khoảnh khắc chân thực.
+              </p>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <span style={{ background: '#005EB8', color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 12px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>AI Processing</span>
+                <span style={{ background: 'rgba(255,255,255,0.06)', color: '#fff', fontSize: '0.75rem', fontWeight: 600, padding: '6px 12px', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>15+ Stops DR</span>
+              </div>
+            </div>
+            <div />
+          </div>
+        )}
 
         {/* === SECTION 4: Lens Facing Forward === */}
         <div className={`container-xl ${showFront ? 'scrolly-fade-in' : 'scrolly-fade-out'}`} style={{
@@ -361,16 +452,16 @@ export default function HeroSection() {
           transition: 'all 0.5s ease',
         }}>
           <h2 style={{
-            fontSize: '2rem',
+            fontSize: isMobile ? '1.5rem' : '2rem',
             fontWeight: 800,
             color: '#fff',
-            marginBottom: 16,
+            marginBottom: isMobile ? 10 : 16,
             textShadow: '0 2px 10px rgba(0,0,0,0.5)',
           }}>
             Ống Kính Siêu Cấp
           </h2>
           <p style={{
-            fontSize: '1rem',
+            fontSize: isMobile ? '0.9rem' : '1rem',
             color: 'rgba(255,255,255,0.75)',
             lineHeight: 1.6,
           }}>
@@ -382,4 +473,3 @@ export default function HeroSection() {
     </div>
   );
 }
-

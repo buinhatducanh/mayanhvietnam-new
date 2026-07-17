@@ -45,9 +45,9 @@ export default function ProductListPage() {
           <span style={{ color: 'var(--color-accent)' }}>{catName}</span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 32 }}>
+        <div className="product-list-grid" style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 32 }}>
           {/* Sidebar filters */}
-          <div>
+          <div className="product-list-sidebar">
             <div style={{ background: 'var(--color-card-bg)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: 24, marginBottom: 16 }}>
               <h3 style={{ fontFamily: 'Plus Jakarta Sans', fontSize: 16, fontWeight: 700, color: 'var(--color-text-strong)', marginBottom: 16 }}>Thương Hiệu</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -125,7 +125,7 @@ export default function ProductListPage() {
                 <p style={{ fontSize: 14 }}>Thử điều chỉnh bộ lọc hoặc <Link to="/" style={{ color: 'var(--color-accent)' }}>về trang chủ</Link></p>
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+              <div className="product-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
                 {filtered.map(p => <ProductCard key={p.id} {...p} />)}
                 {/* Pad with more products for demo */}
                 {filtered.length < 6 && products.map(p => <ProductCard key={p.id + 100} {...p} slug={p.slug + '-2'} />).slice(0, 6 - filtered.length)}

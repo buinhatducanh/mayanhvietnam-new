@@ -67,7 +67,7 @@ export default function ReviewVideos() {
         {/* Arrow trước */}
         <button
           onClick={() => scrollCarousel(-1)}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-zinc-900/90 border border-zinc-700 text-white hover:bg-orange-500 hover:border-orange-500 transition-all flex items-center justify-center shadow-lg"
+          className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-zinc-900/90 border border-zinc-700 text-white hover:bg-orange-500 hover:border-orange-500 transition-all items-center justify-center shadow-lg"
           aria-label="Video trước"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ export default function ReviewVideos() {
         {/* Arrow tiếp */}
         <button
           onClick={() => scrollCarousel(1)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-zinc-900/90 border border-zinc-700 text-white hover:bg-orange-500 hover:border-orange-500 transition-all flex items-center justify-center shadow-lg"
+          className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-zinc-900/90 border border-zinc-700 text-white hover:bg-orange-500 hover:border-orange-500 transition-all items-center justify-center shadow-lg"
           aria-label="Video tiếp"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

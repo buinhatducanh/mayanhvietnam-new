@@ -333,7 +333,7 @@ export default function CategoryPage() {
           </div>
 
           {/* ── Visual Category Grid ── */}
-          <div className="mt-7 -mx-2 pb-2 overflow-x-auto scrollbar-none">
+          <div className="mt-7 -mx-2 pb-2 overflow-x-auto scrollbar-none cat-tabs-scroll">
             <div className="flex gap-2 px-1 min-w-max">
               {ALL_CATS.map((c) => {
                 const on = cat === c.slug;

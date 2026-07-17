@@ -414,9 +414,9 @@ export default function ProductDetailClient({ product, related }: Props) {
                       </h3>
                       <div className="divide-y divide-zinc-800 border border-zinc-800 rounded-xl overflow-hidden">
                         {specs.map((s, i) => (
-                          <div key={i} className="flex text-sm">
-                            <span className="w-1/3 bg-zinc-900/50 px-4 py-3 text-zinc-400 flex-shrink-0">{s.label}</span>
-                            <span className="flex-1 px-4 py-3 text-white">{s.value}</span>
+                          <div key={i} className="flex flex-col sm:flex-row text-sm">
+                            <span className="sm:w-1/3 sm:bg-zinc-900/50 px-4 py-2 sm:py-3 text-zinc-400 sm:flex-shrink-0 font-medium border-b border-zinc-800/50 sm:border-b-0">{s.label}</span>
+                            <span className="flex-1 px-4 py-2 sm:py-3 text-white">{s.value}</span>
                           </div>
                         ))}
                       </div>
