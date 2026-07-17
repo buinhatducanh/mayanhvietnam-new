@@ -5,17 +5,20 @@ export default function Footer() {
     <footer style={{ background: '#1A1A1A', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 64 }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 48, paddingBottom: 48 }}>
-          {/* Brand */}
+          {/* Brand — pill nền primary như demo-05 */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
               <div style={{
-                width: 44, height: 44, borderRadius: 12,
-                background: 'linear-gradient(135deg, #FF6B00 0%, #FF8A3C 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22
-              }}>📷</div>
-              <div>
-                <div style={{ fontFamily: 'Plus Jakarta Sans', fontWeight: 800, fontSize: 18, color: '#fff' }}>Máy Ảnh Việt Nam</div>
-                <div style={{ fontSize: 12, color: '#999999' }}>Vì lợi ích khách hàng</div>
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                background: 'var(--color-primary)',
+                padding: '8px 16px', borderRadius: 10,
+                boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
+              }}>
+                <img
+                  src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                  alt="Máy Ảnh Việt Nam"
+                  style={{ height: 32, width: 'auto', objectFit: 'contain' }}
+                />
               </div>
             </div>
             <p style={{ fontSize: 14, color: '#999999', lineHeight: 1.7, marginBottom: 20 }}>
@@ -91,7 +94,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="footer-bottom" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <p style={{ fontSize: 13, color: '#999999' }}>© 2025 Máy Ảnh Việt Nam. Tất cả quyền được bảo lưu.</p>
           <div style={{ display: 'flex', gap: 20 }}>
             {[['Điều khoản', '/chinh-sach/dieu-khoan'], ['Bảo mật', '/chinh-sach/bao-mat'], ['Sitemap', '/sitemap']].map(([name, href]) => (

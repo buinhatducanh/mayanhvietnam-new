@@ -89,8 +89,8 @@ export function YouTubeShorts() {
               href={`https://www.tiktok.com/@mayanhvietnam/video/${v.id}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/short shrink-0 snap-start overflow-hidden rounded-[20px] border border-border bg-card hover:border-primary/40 transition-colors"
-              style={{ aspectRatio: '9 / 16', width: 'clamp(160px, 18vw, 220px)' }}
+              className="group/short shrink-0 snap-start overflow-hidden rounded-[20px] border border-border bg-card hover:border-primary/40 transition-colors w-[42vw] max-w-[180px] sm:w-[160px] sm:max-w-none"
+              style={{ aspectRatio: '9 / 16' }}
             >
               <div className="relative flex h-full w-full flex-col items-center justify-center gap-3 p-4 text-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition-opacity group-hover/short:opacity-100" />
