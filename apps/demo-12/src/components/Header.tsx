@@ -76,21 +76,39 @@ export default function Header() {
         boxShadow: isScrolled ? '0 10px 30px rgba(0,0,0,0.15)' : 'none',
         width: '100%',
       }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 24,
-          justifyContent: 'space-between',
-        }}>
-          {/* Logo */}
+        <div
+          className="header-main-row"
+          style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 24,
+            justifyContent: 'space-between',
+          }}>
+          {/* Logo — pill nền primary như demo-05 */}
           <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
-            <img src="/logo-white.png" alt="Máy Ảnh Việt Nam" style={{ height: 44, width: 'auto', objectFit: 'contain' }} />
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'var(--color-primary)',
+                padding: '6px 12px',
+                borderRadius: 10,
+                boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
+              }}
+            >
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                alt="Máy Ảnh Việt Nam"
+                style={{ height: 32, width: 'auto', objectFit: 'contain' }}
+              />
+            </div>
           </Link>
 
           {/* Search */}
-          <form onSubmit={handleSearch} style={{ flex: 1, maxWidth: 500, minWidth: 200 }}>
+          <form className="header-search-form" onSubmit={handleSearch} style={{ flex: 1, maxWidth: 500, minWidth: 200 }}>
             <div style={{ position: 'relative' }}>
               <input
                 value={search}
@@ -113,7 +131,7 @@ export default function Header() {
           </form>
 
           {/* Actions */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
+          <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
             <Link to="/tai-khoan" style={{ color: '#aaa', textDecoration: 'none', fontSize: 13, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
               <span style={{ fontSize: 20 }}>👤</span>
               <span style={{ fontSize: 11 }}>Tài khoản</span>
@@ -138,23 +156,25 @@ export default function Header() {
       </div>
 
       {/* Nav Categories */}
-      <nav style={{
+      <nav className="nav-categories-wrap" style={{
         backgroundColor: '#1A1A1A',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
         padding: '0 24px',
         width: '100%',
       }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 0,
-          overflowX: 'auto',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-          justifyContent: 'flex-start',
-        }}>
+        <div
+          className="nav-categories-scroll"
+          style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 0,
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            justifyContent: 'flex-start',
+          }}>
           {categories.map(cat => (
             <Link
               key={cat.slug}

@@ -10,7 +10,7 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
     <Providers>
       <UIProvider>
         <StoreHeader />
-        <main className="flex-1 pt-[100px] sm:pt-[120px]">{children}</main>
+        <main className="flex-1 pt-[112px] sm:pt-[128px]">{children}</main>
         <StoreFooter />
         <CartDrawer />
         <WishlistDrawer />

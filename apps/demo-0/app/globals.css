@@ -42,10 +42,25 @@ html {
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+/* Đảm bảo thanh tab danh mục cuộn ngang mượt trên iOS Safari & click được trên mobile */
+.cat-tabs-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  position: relative;
+  z-index: 1;
+}
+
+.cat-tabs-scroll > button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes heroFloat {

@@ -321,7 +321,7 @@ export default function HomePage() {
             Xem tất cả →
           </Link>
         </div>
-        <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
+        <div className="product-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
           {products.slice(0, 8).map(p => (
             <ProductCard key={p.id} {...p} />
           ))}
@@ -352,14 +352,16 @@ export default function HomePage() {
             background: 'linear-gradient(135deg, rgba(26,26,26,0.92) 0%, rgba(45,45,45,0.85) 50%, rgba(64,64,64,0.7) 100%)',
           }} />
 
-          <div style={{
-            position: 'relative',
-            padding: '48px 56px',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 40,
-            alignItems: 'center',
-          }}>
+          <div
+            className="studio-banner-grid"
+            style={{
+              position: 'relative',
+              padding: '48px 56px',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 40,
+              alignItems: 'center',
+            }}>
             <div>
               <div style={{
                 display: 'inline-block',
@@ -404,12 +406,14 @@ export default function HomePage() {
                 tối ưu cho mọi nhu cầu chụp ảnh và quay phim chuyên nghiệp.
               </p>
 
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 12,
-                marginBottom: 28,
-              }}>
+              <div
+                className="studio-stats-grid"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: 12,
+                  marginBottom: 28,
+                }}>
                 {[
                   { icon: '🎯', label: 'Tư vấn miễn phí', desc: 'Đội ngũ chuyên gia giàu kinh nghiệm' },
                   { icon: '📐', label: 'Thiết kế riêng biệt', desc: 'Phù hợp với không gian của bạn' },
@@ -541,7 +545,7 @@ export default function HomePage() {
             Xem tất cả →
           </Link>
         </div>
-        <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
+        <div className="product-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }}>
           {flycamAndAction.length > 0 ? (
             flycamAndAction.map(p => (
               <ProductCard key={p.id} {...p} />
@@ -631,7 +635,7 @@ export default function HomePage() {
           <h2 style={{ fontFamily: 'Plus Jakarta Sans', fontSize: 32, fontWeight: 800, color: '#1A1A1A', textAlign: 'center', marginBottom: 40 }}>
             Khách Hàng Nói Gì?
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div className="testimonial-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}

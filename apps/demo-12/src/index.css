@@ -141,3 +141,130 @@ body {
 .shadow-md { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06); }
 .shadow-lg { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08); }
 .shadow-xl { box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12); }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — mobile breakpoints (Demo-12)
+   Áp dụng cho inline-style grid/flex đè bằng !important.
+   Tất cả selectors đều scope theo className có sẵn trong HomePage/CartPage/ProductListPage/Footer.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  /* Hero: thu nhỏ decorative orbs để không tràn ngang */
+  .hero-orb-lg { width: min(500px, 80vw) !important; height: min(500px, 80vw) !important; right: -20% !important; top: -15% !important; }
+  .hero-orb-sm { width: min(300px, 60vw) !important; height: min(300px, 60vw) !important; left: 0% !important; bottom: -15% !important; }
+
+  /* Hero arrows: ẩn trên mobile để không che text */
+  .hero-arrow-prev, .hero-arrow-next { display: none !important; }
+
+  /* Category grid: stack 2-col nhỏ hơn */
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Product grid: 2-col mobile */
+  .product-grid-2 { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .product-grid-3 { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .product-grid-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+
+  /* Studio banner: stack 1 cột */
+  .studio-banner-grid {
+    grid-template-columns: 1fr !important;
+    padding: 24px 20px !important;
+    gap: 24px !important;
+  }
+  .studio-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Brand grid: giảm min-width */
+  .brand-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  /* Testimonials: 1 cột */
+  .testimonial-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+  /* Section heading + button: stack dọc */
+  .section-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Header: wrap để không overflow */
+  .header-main-row {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .header-search-form {
+    order: 3 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    flex-basis: 100% !important;
+  }
+  .header-actions { gap: 8px !important; }
+  .header-search-form input { font-size: 12px !important; }
+
+  /* Nav categories bar: nhỏ padding + touch scroll */
+  .nav-categories-wrap { padding: 0 12px !important; }
+  .nav-categories-scroll { -webkit-overflow-scrolling: touch; touch-action: pan-x; }
+  .nav-categories-scroll a {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Product list: bỏ sidebar, 1 cột */
+  .product-list-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .product-list-sidebar { display: none !important; }
+
+  /* Cart: stack 1 cột */
+  .cart-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .cart-summary { max-width: 100% !important; }
+  .cart-item-row {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+  .cart-item-price { text-align: left !important; width: 100% !important; }
+
+  /* Footer: stack cột */
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 10px !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 380px) {
+  /* Điện thoại rất nhỏ (iPhone SE) */
+  .category-grid { gap: 8px !important; }
+  .product-grid-2, .product-grid-3, .product-grid-4 { gap: 8px !important; }
+  .pdp-grid-2 { grid-template-columns: 1fr !important; }
+}
+
+/* Tablet: điều chỉnh nhẹ */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .hero-orb-lg { width: min(500px, 70vw) !important; height: min(500px, 70vw) !important; }
+  .hero-orb-sm { width: min(300px, 50vw) !important; height: min(300px, 50vw) !important; }
+  .product-grid-4 { grid-template-columns: repeat(3, 1fr) !important; }
+  .studio-banner-grid { padding: 32px 32px !important; gap: 32px !important; }
+}
+
+/* Tôn trọng reduced motion (WCAG) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
