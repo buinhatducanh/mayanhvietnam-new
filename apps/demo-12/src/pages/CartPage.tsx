@@ -91,7 +91,7 @@ export default function CartPage() {
             </Link>
           </motion.div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 32 }}>
+          <div className="cart-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 32 }}>
             {/* Cart items */}
             <div>
               <div style={{

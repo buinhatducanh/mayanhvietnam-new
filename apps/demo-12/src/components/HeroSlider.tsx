@@ -145,6 +145,7 @@ export default function HeroSlider() {
             />
 
             <div
+                className="hero-orb-lg"
                 style={{
                     position: 'absolute',
                     right: '-5%',
@@ -158,6 +159,7 @@ export default function HeroSlider() {
                 }}
             />
             <div
+                className="hero-orb-sm"
                 style={{
                     position: 'absolute',
                     left: '5%',
@@ -386,6 +388,7 @@ export default function HeroSlider() {
                 </div>
 
                 <button
+                    className="hero-arrow-prev"
                     onClick={() => goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length)}
                     style={{
                         position: 'absolute',
@@ -419,6 +422,7 @@ export default function HeroSlider() {
                     ‹
                 </button>
                 <button
+                    className="hero-arrow-next"
                     onClick={() => goToSlide((currentSlide + 1) % heroSlides.length)}
                     style={{
                         position: 'absolute',

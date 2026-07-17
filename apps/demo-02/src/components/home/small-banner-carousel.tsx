@@ -38,8 +38,8 @@ export function SmallBannerCarousel({ banners }: { banners: Banner[] }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Slides — fade transition */}
-      <div className="relative" style={{ aspectRatio: '1305 / 435' }}>
+      {/* Slides — fade transition — aspect-ratio responsive để banner không quá rộng trên mobile */}
+      <div className="relative aspect-[3/1] sm:aspect-[1305/435]">
         {banners.map((banner, i) => (
           <a
             key={banner.title}

@@ -47,12 +47,18 @@ export default function Header({ cartCount, onNavigate, searchQuery, onSearchCha
       {/* Main header */}
       <div className="bg-navy text-white py-3 px-4">
         <div className="max-w-[1440px] mx-auto flex items-center gap-4">
-          {/* Logo */}
+          {/* Logo — pill nền primary như demo-05 */}
           <button
             onClick={() => onNavigate('home')}
             className="flex items-center gap-2 shrink-0 group"
           >
-            <img src="/logo-white.png" alt="Máy Ảnh Việt Nam" className="h-10 w-auto object-contain" />
+            <div className="flex items-center justify-center rounded-lg bg-primary px-3 py-1.5 shadow-sm">
+              <img
+                src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                alt="Máy Ảnh Việt Nam"
+                className="h-8 w-auto object-contain"
+              />
+            </div>
           </button>
 
           {/* Search bar */}
