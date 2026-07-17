@@ -13,13 +13,13 @@ export default function Footer({ onNavigate }: FooterProps) {
           {/* Brand */}
           <div>
             <button onClick={() => onNavigate('home')} className="flex items-center mb-4 group">
-              <img
-                src="/logo-white.png"
-                alt="Máy Ảnh Việt Nam"
-                width={160}
-                height={32}
-                className="h-[32px] w-[160px] object-contain object-left"
-              />
+              <div className="inline-flex items-center rounded-lg bg-primary px-3 py-2 shadow-sm">
+                <img
+                  src="https://mayanhvietnam.com/asset/imgs/img/Logo_white.png"
+                  alt="Máy Ảnh Việt Nam"
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
             </button>
             <p className="text-sm text-white/60 leading-relaxed mb-4">
               Hệ thống bán lẻ máy ảnh, ống kính, flycam và thiết bị studio chính hãng hàng đầu Việt Nam từ năm 2010.
