@@ -105,7 +105,7 @@ export function SiteFooter() {
               alt="Máy Ảnh Việt Nam"
               width={200}
               height={50}
-              className="object-contain"
+              className="logo-theme h-12 w-auto object-contain"
             />
           </Link>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

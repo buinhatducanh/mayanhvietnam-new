@@ -36,7 +36,7 @@ function renderMarkdown(md: string): React.ReactNode[] {
       return (
         <blockquote
           key={idx}
-          className="my-4 border-l-2 border-[#00d4aa] pl-4 text-[#f0f0f5] italic"
+          className="my-4 border-l-2 border-[var(--brand-teal)] pl-4 text-[var(--header-text)] italic"
         >
           {inlineFormat(block.slice(2))}
         </blockquote>
@@ -45,7 +45,7 @@ function renderMarkdown(md: string): React.ReactNode[] {
     if (/^[-*]\s/.test(block)) {
       const items = block.split(/\n/).map((l) => l.replace(/^[-*]\s+/, '').trim())
       return (
-        <ul key={idx} className="my-3 list-disc space-y-1.5 pl-6 text-sm text-[#8888a0]">
+        <ul key={idx} className="my-3 list-disc space-y-1.5 pl-6 text-sm text-[var(--header-text-muted)]">
           {items.map((it, i) => (
             <li key={i}>{inlineFormat(it)}</li>
           ))}
@@ -53,7 +53,7 @@ function renderMarkdown(md: string): React.ReactNode[] {
       )
     }
     return (
-      <p key={idx} className="my-3 text-sm leading-relaxed text-[#8888a0]">
+      <p key={idx} className="my-3 text-sm leading-relaxed text-[var(--header-text-muted)]">
         {inlineFormat(block)}
       </p>
     )
@@ -78,14 +78,14 @@ function inlineFormat(text: string): React.ReactNode {
     if (next > 0) parts.push(remaining.slice(0, next))
     if (next === nextBold && boldMatch) {
       parts.push(
-        <strong key={key++} className="font-semibold text-[#f0f0f5]">
+        <strong key={key++} className="font-semibold text-[var(--header-text)]">
           {boldMatch[1]}
         </strong>,
       )
       remaining = remaining.slice(next + boldMatch[0].length)
     } else if (italicMatch) {
       parts.push(
-        <em key={key++} className="italic text-[#f0f0f5]">
+        <em key={key++} className="italic text-[var(--header-text)]">
           {italicMatch[1]}
         </em>,
       )
@@ -103,21 +103,21 @@ export function ArticleSection({ article }: { article: ArticleData }) {
       .map((s) => ({ id: slugify(s.heading ?? ''), label: s.heading ?? '' }))
 
   return (
-    <article className="mt-12 overflow-hidden rounded-2xl border border-[#1e1e2a] bg-[#16161f]">
+    <article className="mt-12 overflow-hidden rounded-2xl border border-[var(--header-border-subtle)] bg-[var(--header-elevated)]">
       {/* Header */}
-      <header className="border-b border-[#1e1e2a] bg-[#111118] p-6 sm:p-8">
-        <div className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-[#00d4aa]">
+      <header className="border-b border-[var(--header-border-subtle)] bg-[var(--article-surface)] p-6 sm:p-8">
+        <div className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-[var(--brand-teal)]">
           <BookOpen className="size-3.5" aria-hidden="true" />
           Bài viết đánh giá
         </div>
-        <h2 className="text-balance text-2xl font-bold leading-tight text-[#f0f0f5] sm:text-3xl">
+        <h2 className="text-balance text-2xl font-bold leading-tight text-[var(--header-text)] sm:text-3xl">
           {article.title}
         </h2>
-        <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[#55556a]">
+        <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-[var(--header-text-dim)]">
           {article.author && (
             <span className="flex items-center gap-1.5">
               <UserIcon className="size-3.5" aria-hidden="true" />
-              <span className="text-[#8888a0]">{article.author}</span>
+              <span className="text-[var(--header-text-muted)]">{article.author}</span>
             </span>
           )}
           {article.publishDate && (
@@ -139,9 +139,9 @@ export function ArticleSection({ article }: { article: ArticleData }) {
         {toc.length > 1 && (
           <nav
             aria-label="Mục lục"
-            className="border-b border-[#1e1e2a] bg-[#111118] p-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:border-b-0 lg:border-r"
+            className="border-b border-[var(--header-border-subtle)] bg-[var(--article-surface)] p-6 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:border-b-0 lg:border-r"
           >
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-[#55556a]">
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-[var(--header-text-dim)]">
               Mục lục
             </p>
             <ol className="space-y-2">
@@ -149,9 +149,9 @@ export function ArticleSection({ article }: { article: ArticleData }) {
                 <li key={item.id} className="text-sm">
                   <a
                     href={`#${item.id}`}
-                    className="block text-[#8888a0] transition-colors hover:text-[#00d4aa]"
+                    className="block text-[var(--header-text-muted)] transition-colors hover:text-[var(--brand-teal)]"
                   >
-                    <span className="mr-2 font-[JetBrains_Mono,Fira_Code,ui-monospace] text-[#55556a]">
+                    <span className="mr-2 font-[JetBrains_Mono,Fira_Code,ui-monospace] text-[var(--header-text-dim)]">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     {item.label}
@@ -169,7 +169,7 @@ export function ArticleSection({ article }: { article: ArticleData }) {
             return (
               <section key={i} id={id} className={i > 0 ? 'mt-10' : undefined}>
                 {section.heading && (
-                  <h3 className="mb-3 text-lg font-bold text-[#f0f0f5] sm:text-xl">
+                  <h3 className="mb-3 text-lg font-bold text-[var(--header-text)] sm:text-xl">
                     {section.heading}
                   </h3>
                 )}
@@ -179,7 +179,7 @@ export function ArticleSection({ article }: { article: ArticleData }) {
                     {section.images.map((src, j) => (
                       <div
                         key={j}
-                        className="relative aspect-[4/3] overflow-hidden rounded-xl border border-[#1e1e2a] bg-[#0a0a0f]"
+                        className="relative aspect-[4/3] overflow-hidden rounded-xl border border-[var(--header-border-subtle)] bg-[var(--header-bg)]"
                       >
                         <Image
                           src={src}
