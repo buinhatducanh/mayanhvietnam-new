@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -24,9 +24,22 @@ const keyframes: Keyframe[] = [
   { progress: 1.0, rotY: Math.PI, rotX: 0.0, posX: 0, posY: 0, posZ: 6.5, camZ: 5.0, camY: 0 }
 ];
 
+// Detect coarse pointer / mobile so we can drop heavy GPU work.
+const detectMobile = () => {
+  if (typeof window === 'undefined') return false;
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  const narrow = window.matchMedia('(max-width: 768px)').matches;
+  const ua = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+  return coarse || narrow || ua;
+};
+
 export default function Camera3D({ scrollProgress }: { scrollProgress: number }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const scrollProgressRef = useRef(scrollProgress);
+  const [webglFailed, setWebglFailed] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(false);
 
   useEffect(() => {
     scrollProgressRef.current = scrollProgress;
@@ -35,9 +48,19 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
   useEffect(() => {
     if (!mountRef.current) return;
 
+    // Quick WebGL availability check — bail to a static fallback on mobile
+    // browsers that deny WebGL (older Android WebViews, low-power mode, etc.).
+    const probe = document.createElement('canvas');
+    const probeCtx = probe.getContext('webgl2') || probe.getContext('webgl');
+    if (!probeCtx) {
+      setWebglFailed(true);
+      return;
+    }
+
     const container = mountRef.current;
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    const width = container.clientWidth || 1;
+    const height = container.clientHeight || 1;
+    const isMobile = detectMobile();
 
     // === Scene Setup ===
     const scene = new THREE.Scene();
@@ -46,43 +69,60 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
     camera.position.set(0, 0, 5);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({
+      antialias: !isMobile, // antialias is too costly on mobile GPUs
+      alpha: true,
+      powerPreference: isMobile ? 'low-power' : 'high-performance',
+      failIfMajorPerformanceCaveat: false,
+    });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    // Cap pixel ratio: 1 on mobile, up to 2 on desktop — framebuffer size is the
+    // single biggest perf killer on retina phones.
+    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = !isMobile; // disable shadows on mobile
+    if (!isMobile) {
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    }
     container.appendChild(renderer.domElement);
 
     // === Lighting ===
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xffffff, isMobile ? 0.9 : 0.6);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    const keyLight = new THREE.DirectionalLight(0xffffff, isMobile ? 1.4 : 1.2);
     keyLight.position.set(5, 8, 5);
-    keyLight.castShadow = true;
+    if (!isMobile) keyLight.castShadow = true;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0xe8f1fb, 0.4);
-    fillLight.position.set(-5, 2, 3);
-    scene.add(fillLight);
+    // Skip the two extra lights on mobile — just keep one ambient + one key.
+    if (!isMobile) {
+      const fillLight = new THREE.DirectionalLight(0xe8f1fb, 0.4);
+      fillLight.position.set(-5, 2, 3);
+      scene.add(fillLight);
 
-    const rimLight = new THREE.DirectionalLight(0x0074d9, 0.3);
-    rimLight.position.set(0, -3, -5);
-    scene.add(rimLight);
+      const rimLight = new THREE.DirectionalLight(0x0074d9, 0.3);
+      rimLight.position.set(0, -3, -5);
+      scene.add(rimLight);
+    }
 
     const group = new THREE.Group();
     scene.add(group);
 
     // === 3D Screen Image (simulating the LCD display) ===
     const textureLoader = new THREE.TextureLoader();
-    // Use a high-quality 4k landscape/studio image
-    const screenTexture = textureLoader.load('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070');
+    // Use a smaller image on mobile to reduce memory + decode time.
+    const screenUrl = isMobile
+      ? 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=70&w=900'
+      : 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070';
+    const screenTexture = textureLoader.load(screenUrl);
     const screenGeo = new THREE.PlaneGeometry(1.6, 1.0);
-    const screenMat = new THREE.MeshBasicMaterial({ map: screenTexture, side: THREE.DoubleSide });
+    const screenMat = new THREE.MeshBasicMaterial({
+      map: screenTexture,
+      side: THREE.DoubleSide,
+    });
     const screenMesh = new THREE.Mesh(screenGeo, screenMat);
-    
+
     // Position it slightly on the back of the camera model (Z > 0 because model faces Z < 0)
-    // We will align this based on standard camera geometry
     screenMesh.position.set(0, 0.1, 0.72);
     // Rotate to face backwards
     screenMesh.rotation.y = Math.PI;
@@ -107,12 +147,13 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
         const scale = 3.5 / maxDim;
         model.scale.set(scale, scale, scale);
 
-        // Adjust materials and shadows
+        // Adjust materials and shadows (skip shadow flags on mobile)
         model.traverse((child) => {
           if (child instanceof THREE.Mesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-            
+            if (!isMobile) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+            }
             if (child.material) {
               child.material.needsUpdate = true;
             }
@@ -121,6 +162,7 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
 
         // Add model behind screen mesh
         group.add(model);
+        setModelLoaded(true);
       },
       undefined,
       (error) => {
@@ -158,7 +200,6 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
           break;
         }
       }
-      // Safety clamp to prevent out of bounds when p is at boundaries
       if (i >= keyframes.length - 1) {
         i = keyframes.length - 2;
       }
@@ -174,14 +215,15 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
       const targetCamZ = THREE.MathUtils.lerp(k1.camZ, k2.camZ, factor);
       const targetCamY = THREE.MathUtils.lerp(k1.camY, k2.camY, factor);
 
-      // Smooth lerp
-      currentRotY += (targetRotY - currentRotY) * 0.08;
-      currentRotX += (targetRotX - currentRotX) * 0.08;
-      currentPosX += (targetPosX - currentPosX) * 0.08;
-      currentPosY += (targetPosY - currentPosY) * 0.08;
-      currentPosZ += (targetPosZ - currentPosZ) * 0.08;
-      currentCamZ += (targetCamZ - currentCamZ) * 0.08;
-      currentCamY += (targetCamY - currentCamY) * 0.08;
+      // Slightly slower smoothing on mobile for steadier framerate
+      const smoothing = isMobile ? 0.06 : 0.08;
+      currentRotY += (targetRotY - currentRotY) * smoothing;
+      currentRotX += (targetRotX - currentRotX) * smoothing;
+      currentPosX += (targetPosX - currentPosX) * smoothing;
+      currentPosY += (targetPosY - currentPosY) * smoothing;
+      currentPosZ += (targetPosZ - currentPosZ) * smoothing;
+      currentCamZ += (targetCamZ - currentCamZ) * smoothing;
+      currentCamY += (targetCamY - currentCamY) * smoothing;
 
       // Apply transforms
       group.rotation.y = currentRotY;
@@ -203,15 +245,19 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
       if (!container) return;
       const w = container.clientWidth;
       const h = container.clientHeight;
+      if (w === 0 || h === 0) return;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
     window.addEventListener('resize', onResize);
+    // orientationchange fires late on iOS — cover it too.
+    window.addEventListener('orientationchange', onResize);
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', onResize);
+      window.removeEventListener('orientationchange', onResize);
       renderer.dispose();
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
@@ -219,12 +265,30 @@ export default function Camera3D({ scrollProgress }: { scrollProgress: number })
     };
   }, []);
 
+  // Fallback when WebGL is unavailable — show the LCD image with the same
+  // scroll-driven zoom so the section still feels alive.
+  if (webglFailed) {
+    return (
+      <div
+        ref={mountRef}
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        aria-label="Hình ảnh máy ảnh kỹ thuật số"
+      />
+    );
+  }
+
   return (
     <div
       ref={mountRef}
-      style={{ width: '100%', height: '100%', cursor: 'grab' }}
+      style={{ width: '100%', height: '100%', cursor: 'grab', touchAction: 'pan-y' }}
       aria-label="Mô hình 3D máy ảnh kỹ thuật số"
     />
   );
 }
-
