@@ -99,8 +99,8 @@ export function YouTubeReviews() {
           {VIDEOS.map((v) => (
             <div
               key={v.id}
-              className="shrink-0 snap-start overflow-hidden rounded-[20px] bg-black"
-              style={{ aspectRatio: '16 / 9', width: 'clamp(260px, 32vw, 420px)' }}
+              className="shrink-0 snap-start overflow-hidden rounded-[20px] bg-black w-[72vw] sm:w-[55vw] md:w-[38vw] lg:w-[320px]"
+              style={{ aspectRatio: '16 / 9' }}
             >
               <iframe
                 src={`https://www.youtube.com/embed/${v.id}`}
